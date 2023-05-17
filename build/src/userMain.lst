@@ -1,0 +1,223 @@
+GAS LISTING /tmp/ccf8Aq9j.s 			page 1
+
+
+   1              		.file	"userMain.cpp"
+   2              		.option nopic
+   3              		.option norelax
+   4              		.attribute arch, "rv64i2p0_m2p0_a2p0"
+   5              		.attribute unaligned_access, 0
+   6              		.attribute stack_align, 16
+   7              		.text
+   8              	.Ltext0:
+   9              		.align	2
+  10              		.globl	_Z8userMainv
+  12              	_Z8userMainv:
+  13              	.LFB0:
+  14              		.file 1 "src/userMain.cpp"
+   1:src/userMain.cpp **** #include "../h/userMain.hpp"
+   2:src/userMain.cpp **** 
+   3:src/userMain.cpp **** void _putc(char);
+   4:src/userMain.cpp **** 
+   5:src/userMain.cpp **** int userMain(){
+  15              		.loc 1 5 15
+  16              		.cfi_startproc
+  17 0000 130101FF 		addi	sp,sp,-16
+  18              		.cfi_def_cfa_offset 16
+  19 0004 23341100 		sd	ra,8(sp)
+  20 0008 23308100 		sd	s0,0(sp)
+  21              		.cfi_offset 1, -8
+  22              		.cfi_offset 8, -16
+  23 000c 13040101 		addi	s0,sp,16
+  24              		.cfi_def_cfa 8, 0
+   6:src/userMain.cpp ****     _putc('H');
+  25              		.loc 1 6 5
+  26              		.loc 1 6 10 is_stmt 0
+  27 0010 13058004 		li	a0,72
+  28 0014 97000000 		call	_Z5_putcc
+  28      E7800000 
+  29              	.LVL0:
+   7:src/userMain.cpp ****     _putc('e');
+  30              		.loc 1 7 5 is_stmt 1
+  31              		.loc 1 7 10 is_stmt 0
+  32 001c 13055006 		li	a0,101
+  33 0020 97000000 		call	_Z5_putcc
+  33      E7800000 
+  34              	.LVL1:
+   8:src/userMain.cpp ****     _putc('l');
+  35              		.loc 1 8 5 is_stmt 1
+  36              		.loc 1 8 10 is_stmt 0
+  37 0028 1305C006 		li	a0,108
+  38 002c 97000000 		call	_Z5_putcc
+  38      E7800000 
+  39              	.LVL2:
+   9:src/userMain.cpp ****     _putc('l');
+  40              		.loc 1 9 5 is_stmt 1
+  41              		.loc 1 9 10 is_stmt 0
+  42 0034 1305C006 		li	a0,108
+  43 0038 97000000 		call	_Z5_putcc
+  43      E7800000 
+  44              	.LVL3:
+  10:src/userMain.cpp ****     _putc('o');
+GAS LISTING /tmp/ccf8Aq9j.s 			page 2
+
+
+  45              		.loc 1 10 5 is_stmt 1
+  46              		.loc 1 10 10 is_stmt 0
+  47 0040 1305F006 		li	a0,111
+  48 0044 97000000 		call	_Z5_putcc
+  48      E7800000 
+  49              	.LVL4:
+  11:src/userMain.cpp ****     _putc(' ');
+  50              		.loc 1 11 5 is_stmt 1
+  51              		.loc 1 11 10 is_stmt 0
+  52 004c 13050002 		li	a0,32
+  53 0050 97000000 		call	_Z5_putcc
+  53      E7800000 
+  54              	.LVL5:
+  12:src/userMain.cpp ****     _putc('w');
+  55              		.loc 1 12 5 is_stmt 1
+  56              		.loc 1 12 10 is_stmt 0
+  57 0058 13057007 		li	a0,119
+  58 005c 97000000 		call	_Z5_putcc
+  58      E7800000 
+  59              	.LVL6:
+  13:src/userMain.cpp ****     _putc('o');
+  60              		.loc 1 13 5 is_stmt 1
+  61              		.loc 1 13 10 is_stmt 0
+  62 0064 1305F006 		li	a0,111
+  63 0068 97000000 		call	_Z5_putcc
+  63      E7800000 
+  64              	.LVL7:
+  14:src/userMain.cpp ****     _putc('r');
+  65              		.loc 1 14 5 is_stmt 1
+  66              		.loc 1 14 10 is_stmt 0
+  67 0070 13052007 		li	a0,114
+  68 0074 97000000 		call	_Z5_putcc
+  68      E7800000 
+  69              	.LVL8:
+  15:src/userMain.cpp ****     _putc('l');
+  70              		.loc 1 15 5 is_stmt 1
+  71              		.loc 1 15 10 is_stmt 0
+  72 007c 1305C006 		li	a0,108
+  73 0080 97000000 		call	_Z5_putcc
+  73      E7800000 
+  74              	.LVL9:
+  16:src/userMain.cpp ****     _putc('d');
+  75              		.loc 1 16 5 is_stmt 1
+  76              		.loc 1 16 10 is_stmt 0
+  77 0088 13054006 		li	a0,100
+  78 008c 97000000 		call	_Z5_putcc
+  78      E7800000 
+  79              	.LVL10:
+  17:src/userMain.cpp ****     _putc('!');
+  80              		.loc 1 17 5 is_stmt 1
+  81              		.loc 1 17 10 is_stmt 0
+  82 0094 13051002 		li	a0,33
+  83 0098 97000000 		call	_Z5_putcc
+  83      E7800000 
+  84              	.LVL11:
+  18:src/userMain.cpp ****     _putc('\n');
+  85              		.loc 1 18 5 is_stmt 1
+GAS LISTING /tmp/ccf8Aq9j.s 			page 3
+
+
+  86              		.loc 1 18 10 is_stmt 0
+  87 00a0 1305A000 		li	a0,10
+  88 00a4 97000000 		call	_Z5_putcc
+  88      E7800000 
+  89              	.LVL12:
+  19:src/userMain.cpp ****     return 0;
+  90              		.loc 1 19 5 is_stmt 1
+  20:src/userMain.cpp **** }...
+  91              		.loc 1 20 1 is_stmt 0
+  92 00ac 13050000 		li	a0,0
+  93 00b0 83308100 		ld	ra,8(sp)
+  94              		.cfi_restore 1
+  95 00b4 03340100 		ld	s0,0(sp)
+  96              		.cfi_restore 8
+  97              		.cfi_def_cfa 2, 16
+  98 00b8 13010101 		addi	sp,sp,16
+  99              		.cfi_def_cfa_offset 0
+ 100 00bc 67800000 		jr	ra
+ 101              		.cfi_endproc
+ 102              	.LFE0:
+ 104              	.Letext0:
+GAS LISTING /tmp/ccf8Aq9j.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 userMain.cpp
+     /tmp/ccf8Aq9j.s:12     .text:0000000000000000 _Z8userMainv
+     /tmp/ccf8Aq9j.s:16     .text:0000000000000000 .L0 
+     /tmp/ccf8Aq9j.s:17     .text:0000000000000000 .L0 
+     /tmp/ccf8Aq9j.s:18     .text:0000000000000004 .L0 
+     /tmp/ccf8Aq9j.s:21     .text:000000000000000c .L0 
+     /tmp/ccf8Aq9j.s:22     .text:000000000000000c .L0 
+     /tmp/ccf8Aq9j.s:24     .text:0000000000000010 .L0 
+     /tmp/ccf8Aq9j.s:26     .text:0000000000000010 .L0 
+     /tmp/ccf8Aq9j.s:27     .text:0000000000000010 .L0 
+     /tmp/ccf8Aq9j.s:31     .text:000000000000001c .L0 
+     /tmp/ccf8Aq9j.s:32     .text:000000000000001c .L0 
+     /tmp/ccf8Aq9j.s:36     .text:0000000000000028 .L0 
+     /tmp/ccf8Aq9j.s:37     .text:0000000000000028 .L0 
+     /tmp/ccf8Aq9j.s:41     .text:0000000000000034 .L0 
+     /tmp/ccf8Aq9j.s:42     .text:0000000000000034 .L0 
+     /tmp/ccf8Aq9j.s:46     .text:0000000000000040 .L0 
+     /tmp/ccf8Aq9j.s:47     .text:0000000000000040 .L0 
+     /tmp/ccf8Aq9j.s:51     .text:000000000000004c .L0 
+     /tmp/ccf8Aq9j.s:52     .text:000000000000004c .L0 
+     /tmp/ccf8Aq9j.s:56     .text:0000000000000058 .L0 
+     /tmp/ccf8Aq9j.s:57     .text:0000000000000058 .L0 
+     /tmp/ccf8Aq9j.s:61     .text:0000000000000064 .L0 
+     /tmp/ccf8Aq9j.s:62     .text:0000000000000064 .L0 
+     /tmp/ccf8Aq9j.s:66     .text:0000000000000070 .L0 
+     /tmp/ccf8Aq9j.s:67     .text:0000000000000070 .L0 
+     /tmp/ccf8Aq9j.s:71     .text:000000000000007c .L0 
+     /tmp/ccf8Aq9j.s:72     .text:000000000000007c .L0 
+     /tmp/ccf8Aq9j.s:76     .text:0000000000000088 .L0 
+     /tmp/ccf8Aq9j.s:77     .text:0000000000000088 .L0 
+     /tmp/ccf8Aq9j.s:81     .text:0000000000000094 .L0 
+     /tmp/ccf8Aq9j.s:82     .text:0000000000000094 .L0 
+     /tmp/ccf8Aq9j.s:86     .text:00000000000000a0 .L0 
+     /tmp/ccf8Aq9j.s:87     .text:00000000000000a0 .L0 
+     /tmp/ccf8Aq9j.s:91     .text:00000000000000ac .L0 
+     /tmp/ccf8Aq9j.s:92     .text:00000000000000ac .L0 
+     /tmp/ccf8Aq9j.s:94     .text:00000000000000b4 .L0 
+     /tmp/ccf8Aq9j.s:96     .text:00000000000000b8 .L0 
+     /tmp/ccf8Aq9j.s:97     .text:00000000000000b8 .L0 
+     /tmp/ccf8Aq9j.s:99     .text:00000000000000bc .L0 
+     /tmp/ccf8Aq9j.s:101    .text:00000000000000c0 .L0 
+     /tmp/ccf8Aq9j.s:105    .text:00000000000000c0 .L0 
+     /tmp/ccf8Aq9j.s:285    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccf8Aq9j.s:421    .debug_str:000000000000006e .LASF0
+     /tmp/ccf8Aq9j.s:417    .debug_str:0000000000000054 .LASF1
+     /tmp/ccf8Aq9j.s:409    .debug_str:0000000000000000 .LASF2
+     /tmp/ccf8Aq9j.s:8      .text:0000000000000000 .Ltext0
+     /tmp/ccf8Aq9j.s:104    .text:00000000000000c0 .Letext0
+     /tmp/ccf8Aq9j.s:407    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccf8Aq9j.s:419    .debug_str:0000000000000065 .LASF3
+     /tmp/ccf8Aq9j.s:411    .debug_str:0000000000000037 .LASF4
+     /tmp/ccf8Aq9j.s:13     .text:0000000000000000 .LFB0
+     /tmp/ccf8Aq9j.s:102    .text:00000000000000c0 .LFE0
+     /tmp/ccf8Aq9j.s:29     .text:000000000000001c .LVL0
+     /tmp/ccf8Aq9j.s:34     .text:0000000000000028 .LVL1
+     /tmp/ccf8Aq9j.s:39     .text:0000000000000034 .LVL2
+GAS LISTING /tmp/ccf8Aq9j.s 			page 5
+
+
+     /tmp/ccf8Aq9j.s:44     .text:0000000000000040 .LVL3
+     /tmp/ccf8Aq9j.s:49     .text:000000000000004c .LVL4
+     /tmp/ccf8Aq9j.s:54     .text:0000000000000058 .LVL5
+     /tmp/ccf8Aq9j.s:59     .text:0000000000000064 .LVL6
+     /tmp/ccf8Aq9j.s:64     .text:0000000000000070 .LVL7
+     /tmp/ccf8Aq9j.s:69     .text:000000000000007c .LVL8
+     /tmp/ccf8Aq9j.s:74     .text:0000000000000088 .LVL9
+     /tmp/ccf8Aq9j.s:79     .text:0000000000000094 .LVL10
+     /tmp/ccf8Aq9j.s:84     .text:00000000000000a0 .LVL11
+     /tmp/ccf8Aq9j.s:89     .text:00000000000000ac .LVL12
+     /tmp/ccf8Aq9j.s:413    .debug_str:0000000000000044 .LASF5
+     /tmp/ccf8Aq9j.s:415    .debug_str:000000000000004e .LASF6
+     /tmp/ccf8Aq9j.s:106    .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+_Z5_putcc

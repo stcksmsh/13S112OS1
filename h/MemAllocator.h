@@ -1,5 +1,9 @@
-#ifndef MEM_ALLOCATOR_HEADERFILE
-#define MEM_ALLOCATOR_HEADERFILE
+//
+// Created by os on 8/6/22.
+//
+
+#ifndef PROJECT_BASE_V1_1_MEMALLOCATOR_H
+#define PROJECT_BASE_V1_1_MEMALLOCATOR_H
 #include "../lib/hw.h"
 struct FreeMem{
     FreeMem* next;
@@ -15,4 +19,4 @@ public:
     int mem_free(void* adr);
 
 };
-#endif
+#endif //PROJECT_BASE_V1_1_MEMALLOCATOR_H
