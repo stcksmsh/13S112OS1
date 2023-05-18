@@ -1,0 +1,195 @@
+GAS LISTING /tmp/ccO2svE7.s 			page 1
+
+
+   1              		.file	"c_syscall.cpp"
+   2              		.option nopic
+   3              		.option norelax
+   4              		.attribute arch, "rv64i2p0_m2p0_a2p0"
+   5              		.attribute unaligned_access, 0
+   6              		.attribute stack_align, 16
+   7              		.text
+   8              	.Ltext0:
+   9              		.align	2
+  10              		.globl	_Z9mem_allocm
+  12              	_Z9mem_allocm:
+  13              	.LFB3:
+  14              		.file 1 "src/c_syscall.cpp"
+   1:src/c_syscall.cpp **** #include "../h/c_syscall.h"
+   2:src/c_syscall.cpp **** #include "../h/MemoryAllocator.h"
+   3:src/c_syscall.cpp **** 
+   4:src/c_syscall.cpp **** 
+   5:src/c_syscall.cpp **** void* mem_alloc(size_t size){
+  15              		.loc 1 5 29
+  16              		.cfi_startproc
+  17              	.LVL0:
+  18 0000 130101FE 		addi	sp,sp,-32
+  19              		.cfi_def_cfa_offset 32
+  20 0004 233C1100 		sd	ra,24(sp)
+  21 0008 23388100 		sd	s0,16(sp)
+  22 000c 23349100 		sd	s1,8(sp)
+  23              		.cfi_offset 1, -8
+  24              		.cfi_offset 8, -16
+  25              		.cfi_offset 9, -24
+  26 0010 13040102 		addi	s0,sp,32
+  27              		.cfi_def_cfa 8, 0
+  28 0014 93040500 		mv	s1,a0
+   6:src/c_syscall.cpp ****     return MemoryAllocator::getInstance().mem_alloc(size);;
+  29              		.loc 1 6 5
+  30              		.loc 1 6 41 is_stmt 0
+  31 0018 97000000 		call	_ZN15MemoryAllocator11getInstanceEv
+  31      E7800000 
+  32              	.LVL1:
+  33              		.loc 1 6 52
+  34 0020 93850400 		mv	a1,s1
+  35 0024 97000000 		call	_ZN15MemoryAllocator9mem_allocEm
+  35      E7800000 
+  36              	.LVL2:
+  37              		.loc 1 6 59 is_stmt 1
+   7:src/c_syscall.cpp **** }
+  38              		.loc 1 7 1 is_stmt 0
+  39 002c 83308101 		ld	ra,24(sp)
+  40              		.cfi_restore 1
+  41 0030 03340101 		ld	s0,16(sp)
+  42              		.cfi_restore 8
+  43              		.cfi_def_cfa 2, 32
+  44 0034 83348100 		ld	s1,8(sp)
+  45              		.cfi_restore 9
+  46              	.LVL3:
+  47 0038 13010102 		addi	sp,sp,32
+  48              		.cfi_def_cfa_offset 0
+  49 003c 67800000 		jr	ra
+GAS LISTING /tmp/ccO2svE7.s 			page 2
+
+
+  50              		.cfi_endproc
+  51              	.LFE3:
+  53              		.align	2
+  54              		.globl	_Z8mem_freePv
+  56              	_Z8mem_freePv:
+  57              	.LFB4:
+   8:src/c_syscall.cpp **** 
+   9:src/c_syscall.cpp **** int mem_free(void* addr){
+  58              		.loc 1 9 25 is_stmt 1
+  59              		.cfi_startproc
+  60              	.LVL4:
+  61 0040 130101FF 		addi	sp,sp,-16
+  62              		.cfi_def_cfa_offset 16
+  63 0044 23348100 		sd	s0,8(sp)
+  64              		.cfi_offset 8, -8
+  65 0048 13040101 		addi	s0,sp,16
+  66              		.cfi_def_cfa 8, 0
+  10:src/c_syscall.cpp ****     return 0;
+  67              		.loc 1 10 5
+  11:src/c_syscall.cpp **** }...
+  68              		.loc 1 11 1 is_stmt 0
+  69 004c 13050000 		li	a0,0
+  70              	.LVL5:
+  71 0050 03348100 		ld	s0,8(sp)
+  72              		.cfi_restore 8
+  73              		.cfi_def_cfa 2, 16
+  74 0054 13010101 		addi	sp,sp,16
+  75              		.cfi_def_cfa_offset 0
+  76 0058 67800000 		jr	ra
+  77              		.cfi_endproc
+  78              	.LFE4:
+  80              	.Letext0:
+  81              		.file 2 "src/../h/../lib/hw.h"
+  82              		.file 3 "src/../h/MemoryAllocator.h"
+GAS LISTING /tmp/ccO2svE7.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 c_syscall.cpp
+     /tmp/ccO2svE7.s:12     .text:0000000000000000 _Z9mem_allocm
+     /tmp/ccO2svE7.s:16     .text:0000000000000000 .L0 
+     /tmp/ccO2svE7.s:18     .text:0000000000000000 .L0 
+     /tmp/ccO2svE7.s:19     .text:0000000000000004 .L0 
+     /tmp/ccO2svE7.s:23     .text:0000000000000010 .L0 
+     /tmp/ccO2svE7.s:24     .text:0000000000000010 .L0 
+     /tmp/ccO2svE7.s:25     .text:0000000000000010 .L0 
+     /tmp/ccO2svE7.s:27     .text:0000000000000014 .L0 
+     /tmp/ccO2svE7.s:30     .text:0000000000000018 .L0 
+     /tmp/ccO2svE7.s:31     .text:0000000000000018 .L0 
+     /tmp/ccO2svE7.s:34     .text:0000000000000020 .L0 
+     /tmp/ccO2svE7.s:38     .text:000000000000002c .L0 
+     /tmp/ccO2svE7.s:39     .text:000000000000002c .L0 
+     /tmp/ccO2svE7.s:40     .text:0000000000000030 .L0 
+     /tmp/ccO2svE7.s:42     .text:0000000000000034 .L0 
+     /tmp/ccO2svE7.s:43     .text:0000000000000034 .L0 
+     /tmp/ccO2svE7.s:45     .text:0000000000000038 .L0 
+     /tmp/ccO2svE7.s:48     .text:000000000000003c .L0 
+     /tmp/ccO2svE7.s:50     .text:0000000000000040 .L0 
+     /tmp/ccO2svE7.s:56     .text:0000000000000040 _Z8mem_freePv
+     /tmp/ccO2svE7.s:59     .text:0000000000000040 .L0 
+     /tmp/ccO2svE7.s:61     .text:0000000000000040 .L0 
+     /tmp/ccO2svE7.s:62     .text:0000000000000044 .L0 
+     /tmp/ccO2svE7.s:64     .text:0000000000000048 .L0 
+     /tmp/ccO2svE7.s:66     .text:000000000000004c .L0 
+     /tmp/ccO2svE7.s:68     .text:000000000000004c .L0 
+     /tmp/ccO2svE7.s:69     .text:000000000000004c .L0 
+     /tmp/ccO2svE7.s:72     .text:0000000000000054 .L0 
+     /tmp/ccO2svE7.s:73     .text:0000000000000054 .L0 
+     /tmp/ccO2svE7.s:75     .text:0000000000000058 .L0 
+     /tmp/ccO2svE7.s:77     .text:000000000000005c .L0 
+     /tmp/ccO2svE7.s:83     .text:000000000000005c .L0 
+     /tmp/ccO2svE7.s:377    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccO2svE7.s:903    .debug_str:000000000000012a .LASF30
+     /tmp/ccO2svE7.s:913    .debug_str:0000000000000251 .LASF31
+     /tmp/ccO2svE7.s:927    .debug_str:00000000000002cd .LASF32
+     /tmp/ccO2svE7.s:8      .text:0000000000000000 .Ltext0
+     /tmp/ccO2svE7.s:80     .text:000000000000005c .Letext0
+     /tmp/ccO2svE7.s:865    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccO2svE7.s:917    .debug_str:0000000000000271 .LASF0
+     /tmp/ccO2svE7.s:899    .debug_str:000000000000010b .LASF1
+     /tmp/ccO2svE7.s:893    .debug_str:00000000000000cf .LASF2
+     /tmp/ccO2svE7.s:879    .debug_str:000000000000005a .LASF4
+     /tmp/ccO2svE7.s:897    .debug_str:00000000000000f9 .LASF3
+     /tmp/ccO2svE7.s:875    .debug_str:000000000000003d .LASF5
+     /tmp/ccO2svE7.s:871    .debug_str:000000000000001a .LASF6
+     /tmp/ccO2svE7.s:887    .debug_str:000000000000008f .LASF7
+     /tmp/ccO2svE7.s:939    .debug_str:0000000000000350 .LASF8
+     /tmp/ccO2svE7.s:901    .debug_str:000000000000011e .LASF9
+     /tmp/ccO2svE7.s:877    .debug_str:0000000000000044 .LASF10
+     /tmp/ccO2svE7.s:921    .debug_str:00000000000002a2 .LASF11
+     /tmp/ccO2svE7.s:931    .debug_str:0000000000000325 .LASF33
+     /tmp/ccO2svE7.s:889    .debug_str:00000000000000a2 .LASF12
+     /tmp/ccO2svE7.s:905    .debug_str:00000000000001ef .LASF13
+     /tmp/ccO2svE7.s:869    .debug_str:000000000000000e .LASF14
+GAS LISTING /tmp/ccO2svE7.s 			page 4
+
+
+     /tmp/ccO2svE7.s:873    .debug_str:000000000000002d .LASF16
+     /tmp/ccO2svE7.s:923    .debug_str:00000000000002b8 .LASF34
+     /tmp/ccO2svE7.s:919    .debug_str:000000000000027e .LASF35
+     /tmp/ccO2svE7.s:909    .debug_str:0000000000000233 .LASF18
+     /tmp/ccO2svE7.s:881    .debug_str:0000000000000061 .LASF25
+     /tmp/ccO2svE7.s:933    .debug_str:0000000000000337 .LASF20
+     /tmp/ccO2svE7.s:895    .debug_str:00000000000000dd .LASF22
+     /tmp/ccO2svE7.s:911    .debug_str:000000000000024c .LASF15
+     /tmp/ccO2svE7.s:883    .debug_str:000000000000007d .LASF17
+     /tmp/ccO2svE7.s:907    .debug_str:00000000000001fb .LASF19
+     /tmp/ccO2svE7.s:935    .debug_str:0000000000000341 .LASF21
+     /tmp/ccO2svE7.s:929    .debug_str:0000000000000304 .LASF23
+     /tmp/ccO2svE7.s:925    .debug_str:00000000000002c4 .LASF24
+     /tmp/ccO2svE7.s:891    .debug_str:00000000000000ae .LASF26
+     /tmp/ccO2svE7.s:867    .debug_str:0000000000000000 .LASF36
+     /tmp/ccO2svE7.s:57     .text:0000000000000040 .LFB4
+     /tmp/ccO2svE7.s:78     .text:000000000000005c .LFE4
+     /tmp/ccO2svE7.s:885    .debug_str:000000000000008a .LASF28
+     /tmp/ccO2svE7.s:820    .debug_loc:0000000000000000 .LLST1
+     /tmp/ccO2svE7.s:915    .debug_str:0000000000000263 .LASF27
+     /tmp/ccO2svE7.s:13     .text:0000000000000000 .LFB3
+     /tmp/ccO2svE7.s:51     .text:0000000000000040 .LFE3
+     /tmp/ccO2svE7.s:937    .debug_str:000000000000034b .LASF29
+     /tmp/ccO2svE7.s:834    .debug_loc:0000000000000039 .LLST0
+     /tmp/ccO2svE7.s:32     .text:0000000000000020 .LVL1
+     /tmp/ccO2svE7.s:36     .text:000000000000002c .LVL2
+     /tmp/ccO2svE7.s:60     .text:0000000000000040 .LVL4
+     /tmp/ccO2svE7.s:70     .text:0000000000000050 .LVL5
+     /tmp/ccO2svE7.s:17     .text:0000000000000000 .LVL0
+     /tmp/ccO2svE7.s:46     .text:0000000000000038 .LVL3
+     /tmp/ccO2svE7.s:84     .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+_ZN15MemoryAllocator11getInstanceEv
+_ZN15MemoryAllocator9mem_allocEm

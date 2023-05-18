@@ -21,23 +21,23 @@ private:
     /// @brief empty constructor
     MemoryAllocator(){};
     /// @brief deleted copy constructor to avoid singleton instance copies
-    MemoryAllocator(MemoryAllocator const&) = delete;
+    MemoryAllocator( MemoryAllocator const& ) = delete;
     /// @brief deleted copy assignment operator to avoid singleton instance copies
-    MemoryAllocator& operator=(MemoryAllocator const&) = delete;
+    MemoryAllocator& operator=( MemoryAllocator const& ) = delete;
     /// @brief head of the doubly linked list described above
     FreeMemorySegment *head;
     /// @brief attempts to merge two successive segments
     /// @param FreeMemorySegment* the segment to attempt to merge with the next
-    void attemptMerge(FreeMemorySegment*);
+    void attemptMerge( FreeMemorySegment* );
 public:
     /// @brief allocates memory (aligned and rounded to MEM_BLOCK_SIZE bytes)
     /// @param size_t the minimum number of bytes to be allocated
     /// @return pointer to the newly allocated memory if successful, and nullptr if not
-    void *mem_alloc(size_t);
+    void *mem_alloc( size_t );
     /// @brief frees memory previously allocated with MemoryAllocator::mem_alloc
     /// @param  void* the return value of MemoryAllocator::mem_alloc
     /// @return 0 if successful, and an error code if not
-    int mem_free(void*);
+    int mem_free( void* );
 
 };
 

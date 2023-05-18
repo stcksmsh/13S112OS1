@@ -1,7 +1,7 @@
-#include "../h/MemoryAllocator.h"
+#include "../h/memoryAllocator.h"
 
 
-void *MemoryAllocator::mem_alloc(size_t size){
+void *MemoryAllocator::mem_alloc( size_t size ){
     /* 
         sets size to minimum number of memory blocks needed to contain the requested number of bytes
         adds one block to store size of allocated memory, so that it can be used by the MemoryAllocator:free function
@@ -80,7 +80,7 @@ MemoryAllocator& MemoryAllocator::getInstance() {
     return instance;
 }
 
-void MemoryAllocator::attemptMerge(FreeMemorySegment *segment) {
+void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
     /// if the end of current segment and beggining of next segment do not align, they cannot be merged
     if((uint64*)segment->nextSegment != (uint64*)segment + segment->segmentSize*MEM_BLOCK_SIZE)
         return;
@@ -91,7 +91,7 @@ void MemoryAllocator::attemptMerge(FreeMemorySegment *segment) {
     if(segment->nextSegment) segment->nextSegment->prevSegment = segment;
 }
 
-int MemoryAllocator::mem_free(void *address) {
+int MemoryAllocator::mem_free( void *address ) {
     /// if the given address is outside the allowed range, return -1 indicating an error
     if((uint64*)address >= (uint64*)HEAP_END_ADDR || (uint64*)address < (uint64*)HEAP_START_ADDR + MEM_BLOCK_SIZE)
         return -1;
