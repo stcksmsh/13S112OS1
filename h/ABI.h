@@ -4,7 +4,7 @@
 #include "../lib/hw.h"
 
 extern "C" void supervisorTrap();
-class Riscv
+class ABI
 {
 public:
     static void popSppSpie();
@@ -34,25 +34,25 @@ private:
 
 };
 
-inline uint64 Riscv::r_sstatus()
+inline uint64 ABI::r_sstatus()
 {
     uint64 volatile sstatus;
     __asm__ volatile ("csrr %[sstatus], sstatus" : [sstatus] "=r"(sstatus));
     return sstatus;
 }
 
-inline void Riscv::w_sstatus(uint64 sstatus)
+inline void ABI::w_sstatus(uint64 sstatus)
 {
     __asm__ volatile ("csrw sstatus, %[sstatus]" : : [sstatus] "r"(sstatus));
 }
 
 
-inline void Riscv::mc_sip(uint64 mask)
+inline void ABI::mc_sip(uint64 mask)
 {
     __asm__ volatile ("csrc sip, %[mask]" : : [mask] "r"(mask));
 }
 
-inline void Riscv::mc_sstatus(uint64 mask)
+inline void ABI::mc_sstatus(uint64 mask)
 {
     __asm__ volatile ("csrc sstatus, %[mask]" : : [mask] "r"(mask));
 

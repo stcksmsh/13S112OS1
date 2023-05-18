@@ -1,10 +1,10 @@
 #include "../lib/console.h"
-#include "../h/riscv.h"
+#include "../h/ABI.h"
 // #include "../h/tcb.hpp"
 #include "../h/memoryAllocator.h"
 // #include "../h/Sem.h"
 
-void Riscv::popSppSpie() {
+void ABI::popSppSpie() {
 
         __asm__ volatile("csrw sepc, ra");
         __asm__ volatile("sret");
@@ -12,7 +12,7 @@ void Riscv::popSppSpie() {
 
 }
 
-void Riscv::handleSupervisorTrap() {
+void ABI::handleSupervisorTrap() {
     uint64 scauseVar;
     uint64 reg3;
     __asm__ volatile ("mv %[rarg], a3" : [rarg]"=r"(reg3));
@@ -26,6 +26,7 @@ void Riscv::handleSupervisorTrap() {
         uint64 x;
         uint64 volatile sstatus = r_sstatus();
         __asm__ volatile("mv %[rx], a0" : [rx]"=r"(x));
+        __putc('0' + ((sstatus & (1<<8))>>8));
         //malloc
         if (x == 0x01) {
             uint64 ar;
