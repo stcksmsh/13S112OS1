@@ -1,11 +1,13 @@
-#pragma once
+#ifndef MEMORYALLOCATORHEADERFILE
+#define MEMORYALLOCATORHEADERFILE
+
 #include "../lib/hw.h"
 /// @brief data structure which represents the continuous segments of unused memory, in a doubly linked list format, ordered by starting address 
 struct FreeMemorySegment{
     /// @brief pointer to previous free segment
-    FreeMemorySegment* prevSegment;
+    struct FreeMemorySegment* prevSegment;
     /// @brief pointer to next free segment
-    FreeMemorySegment* nextSegment;
+    struct FreeMemorySegment* nextSegment;
     /// @brief size of the free memory segment in MEM_BLOCK_SIZE byte units
     size_t segmentSize;
 };
@@ -39,3 +41,4 @@ public:
 
 };
 
+#endif

@@ -3,7 +3,7 @@
 #include "hw.h"
 
 /*
- * The functions are intended to be used in supervisor mode, and they are not thread-safe
+ * The functions are intended to be used in supervisor mode, and they are not _thread-safe
  */
 
 #ifdef __cplusplus
