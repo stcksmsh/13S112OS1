@@ -1,9 +1,6 @@
-//
-// Created by marko on 20.4.22..
-//
 
 #include "../h/scheduler.hpp"
-#include "../h/MemAllocator.h"
+#include "../h/MemoryAllocator.h"
 
 Elem* Scheduler::head=nullptr;
 Elem* Scheduler::tail=nullptr;
@@ -17,13 +14,13 @@ TCB *Scheduler::get()
     if (!head) { tail = 0; }
 
     TCB *ret = elem->data;
-    MemAlloc::getInstance().mem_free(elem);
+    MemoryAllocator::getInstance().mem_free(elem);
     return ret;
 }
 
 void Scheduler::put(TCB *ccb)
 {
-    Elem *elem = (Elem*)MemAlloc::getInstance().mem_alloc((sizeof(Elem)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    Elem *elem = (Elem*)MemoryAllocator::getInstance().mem_alloc((sizeof(Elem)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     elem->data=ccb;
     elem->next=0;
     if (tail!=nullptr)

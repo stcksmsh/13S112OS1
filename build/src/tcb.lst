@@ -20,7 +20,7 @@ GAS LISTING /tmp/ccMhvDV1.s 			page 1
    4:src/tcb.cpp   **** 
    5:src/tcb.cpp   **** #include "../h/tcb.hpp"
    6:src/tcb.cpp   **** #include "../h/riscv.hpp"
-   7:src/tcb.cpp   **** #include "../h/MemAllocator.h"
+   7:src/tcb.cpp   **** #include "../h/MemoryAllocator.h"
    8:src/tcb.cpp   **** #include "../h/syscall_c.h"
    9:src/tcb.cpp   **** TCB* TCB::running=nullptr;
   10:src/tcb.cpp   **** TCB* TCB::createThread(TCB::Body body, TCB **handle, void *arg,uint64* stack) {
@@ -121,7 +121,7 @@ GAS LISTING /tmp/ccMhvDV1.s 			page 1
 GAS LISTING /tmp/ccMhvDV1.s 			page 3
 
 
-   9:src/../h/tcb.hpp **** #include "MemAllocator.h"
+   9:src/../h/tcb.hpp **** #include "MemoryAllocator.h"
   10:src/../h/tcb.hpp **** 
   11:src/../h/tcb.hpp **** // Thread Control Block
   12:src/../h/tcb.hpp **** class TCB
@@ -577,7 +577,7 @@ GAS LISTING /tmp/ccMhvDV1.s 			page 1
  400              	.Letext0:
  401              		.file 3 "src/../h/../lib/hw.h"
  402              		.file 4 "src/../h/scheduler.hpp"
- 403              		.file 5 "src/../h/MemAllocator.h"
+ 403              		.file 5 "src/../h/MemoryAllocator.h"
  404              		.file 6 "src/../h/riscv.hpp"
  405              		.file 7 "src/../h/syscall_c.h"
 GAS LISTING /tmp/ccMhvDV1.s 			page 11

@@ -1,10 +1,7 @@
-//
-// Created by marko on 20.4.22..
-//
 
 #include "../h/tcb.hpp"
 #include "../h/riscv.hpp"
-#include "../h/MemAllocator.h"
+#include "../h/MemoryAllocator.h"
 #include "../h/syscall_c.h"
 TCB* TCB::running=nullptr;
 TCB* TCB::createThread(TCB::Body body, TCB **handle, void *arg,uint64* stack) {
@@ -22,7 +19,7 @@ TCB *TCB::createCPPThread(TCB::Body body, TCB **handle, void *arg, uint64 *stack
 
 
 TCB *TCB::createTCB(TCB::Body body, void *arg, uint64 *stack) {
-    TCB* newT=(TCB*)MemAlloc::getInstance().mem_alloc((sizeof(TCB)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    TCB* newT=(TCB*)MemoryAllocator::getInstance().mem_alloc((sizeof(TCB)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newT->body=body;
     if(body!= nullptr)newT->stack=stack;
     else stack= nullptr;

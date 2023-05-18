@@ -1,13 +1,10 @@
-//
-// Created by os on 8/11/22.
-//
 
 #include "../h/Sem.h"
-#include "../h/MemAllocator.h"
+#include "../h/MemoryAllocator.h"
 #include "../h/syscall_c.h"
 
 Sem *Sem::createSem(unsigned int init) {
-    Sem* sem=(Sem*)MemAlloc::getInstance().mem_alloc((sizeof(Sem)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    Sem* sem=(Sem*)MemoryAllocator::getInstance().mem_alloc((sizeof(Sem)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     sem->init=init;
     sem->head= nullptr;
     sem->tail=nullptr;
@@ -24,7 +21,7 @@ TCB *Sem::getThread() {
     TCB* ret=head->thread;
     Blocked* old=head;
     head=head->next;
-    MemAlloc::getInstance().mem_free(old);
+    MemoryAllocator::getInstance().mem_free(old);
     return ret;
 
 }
@@ -39,13 +36,13 @@ int Sem::closeSem(Sem *handle) {
         thread=handle->getThread();
     }
  //   int ret=0;
-    MemAlloc::getInstance().mem_free(handle);
+    MemoryAllocator::getInstance().mem_free(handle);
     handle= nullptr;
     return 0;
 }
 
 void Sem::puThread(TCB *thread) {
-    Blocked* newEl=(Blocked*)MemAlloc::getInstance().mem_alloc((sizeof(Blocked)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    Blocked* newEl=(Blocked*)MemoryAllocator::getInstance().mem_alloc((sizeof(Blocked)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newEl->thread=thread;
     newEl->next= nullptr;
     if(head==nullptr){

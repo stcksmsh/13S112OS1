@@ -22,7 +22,7 @@ GAS LISTING /tmp/ccx4Zq6Q.s 			page 1
    6:src/main.cpp  **** #include "../h/riscv.hpp"
    7:src/main.cpp  **** #include "../h/userMain.hpp"
    8:src/main.cpp  **** #include "../h/tcb.hpp"
-   9:src/main.cpp  **** #include "../h/MemAllocator.h"
+   9:src/main.cpp  **** #include "../h/MemoryAllocator.h"
   10:src/main.cpp  **** 
   11:src/main.cpp  **** // #include "../h/printing.hpp"
   12:src/main.cpp  **** 
@@ -130,7 +130,7 @@ GAS LISTING /tmp/ccx4Zq6Q.s 			page 1
   85              		.file 2 "src/../h/../lib/hw.h"
   86              		.file 3 "src/../h/tcb.hpp"
   87              		.file 4 "src/../h/scheduler.hpp"
-  88              		.file 5 "src/../h/MemAllocator.h"
+  88              		.file 5 "src/../h/MemoryAllocator.h"
   89              		.file 6 "src/../h/syscall_c.h"
   90              		.file 7 "src/../h/userMain.hpp"
 GAS LISTING /tmp/ccx4Zq6Q.s 			page 4

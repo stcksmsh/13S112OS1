@@ -1,4 +1,4 @@
-build/src/MemAllocator.o: src/MemAllocator.cpp src/../h/MemAllocator.h \
+build/src/MemAllocator.o: src/MemAllocator.cpp src/../h/MemoryAllocator.h \
  src/../h/../lib/hw.h
-src/../h/MemAllocator.h:
+src/../h/MemoryAllocator.h:
 src/../h/../lib/hw.h:

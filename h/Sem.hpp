@@ -1,9 +1,4 @@
-//
-// Created by os on 8/11/22.
-//
-
-#ifndef VASKOZABATA_SEM_H
-#define VASKOZABATA_SEM_H
+#pragma once
 #include "tcb.hpp"
 struct Blocked{
     TCB* thread;
@@ -37,4 +32,4 @@ public:
 };
 
 
-#endif //VASKOZABATA_SEM_H
+ //VASKOZABATA_SEM_H

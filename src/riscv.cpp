@@ -1,10 +1,7 @@
-//
-// Created by marko on 20.4.22..
-//
 #include "../lib/console.h"
 #include "../h/riscv.hpp"
 #include "../h/tcb.hpp"
-#include "../h/MemAllocator.h"
+#include "../h/MemoryAllocator.h"
 #include "../h/Sem.h"
 void Riscv::popSppSpie() {
 
@@ -33,7 +30,7 @@ void Riscv::handleSupervisorTrap() {
             uint64 ar;
             __asm__ volatile("mv %[ry], a1" : [ry]"=r"(ar));
             //zovi funciju
-            void *ret = MemAlloc::getInstance().mem_alloc(ar);
+            void *ret = MemoryAllocator::getInstance().mem_alloc(ar);
             __asm__ volatile ("mv a0, %[addr]" : : [addr]"r"(ret));
 
         }//free
@@ -41,7 +38,7 @@ void Riscv::handleSupervisorTrap() {
             uint64 tmp2;
             __asm__ volatile("mv %[rz], a1" : [rz]"=r"(tmp2));
             void *argT = (void *) tmp2;
-            uint ret = MemAlloc::getInstance().mem_free(argT);
+            uint ret = MemoryAllocator::getInstance().mem_free(argT);
             __asm__ volatile ("mv a0, %[addrt]" : : [addrt]"r"(ret));
 
 
@@ -55,7 +52,7 @@ void Riscv::handleSupervisorTrap() {
             __asm__ volatile ("mv %[rs], a2" : [rs]"=r"(startR));
             TCB::Body funct=(TCB::Body)startR;
             void* arg=(void*)reg3;
-            uint64* stack=(uint64*)MemAlloc::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+            uint64* stack=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
             TCB::createThread(funct,handle,arg,stack);
             uint64 retVal=0;
             if(handle== nullptr)retVal=-1;
@@ -80,7 +77,7 @@ void Riscv::handleSupervisorTrap() {
             __asm__ volatile ("mv %[rs], a2" : [rs]"=r"(startR));
             TCB::Body funct=(TCB::Body)startR;
             void* arg=(void*)reg3;
-            uint64* stack=(uint64*)MemAlloc::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+            uint64* stack=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
             TCB::createCPPThread(funct,handle,arg,stack);
             uint64 retVal=0;
             if(handle== nullptr)retVal=-1;

@@ -20,7 +20,7 @@ GAS LISTING /tmp/ccFcOLOx.s 			page 1
    4:src/riscv.cpp **** #include "../lib/console.h"
    5:src/riscv.cpp **** #include "../h/riscv.hpp"
    6:src/riscv.cpp **** #include "../h/tcb.hpp"
-   7:src/riscv.cpp **** #include "../h/MemAllocator.h"
+   7:src/riscv.cpp **** #include "../h/MemoryAllocator.h"
    8:src/riscv.cpp **** #include "../h/Sem.h"
    9:src/riscv.cpp **** void Riscv::popSppSpie() {
   15              		.loc 1 9 26
@@ -957,7 +957,7 @@ GAS LISTING /tmp/ccFcOLOx.s 			page 1
    6:src/../h/tcb.hpp **** 
    7:src/../h/tcb.hpp **** #include "../lib/hw.h"
    8:src/../h/tcb.hpp **** #include "scheduler.hpp"
-   9:src/../h/tcb.hpp **** #include "MemAllocator.h"
+   9:src/../h/tcb.hpp **** #include "MemoryAllocator.h"
 GAS LISTING /tmp/ccFcOLOx.s 			page 17
 
 
@@ -1393,7 +1393,7 @@ GAS LISTING /tmp/ccFcOLOx.s 			page 1
  924              	.LFE10:
  926              	.Letext0:
  927              		.file 4 "src/../h/../lib/hw.h"
- 928              		.file 5 "src/../h/MemAllocator.h"
+ 928              		.file 5 "src/../h/MemoryAllocator.h"
  929              		.file 6 "src/../h/Sem.h"
  930              		.file 7 "src/../lib/console.h"
 GAS LISTING /tmp/ccFcOLOx.s 			page 25

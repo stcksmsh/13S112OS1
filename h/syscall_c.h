@@ -1,12 +1,7 @@
-//
-// Created by os on 8/6/22.
-//
-
-#ifndef PROJECT_BASE_V1_1_SYSCALL_C_H
-#define PROJECT_BASE_V1_1_SYSCALL_C_H
+#pragma once
 #include "../lib/hw.h"
 #include "../lib/console.h"
-//#include "../h/tcb.hpp"
+#include "../h/tcb.hpp"
 
 void* mem_alloc (size_t size);
 
@@ -45,4 +40,4 @@ char getc();
 void putc(char c);
 
 void changeUser();
-#endif //PROJECT_BASE_V1_1_SYSCALL_C_H
+ //PROJECT_BASE_V1_1_SYSCALL_C_H

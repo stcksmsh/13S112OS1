@@ -1,9 +1,4 @@
-//
-// Created by os on 8/13/22.
-//
-
-#ifndef VASKOZABATA_SYSCALL_CPP_HPP
-#define VASKOZABATA_SYSCALL_CPP_HPP
+#pragma once
 #include "syscall_c.h"
 void* operator new (size_t);
 void operator delete (void*)noexcept;
@@ -37,4 +32,4 @@ public:
     static void putc (char cr);
 };
 
-#endif //VASKOZABATA_SYSCALL_CPP_HPP
+ //VASKOZABATA_SYSCALL_CPP_HPP

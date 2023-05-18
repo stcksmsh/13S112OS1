@@ -1,12 +1,9 @@
-//
-// Created by os on 8/6/22.
-//
 #include "../h/syscall_c.h"
 #include "../lib/console.h"
 #include "../h/riscv.hpp"
 #include "../h/userMain.hpp"
 #include "../h/tcb.hpp"
-#include "../h/MemAllocator.h"
+#include "../h/MemoryAllocator.hpp"
 
 // #include "../h/printing.hpp"
 
@@ -23,6 +20,6 @@ void main() {
     userMain();
     while(Scheduler::get())thread_dispatch();
 
-    MemAlloc::getInstance().mem_free(thread);
+    MemoryAllocator::getInstance().mem_free(thread);
 }
 

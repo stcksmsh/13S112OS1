@@ -1,12 +1,10 @@
 //
 //
-
-#ifndef OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_TCB_HPP
-#define OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_TCB_HPP
+#pragma once
 
 #include "../lib/hw.h"
 #include "scheduler.hpp"
-#include "MemAllocator.h"
+#include "MemoryAllocator.hpp"
 
 // Thread Control Block
 class TCB
@@ -14,7 +12,7 @@ class TCB
 public:
     ~TCB() {
 
-        MemAlloc::getInstance().mem_free(stack);
+        MemoryAllocator::getInstance().mem_free(stack);
     }
 
     bool isFinished() const { return finished; }
@@ -61,4 +59,4 @@ private:
 
 };
 
-#endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_TCB_HPP
+ //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_TCB_HPP

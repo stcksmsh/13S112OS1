@@ -710,7 +710,7 @@ GAS LISTING /tmp/ccuPG569.s 			page 1
    6:src/../h/tcb.hpp **** 
    7:src/../h/tcb.hpp **** #include "../lib/hw.h"
    8:src/../h/tcb.hpp **** #include "scheduler.hpp"
-   9:src/../h/tcb.hpp **** #include "MemAllocator.h"
+   9:src/../h/tcb.hpp **** #include "MemoryAllocator.h"
   10:src/../h/tcb.hpp **** 
   11:src/../h/tcb.hpp **** // Thread Control Block
   12:src/../h/tcb.hpp **** class TCB
@@ -884,7 +884,7 @@ GAS LISTING /tmp/ccuPG569.s 			page 1
  694              		.file 4 "src/../h/../lib/hw.h"
  695              		.file 5 "src/../h/syscall_c.h"
  696              		.file 6 "src/../h/scheduler.hpp"
- 697              		.file 7 "src/../h/MemAllocator.h"
+ 697              		.file 7 "src/../h/MemoryAllocator.h"
  698              		.file 8 "src/../h/../lib/console.h"
  3795              		.align	3
  3798              	DW.ref.__gxx_personality_v0:

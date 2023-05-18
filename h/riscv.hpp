@@ -1,9 +1,4 @@
-//
-// Created by marko on 20.4.22..
-//
-
-#ifndef OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
-#define OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
+#pragma once
 
 #include "../lib/hw.h"
 
@@ -61,4 +56,4 @@ inline void Riscv::mc_sstatus(uint64 mask)
     __asm__ volatile ("csrc sstatus, %[mask]" : : [mask] "r"(mask));
 
 }
-#endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
+ //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
