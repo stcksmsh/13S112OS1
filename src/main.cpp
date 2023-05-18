@@ -1,6 +1,8 @@
 #include "../h/ABI.h"
 #include "../lib/console.h"
 
+extern "C" void supervisorTrap();
+
 void main(){
     __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&supervisorTrap));
     // __asm__ volatile ("write")

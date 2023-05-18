@@ -6,7 +6,7 @@
 class ABI
 {
 public:
-    // static void popSppSpie();
+    static void popSppSpie();
     enum BitMaskSip
     {
         SIP_SSIP = (1 << 1),
