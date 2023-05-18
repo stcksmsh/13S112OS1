@@ -1,13 +1,12 @@
-#ifndef OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
-#define OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
+#ifndef ABIHEADERFILE
+#define ABIHEADERFILE
 
 #include "../lib/hw.h"
 
-extern "C" void supervisorTrap();
 class ABI
 {
 public:
-    static void popSppSpie();
+    // static void popSppSpie();
     enum BitMaskSip
     {
         SIP_SSIP = (1 << 1),
@@ -57,4 +56,4 @@ inline void ABI::mc_sstatus(uint64 mask)
     __asm__ volatile ("csrc sstatus, %[mask]" : : [mask] "r"(mask));
 
 }
-#endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
+#endif

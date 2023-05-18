@@ -4,44 +4,41 @@
 #include "../h/memoryAllocator.h"
 // #include "../h/Sem.h"
 
-void ABI::popSppSpie() {
-
-        __asm__ volatile("csrw sepc, ra");
-        __asm__ volatile("sret");
-
-
-}
+// void ABI::popSppSpie() {
+//         __asm__ volatile("csrw sepc, ra");
+//         __asm__ volatile("sret");
+// }
 
 void ABI::handleSupervisorTrap() {
-    uint64 scauseVar;
+    uint64 scause;
     uint64 reg3;
-    __asm__ volatile ("mv %[rarg], a3" : [rarg]"=r"(reg3));
-    __asm__ volatile("csrr %[ime],scause":[ime] "=r"(scauseVar));
+    __asm__ volatile ("mv %0, a3" : "=r"(reg3));
+    __asm__ volatile("csrr %0,scause": "=r"(scause));
 
     //sistemski poziv
-    if (scauseVar == (0x09) || scauseVar == 0x08)
+    if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
         uint64 volatile  sepcV;
         __asm__ volatile ("csrr %0, sepc" : "=r" (sepcV));
         uint64 x;
         uint64 volatile sstatus = r_sstatus();
-        __asm__ volatile("mv %[rx], a0" : [rx]"=r"(x));
+        __asm__ volatile("mv %0, a0" : "=r"(x));
         __putc('0' + ((sstatus & (1<<8))>>8));
         //malloc
         if (x == 0x01) {
             uint64 ar;
-            __asm__ volatile("mv %[ry], a1" : [ry]"=r"(ar));
+            __asm__ volatile("mv %0, a1" : "=r"(ar));
             //zovi funciju
             void *ret = MemoryAllocator::getInstance().mem_alloc(ar);
-            __asm__ volatile ("mv a0, %[addr]" : : [addr]"r"(ret));
+            __asm__ volatile ("mv a0, %0" : : "r"(ret));
 
         }//free
         else if (x == 0x02) {
             uint64 tmp2;
-            __asm__ volatile("mv %[rz], a1" : [rz]"=r"(tmp2));
+            __asm__ volatile("mv %0, a1" : "=r"(tmp2));
             void *argT = (void *) tmp2;
             uint ret = MemoryAllocator::getInstance().mem_free(argT);
-            __asm__ volatile ("mv a0, %[addrt]" : : [addrt]"r"(ret));
+            __asm__ volatile ("mv a0, %0" : : "r"(ret));
 
 
         }
@@ -125,7 +122,7 @@ void ABI::handleSupervisorTrap() {
         //     int ret=Sem::semSignal(handle);
         //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(ret));
         // }
-    //change to user mode
+        //change to user mode
         else if(x==0x25){
             w_sstatus(sstatus);
             mc_sstatus(1<<8);
@@ -135,25 +132,25 @@ void ABI::handleSupervisorTrap() {
         }//getc
         else if(x==0x41){
             char c=__getc();
-            __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(c));
+            __asm__ volatile ("mv a0, %0" : : "r"(c));
         }
         //putc
         else if(x==0x42){
             uint64 ch;
-            __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(ch));
+            __asm__ volatile ("mv %0, a1" : "=r"(ch));
             __putc(ch);
         }
         w_sstatus(sstatus);
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepcV + 4));
         mc_sip(SIP_SSIP);
     }
-    else if (scauseVar == 0x8000000000000001UL)
+    else if (scause == 0x8000000000000001UL)
     {
 
         mc_sip(SIP_SSIP);
 
     }
-    else if (scauseVar== 0x8000000000000009UL)
+    else if (scause== 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
