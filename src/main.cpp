@@ -1,4 +1,5 @@
 #include "../h/syscall_c.hpp"
+#include "../h/_thread.h"
 
 extern "C" void trap();
 
@@ -22,4 +23,5 @@ void main(){
     __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
+    if(Scheduler::get() == nullptr)putc('X');
 }
