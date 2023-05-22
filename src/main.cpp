@@ -23,5 +23,6 @@ void main(){
     __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
+    Scheduler::put(handle);
     if(Scheduler::get() == nullptr)putc('X');
 }

@@ -75,7 +75,6 @@ void ABI::trapHandler() {
             uint64 retVal=0;
             if(handle == 0)retVal=-1;
             __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
-
         }
         // //exit
         // else if(x==0x12){
