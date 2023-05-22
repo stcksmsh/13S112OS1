@@ -40,7 +40,6 @@ void ABI::trapHandler() {
         uint64 x;
         uint64 volatile sstatus = sstatusRead();
         __asm__ volatile("mv %0, a0" : "=r"(x));
-        __putc('0' + ((sstatus & (1<<8))>>8));
         // malloc
         if (x == 0x01) {
             uint64 size;
