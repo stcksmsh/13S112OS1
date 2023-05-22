@@ -6,15 +6,15 @@ _thread::~_thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
 
-int _thread::create( thread_t* handle, func start_routine, void*  arg, uint64* stack_space){
+int _thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
     _thread *newThread = (_thread*)MemoryAllocator::getInstance().mem_alloc((sizeof(_thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
-    newThread->stack_space = stack_space;
+    newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
     newThread->context = _thread::contextWrapper{(uint64) &wrapper,\
-    stack_space!=nullptr?(uint64)stack_space[DEFAULT_STACK_SIZE]:0};
+    newThread->stack_space!=nullptr?newThread->stack_space[DEFAULT_STACK_SIZE]:0};
     *handle = newThread;
     
     return 0;

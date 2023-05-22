@@ -1,7 +1,7 @@
 #include "../lib/console.h"
 #include "../h/ABI.h"
 #include "../h/memoryAllocator.h"
-// #include "../h/tcb.hpp"
+#include "../h/_thread.h"
 // #include "../h/Sem.h"
 
 inline uint64 ABI::sstatusRead()
@@ -62,22 +62,21 @@ void ABI::trapHandler() {
         // uint64 reg3;
         // __asm__ volatile ("mv %0, a3" : "=r"(reg3));
         //
-        //thread_create
-        // else if(x==0x11){
-        //     uint64 thandle;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(thandle));
-        //     TCB** handle=(TCB**)thandle;
-        //     uint64 startR;
-        //     __asm__ volatile ("mv %[rs], a2" : [rs]"=r"(startR));
-        //     TCB::Body funct=(TCB::Body)startR;
-        //     void* arg=
-        //     uint64* stack=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
-        //     TCB::createThread(funct,handle,arg,stack);
-        //     uint64 retVal=0;
-        //     if(handle== nullptr)retVal=-1;
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
+        // thread_create
+        else if(x==0x11){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
+            uint64 start_routine;
+            __asm__ volatile ("mv %0, a2" : "=r"(start_routine));
+            uint64 arg;
+            __asm__ volatile("mv %0, a3" : "=r"(arg));
+            uint64* stack_space=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+            _thread::create((thread_t*)handle, (_thread::func)start_routine, (void*)arg, (void*)stack_space);
+            uint64 retVal=0;
+            if(handle == 0)retVal=-1;
+            __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
 
-        // }
+        }
         // //exit
         // else if(x==0x12){
         //     TCB::running->setFinished(true);

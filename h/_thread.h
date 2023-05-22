@@ -10,7 +10,7 @@ public:
 
     using func = void (*)(void*);
 
-    static int create( _thread**, func, void*, uint64*);
+    static int create( _thread**, func, void*, void*);
 
     static int exit();
 
