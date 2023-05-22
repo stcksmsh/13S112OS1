@@ -1,6 +1,7 @@
 #include "../h/scheduler.h"
 
-Scheduler::Element* Scheduler::head = Scheduler::tail = nullptr;
+Scheduler::Element* Scheduler::head = nullptr;
+Scheduler::Element* Scheduler::tail = nullptr;
 
 void Scheduler::put(thread_t thread){
     if(!tail){
