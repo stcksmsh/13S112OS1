@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-#include "../h/riscv.h"
-#include "../lib/console.h"
+#include "../h/syscall_c.hpp"
+
+extern "C" void trap();
 
 =======
 #include "../h/syscall_c.hpp"

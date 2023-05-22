@@ -19,18 +19,16 @@ int _thread::create( thread_t* handle, func start_routine, void*  arg, uint64* s
     newThread->context = _thread::contextWrapper{(uint64) &wrapper,\
     stack_space!=nullptr?(uint64)stack_space[DEFAULT_STACK_SIZE]:0};
     *handle = newThread;
-
+    
     return 0;
 }
 
 void _thread::wrapper(){
     running->start_routine(running->arg);
-    running->setFinished(true);
-    dispatch();
+    exit();
 }
 
 int _thread::exit(){
     running->setFinished(true);
     dispatch();
-    return 0;
 }

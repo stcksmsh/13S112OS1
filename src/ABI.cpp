@@ -1,32 +1,9 @@
 #include "../lib/console.h"
-<<<<<<< HEAD:src/riscv.cpp
-#include "../h/riscv.h"
-// #include "../h/tcb.hpp"
-=======
 #include "../h/ABI.h"
->>>>>>> 0c010e2 (Added initial thread ABI files, testing follows...):src/ABI.cpp
 #include "../h/memoryAllocator.h"
 // #include "../h/tcb.hpp"
 // #include "../h/Sem.h"
 
-<<<<<<< HEAD:src/riscv.cpp
-void Riscv::popSppSpie() {
-
-        __asm__ volatile("csrw sepc, ra");
-        __asm__ volatile("sret");
-
-
-}
-
-void Riscv::handleSupervisorTrap() {
-    uint64 scauseVar;
-    uint64 reg3;
-    __asm__ volatile ("mv %[rarg], a3" : [rarg]"=r"(reg3));
-    __asm__ volatile("csrr %[ime],scause":[ime] "=r"(scauseVar));
-
-    //sistemski poziv
-    if (scauseVar == (0x09) || scauseVar == 0x08)
-=======
 inline uint64 ABI::sstatusRead()
 {
     uint64 volatile sstatus;
@@ -57,30 +34,10 @@ void ABI::trapHandler() {
 
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
->>>>>>> 0c010e2 (Added initial thread ABI files, testing follows...):src/ABI.cpp
     {
         uint64 volatile  sepc;
         __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
         uint64 x;
-<<<<<<< HEAD:src/riscv.cpp
-        uint64 volatile sstatus = r_sstatus();
-        __asm__ volatile("mv %[rx], a0" : [rx]"=r"(x));
-        //malloc
-        if (x == 0x01) {
-            uint64 ar;
-            __asm__ volatile("mv %[ry], a1" : [ry]"=r"(ar));
-            //zovi funciju
-            void *ret = MemoryAllocator::getInstance().mem_alloc(ar);
-            __asm__ volatile ("mv a0, %[addr]" : : [addr]"r"(ret));
-
-        }//free
-        else if (x == 0x02) {
-            uint64 tmp2;
-            __asm__ volatile("mv %[rz], a1" : [rz]"=r"(tmp2));
-            void *argT = (void *) tmp2;
-            uint ret = MemoryAllocator::getInstance().mem_free(argT);
-            __asm__ volatile ("mv a0, %[addrt]" : : [addrt]"r"(ret));
-=======
         uint64 volatile sstatus = sstatusRead();
         __asm__ volatile("mv %0, a0" : "=r"(x));
         __putc('0' + ((sstatus & (1<<8))>>8));
@@ -99,7 +56,6 @@ void ABI::trapHandler() {
             __asm__ volatile("mv %0, a1" : "=r"(address));
             int returnValue = MemoryAllocator::getInstance().mem_free((void*)address);
             __asm__ volatile ("mv a0, %0" : : "r"((uint64)returnValue));
->>>>>>> 0c010e2 (Added initial thread ABI files, testing follows...):src/ABI.cpp
 
 
         }
@@ -184,16 +140,9 @@ void ABI::trapHandler() {
         //     uint64 h;
         //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(h));
         //     Sem* handle=(Sem*)h;
-<<<<<<< HEAD:src/riscv.cpp
-        //     int ret=Sem::semSignal(handle);
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(ret));
-        // }
-    //change to user mode
-=======
         //     int returnValue=Sem::semSignal(handle);
         //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(returnValue));
         // }//change to user mode
->>>>>>> 0c010e2 (Added initial thread ABI files, testing follows...):src/ABI.cpp
         else if(x==0x25){
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
@@ -203,12 +152,12 @@ void ABI::trapHandler() {
         }//getc
         else if(x==0x41){
             char c=__getc();
-            __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(c));
+            __asm__ volatile ("mv a0, %0" : : "r"(c));
         }
         //putc
         else if(x==0x42){
             uint64 ch;
-            __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(ch));
+            __asm__ volatile ("mv %0, a1" : "=r"(ch));
             __putc(ch);
         }
 
@@ -216,13 +165,13 @@ void ABI::trapHandler() {
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sipBitClear(8);
     }
-    else if (scauseVar == 0x8000000000000001UL)
+    else if (scause == 0x8000000000000001UL)
     {
 
         sipBitClear(8);
 
     }
-    else if (scauseVar== 0x8000000000000009UL)
+    else if (scause== 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
