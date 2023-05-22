@@ -14,10 +14,6 @@ public:
 
     static int exit();
 
-    bool isFinished() const;
-
-    void setFinished(bool value);
-
     // static void yield();
 
     static _thread *running;

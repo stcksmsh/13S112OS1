@@ -5,10 +5,6 @@ _thread::~_thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
 
-bool _thread::isFinished() const{
-    return finished;
-}
-
 int _thread::create( thread_t* handle, func start_routine, void*  arg, uint64* stack_space){
     _thread *newThread = (_thread*)MemoryAllocator::getInstance().mem_alloc((sizeof(_thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
@@ -29,7 +25,7 @@ void _thread::wrapper(){
 }
 
 int _thread::exit(){
-    running->setFinished(true);
+    running->finished = true;
     dispatch();
     return 0;
 }
