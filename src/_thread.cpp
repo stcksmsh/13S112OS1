@@ -31,4 +31,5 @@ void _thread::wrapper(){
 int _thread::exit(){
     running->setFinished(true);
     dispatch();
+    return 0;
 }
