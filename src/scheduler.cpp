@@ -4,7 +4,7 @@ Scheduler::Element* Scheduler::head = nullptr;
 Scheduler::Element* Scheduler::tail = nullptr;
 
 void Scheduler::put(thread_t thread){
-    if(!tail){
+    if(tail == nullptr){
         head = tail = (Element*)MemoryAllocator::getInstance().mem_alloc(sizeof(Element));
         head->next = nullptr;
         head->thread = thread;
@@ -16,11 +16,11 @@ void Scheduler::put(thread_t thread){
 }
 
 thread_t Scheduler::get(){
-    if(!head) return nullptr;
+    if(head == nullptr) return nullptr;
     Scheduler::Element* element = head;
     thread_t thread = element->thread;
     head = head->next;
-    if(!head) tail = nullptr;
+    if(head == nullptr) tail = nullptr;
     MemoryAllocator::getInstance().mem_free(element);
     return thread;
 }
