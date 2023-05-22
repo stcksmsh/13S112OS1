@@ -2,9 +2,7 @@
 
 extern "C" void trap();
 
-void main(){
-    __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
-
+void helloWorld(void* arg){
     putc('H');
     putc('e');
     putc('l');
@@ -18,4 +16,10 @@ void main(){
     putc('d');
     putc('!');
     putc('\n');
+}
+
+void main(){
+    __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
+    thread_t handle;
+    thread_create(&handle, helloWorld, nullptr);
 }
