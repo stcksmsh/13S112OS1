@@ -4,7 +4,7 @@
 void* mem_alloc(size_t size){
     size = (size+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE;
     __asm__ volatile("li a0, 0x1"); /// syscall code
-    __asm__ volatile ("mv a1,%0" : "r" (size)); /// size in blocks
+    __asm__ volatile ("mv a1,%0" : : "r" (size)); /// size in blocks
     __asm__ volatile ("ecall");
     uint64 returnValue;
     __asm__ volatile("mv %0, a0" : "=r" (returnValue)); /// get address
@@ -13,7 +13,7 @@ void* mem_alloc(size_t size){
 }
 
 int mem_free(void* address){
-    __asm__ volatile ("mv a1,%0" : "r" (address));
+    __asm__ volatile ("mv a1,%0" : : "r" (address));
     __asm__ volatile("li a0, 0x2");
     __asm__ volatile ("ecall");
     uint64 returnValue;
@@ -23,11 +23,11 @@ int mem_free(void* address){
 
 int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
     void* arguments=arg;
-    __asm__ volatile("mv a3,%0":"r" (arguments));
+    __asm__ volatile("mv a3,%0" : : "r" (arguments));
     void(*sr)(void*)=start_routine;
-    __asm__ volatile("mv a2,%0": "r" (sr));
+    __asm__ volatile("mv a2,%0" : : "r" (sr));
     thread_t* h=handle;
-    __asm__ volatile("mv a1,%0": "r" (h));
+    __asm__ volatile("mv a1,%0" : : "r" (h));
     __asm__ volatile("li a0,0x11");
     __asm__ volatile("ecall");
     int ret;
@@ -109,13 +109,4 @@ void changeUser() {
     __asm__ volatile("ecall");
     return;
 
-}
-
-
-char getc(){
-    return __getc();
-}
-
-void putc(char ch){
-    __putc(ch);
 }
