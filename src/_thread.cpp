@@ -33,3 +33,14 @@ int _thread::exit(){
     dispatch();
     return 0;
 }
+
+void _thread::dispatch(){
+    if(running->finished && running->blocked)Scheduler::put(running);
+    thread_t oldThread = running;
+    running = Scheduler::get();
+    switchContext(oldThread->context, running->context);
+}
+
+void _thread::switchContext(contextWrapper oldContext, contextWrapper newContext){
+    return;
+}

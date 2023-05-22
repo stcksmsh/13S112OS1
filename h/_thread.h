@@ -45,7 +45,7 @@ private:
 
     static void wrapper();
 
-    static void switchContext();
+    static void switchContext(contextWrapper, contextWrapper);
 };
 
 
