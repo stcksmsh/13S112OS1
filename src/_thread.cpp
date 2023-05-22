@@ -1,5 +1,6 @@
 #include "../h/_thread.h"
 
+thread_t _thread::running = nullptr;
 
 _thread::~_thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
