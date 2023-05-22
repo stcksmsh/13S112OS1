@@ -8,31 +8,31 @@ class Riscv
 {
 public:
     static void popSppSpie();
-    enum BitMaskSip
-    {
-        SIP_SSIP = (1 << 1),
-        SIP_STIP = (1 << 5),
-        SIP_SEIP = (1 << 8),
-    };
-    // mask clear register sip
-    static void mc_sip(uint64 mask);
+    
+    /// @brief clears bit of sip
+    /// @param  uint64 the bit to clear (0..63)
+    static void sipBitClear(uint64);
 
-    // mask clear register sstatus
-    static void mc_sstatus(uint64 mask);
+    /// @brief clears bit of sstatus
+    /// @param  uint64 the bit to clear (0..63)
+    static void sstatusBitClear(uint64);
 
-    // read register sstatus
-    static uint64 r_sstatus();
+    /// @brief reads the supervisor status register
+    /// @return sstatus
+    static uint64 sstatusRead();
 
-    // write register sstatus
-    static void w_sstatus(uint64 sstatus);
+    /// @brief writes the supervisor status register
+    /// @param  uint64 new sstatus
+    static void sstatusWrite(uint64);
 
 private:
 
-    // supervisor trap handler
-   static void handleSupervisorTrap();
+    // trap handler, used in trap.S
+   static void trapHandler();
 
 
 };
+<<<<<<< HEAD:h/riscv.h
 
 inline uint64 Riscv::r_sstatus()
 {
@@ -58,3 +58,6 @@ inline void Riscv::mc_sstatus(uint64 mask)
 
 }
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_2_INTERRUPT_RISCV_HPP
+=======
+#endif
+>>>>>>> 0c010e2 (Added initial thread ABI files, testing follows...):h/ABI.h

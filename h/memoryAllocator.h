@@ -30,8 +30,8 @@ private:
     /// @param FreeMemorySegment* the segment to attempt to merge with the next
     void attemptMerge( FreeMemorySegment* );
 public:
-    /// @brief allocates memory (aligned and rounded to MEM_BLOCK_SIZE bytes)
-    /// @param size_t the minimum number of bytes to be allocated
+    /// @brief allocates memory
+    /// @param size_t number of memory blocks to allocate
     /// @return pointer to the newly allocated memory if successful, and nullptr if not
     void *mem_alloc( size_t );
     /// @brief frees memory previously allocated with MemoryAllocator::mem_alloc
