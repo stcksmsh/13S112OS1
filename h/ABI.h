@@ -7,53 +7,28 @@ class ABI
 {
 public:
     static void popSppSpie();
-    enum BitMaskSip
-    {
-        SIP_SSIP = (1 << 1),
-        SIP_STIP = (1 << 5),
-        SIP_SEIP = (1 << 8),
-    };
-    // mask clear register sip
-    static void mc_sip(uint64 mask);
+    
+    /// @brief clears bit of sip
+    /// @param  uint64 the bit to clear (0..63)
+    static void sipBitClear(uint64);
 
-    // mask clear register sstatus
-    static void mc_sstatus(uint64 mask);
+    /// @brief clears bit of sstatus
+    /// @param  uint64 the bit to clear (0..63)
+    static void sstatusBitClear(uint64);
 
-    // read register sstatus
-    static uint64 r_sstatus();
+    /// @brief reads the supervisor status register
+    /// @return sstatus
+    static uint64 sstatusRead();
 
-    // write register sstatus
-    static void w_sstatus(uint64 sstatus);
+    /// @brief writes the supervisor status register
+    /// @param  uint64 new sstatus
+    static void sstatusWrite(uint64);
 
 private:
 
-    // supervisor trap handler
-   static void handleSupervisorTrap();
+    // trap handler, used in trap.S
+   static void trapHandler();
 
 
 };
-
-inline uint64 ABI::r_sstatus()
-{
-    uint64 volatile sstatus;
-    __asm__ volatile ("csrr %[sstatus], sstatus" : [sstatus] "=r"(sstatus));
-    return sstatus;
-}
-
-inline void ABI::w_sstatus(uint64 sstatus)
-{
-    __asm__ volatile ("csrw sstatus, %[sstatus]" : : [sstatus] "r"(sstatus));
-}
-
-
-inline void ABI::mc_sip(uint64 mask)
-{
-    __asm__ volatile ("csrc sip, %[mask]" : : [mask] "r"(mask));
-}
-
-inline void ABI::mc_sstatus(uint64 mask)
-{
-    __asm__ volatile ("csrc sstatus, %[mask]" : : [mask] "r"(mask));
-
-}
 #endif

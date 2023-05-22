@@ -3,11 +3,10 @@
 
 void *MemoryAllocator::mem_alloc( size_t size ){
     /* 
-        sets size to minimum number of memory blocks needed to contain the requested number of bytes
         adds one block to store size of allocated memory, so that it can be used by the MemoryAllocator:free function
         this data is stored in a FreeMemorySegment object for convenience sake
     */
-    size = (size + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE + 1; 
+    size ++; 
     /// creates it only on first call of the function, thus the head can only be initialised once
     static bool headInitialised = false;
     if(!headInitialised){
@@ -66,7 +65,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     if(!returnValue)
         return nullptr;
     /*
-        added MEM_BLOCK_SIZE to the address, as the first few bytes at the returnValue address are used to store the FreeMemorySegment struct
+        added MEM_BLOCK_SIZE to the address, as the first memory block at the returnValue address is used to store the FreeMemorySegment struct
         which holds data on allocated memory size for the MemoryAllocator::free function, added MEM_BLOCK_SIZE and not sizeof(FreeMemorySegment)
         so that the value will be aligned to blocks of MEM_BLOCK_SIZE bytes
     */
