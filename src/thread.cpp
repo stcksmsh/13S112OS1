@@ -40,18 +40,19 @@ void thread::dispatch(){
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
 }
 
-// void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext){
-//     /*
-//         sd ra, 0 * 8(a0)
-//         sd sp, 1 * 8(a0)
+void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext){
+    /*
+        sd ra, 0 * 8(a0)
+        sd sp, 1 * 8(a0)
 
-//         ld ra, 0 * 8(a1)
-//         ld sp, 1 * 8(a1)
-//     */
-//    __
-//    __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));
-//    __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
+        ld ra, 0 * 8(a1)
+        ld sp, 1 * 8(a1)
+    */
 
-//    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
-//    __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
-// }
+   __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));
+   __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
+
+   __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+   __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
+    return;
+}

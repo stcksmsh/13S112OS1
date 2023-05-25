@@ -18,7 +18,7 @@ inline void ABI::sstatusWrite(uint64 sstatus)
 
 inline void ABI::sipBitClear(uint64 bit)
 {
-    __asm__ volatile ("csrc sip, %[mask]" : : [mask] "r"((uint64)1<<bit));
+    __asm__ volatile ("csrc spp, %[mask]" : : [mask] "r"((uint64)1<<bit));
 }
 
 inline void ABI::sstatusBitClear(uint64 bit)
@@ -28,7 +28,7 @@ inline void ABI::sstatusBitClear(uint64 bit)
 }
 
 
-void ABI::trapHandler() {
+void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
 
@@ -58,11 +58,6 @@ void ABI::trapHandler() {
 
 
         }
-        // following 2 LINES MISSING WHERE 3rd argument is required
-        // uint64 reg3;
-        // __asm__ volatile ("mv %0, a3" : "=r"(reg3));
-        //
-        // thread_create
         else if(x==0x11){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
@@ -77,10 +72,10 @@ void ABI::trapHandler() {
             __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
         }
         // //exit
-        // else if(x==0x12){
-        //     TCB::running->setFinished(true);
-        //     TCB::dispatch();
-        // }
+        else if(x==0x12){
+            uint64 retVal = thread::running->exit();
+            __asm__ volatile ("mv a0, %0" :: "r"(retVal));
+        }
         // //dispatch
         else if(x==0x13){
             __putc('e');
@@ -160,12 +155,12 @@ void ABI::trapHandler() {
 
         sstatusWrite(sstatus);
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-        sipBitClear(8);
+        sstatusBitClear(8);
     }
     else if (scause == 0x8000000000000001UL)
     {
 
-        sipBitClear(8);
+        sstatusBitClear(8);
 
     }
     else if (scause== 0x8000000000000009UL)

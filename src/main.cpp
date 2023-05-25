@@ -27,6 +27,7 @@ void main(){
     putc('T');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
+        putc('a');
     }
     putc('.');
     

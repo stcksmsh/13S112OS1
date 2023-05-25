@@ -36,6 +36,7 @@ int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
 }
 
 void thread_dispatch() {
+    ///the PC to return to is currently in ra, and will stay there during the syscall, as ecall puts pc into sepc and not ra
     __asm__ volatile("li a0,0x13");
     __asm__ volatile("ecall");
     return;
