@@ -26,7 +26,7 @@ private:
     // friend class Semaphore;
 
     struct contextWrapper{
-        uint64 pc, sp;
+        uint64 pc = 0, sp = 0;
     };
 
     bool blocked;

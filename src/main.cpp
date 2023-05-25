@@ -24,6 +24,7 @@ void main(){
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
     Scheduler::put(handle);
+    
     putc('.');
     if(Scheduler::get() == nullptr)putc('X');
 }
