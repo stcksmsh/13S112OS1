@@ -148,19 +148,20 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //putc
         else if(x==0x42){
-            // uint64 ch;
-            __putc('a');
-            // __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            // __putc((char)ch);
+            uint64 ch;
+            // __putc('a');
+            __asm__ volatile ("mv %0, a1" : "=r"(ch));
+            __putc(ch);
         }
 
         sstatusWrite(sstatus);
-        sstatusBitClear(8);
+        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
+        sipBitClear(1);
     }
     else if (scause == 0x8000000000000001UL)
     {
 
-        sstatusBitClear(8);
+        sipBitClear(1);
 
     }
     else if (scause== 0x8000000000000009UL)
