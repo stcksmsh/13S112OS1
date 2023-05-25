@@ -20,6 +20,7 @@ public:
 
     static void dispatch();
 
+    static void wrapper();
 private:
 
     // friend class ABI;
@@ -39,7 +40,6 @@ private:
 
 
 
-    static void wrapper();
 
     static void switchContext(contextWrapper*, contextWrapper*);
 };

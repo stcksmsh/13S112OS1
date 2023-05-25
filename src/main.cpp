@@ -24,6 +24,8 @@ void main(){
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
+    thread::running = handle;
+    thrad::wrapper();
     putc('T');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
