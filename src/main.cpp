@@ -22,10 +22,11 @@ void helloWorld(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
     thread_t handle;
-    thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
-    thread::running = handle;
-    thrad::wrapper();
+    thread::running = Scheduler::get();
+    if(thread::running != handle)
+        putc('X');
+    thread::wrapper();
     putc('T');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
