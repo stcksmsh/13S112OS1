@@ -1,6 +1,6 @@
-.global _ZN3TCB14contextSwitchtEPNS_14ContextWrapperES1_
-.type _ZN3TCB14contextSwitchtEPNS_14ContextWrapperES1_, @function
-_ZN3TCB14contextSwitchtEPNS_14ContextWrapperES1_:
+.global _ZN6thread14contextSwitchtEPNS_14ContextWrapperES1_
+.type _ZN6thread14contextSwitchtEPNS_14ContextWrapperES1_, @function
+_ZN3TCB14contextSwitcht_ZN6thread14contextSwitchtEPNS_14ContextWrapperES1_EPNS_14ContextWrapperES1_:
     sd ra, 0 * 8(a0)
     sd sp, 1 * 8(a0)
 
