@@ -150,7 +150,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(x==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            __putc(ch);
+            __putc((char)ch);
         }
 
         sstatusWrite(sstatus);

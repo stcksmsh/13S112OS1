@@ -24,11 +24,9 @@ public:
     /// @param  uint64 new sstatus
     static void sstatusWrite(uint64);
 
-private:
-
     // trap handler, used in trap.S
    static void trapHandler();
 
-
+private:
 };
 #endif

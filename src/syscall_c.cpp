@@ -99,7 +99,7 @@ char getc()
 }
 void putc(char c)
 {
-    __asm__ volatile("mv a1,%0"::"r"(c));
+    __asm__ volatile("mv a1,%0"::"r"(((uint64)0)+ c));
     __asm__ volatile("li a0,0x42");
     __asm__ volatile("ecall");
 }
