@@ -83,6 +83,7 @@ void ABI::trapHandler() {
         // }
         // //dispatch
         else if(x==0x13){
+            __putc('e');
             _thread::dispatch();
         }
         // else if(x==0x14){

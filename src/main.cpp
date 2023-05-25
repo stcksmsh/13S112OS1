@@ -25,7 +25,6 @@ void main(){
     thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
     putc('T');
-    putc('\n');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
     }
