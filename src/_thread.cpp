@@ -1,14 +1,14 @@
 #include "../h/_thread.h"
 #include "../lib/console.h"
 
-thread_t _thread::running = nullptr;
+thread_t thread::running = nullptr;
 
-_thread::~_thread(){
+thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
 
-int _thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    _thread *newThread = (_thread*)MemoryAllocator::getInstance().mem_alloc((sizeof(_thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
+    thread *newThread = (thread*)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
@@ -21,18 +21,18 @@ int _thread::create( thread_t* handle, func start_routine, void*  arg, void* sta
     return 0;
 }
 
-void _thread::wrapper(){
+void thread::wrapper(){
     running->start_routine(running->arg);
     exit();
 }
 
-int _thread::exit(){
+int thread::exit(){
     running->finished = true;
     dispatch();
     return 0;
 }
 
-void _thread::dispatch(){
+void thread::dispatch(){
     __putc('s');
     if(running->finished && running->blocked)Scheduler::put(running);
     thread_t oldThread = running;

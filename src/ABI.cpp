@@ -71,7 +71,7 @@ void ABI::trapHandler() {
             uint64 arg;
             __asm__ volatile("mv %0, a3" : "=r"(arg));
             uint64* stack_space=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
-            _thread::create((thread_t*)handle, (_thread::func)start_routine, (void*)arg, (void*)stack_space);
+            thread::create((thread_t*)handle, (thread::func)start_routine, (void*)arg, (void*)stack_space);
             uint64 retVal=0;
             if(handle == 0)retVal=-1;
             __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
@@ -84,7 +84,7 @@ void ABI::trapHandler() {
         // //dispatch
         else if(x==0x13){
             __putc('e');
-            _thread::dispatch();
+            thread::dispatch();
         }
         // else if(x==0x14){
         //     uint64 thandle;

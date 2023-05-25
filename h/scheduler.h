@@ -3,8 +3,8 @@
 
 #include "memoryAllocator.h"
 
-class _thread;
-typedef _thread* thread_t;
+class thread;
+typedef thread* thread_t;
 
 
 class Scheduler{

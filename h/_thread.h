@@ -4,19 +4,19 @@
 #include "memoryAllocator.h"
 #include "scheduler.h"
 
-class _thread{
+class thread{
 public:
-    ~_thread();
+    ~thread();
 
     using func = void (*)(void*);
 
-    static int create( _thread**, func, void*, void*);
+    static int create( thread**, func, void*, void*);
 
     static int exit();
 
     // static void yield();
 
-    static _thread *running;
+    static thread *running;
 
     static void dispatch();
 
@@ -46,5 +46,5 @@ private:
 
 
 
-typedef _thread* thread_t;
+typedef thread* thread_t;
 #endif
