@@ -82,10 +82,9 @@ void ABI::trapHandler() {
         //     TCB::dispatch();
         // }
         // //dispatch
-        // else if(x==0x13){
-        //     TCB::dispatch();
-
-        // }
+        else if(x==0x13){
+            _thread::dispatch();
+        }
         // else if(x==0x14){
         //     uint64 thandle;
         //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(thandle));
