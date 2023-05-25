@@ -21,8 +21,7 @@ void helloWorld(void* arg = nullptr){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
-    __putc('A');
-    __putc('B');
+    helloWorld();
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
     putc('T');
