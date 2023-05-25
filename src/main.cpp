@@ -24,10 +24,10 @@ void main(){
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
+    putc('T');
     if(thread::running != handle)
         putc('X');
     thread::wrapper();
-    putc('T');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
         putc('a');
