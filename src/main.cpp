@@ -29,10 +29,10 @@ void main(){
     if(thread::running != handle)
         putc('X');
     thread::wrapper();
+    return;
     while(!Scheduler::isEmpty()){
         thread_dispatch();
         putc('a');
     }
     putc('.');
-    
 }
