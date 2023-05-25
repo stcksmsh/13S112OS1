@@ -18,7 +18,7 @@ inline void ABI::sstatusWrite(uint64 sstatus)
 
 inline void ABI::sipBitClear(uint64 bit)
 {
-    __asm__ volatile ("csrc spp, %[mask]" : : [mask] "r"((uint64)1<<bit));
+    __asm__ volatile ("csrc sip, %[mask]" : : [mask] "r"((uint64)1<<bit));
 }
 
 inline void ABI::sstatusBitClear(uint64 bit)
