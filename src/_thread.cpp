@@ -13,8 +13,8 @@ int _thread::create( thread_t* handle, func start_routine, void*  arg, void* sta
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
-    newThread->context = _thread::contextWrapper{(uint64) &wrapper,\
-    newThread->stack_space!=nullptr?newThread->stack_space[DEFAULT_STACK_SIZE]:0};
+    newThread->context.pc = (uint64) wrapper;
+    newThread->context.sp = (uint64)(newThread->stack_space!=nullptr?newThread->stack_space[DEFAULT_STACK_SIZE]:0);
     *handle = newThread;
     Scheduler::put(newThread);
     return 0;
@@ -47,8 +47,9 @@ void _thread::switchContext(contextWrapper oldContext, contextWrapper newContext
     __asm__ volatile ("mv %0, sp": "=r"(value));
     oldContext.sp = value;
 
-    __asm__ volatile("csrw %0, sepc" :: "r"(newContext.pc));
-    __asm__ volatile("mv ps, %0" :: "r"(newContext.sp));
+
+    __asm__ volatile("csrw sepc, %0" :: "r"(newContext.pc));
+    __asm__ volatile("mv sp, %0" :: "r"(newContext.sp));
 
     return;
 }

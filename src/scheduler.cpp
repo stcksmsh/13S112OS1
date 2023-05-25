@@ -24,3 +24,7 @@ thread_t Scheduler::get(){
     MemoryAllocator::getInstance().mem_free(element);
     return thread;
 }
+
+bool Scheduler::isEmpty(){
+    return head==nullptr;
+}
