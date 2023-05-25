@@ -3,14 +3,17 @@
 Scheduler::Element* Scheduler::head = nullptr;
 Scheduler::Element* Scheduler::tail = nullptr;
 
+int mem_free(void*);
+void* mem_alloc(size_t);
+
 void Scheduler::put(thread_t thread){
     if(tail == nullptr){
-        head = tail = (Element*)MemoryAllocator::getInstance().mem_alloc(sizeof(Element));
+        head = tail = (Element*)mem_alloc(sizeof(Element));
         head->next = nullptr;
         head->thread = thread;
         return;
     }
-    tail = tail->next = (Element*)MemoryAllocator::getInstance().mem_alloc(sizeof(Element));
+    tail = tail->next = (Element*)mem_alloc(sizeof(Element));
     tail->next = nullptr;
     tail->thread = thread;
 }
@@ -21,7 +24,7 @@ thread_t Scheduler::get(){
     thread_t thread = element->thread;
     head = head->next;
     if(head == nullptr) tail = nullptr;
-    MemoryAllocator::getInstance().mem_free(element);
+    mem_free(element);
     return thread;
 }
 
