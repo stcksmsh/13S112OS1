@@ -48,8 +48,8 @@ void thread::switchContext(contextWrapper oldContext, contextWrapper newContext)
         ld ra, 0 * 8(a1)
         ld sp, 1 * 8(a1)
     */
-   __asm__ volatile ("sd ra, %0" :: "=r"(oldContext.pc));
-   __asm__ volatile ("sd sp, %0" :: "=r"(oldContext.sp));
+   __asm__ volatile ("sd ra, %0" :: "r"(oldContext.pc));
+   __asm__ volatile ("sd sp, %0" :: "r"(oldContext.sp));
 
    __asm__ volatile ("sd ra, %0" : "=r"(newContext.pc));
    __asm__ volatile ("sd sp, %0" : "=r"(newContext.sp));
