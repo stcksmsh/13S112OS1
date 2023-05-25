@@ -1,5 +1,5 @@
 #include "../h/syscall_c.hpp"
-#include "../h/_thread.h"
+#include "../h/thread.h"
 
 extern "C" void trap();
 

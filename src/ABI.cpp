@@ -1,7 +1,7 @@
 #include "../lib/console.h"
 #include "../h/ABI.h"
 #include "../h/memoryAllocator.h"
-#include "../h/_thread.h"
+#include "../h/thread.h"
 // #include "../h/Sem.h"
 
 inline uint64 ABI::sstatusRead()
