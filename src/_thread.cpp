@@ -1,4 +1,5 @@
 #include "../h/_thread.h"
+#include "../lib/console.h"
 
 thread_t _thread::running = nullptr;
 
@@ -32,6 +33,7 @@ int _thread::exit(){
 }
 
 void _thread::dispatch(){
+    __putc('s');
     if(running->finished && running->blocked)Scheduler::put(running);
     thread_t oldThread = running;
     running = Scheduler::get();
