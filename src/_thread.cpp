@@ -39,19 +39,3 @@ void _thread::dispatch(){
     running = Scheduler::get();
     switchContext(oldThread==nullptr?contextWrapper():oldThread->context, running->context);
 }
-
-void _thread::switchContext(contextWrapper oldContext, contextWrapper newContext){
-    uint64 value;
-
-    __asm__ volatile ("csrr %0, sepc": "=r"(value));
-    oldContext.pc = value;
-
-    __asm__ volatile ("mv %0, sp": "=r"(value));
-    oldContext.sp = value;
-
-
-    __asm__ volatile("csrw sepc, %0" :: "r"(newContext.pc));
-    __asm__ volatile("mv sp, %0" :: "r"(newContext.sp));
-
-    return;
-}
