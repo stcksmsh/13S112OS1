@@ -3,7 +3,7 @@
 
 extern "C" void trap();
 
-void helloWorld(void* arg){
+void helloWorld(void* arg = nullptr){
     putc('H');
     putc('e');
     putc('l');
@@ -21,6 +21,7 @@ void helloWorld(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %[vector]" : : [vector] "r"(&trap));
+    helloWorld();
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
     putc('T');
