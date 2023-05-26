@@ -19,6 +19,11 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
     *handle = newThread;
     Scheduler::put(newThread);
+    if(start_routine == nullptr){
+        uint64 ra;
+        __asm__ volatile ("mv %0, ra" : "=r"(ra));
+        newThread->context.pc = ra;
+    }
     return 0;
 }
 
@@ -38,8 +43,12 @@ void thread::dispatch(uint64 pc){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    if(running == nullptr){
-        return;
+    if(running->start_routine == nullptr){
+        thread_t newThread = Scheduler::get();
+        if(newThread != nullptr){
+            Scheduler::put(running);
+            running = newThread;
+        }
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
@@ -70,8 +79,9 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     // __asm__ volatile("mv %0, s10" : "=r"(oldContext->s[10]));
     // __asm__ volatile("mv %0, s11" : "=r"(oldContext->s[11]));
     }
-    __asm__ volatile ("ld sp, 8(a1)");
-    __asm__ volatile ("ld ra, 0(a1)");
+    if(newContext->sp != 0)
+        __asm__ volatile ("ld sp, 8(a1)");
+        __asm__ volatile ("ld ra, 0(a1)");
     // __asm__ volatile("mv s0, %0" :: "r"(oldContext->s[0]));
     // __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[1]));
     // __asm__ volatile("mv s2, %0" :: "r"(oldContext->s[2]));

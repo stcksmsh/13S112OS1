@@ -19,6 +19,8 @@ public:
     static void dispatch(uint64 = 0);///takes pc as argument
 
     static void wrapper();
+    
+    func start_routine;
 private:
     // friend class ABI;
     // friend class Semaphore;
@@ -30,7 +32,6 @@ private:
 
     bool blocked;
     bool closed;
-    func start_routine;
     void* arg;
     uint64 *stack_space;
     contextWrapper context;
