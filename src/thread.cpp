@@ -27,12 +27,9 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
-    uint64 ra;
-    __asm__ volatile ("mv %0, ra": "=r"(ra));
     running->finished = true;
-    MemoryAllocator::getInstance().mem_free(running->stack_space);
+    // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
-    __asm__ volatile ("mv ra, %0" :: "r"(ra));
     return 0;
 }
 
