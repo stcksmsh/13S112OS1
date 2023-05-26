@@ -24,7 +24,7 @@ thread_t Scheduler::get(){
     thread_t thread = element->thread;
     head = head->next;
     if(head == nullptr) tail = nullptr;
-    mem_free(element);
+    // mem_free(element);
     return thread;
 }
 

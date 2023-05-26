@@ -23,6 +23,7 @@ void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
+    
     thread::running = Scheduler::get();
     putc('T');
     if(thread::running != handle)
