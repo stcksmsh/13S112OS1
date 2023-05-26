@@ -1,5 +1,6 @@
 #include "../h/syscall_c.hpp"
 #include "../h/thread.h"
+#include "../h/memoryAllocator.h"
 
 extern "C" void trap();
 uint64 address = 0;
@@ -33,9 +34,10 @@ void doFunc(){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
-    uint64 sp = 0;
-    __asm__ volatile ("mv %0, sp" : "=r"(sp));
-    __asm__ volatile ("mv sp, %0" :: "r"(sp));
+    uint64 sp = (uint64)MemoryAllocator::getInstance().mem_alloc(12);
+    uint64* newSp = &((uint64*)sp)[0];
+    // __asm__ volatile ("mv %0, sp" : "=r"(sp));
+    __asm__ volatile ("mv sp, %0" :: "r"(newSp));
     putc('E');
     return;
     thread_t handle;
