@@ -4,7 +4,6 @@
 #include "memoryAllocator.h"
 #include "scheduler.h"
 
-uint64 mainAR = 0;
 class thread{
 public:
     ~thread();

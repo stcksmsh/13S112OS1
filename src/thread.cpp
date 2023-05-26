@@ -2,6 +2,7 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
+uint64 mainAR = 0;
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
