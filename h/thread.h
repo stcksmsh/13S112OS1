@@ -14,8 +14,6 @@ public:
 
     static int exit();
 
-    // static void yield();
-
     static thread *running;
 
     static void dispatch();///takes pc as argument
