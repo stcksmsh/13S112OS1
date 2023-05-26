@@ -22,9 +22,9 @@ void helloWorld(void* arg = nullptr){
     putc('\n');
     thread_dispatch();
     putc('Y');
-    putc('e');
     putc('a');
-    putc('h');
+    putc('y');
+    putc('!');
     putc('\n');
     thread_exit();
 }
@@ -47,6 +47,9 @@ void helloToo(void* arg = nullptr){
     putc('t');
     putc('o');
     putc('o');
+    putc('.');
+    putc('.');
+    putc('.');
     putc('\n');
     thread_dispatch();
 }
