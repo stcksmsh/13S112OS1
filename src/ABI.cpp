@@ -27,6 +27,7 @@ inline void ABI::sstatusBitClear(uint64 bit)
 
 }
 
+extern "C" uint64 SHITASS;
 
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
