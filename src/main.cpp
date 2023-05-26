@@ -19,7 +19,7 @@ void helloWorld(void* arg = nullptr){
     putc('\n');
 }
 
-void doFunc(void* address){
+void doFunc(uint64 address){
     __asm__ volatile ("mv ra, %0" : : "r"(address));
     return;
 }
@@ -27,7 +27,7 @@ void doFunc(void* address){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
-    doFunc(helloWorld);
+    doFunc((uint64)helloWorld);
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
     if(thread::running != handle)
