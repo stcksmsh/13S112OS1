@@ -14,7 +14,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
-    newThread->context.pc = (uint64)wrapper;
+    newThread->context.pc = (uint64)start_routine;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
     *handle = newThread;
@@ -25,14 +25,12 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 void thread::wrapper(){
     running->start_routine(running->arg);
     exit();
-    __putc('w');
 }
 
 int thread::exit(){
     running->finished = true;
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
-    __putc('e');
     return 0;
 }
 
@@ -40,10 +38,8 @@ void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    if(running == nullptr){
-        __putc('E');
+    if(running == nullptr)
         return;
-    }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
