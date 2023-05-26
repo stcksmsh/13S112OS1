@@ -50,6 +50,7 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
         ld ra, 0 * 8(a1)
         ld sp, 1 * 8(a1)
     */
+    __putc('-');
     if(oldContext != nullptr){
     oldContext->pc = pc;
     __asm__ volatile ("sd sp, 8(a0)");
