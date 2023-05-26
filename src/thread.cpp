@@ -25,7 +25,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 void thread::wrapper(){
     running->start_routine(running->arg);
     exit();
-    putc('w');
+    __putc('w');
 }
 
 int thread::exit(){
