@@ -17,6 +17,7 @@ void helloWorld(void* arg = nullptr){
     putc('d');
     putc('!');
     putc('\n');
+    doFunc();
 }
 
 void doFunc(){

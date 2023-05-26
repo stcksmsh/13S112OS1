@@ -18,7 +18,7 @@ public:
 
     static thread *running;
 
-    static void dispatch();
+    static void dispatch(uint64);///takes pc as argument
 
     static void wrapper();
 private:
@@ -41,7 +41,7 @@ private:
 
 
 
-    static void switchContext(contextWrapper*, contextWrapper*);
+    static void switchContext(contextWrapper*, contextWrapper*, uint64);
 };
 
 
