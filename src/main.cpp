@@ -33,6 +33,8 @@ void doFunc(){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
+    uint64 sp = 16;
+    __asm__ volatile ("mv sp, %0" : "r"(sp));
     thread_t handle;
     address = (uint64)helloWorld;
     // doFunc();
