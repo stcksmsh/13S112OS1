@@ -19,11 +19,6 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
     *handle = newThread;
     Scheduler::put(newThread);
-    if(start_routine == nullptr){
-        uint64 ra;
-        __asm__ volatile ("mv %0, ra" : "=r"(ra));
-        newThread->context.pc = ra;
-    }
     return 0;
 }
 
@@ -48,6 +43,9 @@ void thread::dispatch(uint64 pc){
         if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
+        }else{
+            __asm__ volatile ("mv ra, %0" :: "r"(pc));
+            return;
         }
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
