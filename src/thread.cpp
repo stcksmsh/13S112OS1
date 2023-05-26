@@ -44,7 +44,7 @@ void thread::dispatch(uint64 pc){
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
     if(running == nullptr){
-        __asm__ volatile ("mv ar, %0" :: "r"(mainAR));
+        __asm__ volatile ("csrw ar, %0" :: "r"(mainAR));
         return;
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
