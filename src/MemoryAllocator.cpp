@@ -18,7 +18,6 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     }
     void* returnValue = nullptr;
     for(FreeMemorySegment* currentSegment = head; currentSegment != nullptr; currentSegment = currentSegment->nextSegment){
-    __putc('A');
         /// not enough space, skip to the next one
         if(currentSegment->segmentSize < size)
             continue;
@@ -63,6 +62,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         break;
     }
     /// if no memory could be allocated, return nullptr 
+    __putc('A');
     if(!returnValue)
         return nullptr;
     /*
