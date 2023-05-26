@@ -31,14 +31,14 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
 
 void thread::dispatch(uint64 pc){
     thread_t oldThread = running;
-    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
+    if(!oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
     if(running->start_routine == nullptr){
         thread_t newThread = Scheduler::get();
@@ -47,7 +47,9 @@ void thread::dispatch(uint64 pc){
             running = newThread;
         }
     }
-    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+    contextWrapper* oldContext = nullptr;
+    if(!oldThread->finished)oldContext = &oldThread->context;
+    switchContext(oldContext, &(running->context));
     return;
 }
 
