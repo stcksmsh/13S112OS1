@@ -28,6 +28,7 @@ private:
 
     struct contextWrapper{
         uint64 pc = 0, sp = 0;
+        uint64 s[12]; ///general purpose registers
     };
 
     bool blocked;
