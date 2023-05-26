@@ -69,7 +69,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         which holds data on allocated memory size for the MemoryAllocator::free function, added MEM_BLOCK_SIZE and not sizeof(FreeMemorySegment)
         so that the value will be aligned to blocks of MEM_BLOCK_SIZE bytes
     */
-    __putc('0' + (FreeMemorySegment*)returnValue->size);
+    __putc('0' + ((FreeMemorySegment*)returnValue)->size);
     return (uint64*)((uint64)returnValue + MEM_BLOCK_SIZE);
 }
 
