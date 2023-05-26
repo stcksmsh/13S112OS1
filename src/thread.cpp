@@ -33,10 +33,13 @@ int thread::exit(){
 }
 
 void thread::dispatch(uint64 ar){
+    static bool PCIntit = false;
+    if(!PCIntit)
+        endPC = ar;
     thread_t oldThread = running;
     if(running!=nullptr && running->finished && running->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    
+
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context), ar);
 }
 

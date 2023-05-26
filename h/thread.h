@@ -21,6 +21,8 @@ public:
     static void dispatch(uint64);///takes pc as argument
 
     static void wrapper();
+    
+    static uint64 endPC;
 private:
 
     // friend class ABI;
