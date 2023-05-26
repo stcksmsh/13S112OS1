@@ -14,7 +14,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
-    newThread->context.pc = (uint64)thread::wrapper;
+    newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     *handle = newThread;
     Scheduler::put(newThread);
