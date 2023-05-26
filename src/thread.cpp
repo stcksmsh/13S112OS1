@@ -38,8 +38,10 @@ void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    if(running == nullptr)
+    if(running == nullptr){
+        __putc('E');
         return;
+    }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
