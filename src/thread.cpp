@@ -27,10 +27,12 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
+    uint64 ra;
+    __asm__ volatile ("mv %0, ra": "=r"(ra));
     running->finished = true;
     MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
-
+    __asm__ volatile ("mv ra, %0" :: "r"(ra));
     return 0;
 }
 
@@ -38,10 +40,7 @@ void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    uint64 ra;
-    __asm__ volatile ("mv %0, ra": "=r"(ra));
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
-    __asm__ volatile ("mv ra, %0" :: "r"(ra));
     return;
 }
 
