@@ -101,7 +101,6 @@ int MemoryAllocator::mem_free( void *address ) {
     
     /// creates the new segment at the exact location the FreeMemSegment was left after mem_alloc, meaning the size is still in the segment
     FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)address - MEM_BLOCK_SIZE);
-    __putc('M');
     
     /*
         previousSegment will remain nullptr if, and only if: 
@@ -109,6 +108,7 @@ int MemoryAllocator::mem_free( void *address ) {
             2) head is greater than address (all data before address is allocated, newly created segment will become the head)
     */
     /// links the newSegment into the list
+    __putc('0' + newSegment->segmentSize);
     newSegment->prevSegment = previousSegment;
     if(previousSegment){
         previousSegment->nextSegment->prevSegment = newSegment;
