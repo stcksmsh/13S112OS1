@@ -40,6 +40,7 @@ void thread::dispatch(uint64 pc){
     running = Scheduler::get();
     __putc('-');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context), pc);
+    __putc('-');
 }
 
 void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext, uint64 pc){
@@ -50,7 +51,6 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
         ld ra, 0 * 8(a1)
         ld sp, 1 * 8(a1)
     */
-    __putc('-');
     if(oldContext != nullptr){
     oldContext->pc = pc;
     __asm__ volatile ("sd sp, 8(a0)");
