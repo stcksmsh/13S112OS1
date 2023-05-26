@@ -69,7 +69,6 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         which holds data on allocated memory size for the MemoryAllocator::free function, added MEM_BLOCK_SIZE and not sizeof(FreeMemorySegment)
         so that the value will be aligned to blocks of MEM_BLOCK_SIZE bytes
     */
-    __putc('0' + ((FreeMemorySegment*)returnValue)->segmentSize);
     return (uint64*)((uint64)returnValue + MEM_BLOCK_SIZE);
 }
 
@@ -109,7 +108,6 @@ int MemoryAllocator::mem_free( void *address ) {
             2) head is greater than address (all data before address is allocated, newly created segment will become the head)
     */
     /// links the newSegment into the list
-    __putc('0' + newSegment->segmentSize);
     newSegment->prevSegment = previousSegment;
     if(previousSegment){
         previousSegment->nextSegment->prevSegment = newSegment;
