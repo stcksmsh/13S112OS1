@@ -107,7 +107,6 @@ int MemoryAllocator::mem_free( void *address ) {
             1) head is nullptr (meaning all data is allocated, newly created segment will become the head, and only segment)
             2) head is greater than address (all data before address is allocated, newly created segment will become the head)
     */
-    __putc('M');
     /// links the newSegment into the list
     newSegment->prevSegment = previousSegment;
     if(previousSegment){
@@ -118,6 +117,7 @@ int MemoryAllocator::mem_free( void *address ) {
         newSegment->nextSegment = head;
         head = newSegment;
     }
+    __putc('M');
     /// attempts to merge with adjacent segments, if they exist
     if(previousSegment)attemptMerge(previousSegment);
     attemptMerge(newSegment);
