@@ -3,6 +3,9 @@
 
 extern "C" void trap();
 uint64 address = 0;
+
+void doFunc();
+
 void helloWorld(void* arg = nullptr){
     putc('H');
     putc('e');
