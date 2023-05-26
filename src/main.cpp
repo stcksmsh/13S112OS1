@@ -2,7 +2,7 @@
 #include "../h/thread.h"
 
 extern "C" void trap();
-
+uint64 address = 0;
 void helloWorld(void* arg = nullptr){
     putc('H');
     putc('e');
@@ -19,15 +19,19 @@ void helloWorld(void* arg = nullptr){
     putc('\n');
 }
 
-void doFunc(uint64 address){
+void doFunc(){
+    uint64 ra;
+    __asm__ volatile ("mv %0, ra" : "=r"(ra));
     __asm__ volatile ("mv ra, %0" : : "r"(address));
+    address = ra;
     return;
 }
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
-    doFunc((uint64)helloWorld);
+    address = (uint64)helloWorld;
+    doFunc();
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
     if(thread::running != handle)

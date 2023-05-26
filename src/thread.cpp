@@ -14,7 +14,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
-    newThread->context.pc = (uint64) wrapper;
+    newThread->context.pc = (uint64)thread::wrapper;
     newThread->context.sp = (uint64)(newThread->stack_space!=nullptr?newThread->stack_space[DEFAULT_STACK_SIZE]:0);
     *handle = newThread;
     Scheduler::put(newThread);
@@ -48,7 +48,7 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
         ld sp, 1 * 8(a1)
     */
 
-   __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));
+   __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));//rq + 4???
    __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
     if(newContext == nullptr){__putc('X');}
    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
