@@ -20,7 +20,7 @@ void helloWorld(void* arg = nullptr){
     putc('d');
     putc('!');
     putc('\n');
-    doFunc();
+    thread_exit();
 }
 
 void doFunc(){
@@ -35,12 +35,11 @@ void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
     address = (uint64)helloWorld;
-    doFunc();
+    // doFunc();
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
     if(thread::running != handle)
         putc('X');
-    return;
     thread::wrapper();
     while(!Scheduler::isEmpty()){
         thread_dispatch();
