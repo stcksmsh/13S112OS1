@@ -36,11 +36,11 @@ void main(){
     thread_t handle;
     address = (uint64)helloWorld;
     // doFunc();
+    thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
     if(thread::running != handle)
         putc('X');
-    thread::wrapper();
     while(!Scheduler::isEmpty()){
         thread_dispatch();
         putc('a');
