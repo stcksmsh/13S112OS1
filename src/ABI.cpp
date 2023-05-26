@@ -76,7 +76,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         // //dispatch
         else if(x==0x13){
-            uint64 pc;
+            sstatusWrite(sstatus);
+            sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
+            sipBitClear(1);
             thread::dispatch(sepc + 4);
         }
         // else if(x==0x14){
