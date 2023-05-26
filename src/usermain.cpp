@@ -2,6 +2,8 @@
 #include "../h/usermain.h"
 
 void bullshit(void* arg){
+    putc(' ');
+    putc(' ');
     putc('B');
     putc('u');
     putc('l');
@@ -11,7 +13,7 @@ void bullshit(void* arg){
     putc('i');
     putc('t');
     putc('!');
-    // thread_exit();
+    putc('\n');
 }
 
 void usermain(){
@@ -41,8 +43,8 @@ void usermain(){
     putc('e');
     putc(' ');
     putc('y');
-    putc('u');
     putc('o');
+    putc('u');
     putc('!');
     putc('?');
     putc('\n');
