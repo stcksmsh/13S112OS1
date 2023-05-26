@@ -28,6 +28,7 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
+    dispatch(0);
     return 0;
 }
 
@@ -51,10 +52,10 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
    __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
     if(newContext == nullptr){__putc('X');}
    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+   __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
     __putc('e');
     __putc('n');
     __putc('d');
     __putc('\n');
-   __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
     return;
 }
