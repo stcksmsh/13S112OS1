@@ -26,7 +26,7 @@ void helloWorld(void* arg = nullptr){
     putc('y');
     putc('!');
     putc('\n');
-    return;
+    thread_exit();
 }
 
 
@@ -51,7 +51,7 @@ void helloToo(void* arg = nullptr){
     putc('.');
     putc('.');
     putc('\n');
-    return;
+    thread_exit();
 }
 
 void main(){
