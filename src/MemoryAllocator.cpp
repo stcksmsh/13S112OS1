@@ -117,7 +117,6 @@ int MemoryAllocator::mem_free( void *address ) {
         newSegment->nextSegment = head;
         head = newSegment;
     }
-    __putc('0' + newSegment->segmentSize);
     /// attempts to merge with adjacent segments, if they exist
     if(previousSegment)attemptMerge(previousSegment);
     attemptMerge(newSegment);
