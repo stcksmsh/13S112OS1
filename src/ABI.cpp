@@ -76,7 +76,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         // //dispatch
         else if(x==0x13){
-            thread::dispatch(sepc+4);
+            thread::dispatch(sepc);
         }
         // else if(x==0x14){
         //     uint64 thandle;
