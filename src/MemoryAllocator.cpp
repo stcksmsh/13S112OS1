@@ -16,6 +16,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         head->segmentSize = ((size_t)( (uint64)HEAP_END_ADDR - (uint64)HEAP_START_ADDR ) - sizeof(MemoryAllocator) ) / MEM_BLOCK_SIZE;
         headInitialised = true;
     }
+    __putc('A');
     void* returnValue = nullptr;
     for(FreeMemorySegment* currentSegment = head; currentSegment != nullptr; currentSegment = currentSegment->nextSegment){
         /// not enough space, skip to the next one

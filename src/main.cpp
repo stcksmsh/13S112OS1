@@ -37,8 +37,8 @@ void main(){
     uint64 *sp = (uint64*)MemoryAllocator::getInstance().mem_alloc(12);
     // __asm__ volatile ("mv %0, sp" : "=r"(sp));
     __asm__ volatile ("mv sp, %0" :: "r"(sp));
-    putc('E');
     MemoryAllocator::getInstance().mem_free(sp);
+    putc('E');
     return;
     thread_t handle;
     address = (uint64)helloWorld;
