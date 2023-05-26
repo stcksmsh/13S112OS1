@@ -56,14 +56,13 @@ void helloToo(void* arg = nullptr){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
-    int *i = (int*)MemoryAllocator::getInstance().mem_alloc(12);
-    i[0] = 1;
     
     return;
     thread_t handle;
     thread_create(&handle, helloWorld, nullptr);
     thread_create(&handle, helloToo, nullptr);
     changeUser();
-    thread_dispatch();
+    while(!Scheduler::isEmpty())
+        thread_dispatch();
     putc('X');
 }
