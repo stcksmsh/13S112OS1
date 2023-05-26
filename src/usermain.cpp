@@ -48,4 +48,9 @@ void usermain(){
     putc('!');
     putc('?');
     putc('\n');
+
+
+
+    int* arr = (int*)mem_alloc(12);
+    putc('0' + mem_free(arr));
 }
