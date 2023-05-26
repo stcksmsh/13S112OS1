@@ -43,9 +43,6 @@ void thread::dispatch(uint64 pc){
         if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
-        }else{
-            __asm__ volatile ("mv ra, %0" :: "r"(pc));
-            return;
         }
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
