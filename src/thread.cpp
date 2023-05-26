@@ -38,9 +38,7 @@ void thread::dispatch(uint64 pc){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    __putc('-');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context), pc);
-    __putc('-');
 }
 
 void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext, uint64 pc){
@@ -52,8 +50,9 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
         ld sp, 1 * 8(a1)
     */
     if(oldContext != nullptr){
-    oldContext->pc = pc;
+    // oldContext->pc = pc;
     __asm__ volatile ("sd sp, 8(a0)");
+    __asm__ volatile ("sd ra, 0(a0)");
     }
     __asm__ volatile ("ld sp, 8(a1)");
     __asm__ volatile ("ld ra, 0(a1)");
