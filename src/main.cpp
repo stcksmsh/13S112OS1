@@ -51,7 +51,7 @@ void helloToo(void* arg = nullptr){
     putc('.');
     putc('.');
     putc('\n');
-    thread_exit();
+    thread_dispatch();
 }
 
 void main(){
