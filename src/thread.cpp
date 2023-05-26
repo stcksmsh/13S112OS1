@@ -31,6 +31,7 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
