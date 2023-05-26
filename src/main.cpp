@@ -4,62 +4,20 @@
 
 extern "C" void trap();
 
+extern "C" void userMain();
+
 uint64 SHITASS = 0;
 
-void helloWorld(void* arg = nullptr){
-    putc('H');
-    putc('e');
-    putc('l');
-    putc('l');
-    putc('o');
-    putc(' ');
-    putc('w');
-    putc('o');
-    putc('r');
-    putc('l');
-    putc('d');
-    putc('!');
-    putc('\n');
-    thread_dispatch();
-    putc('Y');
-    putc('a');
-    putc('y');
-    putc('!');
-    putc('\n');
-    thread_exit();
+void userMainWrapper(void* arg){
+    userMain();
 }
 
-
-void helloToo(void* arg = nullptr){
-    putc('H');
-    putc('e');
-    putc('l');
-    putc('l');
-    putc('o');
-    putc(' ');
-    putc('t');
-    putc('o');
-    putc(' ');
-    putc('y');
-    putc('o');
-    putc('u');
-    putc(' ');
-    putc('t');
-    putc('o');
-    putc('o');
-    putc('.');
-    putc('.');
-    putc('.');
-    putc('\n');
-    thread_exit();
-}
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
-    thread_create(&handle, helloWorld, nullptr);//                    |
-    thread_create(&handle, helloToo, nullptr);//                      |
+    thread_create(&handle, userMainWrapper, nullptr);//                    |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     changeUser();
     while(!Scheduler::isEmpty())
