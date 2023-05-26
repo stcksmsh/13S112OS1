@@ -16,11 +16,11 @@ public:
 
     static thread *running;
 
-    static void dispatch();///takes pc as argument
+    static void dispatch(uint64 = 0);///takes pc as argument
 
     static void wrapper();
 private:
-
+    static uint64 mainAR;
     // friend class ABI;
     // friend class Semaphore;
 

@@ -30,15 +30,23 @@ void thread::wrapper(){
 int thread::exit(){
     running->finished = true;
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    dispatch();
     return 0;
 }
 
-void thread::dispatch(){
+void thread::dispatch(uint64 pc){
+    static bool mainARInitialised = false;
+    if(!mainARInitialised){
+        mainARInitialised = true;
+        mainAR = pc;
+    }
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    if(running == nullptr)
+    if(running == nullptr){
+        __asm__ volatile ("mv ar, %0" :: "r"(mainAR));
         return;
+    }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }

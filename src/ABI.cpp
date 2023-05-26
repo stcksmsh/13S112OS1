@@ -72,14 +72,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         // //exit
         else if(x==0x12){
             uint64 retVal = thread::running->exit();
-            __putc('-');
             __asm__ volatile ("mv a0, %0" :: "r"(retVal));
         }
         // //dispatch
         else if(x==0x13){
-            sstatusWrite(sstatus);
-            thread::dispatch();
-            __putc('d');
+            thread::dispatch(sepc+4);
         }
         // else if(x==0x14){
         //     uint64 thandle;
