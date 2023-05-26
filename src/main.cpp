@@ -61,4 +61,5 @@ void main(){
     thread_create(&handle, helloToo, nullptr);
     changeUser();
     thread_dispatch();
+    putc('X');
 }
