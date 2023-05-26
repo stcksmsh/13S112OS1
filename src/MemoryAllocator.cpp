@@ -62,9 +62,9 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         break;
     }
     /// if no memory could be allocated, return nullptr 
-    __putc('A');
     if(!returnValue)
         return nullptr;
+    __putc('A');
     /*
         added MEM_BLOCK_SIZE to the address, as the first memory block at the returnValue address is used to store the FreeMemorySegment struct
         which holds data on allocated memory size for the MemoryAllocator::free function, added MEM_BLOCK_SIZE and not sizeof(FreeMemorySegment)
