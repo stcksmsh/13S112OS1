@@ -19,6 +19,8 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
     *handle = newThread;
     Scheduler::put(newThread);
+    if(start_routine == nullptr)
+        newThread->context.pc = 0;
     return 0;
 }
 
@@ -40,7 +42,7 @@ void thread::dispatch(uint64 pc){
     running = Scheduler::get();
     if(running->start_routine == nullptr){
         thread_t newThread = Scheduler::get();
-        if(newThread == nullptr){
+        if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
         }
