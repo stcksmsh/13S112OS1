@@ -23,7 +23,7 @@ void doFunc(){
     uint64 ra;
     __asm__ volatile ("mv %0, ra" : "=r"(ra));
     __asm__ volatile ("mv ra, %0" : : "r"(address));
-    address = ra;
+    address = ra + 4;
     return;
 }
 
