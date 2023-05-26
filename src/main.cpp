@@ -20,7 +20,7 @@ void helloWorld(void* arg = nullptr){
     putc('d');
     putc('!');
     putc('\n');
-    thread_exit();
+    thread_dispatch();
     putc('Y');
     putc('e');
     putc('a');
