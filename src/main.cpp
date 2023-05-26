@@ -28,8 +28,9 @@ void main(){
     // thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
     // thread::running = Scheduler::get();
+    __putc('m');
     thread_dispatch();
-    putc('a');
+    __putc('a');
     return;
     while(!Scheduler::isEmpty()){
         thread_dispatch();
