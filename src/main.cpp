@@ -34,7 +34,7 @@ void doFunc(){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
-    uint64 *sp = (uint64*)MemoryAllocator::getInstance().mem_alloc(12);
+    uint64 *sp = (uint64*)MemoryAllocator::getInstance().mem_alloc(4);
     // __asm__ volatile ("mv %0, sp" : "=r"(sp));
     __asm__ volatile ("mv sp, %0" :: "r"(sp));
     MemoryAllocator::getInstance().mem_free(sp);
