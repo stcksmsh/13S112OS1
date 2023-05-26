@@ -2,7 +2,6 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
-uint64 mainAR = 0;
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
@@ -36,14 +35,10 @@ int thread::exit(){
 }
 
 void thread::dispatch(uint64 pc){
-    if(mainAR == 0){
-        mainAR = pc;
-    }
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
     if(running == nullptr){
-        __asm__ volatile ("mv ra, %0" :: "r"(mainAR));
         return;
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
