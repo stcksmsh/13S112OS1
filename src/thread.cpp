@@ -22,6 +22,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 }
 
 void thread::wrapper(){
+    __putc('w');
     running->start_routine(running->arg);
     exit();
 }
@@ -36,8 +37,8 @@ void thread::dispatch(uint64 ar){
     thread_t oldThread = running;
     if(running!=nullptr && running->finished && running->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    __putc('d');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context), ar);
+    __putc('d');
 }
 
 void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext, uint64 ar){
@@ -54,6 +55,7 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     }
     if(newContext == nullptr){__putc('X');}
     __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+    return;
     __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
     return;
 }
