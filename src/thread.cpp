@@ -29,19 +29,19 @@ void thread::wrapper(){
 int thread::exit(){
     running->finished = true;
     MemoryAllocator::getInstance().mem_free(running->stack_space);
-    dispatch(0);
+    dispatch();
 
     return 0;
 }
 
-void thread::dispatch(uint64 pc){
+void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context), pc);
+    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
 }
 
-void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext, uint64 pc){
+void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext){
     /*
         sd ra, 0 * 8(a0)
         sd sp, 1 * 8(a0)
