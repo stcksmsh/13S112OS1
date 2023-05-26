@@ -4,6 +4,7 @@
 #include "memoryAllocator.h"
 #include "scheduler.h"
 
+uint64 mainAR;
 class thread{
 public:
     ~thread();
@@ -20,7 +21,6 @@ public:
 
     static void wrapper();
 private:
-    static uint64 mainAR;
     // friend class ABI;
     // friend class Semaphore;
 

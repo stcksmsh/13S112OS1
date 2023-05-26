@@ -35,9 +35,7 @@ int thread::exit(){
 }
 
 void thread::dispatch(uint64 pc){
-    static bool mainARInitialised = false;
-    if(!mainARInitialised){
-        mainARInitialised = true;
+    if(mainAR == 0){
         mainAR = pc;
     }
     thread_t oldThread = running;
