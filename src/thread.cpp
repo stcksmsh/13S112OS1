@@ -14,7 +14,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->blocked = newThread->closed = newThread->finished = false;
-    newThread->context.pc = (uint64)start_routine;
+    newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
     *handle = newThread;
@@ -24,7 +24,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
-    exit();
+    running->finished = true;
 }
 
 int thread::exit(){
