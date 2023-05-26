@@ -92,16 +92,16 @@ void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
 
 int MemoryAllocator::mem_free( void *address ) {
     /// if the given address is outside the allowed range, return -1 indicating an error
-    if((uint64)address >= (uint64)HEAP_END_ADDR || (uint64)address < (uint64)HEAP_START_ADDR + MEM_BLOCK_SIZE)
+    if((uint64)address >= (uint64)HEAP_END_ADDR || (uint64)address < (uint64)HEAP_START_ADDR)
         return -1;
     /// searches for a FreeMemorySegment directly preceding the given address
     FreeMemorySegment* previousSegment = nullptr;
     if(head)
-        for(previousSegment = head; previousSegment->nextSegment && (uint64)previousSegment->nextSegment < (uint64)address; previousSegment = previousSegment->nextSegment);
+        for(previousSegment = head; previousSegment->nextSegment != nullptr && (uint64)previousSegment->nextSegment < (uint64)address; previousSegment = previousSegment->nextSegment);
     
     /// creates the new segment at the exact location the FreeMemSegment was left after mem_alloc, meaning the size is still in the segment
     FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)address - MEM_BLOCK_SIZE);
-    
+    __putc('0' + newSegment->segmentSize);
     /*
         previousSegment will remain nullptr if, and only if: 
             1) head is nullptr (meaning all data is allocated, newly created segment will become the head, and only segment)

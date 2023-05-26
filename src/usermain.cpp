@@ -51,6 +51,6 @@ void usermain(){
 
 
 
-    int* arr = (int*)mem_alloc(12);
+    int* arr = (int*)mem_alloc(4);
     mem_free(arr);
 }
