@@ -48,8 +48,6 @@ void helloToo(void* arg = nullptr){
     putc('o');
     putc('o');
     putc('\n');
-    if(Scheduler::isEmpty())
-        putc('X');
     thread_exit();
 }
 
