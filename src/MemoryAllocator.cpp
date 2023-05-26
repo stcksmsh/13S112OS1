@@ -10,10 +10,10 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     /// creates it only on first call of the function, thus the head can only be initialised once
     static bool headInitialised = false;
     if(!headInitialised){
-        head = (FreeMemorySegment*)((uint64*)HEAP_START_ADDR);
+        head = (FreeMemorySegment*)((uint64)HEAP_START_ADDR);
         head->prevSegment = nullptr;
         head->nextSegment = nullptr;
-        head->segmentSize = ((size_t)( (uint64*)HEAP_END_ADDR - (uint64*)HEAP_START_ADDR ) - sizeof(MemoryAllocator) ) / MEM_BLOCK_SIZE;
+        head->segmentSize = ((size_t)( (uint64)HEAP_END_ADDR - (uint64)HEAP_START_ADDR ) - sizeof(MemoryAllocator) ) / MEM_BLOCK_SIZE;
         headInitialised = true;
     }
     void* returnValue = nullptr;
@@ -43,7 +43,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
             currentSegment has more memory available than we need, so we create a newSegment at the location immediately after
             the memory space we will use for allocation, this will hold information on the remaining free memory from currentSegment
         */
-        FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64*)currentSegment + size*MEM_BLOCK_SIZE);
+        FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64*)((uint64)currentSegment + size*MEM_BLOCK_SIZE));
         /// almost the same as in the if statement above, we unlink the currentSegment from the list, but now we link newSegment in its "place"
         if(currentSegment->prevSegment)
             currentSegment->prevSegment->nextSegment = newSegment;
@@ -69,7 +69,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         which holds data on allocated memory size for the MemoryAllocator::free function, added MEM_BLOCK_SIZE and not sizeof(FreeMemorySegment)
         so that the value will be aligned to blocks of MEM_BLOCK_SIZE bytes
     */
-    return (uint64*)returnValue + MEM_BLOCK_SIZE;
+    return (uint64*)((uint64)returnValue + MEM_BLOCK_SIZE);
 }
 
 MemoryAllocator& MemoryAllocator::getInstance() {
@@ -81,7 +81,7 @@ MemoryAllocator& MemoryAllocator::getInstance() {
 
 void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
     /// if the end of current segment and beggining of next segment do not align, they cannot be merged
-    if((uint64*)segment->nextSegment != (uint64*)segment + segment->segmentSize*MEM_BLOCK_SIZE)
+    if((uint64)segment->nextSegment != (uint64)segment + segment->segmentSize*MEM_BLOCK_SIZE)
         return;
     /// sums the segment sizes
     segment->segmentSize += segment->nextSegment->segmentSize;
@@ -92,15 +92,15 @@ void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
 
 int MemoryAllocator::mem_free( void *address ) {
     /// if the given address is outside the allowed range, return -1 indicating an error
-    if((uint64*)address >= (uint64*)HEAP_END_ADDR || (uint64*)address < (uint64*)HEAP_START_ADDR + MEM_BLOCK_SIZE)
+    if((uint64)address >= (uint64)HEAP_END_ADDR || (uint64)address < (uint64)HEAP_START_ADDR + MEM_BLOCK_SIZE)
         return -1;
     /// searches for a FreeMemorySegment directly preceding the given address
     FreeMemorySegment* previousSegment = nullptr;
     if(head)
-        for(previousSegment = head; previousSegment->nextSegment && (uint64*)previousSegment->nextSegment < (uint64*)address; previousSegment = previousSegment->nextSegment);
+        for(previousSegment = head; previousSegment->nextSegment && (uint64)previousSegment->nextSegment < (uint64)address; previousSegment = previousSegment->nextSegment);
     
     /// creates the new segment at the exact location the FreeMemSegment was left after mem_alloc, meaning the size is still in the segment
-    FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64*)address - MEM_BLOCK_SIZE);
+    FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)address - MEM_BLOCK_SIZE);
     
     /*
         previousSegment will remain nullptr if, and only if: 
