@@ -47,15 +47,12 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
         ld ra, 0 * 8(a1)
         ld sp, 1 * 8(a1)
     */
-
-   oldContext->pc = ar;
-   __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
+    if(oldContext != nullptr){
+    oldContext->pc = ar;
+    __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
+    }
     if(newContext == nullptr){__putc('X');}
-   __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
-   __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
-    __putc('e');
-    __putc('n');
-    __putc('d');
-    __putc('\n');
+    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+    __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
     return;
 }
