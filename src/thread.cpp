@@ -33,7 +33,6 @@ int thread::exit(){
 }
 
 void thread::dispatch(){
-    __putc('s');
     thread_t oldThread = running;
     if(running!=nullptr && running->finished && running->blocked)Scheduler::put(running);
     running = Scheduler::get();
