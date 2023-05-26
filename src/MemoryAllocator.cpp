@@ -81,7 +81,7 @@ MemoryAllocator& MemoryAllocator::getInstance() {
 
 void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
     /// if the end of current segment and beggining of next segment do not align, they cannot be merged
-    if((uint64)segment->nextSegment != (uint64)segment + segment->segmentSize*MEM_BLOCK_SIZE)
+    if((uint64)segment->nextSegment != (uint64)segment + (segment->segmentSize + 1)*MEM_BLOCK_SIZE)
         return;
     /// sums the segment sizes
     segment->segmentSize += segment->nextSegment->segmentSize;
@@ -101,7 +101,6 @@ int MemoryAllocator::mem_free( void *address ) {
     
     /// creates the new segment at the exact location the FreeMemSegment was left after mem_alloc, meaning the size is still in the segment
     FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)address - MEM_BLOCK_SIZE);
-    __putc('0' + newSegment->segmentSize);
     /*
         previousSegment will remain nullptr if, and only if: 
             1) head is nullptr (meaning all data is allocated, newly created segment will become the head, and only segment)
@@ -110,13 +109,15 @@ int MemoryAllocator::mem_free( void *address ) {
     /// links the newSegment into the list
     newSegment->prevSegment = previousSegment;
     if(previousSegment){
-        previousSegment->nextSegment->prevSegment = newSegment;
+        if(previousSegment->nextSegment)
+            previousSegment->nextSegment->prevSegment = newSegment;
         newSegment->nextSegment = previousSegment->nextSegment;
         previousSegment->nextSegment = newSegment;
     }else{
         newSegment->nextSegment = head;
         head = newSegment;
     }
+    __putc('0' + newSegment->segmentSize);
     /// attempts to merge with adjacent segments, if they exist
     if(previousSegment)attemptMerge(previousSegment);
     attemptMerge(newSegment);
