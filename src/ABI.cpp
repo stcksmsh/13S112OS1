@@ -27,8 +27,6 @@ inline void ABI::sstatusBitClear(uint64 bit)
 
 }
 
-extern "C" uint64 SHITASS;
-
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
@@ -80,7 +78,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(x==0x13){
             uint64 ra;
             __asm__ volatile ("mv %0, ra" : "=r"(ra));
-            thread::dispatch(ra);
+            thread::dispatch(ra+4);
         }
         // else if(x==0x14){
         //     uint64 thandle;

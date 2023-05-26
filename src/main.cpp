@@ -20,9 +20,7 @@ void helloWorld(void* arg = nullptr){
     putc('d');
     putc('!');
     putc('\n');
-    // __asm__ volatile ("mv %0, ra" : "=r"(SHITASS));
     thread_dispatch();
-    __putc('a');
     putc('Y');
     putc('e');
     putc('a');
