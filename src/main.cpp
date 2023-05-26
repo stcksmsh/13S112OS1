@@ -27,10 +27,6 @@ void main(){
     if(thread::running != handle)
         putc('X');
     thread::wrapper();
-    putc('e');
-    putc('n');
-    putc('d');
-    putc('\n');
     return;
     while(!Scheduler::isEmpty()){
         thread_dispatch();
