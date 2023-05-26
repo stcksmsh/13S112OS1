@@ -28,7 +28,6 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    dispatch(0);
     return 0;
 }
 

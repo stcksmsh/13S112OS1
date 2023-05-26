@@ -39,8 +39,6 @@ void main(){
     thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
     thread::running = Scheduler::get();
-    if(thread::running != handle)
-        putc('X');
     while(!Scheduler::isEmpty()){
         thread_dispatch();
         putc('a');
