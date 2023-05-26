@@ -20,7 +20,7 @@ void helloWorld(void* arg = nullptr){
     putc('d');
     putc('!');
     putc('\n');
-    thread_exit();
+    thread_dispatch();
     putc('Y');
     putc('e');
     putc('a');
@@ -48,6 +48,8 @@ void helloToo(void* arg = nullptr){
     putc('o');
     putc('o');
     putc('\n');
+    if(Scheduler::isEmpty)
+        putc('X');
     thread_exit();
 }
 
