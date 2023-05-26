@@ -48,8 +48,6 @@ void thread::dispatch(uint64 pc){
         if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
-        }else{
-            __putc('X');
         }
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
@@ -83,6 +81,8 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     }
     if(newContext->sp != 0)
         __asm__ volatile ("ld sp, 8(a1)");
+    else
+        __putc('X');
     __asm__ volatile ("ld ra, 0(a1)");
     // __asm__ volatile("mv s0, %0" :: "r"(oldContext->s[0]));
     // __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[1]));
