@@ -30,6 +30,8 @@ int thread::exit(){
     running->finished = true;
     MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch(0);
+    __putc('A');
+
     return 0;
 }
 
