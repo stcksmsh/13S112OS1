@@ -24,15 +24,14 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
-    running->finished = true;
-    dispatch();
-    return;
+    exit();
 }
 
 int thread::exit(){
     running->finished = true;
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
+    __putc('e');
     return 0;
 }
 
