@@ -1,10 +1,10 @@
 #include "../h/syscall_c.hpp"
 #include "../h/thread.h"
 #include "../h/memoryAllocator.h"
+#include "../h/usermain.h"
 
 extern "C" void trap();
 
-extern "C" void usermain();
 
 uint64 SHITASS = 0;
 

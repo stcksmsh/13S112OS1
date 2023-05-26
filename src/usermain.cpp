@@ -1,4 +1,5 @@
 #include "../h/syscall_c.hpp"
+#include "../h/usermain.h"
 
 void usermain(){
     putc('H');
