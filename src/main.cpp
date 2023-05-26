@@ -64,5 +64,4 @@ void main(){
     changeUser();
     while(!Scheduler::isEmpty())
         thread_dispatch();
-    putc('X');
 }
