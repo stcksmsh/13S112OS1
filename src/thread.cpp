@@ -24,14 +24,9 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
+    if(Scheduler::isEmpty())
+        return;
     exit();
-}
-
-int thread::exit(){
-    running->finished = true;
-    // MemoryAllocator::getInstance().mem_free(running->stack_space);
-    dispatch();
-    return 0;
 }
 
 void thread::dispatch(){
@@ -69,17 +64,17 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     }
     __asm__ volatile ("ld sp, 8(a1)");
     __asm__ volatile ("ld ra, 0(a1)");
-    __asm__ volatile("mv s0, %0" :: "r"(oldContext->s[0]));
-    __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[1]));
-    __asm__ volatile("mv s2, %0" :: "r"(oldContext->s[2]));
-    __asm__ volatile("mv s3, %0" :: "r"(oldContext->s[3]));
-    __asm__ volatile("mv s4, %0" :: "r"(oldContext->s[4]));
-    __asm__ volatile("mv s5, %0" :: "r"(oldContext->s[5]));
-    __asm__ volatile("mv s6, %0" :: "r"(oldContext->s[6]));
-    __asm__ volatile("mv s7, %0" :: "r"(oldContext->s[7]));
-    __asm__ volatile("mv s8, %0" :: "r"(oldContext->s[8]));
-    __asm__ volatile("mv s9, %0" :: "r"(oldContext->s[9]));
-    __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[10]));
-    __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[11]));
+    // __asm__ volatile("mv s0, %0" :: "r"(oldContext->s[0]));
+    // __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[1]));
+    // __asm__ volatile("mv s2, %0" :: "r"(oldContext->s[2]));
+    // __asm__ volatile("mv s3, %0" :: "r"(oldContext->s[3]));
+    // __asm__ volatile("mv s4, %0" :: "r"(oldContext->s[4]));
+    // __asm__ volatile("mv s5, %0" :: "r"(oldContext->s[5]));
+    // __asm__ volatile("mv s6, %0" :: "r"(oldContext->s[6]));
+    // __asm__ volatile("mv s7, %0" :: "r"(oldContext->s[7]));
+    // __asm__ volatile("mv s8, %0" :: "r"(oldContext->s[8]));
+    // __asm__ volatile("mv s9, %0" :: "r"(oldContext->s[9]));
+    // __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[10]));
+    // __asm__ volatile("mv s1, %0" :: "r"(oldContext->s[11]));
     return;
 }
