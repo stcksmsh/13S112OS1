@@ -34,11 +34,11 @@ void doFunc(){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
-    uint64 sp = (uint64)MemoryAllocator::getInstance().mem_alloc(12);
-    uint64* newSp = &((uint64*)sp)[0];
+    uint64 *sp = (uint64*)MemoryAllocator::getInstance().mem_alloc(12);
     // __asm__ volatile ("mv %0, sp" : "=r"(sp));
-    __asm__ volatile ("mv sp, %0" :: "r"(newSp));
+    __asm__ volatile ("mv sp, %0" :: "r"(sp));
     putc('E');
+    MemoryAllocator::getInstance().mem_free(sp);
     return;
     thread_t handle;
     address = (uint64)helloWorld;
