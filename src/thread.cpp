@@ -48,6 +48,8 @@ void thread::dispatch(uint64 pc){
         if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
+        }else{
+            __putc('X');
         }
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
