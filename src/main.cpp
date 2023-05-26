@@ -25,14 +25,8 @@ void helloWorld(void* arg = nullptr){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     thread_t handle;
-    // thread_create(&handle, nullptr, nullptr);
     thread_create(&handle, helloWorld, nullptr);
     Scheduler::put(handle);
-    // thread::running = Scheduler::get();
-    __putc('m');
-    thread_dispatch();
-    __putc('a');
-    return;
     while(!Scheduler::isEmpty()){
         thread_dispatch();
         putc('a');
