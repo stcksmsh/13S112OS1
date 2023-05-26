@@ -24,15 +24,22 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
-    if(Scheduler::isEmpty())
-        return;
     exit();
+}
+
+int thread::exit(){
+    running->finished = true;
+    // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    dispatch();
+    return 0;
 }
 
 void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
+    if(running == nullptr)
+        return;
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
