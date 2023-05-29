@@ -12,7 +12,7 @@ public:
         joinList *next;
     } *head, *tail;
 
-    void join();
+    void joinTo();
 
     ~thread();
 
