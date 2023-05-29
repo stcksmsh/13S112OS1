@@ -77,7 +77,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         // //dispatch
         else if(x==0x13){
-            thread::dispatch(sepc);
+            thread::dispatch();
         }
         // join
         else if(x==0x14){

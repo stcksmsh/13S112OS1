@@ -25,7 +25,7 @@ public:
 
     static thread *running;
 
-    static void dispatch(uint64 = 0);///takes pc as argument
+    static void dispatch();
 
     static void wrapper();
 

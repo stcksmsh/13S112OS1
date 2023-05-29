@@ -77,17 +77,10 @@ int thread::exit(){
     return 0;
 }
 
-void thread::dispatch(uint64 pc){
+void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
     running = Scheduler::get();
-    if(running->start_routine == nullptr){
-        thread_t newThread = Scheduler::get();
-        if(newThread != nullptr){
-            Scheduler::put(running);
-            running = newThread;
-        }
-    }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
