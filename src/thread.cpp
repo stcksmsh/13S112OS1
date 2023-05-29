@@ -57,7 +57,8 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
-    exit();
+    running->setFinished(true);
+    dispatch();
 }
 
 int thread::exit(){
