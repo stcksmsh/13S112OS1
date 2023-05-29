@@ -36,6 +36,7 @@ int sem::sem_wait(sem_t id){
             id->tail = node;
         }
         thread::running->setBlocked(true);
+        putc('?');
         thread_dispatch();
         if(thread::running->wasClosed())return -1;
     }
