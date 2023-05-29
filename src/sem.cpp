@@ -24,7 +24,8 @@ int sem::sem_close(sem_t handle){
 
 
 int sem::sem_wait(sem_t id){
-    if(id->value-- <= 0){
+    id->value--;
+    if(id->value < 0){
         sem::blockedList *node = (sem::blockedList*)mem_alloc(sizeof(sem::blockedList));
         node->next = nullptr;
         node->thread = thread::running;
@@ -43,11 +44,8 @@ int sem::sem_wait(sem_t id){
 }
 
 int sem::sem_signal(sem_t id){
-    putc('.');
     if(id == nullptr)return -1;
-    putc('.');
-    putc('5' + id->value);
-    if(id->value++ < 0){
+    if(id->value < 0){
         putc('.');
         id->head->thread->setBlocked(false);
         putc('.');
@@ -62,5 +60,6 @@ int sem::sem_signal(sem_t id){
         mem_free(tmp);
         putc('.');
     }
+    id->value++;
     return 0;
 }
