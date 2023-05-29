@@ -33,7 +33,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    thread_join(handle);
+    // thread_join(handle);
     putc('H');
     putc('o');
     putc('w');

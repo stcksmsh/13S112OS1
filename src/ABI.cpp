@@ -83,7 +83,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(x==0x14){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
-            ((thread_t)handle)->join(thread::running);/// joins current thread onto the given thread
+            ((thread_t)handle)->joinTo();/// joins current thread onto the given thread
         }
         // //sem open
         // else if(x==0x21){

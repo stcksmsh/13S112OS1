@@ -23,9 +23,9 @@ bool thread::wasClosed(){
     return closed;
 }
 
-void thread::join(thread_t handle){/// thread1.join(thread2) is the same as invoking thread_join(thread1) in thread2
-    joinList *node = (joinList*)mem_alloc(sizeof(joinList));
-    node->handle = handle;
+void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thread1)
+    joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
+    node->handle = running;
     node->next = nullptr;
     if(tail == nullptr){
         head = tail = node;
@@ -33,10 +33,12 @@ void thread::join(thread_t handle){/// thread1.join(thread2) is the same as invo
         tail->next = node;
         tail = node;
     }
+    running->setBlocked(true);
+    dispatch();
 }
 
 int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    thread_t newThread = (thread_t)mem_alloc(sizeof(thread));
+    thread_t newThread = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
@@ -68,9 +70,9 @@ int thread::exit(){
 
         previous->handle->setBlocked(false);
         Scheduler::put(previous->handle);
-        mem_free(previous);
+        MemoryAllocator::getInstance().mem_free(previous);
     }
-    mem_free(running->stack_space);
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
