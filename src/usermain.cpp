@@ -1,6 +1,8 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.h"
 
+sem_t semaphore;
+
 void bullshit(void* arg){
     putc(' ');
     putc(' ');
@@ -17,7 +19,6 @@ void bullshit(void* arg){
     sem_signal(semaphore);
 }
 
-sem_t semaphore;
 
 void usermain(){
     // uint64 *arr = (uint64*)mem_alloc(sizeof(arr)*20);
