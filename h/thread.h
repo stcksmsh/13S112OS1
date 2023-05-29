@@ -36,9 +36,10 @@ public:
     void setFinished(bool);
     
     void setClosed(bool);
+    
     bool wasClosed();
 
-
+    bool live();//reduces time remaining by one and returns whether it has "died" or not
 private:
     // friend class ABI;
     // friend class Semaphore;
@@ -48,6 +49,7 @@ private:
         uint64 s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11;///general purpose registers
     };
 
+    time_t timeLeftToRun;
     bool closed;
     bool blocked;
     void* arg;

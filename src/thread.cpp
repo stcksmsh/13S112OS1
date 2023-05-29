@@ -11,6 +11,11 @@ void thread::setBlocked(bool blocked){
     this->blocked = blocked;
 }
 
+bool thread::live(){
+    return --timeLeftToRun > 0;
+}
+
+
 void thread::setFinished(bool finished){
     this->finished = finished;
 }
@@ -43,6 +48,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
+    newThread->timeLeftToRun = DEFAULT_TIME_SLICE;
     newThread->blocked = newThread->closed = newThread->finished = false;
     newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
@@ -79,6 +85,7 @@ int thread::exit(){
 void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
+    running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
