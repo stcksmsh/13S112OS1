@@ -32,8 +32,8 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    // thread_join(handle);
-    thread_dispatch();
+    thread_join(handle);
+    // thread_dispatch();
     putc('H');
     putc('o');
     putc('w');
