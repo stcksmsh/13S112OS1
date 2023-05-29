@@ -20,7 +20,6 @@ void main(){
     thread_create(&handle, usermainWrapper, nullptr);//                    |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     changeUser();
-    putc('t');
     while(!Scheduler::isEmpty())
         thread_dispatch();
 }

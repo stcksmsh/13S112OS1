@@ -19,6 +19,7 @@ int sem::sem_close(sem_t handle){
         previous = node;
         node = node->next;
     }
+    return 0;
 }
 
 

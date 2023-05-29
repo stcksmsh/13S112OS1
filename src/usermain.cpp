@@ -14,7 +14,6 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    thread_exit();
 }
 
 void usermain(){
@@ -49,9 +48,4 @@ void usermain(){
     putc('!');
     putc('?');
     putc('\n');
-
-
-
-    int* arr = (int*)mem_alloc(4);
-    mem_free(arr);
 }
