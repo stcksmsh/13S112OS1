@@ -70,7 +70,7 @@ int thread::exit(){
 
         previous->handle->setBlocked(false);
         Scheduler::put(previous->handle);
-        MemoryAllocator::getInstance().mem_free(previous);
+        // MemoryAllocator::getInstance().mem_free(previous);
     }
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
