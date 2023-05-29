@@ -12,7 +12,8 @@ void thread::setBlocked(bool blocked){
 }
 
 bool thread::live(){
-    return --timeLeftToRun > 0;
+    timeLeftToRun = timeLeftToRun - 1;
+    return timeLeftToRun > 0;
 }
 
 
