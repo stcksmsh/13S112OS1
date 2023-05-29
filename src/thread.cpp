@@ -57,12 +57,11 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 
 void thread::wrapper(){
     running->start_routine(running->arg);
-    running->setFinished(true);
     exit();
 }
 
 int thread::exit(){
-    running->finished = true;
+    running->setFinished(true);
     thread::joinList *previous = nullptr;
     while(running->head != nullptr){
         
