@@ -18,11 +18,11 @@ int thread_exit ();
 
 void thread_dispatch ();
 
-void thread_join ( thread_t* );
+void thread_join ( thread_t );
 
 
-class _sem;
-typedef _sem* sem_t;
+class sem;
+typedef sem* sem_t;
 
 int sem_open ( sem_t*, unsigned );
 

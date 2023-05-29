@@ -3,10 +3,19 @@
 
 #include "memoryAllocator.h"
 #include "scheduler.h"
+#include "syscall_c.hpp"
 
 class thread{
 public:
+    struct joinList{
+        thread *handle;
+        joinList *next;
+    } *head, *tail;
+
+    void join(thread* handle);
+
     ~thread();
+
 
     using func = void (*)(void*);
 
@@ -21,6 +30,15 @@ public:
     static void wrapper();
 
     func start_routine;
+
+    void setBlocked(bool);
+
+    void setFinished(bool);
+    
+    void setClosed(bool);
+    bool wasClosed();
+
+
 private:
     // friend class ABI;
     // friend class Semaphore;
@@ -30,8 +48,8 @@ private:
         uint64 s[12]; ///general purpose registers
     };
 
-    bool blocked;
     bool closed;
+    bool blocked;
     void* arg;
     uint64 *stack_space;
     contextWrapper context;

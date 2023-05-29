@@ -79,21 +79,12 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(x==0x13){
             thread::dispatch(sepc);
         }
-        // else if(x==0x14){
-        //     uint64 thandle;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(thandle));
-        //     TCB** handle=(TCB**)thandle;
-        //     uint64 startR;
-        //     __asm__ volatile ("mv %[rs], a2" : [rs]"=r"(startR));
-        //     TCB::Body funct=(TCB::Body)startR;
-        //     void* arg=(void*)reg3;
-        //     uint64* stack=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
-        //     TCB::createCPPThread(funct,handle,arg,stack);
-        //     uint64 retVal=0;
-        //     if(handle== nullptr)retVal=-1;
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
-
-        // }
+        // join
+        else if(x==0x14){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
+            ((thread_t)handle)->join(thread::running);/// joins current thread onto the given thread
+        }
         // //sem open
         // else if(x==0x21){
         //     uint64 h;

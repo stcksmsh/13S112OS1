@@ -14,6 +14,7 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
+    thread_exit();
 }
 
 void usermain(){
@@ -32,7 +33,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    thread_dispatch();
+    thread_join(handle);
     putc('H');
     putc('o');
     putc('w');

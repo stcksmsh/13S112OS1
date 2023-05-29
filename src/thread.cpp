@@ -7,8 +7,36 @@ thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
 
+void thread::setBlocked(bool blocked){
+    this->blocked = blocked;
+}
+
+void thread::setFinished(bool finished){
+    this->finished = finished;
+}
+
+void thread::setClosed(bool closed){
+    this->closed = closed;
+}
+
+bool thread::wasClosed(){
+    return closed;
+}
+
+void thread::join(thread_t handle){/// thread1.join(thread2) is the same as invoking thread_join(thread1) in thread2
+    joinList *node = (joinList*)mem_alloc(sizeof(joinList));
+    node->handle = handle;
+    node->next = nullptr;
+    if(tail == nullptr){
+        head = tail = node;
+    }else{
+        tail->next = node;
+        tail = node;
+    }
+}
+
 int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    thread_t newThread = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    thread_t newThread = (thread_t)mem_alloc(sizeof(thread));
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
@@ -17,6 +45,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     for(int i = 0;i < 12;i ++)newThread->context.s[i] = 0;
+    newThread->head = newThread->tail = nullptr;
     *handle = newThread;
     Scheduler::put(newThread);
     if(start_routine == nullptr)
@@ -31,7 +60,17 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    MemoryAllocator::getInstance().mem_free(running->stack_space);
+    thread::joinList *previous = nullptr;
+    while(running->head != nullptr){
+        
+        previous = running->head;
+        running->head = previous->next;
+
+        previous->handle->setBlocked(false);
+        Scheduler::put(previous->handle);
+        mem_free(previous);
+    }
+    mem_free(running->stack_space);
     dispatch();
     return 0;
 }
