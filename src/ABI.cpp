@@ -27,6 +27,8 @@ inline void ABI::sstatusBitClear(uint64 bit)
 
 }
 
+extern "C" int testing;
+
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
@@ -145,6 +147,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
+        testing++;
         __putc('*');
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
