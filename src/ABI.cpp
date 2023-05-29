@@ -154,11 +154,13 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause== 0x8000000000000009UL)
     {
+        __putc('+');
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
     }
     else
     {
+        __putc('0');
         // unexpected trap cause
     }
 
