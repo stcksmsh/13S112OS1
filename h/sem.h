@@ -9,7 +9,7 @@ class sem{
         blockedList* next = nullptr;
     } *head, *tail;
     
-    unsigned value;
+    int value;
 
 public:
     
