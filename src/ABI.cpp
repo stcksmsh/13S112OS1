@@ -88,7 +88,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         //sem open
         else if(x==0x21){
             uint64 handle;
-            __asm__ volatile ("mv %0, a1" : "=r"(h));
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
             uint64 init;
             __asm__ volatile ("mv %0, a2" : "=r"(init));
             sem::sem_open((sem_t*)handle,init);
