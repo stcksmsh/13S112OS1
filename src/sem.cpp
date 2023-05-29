@@ -25,7 +25,7 @@ int sem::sem_close(sem_t handle){
 
 int sem::sem_wait(sem_t id){
     id->value = id->value - 1;
-    putc('0' + id->value);
+    if(id->value == -1)putc('X');
     if(id->value < 0){
         sem::blockedList *node = (sem::blockedList*)mem_alloc(sizeof(sem::blockedList));
         node->next = nullptr;
