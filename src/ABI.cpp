@@ -125,7 +125,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-            sipBitClear(1); /// clears SSIP (there exists an interrupt request)
+            // sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;
         }//getc
         else if(x==0x41){
@@ -141,7 +141,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
 
         sstatusWrite(sstatus);
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-        sipBitClear(1);
+        // sipBitClear(1);
     }
     else if (scause == 0x8000000000000001UL)
     {
@@ -149,7 +149,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }
-        sipBitClear(1);
+        // sipBitClear(1);
 
     }
     else if (scause== 0x8000000000000009UL)
