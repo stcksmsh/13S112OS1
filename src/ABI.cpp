@@ -2,7 +2,7 @@
 #include "../h/ABI.h"
 #include "../h/memoryAllocator.h"
 #include "../h/thread.h"
-// #include "../h/Sem.h"
+#include "../h/sem.h"
 
 inline uint64 ABI::sstatusRead()
 {
@@ -85,45 +85,42 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             ((thread_t)handle)->joinTo();/// joins current thread onto the given thread
         }
-        // //sem open
-        // else if(x==0x21){
-        //     uint64 h;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(h));
-        //     Sem** handle=(Sem**)h;
-        //     uint64 init;
-        //     __asm__ volatile ("mv %[in], a2" : [in]"=r"(init));
-        //     Sem::openSem(handle,init);
-        //     uint64 returnValue=0;
-        //     if(handle== nullptr)returnValue=-1;
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(returnValue));
+        //sem open
+        else if(x==0x21){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(h));
+            uint64 init;
+            __asm__ volatile ("mv %0, a2" : "=r"(init));
+            sem::sem_open((sem_t*)handle,init);
+            uint64 returnValue=0;
+            if((sem_t)handle == nullptr)returnValue=-1;
+            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
 
 
-        // }
-        // //sem close
-        // else if(x==0x22){
-        //     uint64 h;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(h));
-        //     Sem* handle=(Sem*)h;
-        //     int returnValue=Sem::closeSem(handle);
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(returnValue));
-        // }
-        // //sem wait
-        // else if(x==0x23){
-        //     uint64 h;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(h));
-        //     Sem* handle=(Sem*)h;
-        //     int returnValue=Sem::semWait(handle);
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(returnValue));
+        }
+        //sem close
+        else if(x==0x22){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
+            int returnValue=sem::sem_close((sem_t)handle);
+            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
+        }
+        //sem wait
+        else if(x==0x23){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
+            int returnValue=sem::sem_wait((sem_t)handle);
+            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
 
-        // }
-        // //sem signal
-        // else if(x==0x24){
-        //     uint64 h;
-        //     __asm__ volatile ("mv %[handle], a1" : [handle]"=r"(h));
-        //     Sem* handle=(Sem*)h;
-        //     int returnValue=Sem::semSignal(handle);
-        //     __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(returnValue));
-        // }//change to user mode
+        }
+        //sem signal
+        else if(x==0x24){
+            uint64 handle;
+            __asm__ volatile ("mv %0, a1" : "=r"(handle));
+            int returnValue=sem::sem_signal((sem_t)handle);
+            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
+        }
+        //change to user mode
         else if(x==0x25){
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
