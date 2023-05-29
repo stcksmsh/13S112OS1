@@ -40,7 +40,6 @@ void usermain(){
     putc('!');
     putc('\n');
     sem_wait(semaphore);
-    thread_dispatch();
     putc('H');
     putc('o');
     putc('w');
