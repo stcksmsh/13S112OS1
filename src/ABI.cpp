@@ -149,15 +149,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {
         testing++;
         __putc('*');
-        if(!thread::running->live()){/// it has run for longer than its alloted time slice
-            thread::dispatch();
-        }
+        // if(!thread::running->live()){/// it has run for longer than its alloted time slice
+        //     thread::dispatch();
+        // }
         sipBitClear(1);
 
     }
     else if (scause== 0x8000000000000009UL)
     {
-        __putc('+');
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
     }
