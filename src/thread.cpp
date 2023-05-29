@@ -58,7 +58,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 void thread::wrapper(){
     running->start_routine(running->arg);
     running->setFinished(true);
-    dispatch();
+    exit();
 }
 
 int thread::exit(){
@@ -73,7 +73,7 @@ int thread::exit(){
         Scheduler::put(previous->handle);
         MemoryAllocator::getInstance().mem_free(previous);
     }
-    MemoryAllocator::getInstance().mem_free(running->stack_space);
+    // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
