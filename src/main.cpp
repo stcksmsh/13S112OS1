@@ -15,9 +15,9 @@ void usermainWrapper(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
+    changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
-    changeUser();
     thread_create(&handle, usermainWrapper, nullptr);//                    |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     while(!Scheduler::isEmpty())
