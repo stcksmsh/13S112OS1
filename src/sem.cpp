@@ -35,7 +35,6 @@ int sem::sem_wait(sem_t id){
             id->tail->next = node;
             id->tail = node;
         }
-        putc(',');
         thread::running->setBlocked(true);
         thread_dispatch();
         if(thread::running->wasClosed())return -1;
@@ -46,19 +45,11 @@ int sem::sem_wait(sem_t id){
 int sem::sem_signal(sem_t id){
     if(id == nullptr)return -1;
     if(id->value < 0){
-        putc('.');
         id->head->thread->setBlocked(false);
-        putc('.');
-        putc('.');
-        putc('.');
         Scheduler::put(id->head->thread);
-        putc('.');
         sem::blockedList *tmp = id->head;
-        putc('.');
         id->head = id->head->next;
-        putc('.');
         mem_free(tmp);
-        putc('.');
     }
     id->value++;
     return 0;
