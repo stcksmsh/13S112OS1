@@ -14,13 +14,17 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
+    sem_signal(semaphore);
 }
+
+sem_t semaphore;
 
 void usermain(){
     // uint64 *arr = (uint64*)mem_alloc(sizeof(arr)*20);
     // mem_free(arr);
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
+    sem_open(&semaphore, 0);
     putc('H');
     putc('e');
     putc('l');
@@ -35,7 +39,8 @@ void usermain(){
     putc('!');
     putc('\n');
     // thread_join(handle);
-    thread_dispatch();
+    // thread_dispatch();
+    sem_wait(semaphore);
     putc('H');
     putc('o');
     putc('w');
