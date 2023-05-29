@@ -46,6 +46,7 @@ int sem::sem_signal(sem_t id){
     putc('.');
     if(id == nullptr)return -1;
     putc('.');
+    putc('5' + id->value);
     if(id->value++ < 0){
         putc('.');
         id->head->thread->setBlocked(false);
