@@ -15,6 +15,7 @@ void usermainWrapper(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
+    return 0;
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |
