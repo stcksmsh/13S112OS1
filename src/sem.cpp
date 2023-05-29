@@ -47,20 +47,19 @@ int sem::sem_signal(sem_t id){
     if(id == nullptr)return -1;
     putc('.');
     if(id->value++ < 0){
-    putc('.');
-        id->head->thread->setBlocked(false);
-    putc('.');
         putc('.');
-    putc('.');
+        id->head->thread->setBlocked(false);
+        putc('.');
+        putc('.');
+        putc('.');
         Scheduler::put(id->head->thread);
-    putc('.');
+        putc('.');
         sem::blockedList *tmp = id->head;
-    putc('.');
+        putc('.');
         id->head = id->head->next;
-    putc('.');
+        putc('.');
         mem_free(tmp);
-    putc('.');
+        putc('.');
     }
-    putc('.');
     return 0;
 }
