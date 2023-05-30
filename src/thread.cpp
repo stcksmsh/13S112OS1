@@ -11,6 +11,12 @@ void thread::setBlocked(bool blocked){
     this->blocked = blocked;
 }
 
+bool thread::live(){
+    timeLeftToRun = timeLeftToRun - 1;
+    return timeLeftToRun > 0;
+}
+
+
 void thread::setFinished(bool finished){
     this->finished = finished;
 }
