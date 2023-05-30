@@ -153,9 +153,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         __putc('T');
         sstatusWrite(sstatus);
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-        if(!thread::running->live()){/// it has run for longer than its alloted time slice
-            thread::dispatch();
-        }
+        // if(!thread::running->live()){/// it has run for longer than its alloted time slice
+        //     thread::dispatch();
+        // }
         sipBitClear(1);
 
     }
