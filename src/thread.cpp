@@ -2,8 +2,6 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
-time_t *thread::timeLeft = (size_t*)MemoryAllocator::getInstance().mem_alloc(1);
-
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
@@ -40,16 +38,12 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
 }
 
 int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    static bool timeInitialised = false;
-    if(!timeInitialised){
-        timeInitialised = true;
-        *timeLeft = DEFAULT_TIME_SLICE;
-    }
     thread_t newThread = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
+    newThread->timeLeftToRun = DEFAULT_TIME_SLICE;
     newThread->blocked = newThread->closed = newThread->finished = false;
     newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
@@ -86,7 +80,7 @@ int thread::exit(){
 void thread::dispatch(){
     thread_t oldThread = running;
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
-    *timeLeft = DEFAULT_TIME_SLICE;
+    running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
