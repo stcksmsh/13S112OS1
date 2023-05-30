@@ -37,6 +37,9 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
+    uint64 sie;
+    __asm__ volatile ("csrr %0, sie" : "=r"(sie));
+    putc('0' + (sie&1));
     while(true){}///just waste time, used to test time sharing
     // sem_wait(semaphore);
     putc('H');
