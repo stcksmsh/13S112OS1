@@ -24,7 +24,7 @@ void main(){
     __asm__ volatile("csrw sstatus, %0" : : "r"(sstatus | (1<<5)));
 
     changeUser();
-
+    while(true);
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |
