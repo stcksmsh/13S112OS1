@@ -32,9 +32,6 @@ inline void ABI::sstatusBitClear(uint64 bit)
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
-    uint64 sie;
-    __asm__ volatile("csrr %0,sie" : "=r"(sie));
-    __putc('0' + (sie&1));
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
