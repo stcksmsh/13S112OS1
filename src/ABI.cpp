@@ -138,8 +138,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(x==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            // __putc(ch);
-            Console::write(ch);
+            __putc(ch);
+            // Console::write(ch);
         }
 
         sstatusWrite(sstatus);
@@ -148,7 +148,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        // __putc('X');
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }
@@ -158,12 +157,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     else if (scause== 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        // console_handler();
-        Console::console_handler();
+        console_handler();
+        // Console::console_handler();
     }
     else
     {
-        // __putc('0');
         // unexpected trap cause
     }
 
