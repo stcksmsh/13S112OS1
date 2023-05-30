@@ -36,6 +36,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     uint64 volatile sstatus = sstatusRead();
+ 
+    uint64 sie;
+    __asm__ volatile ("csrr %0, sie" : "=r"(sie));
+    __putc('0' + (sie&1));
+
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
         uint64 x;
