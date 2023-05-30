@@ -17,8 +17,9 @@ void main(){
     uint64 sie;
     __asm__ volatile("csrr %0,sie" : "=r"(sie));
     sie = sie | 1;
-    sie = sie & 1;
-    __putc('0' + (sie));
+    __asm__ volatile("csrw sie, %0" : : "r"(sie));
+    __asm__ volatile("csrr %0,sie" : "=r"(sie));
+    __putc('0' + (sie & 1));
     return;
     changeUser();
     thread_t handle;
