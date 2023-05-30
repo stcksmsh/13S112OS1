@@ -156,7 +156,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         //     thread::dispatch();
         // }
         sstatusWrite(sstatus);
-        __asm__ volatile ("csrw sepc, %0" : : "r"(sepc));
+        __asm__ volatile ("csrw sepc, %0" : : "r"(sepc + 4));
         sipBitClear(1);
     }
     else if (scause== 0x8000000000000009UL)
