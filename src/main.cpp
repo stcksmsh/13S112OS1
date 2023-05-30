@@ -15,15 +15,6 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap));
     changeUser();
-    for(int i = 0; i < 2147483646; i ++){
-        int k = 0;
-        k = k * 13;
-        k = k / 13;
-        k = k * 13;
-        k = k / 13;
-        k = k * 13;
-    }
-    return;
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |

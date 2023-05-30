@@ -39,7 +39,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    for(int i = 0;i < 1024*1024*1024; i ++){}///just waste time, used to test time sharing
+    for(unsigned long long i = 0;i < 18446744073709551615; i ++){}///just waste time, used to test time sharing
     sem_wait(semaphore);
     putc('H');
     putc('o');
