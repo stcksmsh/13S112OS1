@@ -40,6 +40,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
         uint64 x;
         uint64 volatile sstatus = sstatusRead();
+        __putc('0' + ((sstatus >> 5) & 1)); /// test spie
         __asm__ volatile("mv %0, a0" : "=r"(x));
         // malloc
         if (x == 0x01) {
@@ -162,7 +163,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause== 0x8000000000000009UL)
     {
-        __putc('H');
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
         // Console::console_handler();
