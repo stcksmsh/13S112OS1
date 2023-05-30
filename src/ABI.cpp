@@ -147,11 +147,17 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         sipBitClear(1);
     }
     else if (scause == 0x8000000000000001UL)
-    {
-        if(!thread::running->live()){/// it has run for longer than its alloted time slice
-            thread::dispatch();
-        }
+    {   uint64 volatile  sepc;
+        __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
+        uint64 volatile sstatus = sstatusRead();
+        __putc('T');
+        sstatusWrite(sstatus);
+        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sipBitClear(1);
+        // if(!thread::running->live()){/// it has run for longer than its alloted time slice
+        //     thread::dispatch();
+        // }
+        // sipBitClear(1);
 
     }
     else if (scause== 0x8000000000000009UL)
