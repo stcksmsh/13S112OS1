@@ -21,8 +21,6 @@ void bullshit(void* arg){
 
 
 void usermain(){
-    // uint64 *arr = (uint64*)mem_alloc(sizeof(arr)*20);
-    // mem_free(arr);
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
     // sem_open(&semaphore, 0);
