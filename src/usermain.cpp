@@ -1,7 +1,7 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.h"
 
-sem_t semaphore;
+// sem_t semaphore;
 
 void bullshit(void* arg){
     putc(' ');
@@ -16,7 +16,7 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    sem_signal(semaphore);
+    // sem_signal(semaphore);
 }
 
 
@@ -25,7 +25,7 @@ void usermain(){
     // mem_free(arr);
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
-    sem_open(&semaphore, 0);
+    // sem_open(&semaphore, 0);
     putc('H');
     putc('e');
     putc('l');
@@ -39,8 +39,8 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    for(unsigned long long i = 0;i < 18446744073709551615; i ++){}///just waste time, used to test time sharing
-    sem_wait(semaphore);
+    while(true){}///just waste time, used to test time sharing
+    // sem_wait(semaphore);
     putc('H');
     putc('o');
     putc('w');
