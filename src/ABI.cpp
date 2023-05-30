@@ -146,7 +146,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        __putc('x');
+        __putc('X');
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }

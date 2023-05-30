@@ -13,7 +13,6 @@ void thread::setBlocked(bool blocked){
 
 bool thread::live(){
     timeLeftToRun = timeLeftToRun - 1;
-    putc('0' + timeLeftToRun);
     return timeLeftToRun > 0;
 }
 

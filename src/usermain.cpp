@@ -39,8 +39,8 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    sem_wait(semaphore);
     for(int i = 0;i < 1024*1024*1024; i ++){}///just waste time, used to test time sharing
+    sem_wait(semaphore);
     putc('H');
     putc('o');
     putc('w');
