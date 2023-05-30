@@ -14,9 +14,9 @@ void usermainWrapper(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
-    __asm__ volatile ("csrs sie, %0" : : "r"(1)); // allows software interrupts (for timing purposes);
     uint64 sie;
     __asm__ volatile("csrr %0,sie" : "=r"(sie));
+    sie = sie | 1;
     __putc('0' + (sie&1));
     return;
     changeUser();
