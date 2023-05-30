@@ -150,6 +150,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {   uint64 volatile  sepc;
         __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
         uint64 volatile sstatus = sstatusRead();
+        __putc('T');
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }
