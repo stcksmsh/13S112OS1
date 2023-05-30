@@ -32,6 +32,8 @@ inline void ABI::sstatusBitClear(uint64 bit)
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
+    uint64 spie;
+
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -148,19 +150,20 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        uint64 volatile  sepc;
-        __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
-        uint64 volatile sstatus = sstatusRead();
+        // uint64 volatile  sepc;
+        // __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
+        // uint64 volatile sstatus = sstatusRead();
         __putc('T');
         // if(!thread::running->live()){/// it has run for longer than its alloted time slice
         //     thread::dispatch();
         // }
-        sstatusWrite(sstatus);
-        __asm__ volatile ("csrw sepc, %0" : : "r"(sepc + 4));
-        sipBitClear(1);
+        // sstatusWrite(sstatus);
+        // __asm__ volatile ("csrw sepc, %0" : : "r"(sepc + 4));
+        // sipBitClear(1);
     }
     else if (scause== 0x8000000000000009UL)
     {
+        __putc('H');
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
         // Console::console_handler();

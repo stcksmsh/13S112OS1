@@ -14,12 +14,12 @@ void usermainWrapper(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
-    changeUser();
     uint64 sie;
     __asm__ volatile("csrr %0,sie" : "=r"(sie));
-    __asm__ volatile("csrw sie, %0" : : "r"(sie | 1)); // sets bit 1 of sie, allowing software interrupts
-    // to allow the timer, I tried doing it with csrs, but for some reason it did not work...
-    // while(true){};
+    __asm__ volatile("csrs sie, %0" : : "r"(1<<1)); // allows software interrupts
+    __asm__ volatile("csrs sstatus, %0" : : "r"(1<<5)); // allows hadware interrupts
+    changeUser();
+
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |
