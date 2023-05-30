@@ -19,7 +19,7 @@ void main(){
     __asm__ volatile("csrr %0,sie" : "=r"(sie));
     __asm__ volatile("csrw sie, %0" : : "r"(sie | 1)); // sets bit 1 of sie, allowing software interrupts
     // to allow the timer, I tried doing it with csrs, but for some reason it did not work...
-    while(true){};
+    // while(true){};
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |
