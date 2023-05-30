@@ -25,7 +25,7 @@ void Console::console_handler(){
         inBufferIndex = -1;
     }
 
-    while((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT & inBufferIndex < BUFFER_SIZE){
+    while((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT && inBufferIndex < BUFFER_SIZE){
         inBuffer[inBufferIndex++] = (char)CONSOLE_RX_DATA;
     }
 
