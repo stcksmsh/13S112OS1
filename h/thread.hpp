@@ -13,7 +13,6 @@ class threadSleepHandler{
         sleepList *next;
     } *sleepHead = nullptr;
 
-    static threadSleepHandler* instance;
 public:
 
     static void increment();
