@@ -76,7 +76,6 @@ void thread::wrapper(){
 int thread::exit(){
     running->finished = true;
     // thread::joinList *previous = nullptr;
-    __putc('x');
     while(running->joinHead != nullptr){
         // previous = running->joinHead;
         running->joinHead->handle->blocked = false;
@@ -84,7 +83,7 @@ int thread::exit(){
         Scheduler::put(running->joinHead->handle);
         // MemoryAllocator::getInstance().mem_free(previous);
     }
-    // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
