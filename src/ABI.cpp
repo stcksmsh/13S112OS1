@@ -186,22 +186,22 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else
     {
-        // __putc('\n');
-        // __putc('s');
-        // __putc('c');
-        // __putc('a');
-        // __putc('u');
-        // __putc('s');
-        // __putc('e');
-        // __putc(' ');
-        // __putc('U');
-        // __putc('n');
-        // __putc('k');
-        // __putc('n');
-        // __putc('o');
-        // __putc('w');
-        // __putc('n');
-        // __putc('\n');
+        __putc('\n');
+        __putc('s');
+        __putc('c');
+        __putc('a');
+        __putc('u');
+        __putc('s');
+        __putc('e');
+        __putc(' ');
+        __putc('U');
+        __putc('n');
+        __putc('k');
+        __putc('n');
+        __putc('o');
+        __putc('w');
+        __putc('n');
+        __putc('\n');
         // unexpected trap cause
     }
     sstatusWrite(sstatus);
