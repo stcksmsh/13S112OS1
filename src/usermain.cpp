@@ -34,7 +34,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    thread_sleep(100);
+    thread_sleep(1000);
     putc('H');
     putc('o');
     putc('w');
