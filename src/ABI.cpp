@@ -124,14 +124,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile("mv %0, a1" : "=r"(system));
             if(system){
                 sstatus |= 1<<8; /// sets SPP (sets desired mode to system)
-                sstatusWrite(sstatus);
             }else{
-                sstatusWrite(sstatus);
-                __asm__ volatile ("csrc sstatus, %0" : : "r"(1<<8));
+                sstatus &= ~((uint64)1<<8);
             }
-            __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-            sipBitClear(1); /// clears SSIP (there exists an interrupt request)
-            return;
         }//getc
         else if(x==0x41){
             char c=__getc();
