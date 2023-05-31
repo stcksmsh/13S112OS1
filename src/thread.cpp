@@ -16,7 +16,6 @@ bool thread::live(){
     return timeLeftToRun > 0;
 }
 
-
 void thread::setFinished(bool finished){
     this->finished = finished;
 }
@@ -62,9 +61,9 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 }
 
 int thread::sleep(time_t duration){
-    sleeping = true;
-    timeLeftToSleep = duration;
-    dispatch();
+    // sleeping = true;
+    // timeLeftToSleep = duration;
+    // dispatch();
 }
 
 void thread::wrapper(){
@@ -89,12 +88,6 @@ int thread::exit(){
     return 0;
 }
 
-bool thread::zzzz(){
-    thread::running->timeLeftToSleep --;
-    if(thread::running->timeLeftToSleep == 0){
-        
-    }
-}
 
 void thread::dispatch(){
     thread_t oldThread = running;
