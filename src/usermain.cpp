@@ -1,5 +1,6 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.h"
+#include "../h/thread.h"
 
 // sem_t semaphore;
 
@@ -19,6 +20,7 @@ void bullshit(void* arg){
     // sem_signal(semaphore);
 }
 
+thread::func UMW = bullshit;
 
 void usermain(){
     thread_t handle;
