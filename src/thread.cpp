@@ -111,7 +111,7 @@ int thread::sleep(time_t duration){
 void thread::wake(){
     if(sleepHead == nullptr || sleepHead->wakeTime < time)
         return;
-    while(sleepHead->wakeTime >= time){
+    while(sleepHead != nullptr && sleepHead->wakeTime >= time){
         sleepHead->handle->sleeping = false;
         Scheduler::put(sleepHead->handle);
         sleepList *node = sleepHead;
