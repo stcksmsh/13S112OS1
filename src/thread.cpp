@@ -1,11 +1,11 @@
 #include "../h/thread.h"
 #include "../lib/console.h"
 
+extern "C" void usermainWrapper(void* arg);
+
 thread_t thread::running = nullptr;
 time_t thread::time = 0;
 thread::sleepList *thread::sleepHead = nullptr;
-
-extern "C" thread_t UM;
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
@@ -133,8 +133,7 @@ void thread::dispatch(){
         Scheduler::put(running);
         running = newThread;
     }
-    if(running == oldThread)return;
-    __putc('X');
+    if(running->start_routine == usermainWrapper)__putc('X');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
