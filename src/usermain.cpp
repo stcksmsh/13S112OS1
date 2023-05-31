@@ -37,8 +37,8 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    thread_sleep(50);
-    // thread_join(handle);
+    // thread_sleep(50);
+    thread_join(handle);
     // sem_wait(semaphore);
     putc('H');
     putc('o');
