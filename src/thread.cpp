@@ -94,6 +94,7 @@ int thread::sleep(time_t duration){
     node->wakeTime = time + duration;
     sleepList *insertAfter = sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
+        __putc('.');
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
@@ -111,8 +112,6 @@ int thread::sleep(time_t duration){
 }
 
 void thread::wake(){
-    if(sleepHead == nullptr || sleepHead->wakeTime < time)
-        return;
     while(sleepHead != nullptr && sleepHead->wakeTime >= time){
         sleepHead->handle->sleeping = false;
         Scheduler::put(sleepHead->handle);
