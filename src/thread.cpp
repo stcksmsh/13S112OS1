@@ -91,9 +91,10 @@ int thread::sleep(time_t duration){
     node->handle = running;
     node->wakeTime = time + duration;
     __putc('\n');
-    __putc('0' + node->wakeTime/100);
-    __putc('0' + node->wakeTime/10);
-    __putc('0' + node->wakeTime/100);
+    __putc('0' + (node->wakeTime / 100)%10);
+    __putc('0' + (node->wakeTime / 10)%10);
+    __putc('0' + node->wakeTime%10);
+    __putc('\n');
     sleepList *insertAfter = sleepHead;
     while(insertAfter && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
