@@ -1,29 +1,29 @@
-// #include "../h/console.hpp"
-// #include "../h/syscall_c.hpp"
+#include "../h/console.hpp"
+#include "../h/syscall_c.hpp"
 
-// char* Console::outBuffer = (char*)mem_alloc(sizeof(char) * BUFFER_SIZE);
-// char* Console::inBuffer = (char*)mem_alloc(sizeof(char) * BUFFER_SIZE);
-// int Console::inBufferIndex = -1;
-// int Console::outBufferIndex = -1;
+char Console::read(){
+    Console *c = getIntance();
+    if(c->inBufferIndex < 0)return -1;
+    return c->inBuffer[c->inBufferIndex--];
+}
 
-// char Console::read(){
-//     if(inBufferIndex < 0)return -1;
-//     return inBuffer[inBufferIndex--];
-// }
+void Console::write(char c){
+    Console *c = getIntance();
+    c->outBuffer[c->outBufferIndex++] = c;
+}
 
-// void Console::write(char c){
-//     outBuffer[outBufferIndex++] = c;
-// }
+Console* Console::getIntance(){
+    static Console instance;
+    return &instance;
+}
 
+void Console::console_handler(){
+    Console *c = getIntance();
+    while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
+        c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
+    }
 
-// void Console::console_handler(){
-
-//     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& inBufferIndex < BUFFER_SIZE){
-//         inBuffer[inBufferIndex++] = (char)CONSOLE_RX_DATA;
-//     }
-
-//     while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && outBufferIndex>=0){
-//         (*(char*)CONSOLE_TX_DATA) = outBuffer[outBufferIndex--];
-//     }
-
-// }
+    while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && c->outBufferIndex>=0){
+        (*(char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex--];
+    }
+}

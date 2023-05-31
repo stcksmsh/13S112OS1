@@ -1,5 +1,5 @@
 #include "../lib/console.h"
-// #include "../h/console.hpp"
+#include "../h/console.hpp"
 #include "../h/ABI.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/thread.hpp"
@@ -151,16 +151,16 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //getc
         else if(callID==0x41){
-            char ch=__getc();
-            // char ch = Console::read();
+            // char ch=__getc();
+            char ch = Console::read();
             __asm__ volatile ("mv a0, %0" : : "r"(ch));
         }
         //putc
         else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            __putc(ch);
-            // Console::write(ch);
+            // __putc(ch);
+            Console::write(ch);
         }
         sepc += 4;
         // enableInterrupt();
@@ -179,9 +179,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
     }
     else if (scause== 0x8000000000000009UL)
-    {
+    {   
+        int num = plic_claim();
+        if(num == 0x10){
+            Console::console_handler();
+        }
+        plic_complete(num);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        console_handler();
+        // console_handler();
         // Console::console_handler();
     }
     else if (scause == 0x0000000000000002UL){

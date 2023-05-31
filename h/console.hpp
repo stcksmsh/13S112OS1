@@ -6,13 +6,14 @@
 #define BUFFER_SIZE 100
 
 class Console{
-    char* outBuffer;
-    int outBufferIndex;
+    char* outBuffer = (char*)mem_alloc(sizeof(char)*BUFFER_SIZE);
+    int outBufferIndex = -1;
     
-    char* inBuffer;
-    int inBufferIndex; 
+    char* inBuffer = (char*)mem_alloc(sizeof(char)*BUFFER_SIZE);
+    int inBufferIndex = -1; 
 public:
 
+    static Console* getIntance();
     
     static void console_handler();
     
