@@ -141,8 +141,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //getc
         else if(x==0x41){
-            char c=__getc();
-            __asm__ volatile ("mv a0, %0" : : "r"(c));
+            char ch=__getc();
+            // char ch = Console::read();
+            __asm__ volatile ("mv a0, %0" : : "r"(ch));
         }
         //putc
         else if(x==0x42){
@@ -151,7 +152,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __putc(ch);
             // Console::write(ch);
         }
-        // sepc += 4;
+        sepc += 4;
 
     }
     else if (scause == 0x8000000000000001UL)
