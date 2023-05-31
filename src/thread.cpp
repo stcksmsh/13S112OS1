@@ -1,7 +1,7 @@
 #include "../h/thread.h"
 #include "../lib/console.h"
 
-extern "C" void usermainWrapper(void* arg);
+extern "C" void* UMW;
 
 thread_t thread::running = nullptr;
 time_t thread::time = 0;
@@ -133,7 +133,7 @@ void thread::dispatch(){
         Scheduler::put(running);
         running = newThread;
     }
-    if(running->start_routine == usermainWrapper)__putc('X');
+    if(running->start_routine == UMW)__putc('X');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }

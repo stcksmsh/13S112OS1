@@ -9,6 +9,8 @@ void usermainWrapper(void* arg){
     usermain();
 }
 
+void* UMW = usermainWrapper;
+
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
