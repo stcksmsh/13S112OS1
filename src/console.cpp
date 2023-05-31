@@ -23,8 +23,8 @@ Console* Console::getIntance(){
 }
 
 void Console::console_handler(){
-    __putc('1');
     Console *c = getIntance();
+    __putc('1');
     while((*((uint64*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT ) == CONSOLE_RX_STATUS_BIT && c->inBufferIndex < BUFFER_SIZE){
         __putc('2');
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
