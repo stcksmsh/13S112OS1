@@ -24,12 +24,12 @@ Console* Console::getIntance(){
 
 void Console::console_handler(){
     Console *c = getIntance();
+    putc('y');
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
         c->inBufferIndex ++;
     }
     if(c->outBufferIndex>=0)putc('x');
-    putc('y');
     while(((int)(*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
