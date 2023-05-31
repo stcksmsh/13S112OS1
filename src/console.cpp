@@ -11,7 +11,6 @@ void Console::write(char ch){
     Console *c = getIntance();
     if(c->inBufferIndex == BUFFER_SIZE)return;
     c->outBuffer[++c->outBufferIndex] = ch;
-    __putc('p');
 }
 
 Console* Console::getIntance(){
@@ -25,6 +24,8 @@ Console* Console::getIntance(){
 
 void Console::console_handler(){
     Console *c = getIntance();
+    if(c->outBufferIndex >= 0)__putc('x');
+    __putc('y');
     while((*((uint64*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) > 0 && c->outBufferIndex>=0){
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
