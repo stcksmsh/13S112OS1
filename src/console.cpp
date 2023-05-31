@@ -28,9 +28,8 @@ void Console::console_handler(){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
         c->inBufferIndex ++;
     }
-
-    while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && c->outBufferIndex>=0){
-    __putc('c');
+    if(c->outBufferIndex>=0)putc('x');
+    while(((int)(*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
     }
