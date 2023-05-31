@@ -120,7 +120,7 @@ void thread::wake(){
         Scheduler::put(sleepHead->handle);
         // sleepList *node = sleepHead;
         sleepHead = sleepHead->next;
-        if(sleepHead == nullptr)__putc('X')
+        if(sleepHead == nullptr)__putc('X');
         // MemoryAllocator::getInstance().mem_free(node);
     }
 }
