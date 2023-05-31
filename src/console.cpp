@@ -7,9 +7,9 @@ char Console::read(){
     return c->inBuffer[c->inBufferIndex--];
 }
 
-void Console::write(char c){
+void Console::write(char ch){
     Console *c = getIntance();
-    c->outBuffer[c->outBufferIndex++] = c;
+    c->outBuffer[c->outBufferIndex++] = ch;
 }
 
 Console* Console::getIntance(){
