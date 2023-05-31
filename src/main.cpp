@@ -22,12 +22,11 @@ void main(){
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
+        __putc('0' + thread::sleepHead->wakeTime/1000);
+        __putc('0' + (thread::sleepHead->wakeTime)%10);
+        __putc('0' + (thread::sleepHead->wakeTime%10));
+        __putc('0' + thread::sleepHead->wakeTime%10);
     }
     while(thread::sleepHead);
-    uint64 t = thread::time;
-    __putc('0' + t/1000);
-    __putc('0' + (t/100)%10);
-    __putc('0' + (t/10)%10);
-    __putc('0' + t%10);
 
 }
