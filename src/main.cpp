@@ -17,9 +17,10 @@ void main(){
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//               |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
-    bool run = true;
-    while(run){
-        run = (thread::sleepHead != nullptr) || !Scheduler::isEmpty();
+    while(true){
         thread_dispatch();
+        if(Scheduler::isEmpty())
+            if(thread::sleepHead == nullptr)
+                break;
     }
 }
