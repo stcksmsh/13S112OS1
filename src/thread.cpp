@@ -134,6 +134,8 @@ void thread::dispatch(){
         if(newThread != nullptr){
             Scheduler::put(running);
             running = newThread;
+        }else if(sleepHead!=nullptr){
+            Scheduler::put(running);
         }
     }
 
