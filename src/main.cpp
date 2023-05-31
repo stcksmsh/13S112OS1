@@ -15,14 +15,14 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
 
-    changePrivilege(false);
     // while(true);
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
+    changePrivilege(false);
     thread_create(&handle, usermainWrapper, nullptr);//                    |
+    changePrivilege(true);
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     while(!Scheduler::isEmpty())
         thread_dispatch();
-    changePrivilege(true);
 
 }
