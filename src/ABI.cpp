@@ -36,7 +36,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     uint64 volatile sstatus = sstatusRead();
     sstatus |= 1<<5; // set the bit for hardware interrupts to true 
-    __asm__ volatile ("csrw sie, %0" : : "r"(1<<1));// allows for software interrupts
+    __asm__ volatile ("csrw sie, %0" : : "r"(1<<1 || 1<<9));// allows for software interrupts
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -131,7 +131,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;
-        }//getc
+        }
+        //sleep
+        else if(x == 0x31){
+        }
+        //getc
         else if(x==0x41){
             char c=__getc();
             __asm__ volatile ("mv a0, %0" : : "r"(c));
@@ -155,7 +159,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     else if (scause== 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
+        __putc('H');
         console_handler();
+        sepc -= 4;
         // Console::console_handler();
     }
     else

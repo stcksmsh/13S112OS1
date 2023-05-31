@@ -50,7 +50,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
     newThread->stack_space = (uint64*)stack_space;
     newThread->timeLeftToRun = DEFAULT_TIME_SLICE;
-    newThread->blocked = newThread->closed = newThread->finished = false;
+    newThread->blocked = newThread->closed = newThread->finished = newThread->sleeping =false;
     newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     newThread->head = newThread->tail = nullptr;
@@ -59,6 +59,12 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     if(start_routine == nullptr)
         newThread->context.pc = 0;
     return 0;
+}
+
+int thread::sleep(time_t duration){
+    sleeping = true;
+    timeLeftToSleep = duration;
+    dispatch();
 }
 
 void thread::wrapper(){
@@ -83,9 +89,16 @@ int thread::exit(){
     return 0;
 }
 
+bool thread::zzzz(){
+    thread::running->timeLeftToSleep --;
+    if(thread::running->timeLeftToSleep == 0){
+        
+    }
+}
+
 void thread::dispatch(){
     thread_t oldThread = running;
-    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked)Scheduler::put(running);
+    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));

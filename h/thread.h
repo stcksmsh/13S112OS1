@@ -39,6 +39,10 @@ public:
     
     bool wasClosed();
 
+    int sleep(time_t);
+
+    static bool zzzz();
+
     bool live();//reduces time remaining by one and returns whether it has "died" or not
 private:
     // friend class ABI;
@@ -52,6 +56,8 @@ private:
     time_t timeLeftToRun;
     bool closed;
     bool blocked;
+    bool sleeping;
+    time_t timeLeftToSleep;
     void* arg;
     uint64 *stack_space;
     contextWrapper context;
