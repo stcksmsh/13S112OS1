@@ -17,12 +17,12 @@ void main(){
     thread_create(&handle, nullptr, nullptr);// <----------------------7
     thread_create(&handle, usermainWrapper, nullptr);//               /
     thread::running = Scheduler::get(); // the nullptr nullptr one --/
-    // do{
-    //     while(!Scheduler::isEmpty()){
-    //         thread_dispatch();
-    //     }
-    // }while(thread::sleepHead != nullptr);
-    thread_join(handle);
+    do{
+        while(!Scheduler::isEmpty()){
+            thread_dispatch();
+        }
+    }while(thread::sleepHead != nullptr);
+    // thread_join(handle);
     uint64 t = thread::time;
     __putc('0' + t/1000);
     __putc('0' + (t/100)%10);
