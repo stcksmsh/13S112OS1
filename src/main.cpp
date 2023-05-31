@@ -24,6 +24,6 @@ void main(){
             thread_dispatch();
         }
     }
-    while(*thread::sleepHead != nullptr);
+    while(!threadSleepHandler::isEmpty());
 
 }

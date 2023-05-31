@@ -5,9 +5,30 @@
 #include "scheduler.hpp"
 #include "syscall_c.hpp"
 
+class threadSleepHandler{
+    time_t time;
+    struct sleepList{
+        thread *handle;
+        time_t wakeTime;
+        sleepList *next;
+    } *sleepHead;
 
+    static threadSleepHandler* instance;
+public:
+
+    static void increment();
+
+    static bool isEmpty();
+
+    static threadSleepHandler *getInstance();
+
+    static int sleep(time_t);
+
+    static void wake();
+};
 
 class thread{
+    friend class threadSleepHandler;
 public:
     /// @brief total time the kernel has been running for (in timer units)
     struct joinList{
@@ -15,11 +36,6 @@ public:
         joinList *next;
     } *joinHead, *joinTail;
 
-    static struct sleepList{
-        thread *handle;
-        time_t wakeTime;
-        sleepList *next;
-    } **sleepHead;
 
     static time_t *time;
 
@@ -27,9 +43,6 @@ public:
 
     ~thread();
 
-    static int sleep(time_t);
-
-    static void wake();
 
     using func = void (*)(void*);
 

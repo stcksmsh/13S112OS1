@@ -1,5 +1,5 @@
 #include "../lib/console.h"
-#include "../h/console.hpp"
+// #include "../h/console.hpp"
 #include "../h/ABI.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/thread.hpp"
@@ -146,7 +146,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID == 0x31){
             uint64 duration;
             __asm__ volatile ("mv %0, a1" : "=r"(duration));
-            int returnValue = thread::sleep((time_t)duration);
+            int returnValue = threadSleepHandler::sleep((time_t)duration);
             __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
         }
         //getc
@@ -169,9 +169,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {
         ///Timer
         /// first we increment the thread::time variable
-        *thread::time = *thread::time + 1;
+        threadSleepHandler::increment();
         /// next we wake the sleeping threads;
-        thread::wake();
+        threadSleepHandler::wake();
         /// and finally we test for preemption
         if(!thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
             thread::dispatch();

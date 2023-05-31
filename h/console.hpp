@@ -6,12 +6,14 @@
 #define BUFFER_SIZE 100
 
 class Console{
-    static char* outBuffer;
-    static int outBufferIndex;
+    char* outBuffer;
+    int outBufferIndex;
     
-    static char* inBuffer;
-    static int inBufferIndex; 
+    char* inBuffer;
+    int inBufferIndex; 
 public:
+
+    
     static void console_handler();
     
     static char read();
