@@ -1,7 +1,7 @@
 #include "../h/thread.h"
 #include "../lib/console.h"
 
-extern "C" void* UMW;
+extern "C" thread::func UMW;
 
 thread_t thread::running = nullptr;
 time_t thread::time = 0;
