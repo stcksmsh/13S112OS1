@@ -184,7 +184,21 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         console_handler();
         // Console::console_handler();
     }
-    else
+    else if (scause == 0x0000000000000002UL){
+        __putc('\n');
+        __putc('I');
+        __putc('\n');
+    }
+    else if (scause == 0x0000000000000005UL){
+        __putc('\n');
+        __putc('R');        
+        __putc('\n');
+    }
+    else if (scause == 0x0000000000000007UL){
+        __putc('\n');
+        __putc('W');
+        __putc('\n');
+    }else
     {
         __putc('\n');
         __putc('s');
@@ -202,7 +216,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         __putc('w');
         __putc('n');
         __putc('\n');
-        // unexpected trap cause
     }
     sstatusWrite(sstatus);
     __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
