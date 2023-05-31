@@ -2,7 +2,7 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
-time_t *thread::time = (time_t*)MemoryAllocator::getInstance().mem_alloc((sizeof(time_t) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+time_t thread::time = 0;
 thread::sleepList *thread::sleepHead = nullptr;
 
 thread::~thread(){
@@ -89,7 +89,7 @@ int thread::sleep(time_t duration){
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
-    node->wakeTime = *time + duration;
+    node->wakeTime = time + duration;
     sleepList *insertAfter = sleepHead;
     while(insertAfter && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
@@ -109,9 +109,9 @@ int thread::sleep(time_t duration){
 }
 
 void thread::wake(){
-    if(sleepHead == nullptr || sleepHead->wakeTime < *time)
+    if(sleepHead == nullptr || sleepHead->wakeTime < time)
         return;
-    while(sleepHead != nullptr && sleepHead->wakeTime >= *time){
+    while(sleepHead != nullptr && sleepHead->wakeTime >= time){
         sleepHead->handle->sleeping = false;
         Scheduler::put(sleepHead->handle);
         sleepList *node = sleepHead;
