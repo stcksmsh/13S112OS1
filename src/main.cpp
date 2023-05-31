@@ -9,10 +9,9 @@ void usermainWrapper(void* arg){
     usermain();
 }
 
-extern "C" sleepList *__sleepHead;
-
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
+    =
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
@@ -23,6 +22,6 @@ void main(){
             thread_dispatch();
         }
     }
-    while(__sleepHead != nullptr);
+    while(*thread::sleepHead != nullptr);
 
 }

@@ -4,6 +4,8 @@
 extern "C" thread::func UMW;
 
 thread_t thread::running = nullptr;
+time_t* thread::time = (time_t*)MemoryAllocator::getInstance().mem_alloc((sizeof(time_t)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+thread::sleepList **thread::sleepHead = (thread::sleepList**)MemoryAllocator::getInstance().mem_alloc((sizeof(thread::sleepList*)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
@@ -90,14 +92,14 @@ int thread::sleep(time_t duration){
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
-    node->wakeTime = __time + duration;
-    sleepList *insertAfter = __sleepHead;
+    node->wakeTime = *thread::time + duration;
+    sleepList *insertAfter = *thread::sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
         __putc('.');
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
-        __sleepHead = node;
+        *thread::sleepHead = node;
         node -> next = nullptr;
     }else if(insertAfter->next == nullptr){
         insertAfter->next = node;
@@ -111,11 +113,11 @@ int thread::sleep(time_t duration){
 }
 
 void thread::wake(){
-    while(__sleepHead != nullptr && __sleepHead->wakeTime >= __time){
-        __sleepHead->handle->sleeping = false;
-        Scheduler::put(__sleepHead->handle);
-        sleepList *node = __sleepHead;
-        __sleepHead = __sleepHead->next;
+    while(*thread::sleepHead != nullptr && (*thread::sleepHead)->wakeTime >= *thread::time){
+        (*thread::sleepHead)->handle->sleeping = false;
+        Scheduler::put((*thread::sleepHead)->handle);
+        sleepList *node = *thread::sleepHead;
+        *thread::sleepHead = (*thread::sleepHead)->next;
         MemoryAllocator::getInstance().mem_free(node);
     }
 }

@@ -5,12 +5,7 @@
 #include "scheduler.hpp"
 #include "syscall_c.hpp"
 
-time_t __time = 0;
-struct sleepList{
-    thread *handle;
-    time_t wakeTime;
-    sleepList *next;
-} *__sleepHead = nullptr;
+
 
 class thread{
 public:
@@ -20,7 +15,13 @@ public:
         joinList *next;
     } *joinHead, *joinTail;
 
-    
+    static struct sleepList{
+        thread *handle;
+        time_t wakeTime;
+        sleepList *next;
+    } **sleepHead;
+
+    static time_t *time;
 
     void joinTo();
 

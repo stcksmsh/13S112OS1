@@ -5,7 +5,6 @@
 #include "../h/thread.hpp"
 #include "../h/sem.hpp"
 
-extern "C" time_t __time;
 
 inline uint64 ABI::sstatusRead()
 {
@@ -170,7 +169,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {
         ///Timer
         /// first we increment the thread::time variable
-        __time ++;
+        *thread::time ++;
         /// next we wake the sleeping threads;
         thread::wake();
         /// and finally we test for preemption
