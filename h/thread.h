@@ -8,7 +8,7 @@
 class thread{
 public:
     /// @brief total time the kernel has been running for (in timer units)
-    static time_t time;
+    static time_t *time;
     struct joinList{
         thread *handle;
         joinList *next;
