@@ -146,10 +146,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        if(!thread::running->live()){/// it has run for longer than its alloted time slice
-            thread::dispatch();
-        }
-        sepc-=4; // so the sepc stays the same after...
+        // if(!thread::running->live()){/// it has run for longer than its alloted time slice
+        //     thread::dispatch();
+        // }
+        // sepc-=4; // so the sepc stays the same after...
     }
     else if (scause== 0x8000000000000009UL)
     {
