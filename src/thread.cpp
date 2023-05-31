@@ -71,12 +71,11 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->setFinished(true);
-    // thread::joinList *previous = nullptr;
+    thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
         
-        // previous = running->joinHead;
-
-        running->setBlocked(false);
+        previous = running->joinHead;
+        running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
         // MemoryAllocator::getInstance().mem_free(previous);
