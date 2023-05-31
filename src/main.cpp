@@ -20,5 +20,5 @@ void main(){
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
         thread_dispatch();
     }
-    __putc('E');
+    if(thread::time > 1000)__putc('X');
 }
