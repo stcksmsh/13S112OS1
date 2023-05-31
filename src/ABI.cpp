@@ -40,10 +40,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
-        uint64 x;
-        __asm__ volatile("mv %0, a0" : "=r"(x));
+        uint64 callID;
+        __asm__ volatile("mv %0, a0" : "=r"(callID));
         // malloc
-        if (x == 0x01) {
+        if (callID == 0x01) {
             uint64 size;
             /// fetch requested size, in number of memory blocks
             __asm__ volatile("mv %0, a1" : "=r"(size));
@@ -52,7 +52,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("mv a0, %0" : : "r"((uint64)returnValue));
         }
         // free
-        else if (x == 0x02) {
+        else if (callID == 0x02) {
             uint64 address;
             __asm__ volatile("mv %0, a1" : "=r"(address));
             int returnValue = MemoryAllocator::getInstance().mem_free((void*)address);
@@ -61,7 +61,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
 
         }
         /// thread_create
-        else if(x==0x11){
+        else if(callID==0x11){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             uint64 start_routine;
@@ -75,22 +75,22 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("mv a0, %[rVal]" : : [rVal]"r"(retVal));
         }
         // //exit
-        else if(x==0x12){
+        else if(callID==0x12){
             uint64 retVal = thread::running->exit();
             __asm__ volatile ("mv a0, %0" :: "r"(retVal));
         }
         // //dispatch
-        else if(x==0x13){
+        else if(callID==0x13){
             thread::dispatch();
         }
         // join
-        else if(x==0x14){
+        else if(callID==0x14){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             ((thread_t)handle)->joinTo();/// joins current thread onto the given thread
         }
         //sem open
-        else if(x==0x21){
+        else if(callID==0x21){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             uint64 init;
@@ -103,14 +103,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
 
         }
         //sem close
-        else if(x==0x22){
+        else if(callID==0x22){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             int returnValue=sem::sem_close((sem_t)handle);
             __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
         }
         //sem wait
-        else if(x==0x23){
+        else if(callID==0x23){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             int returnValue=sem::sem_wait((sem_t)handle);
@@ -118,14 +118,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
 
         }
         //sem signal
-        else if(x==0x24){
+        else if(callID==0x24){
             uint64 handle;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             int returnValue=sem::sem_signal((sem_t)handle);
             __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
         }
         //change to user mode
-        else if(x==0x25){
+        else if(callID==0x25){
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
@@ -133,20 +133,20 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             return;
         }
         //sleep
-        else if(x == 0x31){
+        else if(callID == 0x31){
             uint64 duration;
             __asm__ volatile ("mv %0, a1" : "=r"(duration));
             int returnValue = thread::sleep((time_t)duration);
-            __asm__ volatile ("mv a0, %0" : : "r"((uint64)returnValue));
+            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
         }
         //getc
-        else if(x==0x41){
+        else if(callID==0x41){
             char ch=__getc();
             // char ch = Console::read();
             __asm__ volatile ("mv a0, %0" : : "r"(ch));
         }
         //putc
-        else if(x==0x42){
+        else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
             __putc(ch);
