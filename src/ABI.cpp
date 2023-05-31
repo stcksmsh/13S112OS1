@@ -134,6 +134,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //sleep
         else if(x == 0x31){
+            uint64 duration;
+            __asm__ volatile ("mv %0, a1" : "=r"(duration));
+            int returnValue = thread::sleep((time_t)duration);
+            __asm__ volatile ("mv a0, %0" : : "r"((uint64)returnValue));
         }
         //getc
         else if(x==0x41){
@@ -152,6 +156,12 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
+        ///Timer
+        /// first we increment the thread::time variable
+        thread::time ++;
+        /// next we wake the sleeping threads;
+        thread::wake();
+        /// and finally we test for preemption
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }

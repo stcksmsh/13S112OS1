@@ -2,6 +2,8 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
+time_t thread::time = 0;
+thread::sleepList *thread::sleepHead = nullptr;
 
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
@@ -32,11 +34,11 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
     node->handle = running;
     node->next = nullptr;
-    if(tail == nullptr){
-        head = tail = node;
+    if(joinTail == nullptr){
+        joinHead = joinTail = node;
     }else{
-        tail->next = node;
-        tail = node;
+        joinTail->next = node;
+        joinTail = node;
     }
     running->setBlocked(true);
     dispatch();
@@ -52,18 +54,11 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->blocked = newThread->closed = newThread->finished = newThread->sleeping =false;
     newThread->context.pc = (uint64)wrapper;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
-    newThread->head = newThread->tail = nullptr;
+    newThread->joinHead = newThread->joinTail = nullptr;
     *handle = newThread;
     Scheduler::put(newThread);
     if(start_routine == nullptr)
         newThread->context.pc = 0;
-    return 0;
-}
-
-int thread::sleep(time_t duration){
-    // sleeping = true;
-    // timeLeftToSleep = duration;
-    // dispatch();
     return 0;
 }
 
@@ -75,10 +70,10 @@ void thread::wrapper(){
 int thread::exit(){
     running->setFinished(true);
     thread::joinList *previous = nullptr;
-    while(running->head != nullptr){
+    while(running->joinHead != nullptr){
         
-        previous = running->head;
-        running->head = previous->next;
+        previous = running->joinHead;
+        running->joinHead = previous->next;
 
         previous->handle->setBlocked(false);
         Scheduler::put(previous->handle);
@@ -89,6 +84,41 @@ int thread::exit(){
     return 0;
 }
 
+int thread::sleep(time_t duration){
+    if(running = nullptr)return -1;
+    running->sleeping = true;
+    sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    node->handle = running;
+    node->wakeTime = time + duration;
+    sleepList *insertAfter = sleepHead;
+    while(insertAfter && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
+        insertAfter = insertAfter->next;
+    }
+    if(insertAfter = nullptr){
+        sleepHead = node;
+        node -> next = nullptr;
+    }else if(insertAfter->next = nullptr){
+        insertAfter->next = node;
+        node->next = nullptr;
+    }else{
+        node->next = insertAfter->next;
+        insertAfter->next = node;
+    }
+    dispatch();
+    return 0;
+}
+
+void thread::wake(){
+    if(sleepHead == nullptr || sleepHead->wakeTime < time)
+        return;
+    while(sleepHead->wakeTime >= time){
+        sleepHead->handle->sleeping = false;
+        Scheduler::put(sleepHead->handle);
+        sleepList *node = sleepHead;
+        sleepHead = sleepHead->next;
+        MemoryAllocator::getInstance().mem_free(node);
+    }
+}
 
 void thread::dispatch(){
     thread_t oldThread = running;

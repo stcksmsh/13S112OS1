@@ -7,15 +7,26 @@
 
 class thread{
 public:
+    /// @brief total time the kernel has been running for (in timer units)
+    static time_t time;
     struct joinList{
         thread *handle;
         joinList *next;
-    } *head, *tail;
+    } *joinHead, *joinTail;
+
+    static struct sleepList{
+        thread *handle;
+        time_t wakeTime;
+        sleepList *next;
+    } *sleepHead;
 
     void joinTo();
 
     ~thread();
 
+    static int sleep(time_t);
+
+    static void wake();
 
     using func = void (*)(void*);
 
@@ -38,8 +49,6 @@ public:
     void setClosed(bool);
     
     bool wasClosed();
-
-    int sleep(time_t);
 
     static bool zzzz();
 

@@ -37,7 +37,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    for(unsigned long long i = 0; i < 1000000000; i++){}///just waste time, used to test time sharing
+    thread_sleep(20);
     // while(true){};
     sem_wait(semaphore);
     putc('H');
