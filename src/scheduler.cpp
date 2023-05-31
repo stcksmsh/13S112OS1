@@ -1,4 +1,4 @@
-#include "../h/scheduler.h"
+#include "../h/scheduler.hpp"
 
 Scheduler::Element* Scheduler::head = nullptr;
 Scheduler::Element* Scheduler::tail = nullptr;

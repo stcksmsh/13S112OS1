@@ -2,12 +2,12 @@
     "configurations": [
         {
             "name": "Linux",
-            "includePath": [
+            "includePa.hpp": [
                 "/usr/include/**",
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPa.hpp": "/usr/bin/clang",
             "cStandard": "c17",
             "intelliSenseMode": "linux-gcc-x64",
             "cppStandard": "c++17"

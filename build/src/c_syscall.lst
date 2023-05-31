@@ -14,8 +14,8 @@ GAS LISTING /tmp/ccO2svE7.s 			page 1
   12              	_Z9mem_allocm:
   13              	.LFB3:
   14              		.file 1 "src/c_syscall.cpp"
-   1:src/c_syscall.cpp **** #include "../h/c_syscall.h"
-   2:src/c_syscall.cpp **** #include "../h/MemoryAllocator.h"
+   1:src/c_syscall.cpp **** #include "../h/c_syscall.hpp"
+   2:src/c_syscall.cpp **** #include "../h/MemoryAllocator.hpp"
    3:src/c_syscall.cpp **** 
    4:src/c_syscall.cpp **** 
    5:src/c_syscall.cpp **** void* mem_alloc(size_t size){
@@ -93,8 +93,8 @@ GAS LISTING /tmp/ccO2svE7.s 			page 1
   77              		.cfi_endproc
   78              	.LFE4:
   80              	.Letext0:
-  81              		.file 2 "src/../h/../lib/hw.h"
-  82              		.file 3 "src/../h/MemoryAllocator.h"
+  81              		.file 2 "src/../h/../lib/hw.hpp"
+  82              		.file 3 "src/../h/MemoryAllocator.hpp"
 GAS LISTING /tmp/ccO2svE7.s 			page 3
 
 

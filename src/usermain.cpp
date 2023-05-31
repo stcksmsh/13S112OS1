@@ -1,5 +1,5 @@
 #include "../h/syscall_c.hpp"
-#include "../h/usermain.h"
+#include "../h/usermain.hpp"
 
 sem_t semaphore;
 
@@ -37,7 +37,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    thread_sleep(100);
+    thread_sleep(30);
     // sem_wait(semaphore);
     putc('H');
     putc('o');

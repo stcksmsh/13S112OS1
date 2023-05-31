@@ -1,8 +1,8 @@
 #include "../h/syscall_c.hpp"
-#include "../h/thread.h"
-#include "../h/memoryAllocator.h"
-#include "../h/usermain.h"
-#include "../lib/console.h"
+#include "../h/thread.hpp"
+#include "../h/memoryAllocator.hpp"
+#include "../h/usermain.hpp"
+#include "../lib/console.hpp"
 extern "C" void trap();
 
 void usermainWrapper(void* arg){

@@ -1,9 +1,9 @@
-#include "../lib/console.h"
-#include "../h/console.h"
-#include "../h/ABI.h"
-#include "../h/memoryAllocator.h"
-#include "../h/thread.h"
-#include "../h/sem.h"
+#include "../lib/console.hpp"
+#include "../h/console.hpp"
+#include "../h/ABI.hpp"
+#include "../h/memoryAllocator.hpp"
+#include "../h/thread.hpp"
+#include "../h/sem.hpp"
 
 inline uint64 ABI::sstatusRead()
 {

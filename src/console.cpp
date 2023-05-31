@@ -1,4 +1,4 @@
-#include "../h/console.h"
+#include "../h/console.hpp"
 #include "../h/syscall_c.hpp"
 
 char* Console::outBuffer = (char*)mem_alloc(sizeof(char) * BUFFER_SIZE);

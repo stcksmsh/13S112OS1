@@ -1,8 +1,8 @@
 #ifndef SYSCALLCHEADERFILE
 #define SYSCALLCHEADERFILE
 
-#include "../lib/hw.h"
-#include "../lib/console.h"
+#include "../lib/hw.hpp"
+#include "../lib/console.hpp"
 
 void* mem_alloc ( size_t );
 

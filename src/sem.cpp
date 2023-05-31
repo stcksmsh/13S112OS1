@@ -1,4 +1,4 @@
-#include "../h/sem.h"
+#include "../h/sem.hpp"
 #include "../h/syscall_c.hpp"
 
 
