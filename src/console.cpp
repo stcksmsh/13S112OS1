@@ -25,7 +25,7 @@ Console* Console::getIntance(){
 void Console::console_handler(){
     Console *c = getIntance();
     // __putc('1');
-    while((*((uint64*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
+    while((*((int*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
         __putc('2');
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
