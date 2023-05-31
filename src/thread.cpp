@@ -2,7 +2,7 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
-time_t *thread::time = (time_t*)MemoryAllocator::getInstance().mem_alloc(1);
+time_t *thread::time = (time_t*)MemoryAllocator::getInstance().mem_alloc((sizeof(time_t) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
 thread::sleepList *thread::sleepHead = nullptr;
 
 thread::~thread(){
