@@ -122,9 +122,20 @@ void thread::wake(){
 
 void thread::dispatch(){
     thread_t oldThread = running;
-    if(oldThread!=nullptr && oldThread->start_routine!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
+    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
+    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+    return;
+}
+
+
+
+// void thread::dispatch(){
+//     thread_t oldThread = running;
+//     if(oldThread!=nullptr && oldThread->start_routine!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
+//     running->timeLeftToRun = DEFAULT_TIME_SLICE;
+//     running = Scheduler::get();
     // if(running->start_routine == nullptr){ /// the running thread the void main() thread
     //     thread_t newThread = nullptr;
     //     do{/// if there are no more threads in scheduler, and sleeping ones exist, loop until one wakes, and then replace running with it
@@ -137,9 +148,9 @@ void thread::dispatch(){
     //         }
     //     }while (newThread == nullptr);
     // }
-    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
-    return;
-}
+//     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+//     return;
+// }
 
 void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext){
     if(oldContext != nullptr){
