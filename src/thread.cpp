@@ -74,9 +74,9 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
-    __putc('x');
-    running->setFinished(true);
+    running->finished = true;
     // thread::joinList *previous = nullptr;
+    __putc('x');
     while(running->joinHead != nullptr){
         // previous = running->joinHead;
         running->joinHead->handle->blocked = false;
