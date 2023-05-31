@@ -174,7 +174,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
         /// and finally we test for preemption
-        if(!thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
+        if(thread::running->start_routine!=nullptr && !thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
             thread::dispatch();
         }
     }
