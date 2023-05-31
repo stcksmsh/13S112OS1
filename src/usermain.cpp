@@ -22,7 +22,7 @@ void bullshit(void* arg){
 
 void usermain(){
     thread_t handle;
-    // thread_create(&handle, bullshit, nullptr);
+    thread_create(&handle, bullshit, nullptr);
     // sem_open(&semaphore, 0);
     putc('H');
     putc('e');
