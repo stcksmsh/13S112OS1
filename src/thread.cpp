@@ -81,7 +81,6 @@ int thread::exit(){
     }
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
-    __putc('X');
     return 0;
 }
 
@@ -128,6 +127,7 @@ void thread::dispatch(){
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     if(running->start_routine == nullptr){
+        __putc('X');
         thread_t newThread = Scheduler::get();
         Scheduler::put(running);
         running = newThread;
