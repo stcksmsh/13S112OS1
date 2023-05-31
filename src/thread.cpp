@@ -132,6 +132,7 @@ void thread::dispatch(){
         running = newThread;
     }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+    __putc('X');
     return;
 }
 
@@ -190,6 +191,5 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     __asm__ volatile ("ld s9, 11 * 8(a1)");
     __asm__ volatile ("ld s10, 12 * 8(a1)");
     __asm__ volatile ("ld s11, 13 * 8(a1)");
-    __putc('X');
     return;
 }
