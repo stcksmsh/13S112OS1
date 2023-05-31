@@ -22,9 +22,6 @@ void main(){
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
-        if(thread::sleepHead != nullptr && thread::sleepHead->handle == handle){
-            __putc('x');
-        }
     }
     while(thread::sleepHead != nullptr);
 
