@@ -40,6 +40,7 @@ int threadSleepHandler::sleep(time_t duration){
 
 void threadSleepHandler::increment(){
     getInstance()->time ++;
+    __putc(getInstance()->time%10);
 }
 
 void threadSleepHandler::wake(){
