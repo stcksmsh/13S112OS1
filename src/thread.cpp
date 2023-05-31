@@ -64,6 +64,7 @@ int thread::sleep(time_t duration){
     // sleeping = true;
     // timeLeftToSleep = duration;
     // dispatch();
+    return 0;
 }
 
 void thread::wrapper(){
