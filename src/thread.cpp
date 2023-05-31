@@ -80,8 +80,8 @@ int thread::exit(){
         // MemoryAllocator::getInstance().mem_free(previous);
     }
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
-    __putc('X');
     dispatch();
+    __putc('X');
     return 0;
 }
 
