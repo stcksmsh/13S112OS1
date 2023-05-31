@@ -90,11 +90,6 @@ int thread::sleep(time_t duration){
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
     node->wakeTime = time + duration;
-    // __putc('\n');
-    // __putc('0' + (node->wakeTime / 100)%10);
-    // __putc('0' + (node->wakeTime / 10)%10);
-    // __putc('0' + node->wakeTime%10);
-    // __putc('\n');
     sleepList *insertAfter = sleepHead;
     while(insertAfter != nullptr && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
