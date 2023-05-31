@@ -94,10 +94,10 @@ int thread::sleep(time_t duration){
     while(insertAfter && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
     }
-    if(insertAfter = nullptr){
+    if(insertAfter == nullptr){
         sleepHead = node;
         node -> next = nullptr;
-    }else if(insertAfter->next = nullptr){
+    }else if(insertAfter->next == nullptr){
         insertAfter->next = node;
         node->next = nullptr;
     }else{
