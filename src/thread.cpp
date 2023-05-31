@@ -5,6 +5,8 @@ thread_t thread::running = nullptr;
 time_t thread::time = 0;
 thread::sleepList *thread::sleepHead = nullptr;
 
+extern "C" thread_t UM;
+
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
@@ -131,7 +133,7 @@ void thread::dispatch(){
         Scheduler::put(running);
         running = newThread;
     }
-    if(running->start_routine == nullptr)__putc('x');
+    if(running == UM)__putc('x');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }

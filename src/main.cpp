@@ -9,12 +9,15 @@ void usermainWrapper(void* arg){
     usermain();
 }
 
+thread_t UM = nullptr;
+
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
     thread_create(&handle, usermainWrapper, nullptr);//               /
+    UM = handle;
     thread::running = Scheduler::get(); // the nullptr nullptr one --/
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
         __putc('D');
