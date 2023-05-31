@@ -8,13 +8,11 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     */
     size ++; 
     /// creates it only on first call of the function, thus the head can only be initialised once
-    static bool headInitialised = false;
-    if(!headInitialised){
+    if(head = nullptr){
         head = (FreeMemorySegment*)((uint64)HEAP_START_ADDR);
         head->prevSegment = nullptr;
         head->nextSegment = nullptr;
         head->segmentSize = ((size_t)( (uint64)HEAP_END_ADDR - (uint64)HEAP_START_ADDR ) - sizeof(MemoryAllocator) ) / MEM_BLOCK_SIZE;
-        headInitialised = true;
     }
     void* returnValue = nullptr;
     for(FreeMemorySegment* currentSegment = head; currentSegment != nullptr; currentSegment = currentSegment->nextSegment){
@@ -76,6 +74,7 @@ MemoryAllocator& MemoryAllocator::getInstance() {
     /// only instantiated on first use 
     /// guarantees it will be destroyed
     static MemoryAllocator instance;
+    instance.head = nullptr;
     return instance;
 }
 
