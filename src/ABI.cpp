@@ -43,7 +43,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     uint64 volatile sstatus = sstatusRead();
-    // sstatus |= 1<<5;
     __asm__ volatile ("csrw sie, %0" : : "r"(1<<1 | 1<<9));// allows for software interrupts
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
@@ -135,6 +134,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //change to user mode
         else if(callID==0x25){
+            sstatus |= 1<<5;
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
@@ -202,6 +202,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         // __putc('\n');
         // unexpected trap cause
     }
+    sstatus |= 1<<5;
     sstatusWrite(sstatus);
     __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
     sipBitClear(1);
