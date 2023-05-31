@@ -5,9 +5,6 @@
 #include "../lib/console.h"
 extern "C" void trap();
 
-
-uint64 SHITASS = 0;
-
 void usermainWrapper(void* arg){
     usermain();
 }
