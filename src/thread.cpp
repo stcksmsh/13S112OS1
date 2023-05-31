@@ -77,6 +77,7 @@ int thread::exit(){
     running->finished = true;
     thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
+        __putc('x');
         previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
@@ -89,7 +90,6 @@ int thread::exit(){
 }
 
 int thread::sleep(time_t duration){
-    if(running == nullptr)return -1;
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
