@@ -90,14 +90,14 @@ int thread::sleep(time_t duration){
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
-    node->wakeTime = time + duration;
-    sleepList *insertAfter = sleepHead;
+    node->wakeTime = __time + duration;
+    sleepList *insertAfter = __sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
         __putc('.');
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
-        sleepHead = node;
+        __sleepHead = node;
         node -> next = nullptr;
     }else if(insertAfter->next == nullptr){
         insertAfter->next = node;
@@ -111,11 +111,11 @@ int thread::sleep(time_t duration){
 }
 
 void thread::wake(){
-    while(sleepHead != nullptr && sleepHead->wakeTime >= time){
-        sleepHead->handle->sleeping = false;
-        Scheduler::put(sleepHead->handle);
-        sleepList *node = sleepHead;
-        sleepHead = sleepHead->next;
+    while(__sleepHead != nullptr && __sleepHead->wakeTime >= __time){
+        __sleepHead->handle->sleeping = false;
+        Scheduler::put(__sleepHead->handle);
+        sleepList *node = __sleepHead;
+        __sleepHead = __sleepHead->next;
         MemoryAllocator::getInstance().mem_free(node);
     }
 }

@@ -9,6 +9,7 @@ void usermainWrapper(void* arg){
     usermain();
 }
 
+extern "C" sleepList *__sleepHead;
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
@@ -22,6 +23,6 @@ void main(){
             thread_dispatch();
         }
     }
-    while(sleepHead != nullptr);
+    while(__sleepHead != nullptr);
 
 }
