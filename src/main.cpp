@@ -23,7 +23,7 @@ void main(){
             thread_dispatch();
         }
         if(thread::sleepHead != nullptr && thread::sleepHead->handle == handle){
-            __putc('x')
+            __putc('x');
         }
     }
     while(thread::sleepHead != nullptr);
