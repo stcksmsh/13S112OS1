@@ -159,6 +159,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         ///Timer
         /// first we increment the thread::time variable
         thread::time ++;
+        if(thread::time == 200)__putc('X');
         /// next we wake the sleeping threads;
         thread::wake();
         /// and finally we test for preemption

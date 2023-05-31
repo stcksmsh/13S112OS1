@@ -95,15 +95,12 @@ int thread::sleep(time_t duration){
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
-        __putc('1');
         sleepHead = node;
         node -> next = nullptr;
     }else if(insertAfter->next == nullptr){
-        __putc('2');
         insertAfter->next = node;
         node->next = nullptr;
     }else{
-        __putc('3');
         node->next = insertAfter->next;
         insertAfter->next = node;
     }
@@ -119,10 +116,8 @@ void thread::wake(){
         Scheduler::put(sleepHead->handle);
         // sleepList *node = sleepHead;
         sleepHead = sleepHead->next;
-        __putc('X');
         // MemoryAllocator::getInstance().mem_free(node);
     }
-    __putc('x');
 }
 
 void thread::dispatch(){
