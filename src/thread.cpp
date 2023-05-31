@@ -70,10 +70,10 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
+    __putc('x');
     running->setFinished(true);
     // thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
-        __putc('x');
         // previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
