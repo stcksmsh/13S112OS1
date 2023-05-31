@@ -5,14 +5,12 @@
 #include "scheduler.hpp"
 #include "syscall_c.hpp"
 
-namespace nthread{ /// used to provide "static mutable" variables
-    time_t time = 0;
-    struct sleepList{
-        thread *handle;
-        time_t wakeTime;
-        sleepList *next;
-    } *sleepHead = nullptr;
-};
+time_t time = 0;
+struct sleepList{
+    thread *handle;
+    time_t wakeTime;
+    sleepList *next;
+} *sleepHead = nullptr;
 
 class thread{
 public:
