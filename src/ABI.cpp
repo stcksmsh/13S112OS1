@@ -157,12 +157,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        if(thread::time%10 == 0){
-            __putc('0' + (thread::time / 10000)%10);
-            __putc('0' + (thread::time / 1000)%10);
-            __putc('0' + (thread::time / 100)%10);
-            __putc('0' + (thread::time / 10)%10);
-        }
         ///Timer
         /// first we increment the thread::time variable
         thread::time ++;
