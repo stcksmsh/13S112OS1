@@ -131,7 +131,7 @@ void thread::dispatch(){
         Scheduler::put(running);
         running = newThread;
     }
-
+    __putc('X');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
