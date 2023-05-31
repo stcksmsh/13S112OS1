@@ -147,6 +147,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __putc(ch);
             // Console::write(ch);
         }
+        sepc += 4;
 
     }
     else if (scause == 0x8000000000000001UL)
@@ -154,22 +155,34 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }
-        sepc-=4; // so the sepc stays the same after...
     }
     else if (scause== 0x8000000000000009UL)
     {
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        __putc('H');
         console_handler();
-        sepc -= 4;
         // Console::console_handler();
     }
     else
     {
+        __putc('\n');
+        __putc('s');
+        __putc('c');
+        __putc('a');
+        __putc('u');
+        __putc('s');
+        __putc('e');
+        __putc(' ');
         __putc('U');
+        __putc('n');
+        __putc('k');
+        __putc('n');
+        __putc('o');
+        __putc('w');
+        __putc('n');
+        __putc('\n');
         // unexpected trap cause
     }
     sstatusWrite(sstatus);
-    __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
+    __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
     sipBitClear(1);
 }
