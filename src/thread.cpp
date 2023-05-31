@@ -134,6 +134,7 @@ void thread::dispatch(){
         running = newThread;
     }
     if(running == oldThread)return;
+    __putc('X');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
