@@ -20,4 +20,10 @@ void main(){
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
         thread_dispatch();
     }
+    uint64 t = thread::time;
+    __putc('0' + t/1000);
+    __putc('0' + (t/100)%10);
+    __putc('0' + (t/10)%10);
+    __putc('0' + t%10);
+
 }
