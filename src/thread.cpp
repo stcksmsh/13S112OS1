@@ -68,7 +68,7 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
-    running->setFinished(true);
+    running->finished = true;
     thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
         
@@ -77,9 +77,9 @@ int thread::exit(){
 
         previous->handle->setBlocked(false);
         Scheduler::put(previous->handle);
-        // MemoryAllocator::getInstance().mem_free(previous);
+        MemoryAllocator::getInstance().mem_free(previous);
     }
-    // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
@@ -126,16 +126,10 @@ void thread::dispatch(){
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
-    if(running == nullptr){
-        running = oldThread;
-        return;
-    }
     if(running->start_routine == nullptr){
         thread_t newThread = Scheduler::get();
-        if(newThread != nullptr){
-            Scheduler::put(running);
-            running = newThread;
-        }
+        Scheduler::put(running);
+        running = newThread;
     }
 
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
