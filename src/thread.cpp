@@ -44,6 +44,7 @@ void threadSleepHandler::increment(){
 
 void threadSleepHandler::wake(){
     while(getInstance()->sleepHead != nullptr && (getInstance()->sleepHead)->wakeTime >= getInstance()->time){
+        __putc('x');
         (getInstance()->sleepHead)->handle->sleeping = false;
         Scheduler::put((getInstance()->sleepHead)->handle);
         sleepList *node = getInstance()->sleepHead;
@@ -51,6 +52,7 @@ void threadSleepHandler::wake(){
         MemoryAllocator::getInstance().mem_free(node);
     }
 }
+
 thread::~thread(){
     MemoryAllocator::getInstance().mem_free(stack_space);
 }
