@@ -90,7 +90,6 @@ int thread::sleep(time_t duration){
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
     node->wakeTime = time + duration;
-    if(node->wakeTime > 200)__putc('x');
     sleepList *insertAfter = sleepHead;
     while(insertAfter && insertAfter->next && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
@@ -120,9 +119,10 @@ void thread::wake(){
         Scheduler::put(sleepHead->handle);
         // sleepList *node = sleepHead;
         sleepHead = sleepHead->next;
-        if(sleepHead == nullptr)__putc('X');
+        __putc('X');
         // MemoryAllocator::getInstance().mem_free(node);
     }
+    __putc('x');
 }
 
 void thread::dispatch(){
