@@ -95,12 +95,15 @@ int thread::sleep(time_t duration){
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
+        __putc('1');
         sleepHead = node;
         node -> next = nullptr;
     }else if(insertAfter->next == nullptr){
+        __putc('2');
         insertAfter->next = node;
         node->next = nullptr;
     }else{
+        __putc('3');
         node->next = insertAfter->next;
         insertAfter->next = node;
     }
@@ -112,7 +115,7 @@ void thread::wake(){
     if(sleepHead == nullptr || sleepHead->wakeTime < time)
         return;
     while(sleepHead != nullptr && sleepHead->wakeTime >= time){
-        __putc('W');
+        // __putc('W');
         sleepHead->handle->sleeping = false;
         Scheduler::put(sleepHead->handle);
         sleepList *node = sleepHead;
