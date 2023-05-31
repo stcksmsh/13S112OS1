@@ -23,4 +23,5 @@ void main(){
             if(thread::sleepHead == nullptr)
                 break;
     }
+    if(thread::sleepHead != nullptr)__putc('X');
 }

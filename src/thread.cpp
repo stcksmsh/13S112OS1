@@ -136,7 +136,6 @@ void thread::dispatch(){
             running = newThread;
         }
     }
-
     switchContext(&(oldThread->context), &(running->context));
     return;
 }
