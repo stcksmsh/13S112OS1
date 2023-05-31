@@ -68,7 +68,7 @@ void thread::wrapper(){
 }
 
 int thread::exit(){
-    running->finished = true;
+    running->setFinished(true);
     thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
         
