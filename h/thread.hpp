@@ -6,12 +6,12 @@
 #include "syscall_c.hpp"
 
 class threadSleepHandler{
-    time_t time;
+    time_t time = 0;
     struct sleepList{
         thread *handle;
         time_t wakeTime;
         sleepList *next;
-    } *sleepHead;
+    } *sleepHead = nullptr;
 
     static threadSleepHandler* instance;
 public:

@@ -6,14 +6,8 @@ extern "C" thread::func UMW;
 thread_t thread::running = nullptr;
 
 threadSleepHandler * threadSleepHandler::getInstance(){
-    static bool initialized = false;
-    if(!initialized){
-        initialized = true;
-        instance = (threadSleepHandler*)MemoryAllocator::getInstance().mem_alloc((sizeof(threadSleepHandler)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
-        instance->time = 0;
-        instance->sleepHead = nullptr;
-    }    
-    return instance;
+    static threadSleepHandler instance;
+    return &instance;
 }
 
 bool threadSleepHandler::isEmpty(){
