@@ -96,7 +96,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         // join
         else if(callID==0x14){
             uint64 handle;
-            return;
             __asm__ volatile ("mv %0, a1" : "=r"(handle));
             ((thread_t)handle)->joinTo();/// joins current thread onto the given thread
         }
