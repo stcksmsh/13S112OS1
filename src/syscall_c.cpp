@@ -44,7 +44,7 @@ int thread_exit() {
 
 int thread_sleep(time_t duration){
     __asm__ volatile("li a0, 0x31");
-    __asm__ volatile("mv a1, %0" : : "r"((uint64)duration));
+    __asm__ volatile("mv a1, %0" : : "r"(duration));
     __asm__ volatile("ecall");
     uint64 returnValue;
     __asm__ volatile("mv %0, a0" : "=r"(returnValue));
