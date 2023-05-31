@@ -23,14 +23,16 @@ Console* Console::getIntance(){
 }
 
 void Console::console_handler(){
-    __putc('c');
+    __putc('1');
     Console *c = getIntance();
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
+        __putc('2');
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
         c->inBufferIndex ++;
     }
-
+    __putc('3');
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && c->outBufferIndex>=0){
+        __putc('4');
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
     }
