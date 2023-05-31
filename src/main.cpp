@@ -20,7 +20,7 @@ void main(){
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     changePrivilege(false);
     thread_create(&handle, usermainWrapper, nullptr);//                    |
-    changePrivilege(true);
+    // changePrivilege(true);
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     while(!Scheduler::isEmpty())
         thread_dispatch();
