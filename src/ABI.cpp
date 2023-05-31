@@ -135,7 +135,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         //sleep
         else if(x == 0x31){
             uint64 duration;
-            __putc('s');
             __asm__ volatile ("mv %0, a1" : "=r"(duration));
             int returnValue = thread::sleep((time_t)duration);
             __asm__ volatile ("mv a0, %0" : : "r"((uint64)returnValue));

@@ -85,9 +85,7 @@ int thread::exit(){
 }
 
 int thread::sleep(time_t duration){
-    __putc('S');
     if(running == nullptr)return -1;
-    __putc('n');
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
@@ -124,7 +122,10 @@ void thread::wake(){
 
 void thread::dispatch(){
     thread_t oldThread = running;
-    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
+    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping){
+        Scheduler::put(running);
+        __putc('s');
+    }
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     if(running->start_routine == nullptr){ /// the running thread the void main() thread
