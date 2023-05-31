@@ -38,7 +38,6 @@ void usermain(){
     putc('!');
     putc('\n');
     thread_sleep(200);
-    // while(true){};
     sem_wait(semaphore);
     putc('H');
     putc('o');

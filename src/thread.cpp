@@ -125,6 +125,18 @@ void thread::dispatch(){
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
+    if(running->start_routine == nullptr){ /// the running thread the void main() thread
+        thread_t newThread = nullptr;
+        do{/// if there are no more threads in scheduler, and sleeping ones exist, loop until one wakes, and then replace running with it
+            thread_t newThread = Scheduler::get();
+            if(newThread != nullptr){
+                Scheduler::put(running);
+                running = newThread;
+            }else if(sleepHead == nullptr){ /// there are no sleeping threads, we may exit to MAIN
+                break;
+            }
+        }while (newThread == nullptr);
+    }
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
