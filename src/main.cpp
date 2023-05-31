@@ -20,4 +20,5 @@ void main(){
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
         thread_dispatch();
     }
+    __putc('E');
 }
