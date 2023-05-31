@@ -22,13 +22,10 @@ void main(){
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
-        if(thread::sleepHead && thread::sleepHead->handle == handle){
-            __putc('0' + thread::sleepHead->wakeTime/1000);
-            __putc('0' + (thread::sleepHead->wakeTime)%10);
-            __putc('0' + (thread::sleepHead->wakeTime%10));
-            __putc('0' + thread::sleepHead->wakeTime%10);
+        if(thread::sleepHead != nullptr && thread::sleepHead->handle == handle){
+            __putc('x')
         }
     }
-    while(thread::sleepHead);
+    while(thread::sleepHead != nullptr);
 
 }
