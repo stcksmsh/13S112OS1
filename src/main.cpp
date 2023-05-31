@@ -15,9 +15,11 @@ void main(){
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
-    thread_create(&handle, usermainWrapper, nullptr);//                    |
+    thread_create(&handle, usermainWrapper, nullptr);//               |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
-    while(!Scheduler::isEmpty())
+    bool run = true;
+    while(run){
+        run = (thread::sleepHead != nullptr) || !Scheduler::isEmpty();
         thread_dispatch();
-    if(thread::sleepHead != nullptr)__putc('X');
+    }
 }
