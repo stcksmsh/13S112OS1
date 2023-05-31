@@ -35,9 +35,6 @@ public:
         joinList *next;
     } *joinHead, *joinTail;
 
-
-    static time_t *time;
-
     void joinTo();
 
     ~thread();
