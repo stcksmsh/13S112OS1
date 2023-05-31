@@ -9,6 +9,7 @@ char Console::read(){
 
 void Console::write(char ch){
     Console *c = getIntance();
+    if(c->inBufferIndex == BUFFER_SIZE)return -2;
     c->outBuffer[++c->outBufferIndex] = ch;
 }
 
@@ -22,6 +23,7 @@ Console* Console::getIntance(){
 }
 
 void Console::console_handler(){
+    // __putc('c');
     Console *c = getIntance();
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
