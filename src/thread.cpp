@@ -45,7 +45,7 @@ int threadSleepHandler::sleep(time_t duration){
 }
 
 void threadSleepHandler::increment(){
-    instance->time ++;
+    getInstance()->time ++;
 }
 
 void threadSleepHandler::wake(){
