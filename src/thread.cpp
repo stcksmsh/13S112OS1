@@ -82,10 +82,10 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     node->next = nullptr;
     if(joinTail == nullptr){
         joinHead = node;
+        return;
         joinTail = node;
     }else{
         joinTail->next = node;
-        return;
         joinTail = node;
     }
     running->blocked = true;
