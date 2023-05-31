@@ -38,5 +38,5 @@ char getc();
 void putc( char );
 
 
-void changePrivilege(bool);
+void changeUser();
 #endif

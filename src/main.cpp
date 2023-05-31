@@ -18,7 +18,7 @@ void main(){
     // while(true);
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
-    changePrivilege(false);
+    changeUser();
     thread_create(&handle, usermainWrapper, nullptr);//                    |
     // changePrivilege(true);
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
