@@ -132,7 +132,7 @@ void thread::dispatch(){
     if(running->start_routine == nullptr){
         thread_t newThread = Scheduler::get();
         if(newThread != nullptr){
-            // Scheduler::put(running);
+            Scheduler::put(running);
             running = newThread;
         }
     }
