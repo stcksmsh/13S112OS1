@@ -20,7 +20,8 @@ void main(){
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
+        Scheduler::put(handle);
+        handle = Scheduler::get();
     }
     while(!threadSleepHandler::isEmpty());
-
 }
