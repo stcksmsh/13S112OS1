@@ -3,6 +3,7 @@
 #include "../h/memoryAllocator.hpp"
 #include "../h/usermain.hpp"
 #include "../lib/console.h"
+#include "../h/console.hpp"
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
@@ -10,6 +11,7 @@ void usermainWrapper(void* arg){
 }
 
 void main(){
+    Console::write('a');
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
     // putc('t');

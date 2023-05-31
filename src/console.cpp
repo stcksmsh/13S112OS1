@@ -21,9 +21,11 @@ void Console::console_handler(){
     Console *c = getIntance();
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
+        c->inBufferIndex ++;
     }
 
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && c->outBufferIndex>=0){
-        (*(char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex--];
+        *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
+        c->outBufferIndex --;
     }
 }

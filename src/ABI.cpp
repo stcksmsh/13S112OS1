@@ -181,11 +181,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     else if (scause== 0x8000000000000009UL)
     {   
         int irq = plic_claim();
-        __putc('0' + irq);
-        // if(irq == CONSOLE_IRQ){
-        //     Console::console_handler();
-        // }
-        // plic_complete(irq);
+        if(irq == CONSOLE_IRQ){
+            __putc('x');
+            Console::console_handler();
+        }
+        plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
     }
