@@ -25,15 +25,15 @@ Console* Console::getIntance(){
 void Console::console_handler(){
     Console *c = getIntance();
     __putc('1');
-    while((*((uint64*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT ) == CONSOLE_RX_STATUS_BIT && c->inBufferIndex < BUFFER_SIZE){
-        __putc('2');
-        c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
-        c->inBufferIndex ++;
-    }
-    __putc('3');
     while((*((uint64*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
-        __putc('4');
+        __putc('2');
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
+    }
+    __putc('3');
+    while((*((uint64*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT ) == CONSOLE_RX_STATUS_BIT && c->inBufferIndex < BUFFER_SIZE){
+        __putc('4');
+        c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
+        c->inBufferIndex ++;
     }
 }
