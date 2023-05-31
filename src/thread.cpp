@@ -75,13 +75,13 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    // thread::joinList *previous = nullptr;
+    thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
-        // previous = running->joinHead;
+        previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
-        // MemoryAllocator::getInstance().mem_free(previous);
+        MemoryAllocator::getInstance().mem_free(previous);
     }
     MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
