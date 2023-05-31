@@ -1,7 +1,7 @@
 #ifndef MEMORYALLOCATORHEADERFILE
 #define MEMORYALLOCATORHEADERFILE
 
-#include "../lib/hw.hpp"
+#include "../lib/hw.h"
 /// @brief data structure which represents the continuous segments of unused memory, in a doubly linked list format, ordered by starting address 
 struct FreeMemorySegment{
     /// @brief pointer to previous free segment

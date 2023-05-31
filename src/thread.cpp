@@ -1,5 +1,5 @@
 #include "../h/thread.hpp"
-#include "../lib/console.hpp"
+#include "../lib/console.h"
 
 extern "C" thread::func UMW;
 

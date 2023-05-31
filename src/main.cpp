@@ -2,7 +2,7 @@
 #include "../h/thread.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/usermain.hpp"
-#include "../lib/console.hpp"
+#include "../lib/console.h"
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
@@ -18,7 +18,9 @@ void main(){
     thread_create(&handle, usermainWrapper, nullptr);//               /
     thread::running = Scheduler::get(); // the nullptr nullptr one --/
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
-        thread_dispatch();
+        while(!Scheduler::isEmpty()){
+            thread_dispatch();
+        }
     }
     uint64 t = thread::time;
     __putc('0' + t/1000);

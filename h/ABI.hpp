@@ -1,7 +1,7 @@
 #ifndef ABIHEADERFILE
 #define ABIHEADERFILE
 
-#include "../lib/hw.hpp"
+#include "../lib/hw.h"
 
 class ABI
 {

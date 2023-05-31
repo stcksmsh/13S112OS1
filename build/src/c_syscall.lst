@@ -93,7 +93,7 @@ GAS LISTING /tmp/ccO2svE7.s 			page 1
   77              		.cfi_endproc
   78              	.LFE4:
   80              	.Letext0:
-  81              		.file 2 "src/../h/../lib/hw.hpp"
+  81              		.file 2 "src/../h/../lib/hw.h"
   82              		.file 3 "src/../h/MemoryAllocator.hpp"
 GAS LISTING /tmp/ccO2svE7.s 			page 3
 

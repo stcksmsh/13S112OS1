@@ -74,7 +74,7 @@ GAS LISTING /tmp/ccW4zsrE.s 			page 1
   62              		.cfi_endproc
   63              	.LFE1:
   65              	.Letext0:
-  66              		.file 2 "src/../h/../lib/hw.hpp"
+  66              		.file 2 "src/../h/../lib/hw.h"
 GAS LISTING /tmp/ccW4zsrE.s 			page 3
 
 

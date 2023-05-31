@@ -1,5 +1,5 @@
 #include "../h/memoryAllocator.hpp"
-#include "../lib/console.hpp"
+#include "../lib/console.h"
 
 void *MemoryAllocator::mem_alloc( size_t size ){
     /* 

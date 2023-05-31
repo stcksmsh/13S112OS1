@@ -1,4 +1,4 @@
-#include "../lib/console.hpp"
+#include "../lib/console.h"
 #include "../h/console.hpp"
 #include "../h/ABI.hpp"
 #include "../h/memoryAllocator.hpp"
