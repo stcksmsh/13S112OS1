@@ -137,7 +137,7 @@ void thread::dispatch(){
         }
     }
 
-    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+    switchContext(&(oldThread->context), &(running->context));
     return;
 }
 
