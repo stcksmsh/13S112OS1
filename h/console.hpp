@@ -2,14 +2,15 @@
 #define CONSOLEHEADERFILE
 
 #include "syscall_c.hpp"
+#include "memoryAllocator.hpp"
 
 #define BUFFER_SIZE 100
 
 class Console{
-    char* outBuffer = (char*)mem_alloc(sizeof(char)*BUFFER_SIZE);
+    char* outBuffer = nullptr;
     int outBufferIndex = -1;
     
-    char* inBuffer = (char*)mem_alloc(sizeof(char)*BUFFER_SIZE);
+    char* inBuffer = nullptr;
     int inBufferIndex = -1; 
 public:
 

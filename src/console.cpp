@@ -14,6 +14,10 @@ void Console::write(char ch){
 
 Console* Console::getIntance(){
     static Console instance;
+    if(instance.outBuffer == nullptr){
+        instance.outBuffer = (char*)MemoryAllocator::getInstance().mem_alloc((sizeof(char) * BUFFER_SIZE + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
+        instance.inBuffer = (char*)MemoryAllocator::getInstance().mem_alloc((sizeof(char) * BUFFER_SIZE + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
+    }
     return &instance;
 }
 
