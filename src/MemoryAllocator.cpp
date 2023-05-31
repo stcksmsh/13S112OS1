@@ -23,12 +23,12 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         /// currentSegment has the exact number of memory blocks we need
         if(currentSegment->segmentSize == size){
             /// if it has a previous segment (i.e. is not the head) set its next segment to the current segments next segment
-            if(currentSegment->prevSegment)
+            if(currentSegment->prevSegment!= nullptr)
                 currentSegment->prevSegment->nextSegment = currentSegment->nextSegment;
             /// if it is the head, simply make the next segment the head
             else head = currentSegment->nextSegment;
             /// if it has a next segment (i.e. not the tail) set its previous segment to the current segments previous segment
-            if(currentSegment->nextSegment)
+            if(currentSegment->nextSegment!= nullptr)
                 currentSegment->nextSegment->prevSegment = currentSegment->prevSegment;
             /// the above lines will unlink the currentSegment from the linked list
             
@@ -43,11 +43,11 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         */
         FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64*)((uint64)currentSegment + size*MEM_BLOCK_SIZE));
         /// almost the same as in the if statement above, we unlink the currentSegment from the list, but now we link newSegment in its "place"
-        if(currentSegment->prevSegment)
+        if(currentSegment->prevSegment!= nullptr)
             currentSegment->prevSegment->nextSegment = newSegment;
         else
             head = newSegment;
-        if(currentSegment->nextSegment)
+        if(currentSegment->nextSegment!= nullptr)
             currentSegment->nextSegment->prevSegment = newSegment;
         /// set newSegment previous and next segments, effectively linking it inplace of the currentSegment
         newSegment->prevSegment = currentSegment->prevSegment;
