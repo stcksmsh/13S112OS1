@@ -34,12 +34,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     __asm__ volatile("csrr %0,scause": "=r"(scause));
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
-
     uint64 volatile sstatus = sstatusRead();
-    sstatus |= 1<<5; // set the bit for hardware interrupts to true
-
-
-
+    sstatus |= 1<<5; // set the bit for hardware interrupts to true 
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -154,6 +150,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         if(!thread::running->live()){/// it has run for longer than its alloted time slice
             thread::dispatch();
         }
+        sepc-=4;
     }
     else if (scause== 0x8000000000000009UL)
     {
