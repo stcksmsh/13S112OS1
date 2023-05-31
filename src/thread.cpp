@@ -129,7 +129,7 @@ void thread::dispatch(){
     if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
-    if(running = nullptr){
+    if(running == nullptr){
         running = oldThread;
         return;
     }
