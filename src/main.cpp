@@ -11,9 +11,6 @@ void usermainWrapper(void* arg){
 }
 
 void main(){
-    Console::write('a');
-    while(true){};
-    return;
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
     // putc('t');
