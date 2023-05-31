@@ -3,7 +3,6 @@
 
 thread_t thread::running = nullptr;
 time_t *thread::time = (time_t*)MemoryAllocator::getInstance().mem_alloc(1);
-time_t (*thread::time) = 0;
 thread::sleepList *thread::sleepHead = nullptr;
 
 thread::~thread(){
