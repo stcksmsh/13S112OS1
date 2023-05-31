@@ -21,7 +21,6 @@ int threadSleepHandler::sleep(time_t duration){
     node->wakeTime = getInstance()->time + duration;
     sleepList *insertAfter = getInstance()->sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
-        __putc('.');
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
@@ -44,7 +43,6 @@ void threadSleepHandler::increment(){
 
 void threadSleepHandler::wake(){
     while(getInstance()->sleepHead != nullptr && (getInstance()->sleepHead)->wakeTime >= getInstance()->time){
-        __putc('x');
         (getInstance()->sleepHead)->handle->sleeping = false;
         Scheduler::put((getInstance()->sleepHead)->handle);
         sleepList *node = getInstance()->sleepHead;
