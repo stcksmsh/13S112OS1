@@ -86,6 +86,7 @@ int thread::exit(){
 
 int thread::sleep(time_t duration){
     if(running == nullptr)return -1;
+    __putc('s');
     running->sleeping = true;
     sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     node->handle = running;
