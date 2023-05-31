@@ -22,11 +22,6 @@ inline void ABI::sipBitClear(uint64 bit)
     __asm__ volatile ("csrc sip, %[mask]" : : [mask] "r"((uint64)1<<bit));
 }
 
-inline void ABI::sstatusBitClear(uint64 bit)
-{
-    __asm__ volatile ("csrc sstatus, %[mask]" : : [mask] "r"((uint64)1<<bit));
-
-}
 
 
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
@@ -123,10 +118,17 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             int returnValue=sem::sem_signal((sem_t)handle);
             __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
         }
-        //change to user mode
+        //change the privilege level
         else if(x==0x25){
-            sstatusWrite(sstatus);
-            sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
+            uint64 system;
+            __asm__ volatile("mv %0, a1" : "=r"(system));
+            if(system){
+                sstatus |= 1<<8; /// sets SPP (sets desired mode to system)
+                sstatusWrite(sstatus);
+            }else{
+                sstatusWrite(sstatus);
+                __asm__ volatile ("csrc sstatus, %0" : : "r"(1<<8));
+            }
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;

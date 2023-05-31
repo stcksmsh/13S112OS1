@@ -111,8 +111,9 @@ void putc(char c)
     __asm__ volatile("ecall");
 }
 
-void changeUser() {
+void changePrivilege(bool system) {
     __asm__ volatile("li a0,0x25");
+    __asm__ volatile("li a1, %0" : : "r"((uint64)system));
     __asm__ volatile("ecall");
     return;
 

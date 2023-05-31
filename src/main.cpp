@@ -15,7 +15,7 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
 
-    changeUser();
+    changePrivilege(false);
     // while(true);
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
@@ -23,4 +23,6 @@ void main(){
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
     while(!Scheduler::isEmpty())
         thread_dispatch();
+    changePrivilege(true);
+
 }

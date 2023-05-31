@@ -12,10 +12,6 @@ public:
     /// @param  uint64 the bit to clear (0..63)
     static void sipBitClear(uint64);
 
-    /// @brief clears bit of sstatus
-    /// @param  uint64 the bit to clear (0..63)
-    static void sstatusBitClear(uint64);
-
     /// @brief reads the supervisor status register
     /// @return sstatus
     static uint64 sstatusRead();
