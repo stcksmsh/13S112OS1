@@ -15,11 +15,10 @@ void main(){
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);//    <-------------------
-    thread_create(&handle, usermainWrapper, nullptr);//               |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
+    thread_create(&handle, usermainWrapper, nullptr);//               |
     while((thread::sleepHead != nullptr) || (!Scheduler::isEmpty())){
         __putc('D');
         thread_dispatch();
     }
-    if(thread::time > 1000)__putc('X');
 }
