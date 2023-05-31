@@ -181,8 +181,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     else if (scause== 0x8000000000000009UL)
     {   
         int irq = plic_claim();
-        if(irq == CONSOLE_IRQ){
             __putc('x');
+        if(irq == CONSOLE_IRQ){
             Console::console_handler();
         }
         plic_complete(irq);
