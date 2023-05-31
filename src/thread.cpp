@@ -42,7 +42,7 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
         joinTail->next = node;
         joinTail = node;
     }
-    running->setBlocked(true);
+    running->blocked = true;
     dispatch();
 }
 
@@ -71,14 +71,14 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->setFinished(true);
-    thread::joinList *previous = nullptr;
+    // thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
         
-        previous = running->joinHead;
-        running->joinHead = previous->next;
+        // previous = running->joinHead;
 
-        previous->handle->setBlocked(false);
-        Scheduler::put(previous->handle);
+        running->setBlocked(false);
+        running->joinHead = running->joinHead->next;
+        Scheduler::put(running->joinHead->handle);
         // MemoryAllocator::getInstance().mem_free(previous);
     }
     // MemoryAllocator::getInstance().mem_free(running->stack_space);
