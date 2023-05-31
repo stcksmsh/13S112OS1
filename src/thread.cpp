@@ -11,7 +11,7 @@ threadSleepHandler * threadSleepHandler::getInstance(){
 }
 
 bool threadSleepHandler::isEmpty(){
-    return threadSleepHandler::getInstance()->sleepHead!=nullptr;
+    return (threadSleepHandler::getInstance()->sleepHead!=nullptr);
 }
 
 int threadSleepHandler::sleep(time_t duration){
