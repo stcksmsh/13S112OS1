@@ -17,6 +17,9 @@ void bullshit(void* arg){
     putc('!');
     putc('\n');
     sem_signal(semaphore);
+    putc('X');
+    thread_sleep(1000);
+    putc('X');
 }
 
 
@@ -39,7 +42,6 @@ void usermain(){
     putc('\n');
     // thread_sleep(50);
     // thread_join(handle);
-    while(true){};
     sem_wait(semaphore);
     putc('H');
     putc('o');
