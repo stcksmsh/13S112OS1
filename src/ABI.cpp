@@ -188,39 +188,39 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         console_handler();
     }
-    else if (scause == 0x0000000000000002UL){
-        __putc('\n');
-        __putc('I');
-        __putc('\n');
-    }
-    else if (scause == 0x0000000000000005UL){
-        __putc('\n');
-        __putc('R');        
-        __putc('\n');
-    }
-    else if (scause == 0x0000000000000007UL){
-        __putc('\n');
-        __putc('W');
-        __putc('\n');
-    }else
-    {
-        __putc('\n');
-        __putc('s');
-        __putc('c');
-        __putc('a');
-        __putc('u');
-        __putc('s');
-        __putc('e');
-        __putc(' ');
-        __putc('U');
-        __putc('n');
-        __putc('k');
-        __putc('n');
-        __putc('o');
-        __putc('w');
-        __putc('n');
-        __putc('\n');
-    }
+    // else if (scause == 0x0000000000000002UL){
+    //     __putc('\n');
+    //     __putc('I');
+    //     __putc('\n');
+    // }
+    // else if (scause == 0x0000000000000005UL){
+    //     __putc('\n');
+    //     __putc('R');        
+    //     __putc('\n');
+    // }
+    // else if (scause == 0x0000000000000007UL){
+    //     __putc('\n');
+    //     __putc('W');
+    //     __putc('\n');
+    // }else
+    // {
+    //     __putc('\n');
+    //     __putc('s');
+    //     __putc('c');
+    //     __putc('a');
+    //     __putc('u');
+    //     __putc('s');
+    //     __putc('e');
+    //     __putc(' ');
+    //     __putc('U');
+    //     __putc('n');
+    //     __putc('k');
+    //     __putc('n');
+    //     __putc('o');
+    //     __putc('w');
+    //     __putc('n');
+    //     __putc('\n');
+    // }
     sstatusWrite(sstatus);
     __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
     sipBitClear(1);
