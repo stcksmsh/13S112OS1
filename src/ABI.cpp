@@ -36,6 +36,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     uint64 volatile sstatus = sstatusRead();
     sstatus |= 1<<5; // set the bit for hardware interrupts to true 
+    __asm__ volatile ("csrs sie, %0" : : "r"(1<<1));
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
