@@ -117,9 +117,9 @@ void thread::wake(){
     while(sleepHead != nullptr && sleepHead->wakeTime >= time){
         sleepHead->handle->sleeping = false;
         Scheduler::put(sleepHead->handle);
-        // sleepList *node = sleepHead;
+        sleepList *node = sleepHead;
         sleepHead = sleepHead->next;
-        // MemoryAllocator::getInstance().mem_free(node);
+        MemoryAllocator::getInstance().mem_free(node);
     }
 }
 
