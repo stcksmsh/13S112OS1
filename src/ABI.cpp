@@ -162,7 +162,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         sepc += 4;
         enableInterrupt();
-
     }
     else if (scause == 0x8000000000000001UL)
     {
