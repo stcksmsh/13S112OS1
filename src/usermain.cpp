@@ -37,7 +37,7 @@ void usermain(){
     putc('d');
     putc('!');
     putc('\n');
-    while(true){}///just waste time, used to test time sharing
+    for(unsigned long long i = 0; i < 1000000000; i++){}///just waste time, used to test time sharing
     // sem_wait(semaphore);
     putc('H');
     putc('o');
