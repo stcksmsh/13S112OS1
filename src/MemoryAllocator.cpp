@@ -8,7 +8,7 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     */
     size ++; 
     /// creates it only on first call of the function, thus the head can only be initialised once
-    if(head == (FreeMemorySegment*)HEAP_END_ADDR+1){
+    if(head >(FreeMemorySegment*)HEAP_END_ADDR){
         head = (FreeMemorySegment*)((uint64)HEAP_START_ADDR);
         head->prevSegment = nullptr;
         head->nextSegment = nullptr;

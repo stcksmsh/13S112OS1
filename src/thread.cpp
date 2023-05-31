@@ -134,7 +134,6 @@ int thread::exit(){
     return 0;
 }
 
-
 void thread::dispatch(){
     thread_t oldThread = running;
     if(Scheduler::isEmpty())return;
