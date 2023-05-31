@@ -25,11 +25,11 @@ Console* Console::getIntance(){
 void Console::console_handler(){
     Console *c = getIntance();
     if(c->outBufferIndex >= 0)__putc('x');
-    __putc('y');
     while((*((uint64*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) > 0 && c->outBufferIndex>=0){
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
     }
+    __putc('y');
     while((*((uint64*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT ) > 0 && c->inBufferIndex < BUFFER_SIZE){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
         c->inBufferIndex ++;
