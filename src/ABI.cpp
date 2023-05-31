@@ -28,6 +28,14 @@ inline void ABI::sstatusBitClear(uint64 bit)
 
 }
 
+inline void ABI::disableInterrupt(){
+    sstatusWrite(sstatusRead() | (1<<5));
+}
+
+inline void ABI::enableInterrupt(){
+    sstatusWrite(sstatusRead() & (~(1<<5)));
+}
+
 
 void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is in ra)
     uint64 scause;
@@ -35,11 +43,11 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     uint64 volatile sstatus = sstatusRead();
-    sstatus |= 1<<5; // set the bit for hardware interrupts to true 
     __asm__ volatile ("csrw sie, %0" : : "r"(1<<1 | 1<<9));// allows for software interrupts
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
+        disableInterrupt();
         uint64 callID;
         __asm__ volatile("mv %0, a0" : "=r"(callID));
         // malloc
@@ -153,6 +161,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             // Console::write(ch);
         }
         sepc += 4;
+        enableInterrupt();
 
     }
     else if (scause == 0x8000000000000001UL)

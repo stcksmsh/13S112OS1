@@ -24,6 +24,8 @@ public:
     /// @param  uint64 new sstatus
     static void sstatusWrite(uint64);
 
+    static void disableInterrupt();
+    static void enableInterrupt();
 
 private:
     // trap handler, used in trap.S
