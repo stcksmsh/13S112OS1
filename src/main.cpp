@@ -12,6 +12,7 @@ void usermainWrapper(void* arg){
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
+    thread::sleepHead = nullptr;
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
@@ -22,7 +23,7 @@ void main(){
             thread_dispatch();
         }
     }
-    while(thread::sleepHead != nullptr);
+    while(thread::sleepHead);
     uint64 t = thread::time;
     __putc('0' + t/1000);
     __putc('0' + (t/100)%10);
