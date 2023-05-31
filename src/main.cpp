@@ -17,6 +17,7 @@ void main(){
     thread_create(&handle, nullptr, nullptr);//    <-------------------
     thread_create(&handle, usermainWrapper, nullptr);//                    |
     thread::running = Scheduler::get(); // the nullptr nullptr one  ---
-    while(thread::sleepHead != nullptr || !Scheduler::isEmpty())
+    while(!Scheduler::isEmpty())
         thread_dispatch();
+    if(thread::sleepHead != nullptr)__putc('X');
 }
