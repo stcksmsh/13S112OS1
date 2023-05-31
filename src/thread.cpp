@@ -122,7 +122,7 @@ void thread::wake(){
 
 void thread::dispatch(){
     thread_t oldThread = running;
-    if(oldThread!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
+    if(oldThread!=nullptr && oldThread->start_routine!=nullptr && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping)Scheduler::put(running);
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     if(running == nullptr){
