@@ -129,11 +129,11 @@ void thread::dispatch(){
     running->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     if(running->start_routine == nullptr){
+        __putc('X');
         thread_t newThread = Scheduler::get();
         Scheduler::put(running);
         running = newThread;
     }
-    if(running->start_routine == UMW)__putc('X');
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
