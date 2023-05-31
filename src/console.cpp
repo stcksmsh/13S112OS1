@@ -9,7 +9,7 @@ char Console::read(){
 
 void Console::write(char ch){
     Console *c = getIntance();
-    if(c->inBufferIndex == BUFFER_SIZE);
+    if(c->inBufferIndex == BUFFER_SIZE)return -2;
     c->outBuffer[++c->outBufferIndex] = ch;
 }
 
@@ -23,14 +23,14 @@ Console* Console::getIntance(){
 }
 
 void Console::console_handler(){
+    __putc('c');
     Console *c = getIntance();
-    putc('y');
     while(((*(char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT )&& c->inBufferIndex < BUFFER_SIZE){
         c->inBuffer[c->inBufferIndex++] = *((char*)CONSOLE_RX_DATA);
         c->inBufferIndex ++;
     }
-    if(c->outBufferIndex>=0)putc('x');
-    while(((int)(*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) == CONSOLE_TX_STATUS_BIT && c->outBufferIndex>=0){
+
+    while(((*(char*)CONSOLE_STATUS) & CONSOLE_TX_STATUS_BIT) && c->outBufferIndex>=0){
         *((char*)CONSOLE_TX_DATA) = c->outBuffer[c->outBufferIndex];
         c->outBufferIndex --;
     }
