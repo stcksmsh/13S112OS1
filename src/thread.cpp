@@ -81,7 +81,6 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
     node->handle = running;
     node->next = nullptr;
     if(joinTail == nullptr){
-        __putc('X');
         joinHead = node;
         joinTail = node;
     }else{
@@ -129,9 +128,9 @@ int thread::exit(){
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
-        MemoryAllocator::getInstance().mem_free(previous);
+        // MemoryAllocator::getInstance().mem_free(previous);
     }
-    MemoryAllocator::getInstance().mem_free(running->stack_space);
+    // MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
