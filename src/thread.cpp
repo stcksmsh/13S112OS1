@@ -85,7 +85,7 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     __putc('0');
     __putc('0');
     __putc('0');
-    if(joinTail == nullptr){
+    if(joinTail != nullptr){
         __putc('1');
         joinHead = node;
         joinTail = node;
