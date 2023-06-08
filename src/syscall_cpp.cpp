@@ -34,7 +34,7 @@ Thread::Thread(void ( * body)(void * ), void *  arg) {
 
 
 int Thread::start(){
-    run();
+    Scheduler::put(myHandle);
     return 0;
 }
 
@@ -60,11 +60,6 @@ int Thread::sleep(time_t duration){
     uint64 returnValue;
     __asm__ volatile("mv %0, a0" : "=r"(returnValue));
     return (int)returnValue;
-}
-
-
-void Thread::run(){
-    Scheduler::put(myHandle);
 }
 
 
