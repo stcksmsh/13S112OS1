@@ -46,8 +46,7 @@ int sem::sem_signal(sem_t id){
     if(id == nullptr)return -1;
     if(id->value < 0){
         id->head->thread->setBlocked(false);
-        if(!id->head->thread->sleeping && !id->head->thread->finished)
-            Scheduler::put(id->head->thread);
+        Scheduler::put(id->head->thread);
         sem::blockedList *tmp = id->head;
         id->head = id->head->next;
         mem_free(tmp);
