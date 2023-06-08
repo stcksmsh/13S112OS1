@@ -91,7 +91,7 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     dispatch();
 }
 
-int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
+int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space, bool isCPP){
     thread_t newThread = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
     newThread->start_routine = start_routine;
     newThread->arg = arg;
@@ -107,7 +107,8 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->joinHead = nullptr;
     newThread->joinTail = nullptr;
     *handle = newThread;
-    Scheduler::put(newThread);
+    if(isCPP)
+        Scheduler::put(newThread);
     if(start_routine == nullptr)
         newThread->context.pc = 0;
     return 0;

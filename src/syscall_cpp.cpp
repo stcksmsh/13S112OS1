@@ -1,4 +1,5 @@
 #include "../h/syscal_cpp.hpp"
+#include "../h/scheduler.hpp"
 
 void *  ::operator new(size_t size){
     size = (size + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
@@ -20,6 +21,7 @@ void ::operator delete(void* address){
 }
 
 Thread::Thread(void ( * body)(void * ), void *  arg) {
+    __asm__ volatile("li a4,1");
     void* arguments=arg;
     __asm__ volatile("mv a3,%0" : : "r" (arguments));
     __asm__ volatile("mv a2,%0" : : "r" (body));
@@ -28,6 +30,26 @@ Thread::Thread(void ( * body)(void * ), void *  arg) {
     __asm__ volatile("ecall");
     int returnValue;
     __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+}
+
+
+int Thread::start(){
+    run();
+    return 0;
+}
+
+
+void Thread::join(){
+    __asm__ volatile("li a0, 0x14");
+    __asm__ volatile("mv a1, %0" : : "r"((uint64)myHandle));
+    __asm__ volatile("ecall");
+}
+
+
+void Thread::dispatch() {
+    ///the PC to return to is currently in ra, and will stay there during the syscall, as ecall puts pc into sepc and not ra
+    __asm__ volatile("li a0,0x13");
+    __asm__ volatile("ecall");
 }
 
 
@@ -41,18 +63,8 @@ int Thread::sleep(time_t duration){
 }
 
 
-
-void Thread::dispatch() {
-    ///the PC to return to is currently in ra, and will stay there during the syscall, as ecall puts pc into sepc and not ra
-    __asm__ volatile("li a0,0x13");
-    __asm__ volatile("ecall");
-}
-
-
-void Thread::join(){
-    __asm__ volatile("li a0, 0x14");
-    __asm__ volatile("mv a1, %0" : : "r"((uint64)myHandle));
-    __asm__ volatile("ecall");
+void Thread::run(){
+    Scheduler::put(myHandle);
 }
 
 
@@ -93,6 +105,14 @@ int Semaphore::signal() {
     __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
     return returnValue;
 }
+
+
+PeriodicThread::PeriodicThread(time_t period){
+    this->period = period;
+}
+
+
+
 
 char Console::getc()
 {
