@@ -23,4 +23,5 @@ void main(){
         }
     }
     while(!threadSleepHandler::isEmpty() && !Scheduler::isEmpty());
+    __putc('x');
 }
