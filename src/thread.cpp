@@ -76,12 +76,10 @@ bool thread::wasClosed(){
     return closed;
 }
 
-void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(thread1)
+void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thread1)w
     joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
     node->handle = running;
     node->next = nullptr;
-    // if(joinHead!=nullptr)__putc('X');
-    for(int i = 0;i < 10000;i ++)__putc('.');
     if(joinTail == nullptr){
         joinHead = node;
         joinTail = node;
@@ -89,8 +87,6 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
         joinTail->next = node;
         joinTail = node;
     }
-
-
     running->blocked = true;
     dispatch();
 }

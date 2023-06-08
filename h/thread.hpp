@@ -29,6 +29,7 @@ public:
 class thread{
     friend class threadSleepHandler;
 public:
+    /// @brief total time the kernel has been running for (in timer units)
     struct joinList{
         thread *handle;
         joinList *next;

@@ -1,10 +1,7 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.hpp"
-#include "../h/thread.hpp"
 
 sem_t semaphore;
-
-// thread_t handle = nullptr;
 
 void bullshit(void* arg){
     putc(' ');
@@ -19,8 +16,10 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    // sem_signal(semaphore);
-    // thread_sleep(1000);
+    sem_signal(semaphore);
+    putc('X');
+    thread_sleep(1000);
+    putc('X');
 }
 
 
@@ -43,10 +42,10 @@ void usermain(){
     putc('\n');
     // thread_sleep(50);
     thread_join(handle);
-    // sem_wait(semaphore);
+    sem_wait(semaphore);
+    while(true){};
     putc('H');
     putc('o');
-    // thread_sleep(10);
     putc('w');
     putc(' ');
     putc('d');
@@ -60,5 +59,4 @@ void usermain(){
     putc('!');
     putc('?');
     putc('\n');
-    sem_close(semaphore);
 }

@@ -22,11 +22,5 @@ void main(){
             thread_dispatch();
         }
     }
-    while(!threadSleepHandler::isEmpty() && !Scheduler::isEmpty());
-    putc('\n');
-    putc('E');
-    putc('n');
-    putc('d');
-    putc('.');
-    putc('\n');
+    while(!threadSleepHandler::isEmpty());
 }
