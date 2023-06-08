@@ -88,7 +88,7 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
         joinTail = node;
     }
 
-    if(joinHead==nullptr)__putc('X');
+    if(joinHead!=nullptr)__putc('X');
 
     running->blocked = true;
     dispatch();
