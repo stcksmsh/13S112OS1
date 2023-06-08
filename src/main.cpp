@@ -22,5 +22,5 @@ void main(){
             thread_dispatch();
         }
     }
-    while(!threadSleepHandler::isEmpty());
+    while(!threadSleepHandler::isEmpty() && !Scheduler::isEmpty());
 }
