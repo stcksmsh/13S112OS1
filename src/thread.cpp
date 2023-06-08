@@ -81,9 +81,11 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     node->handle = running;
     node->next = nullptr;
     if(joinTail == nullptr){
+        __putc('1');
         joinHead = node;
         joinTail = node;
     }else{
+        __putc('2');
         joinTail->next = node;
         joinTail = node;
     }
@@ -165,7 +167,7 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     __asm__ volatile ("sd s11, 13 * 8(a0)");
     }
     if(newContext->sp != 0)
-        __asm__ volatile ("ld sp, 8(a1)");
+    __asm__ volatile ("ld sp, 8(a1)");
     __asm__ volatile ("ld ra, 0(a1)");
     __asm__ volatile ("ld s0, 2 * 8(a1)");
     __asm__ volatile ("ld s1, 3 * 8(a1)");
