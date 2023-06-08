@@ -18,6 +18,8 @@ void main(){
     thread::running = Scheduler::get(); // the nullptr nullptr one ---/
     thread_create(&handle, usermainWrapper, nullptr);
     do{
+        __putc('x');
+        __putc('\n');
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
