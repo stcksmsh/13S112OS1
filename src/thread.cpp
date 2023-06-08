@@ -120,9 +120,9 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
+        __putc('*');
     thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
-        __putc('*');
         previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
