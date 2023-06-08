@@ -33,7 +33,7 @@ public:
     struct joinList{
         thread *handle;
         joinList *next;
-    } *joinHead, *joinTail;
+    } *joinHead = nullptr, *joinTail = nullptr;
 
     void joinTo();
 
