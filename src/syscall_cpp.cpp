@@ -20,7 +20,7 @@ void operator delete(void* address){
     __asm__ volatile("mv %0, a0" : "=r" (returnValue));
 }
 
-Thread::Thread(void ( * body)(void * ), void *  arg) {
+Thread::Thread(void ( * body)(void * ), void *  arg){
     __asm__ volatile("li a4,1");
     void* arguments=arg;
     __asm__ volatile("mv a3,%0" : : "r" (arguments));
@@ -32,6 +32,15 @@ Thread::Thread(void ( * body)(void * ), void *  arg) {
     __asm__ volatile("mv %0, a0" : "=r" (returnValue));
 }
 
+
+Thread::~Thread(){
+    __asm__ volatile("li a0, 0x12"); //thread exit
+    __asm__ volatile("ecall");
+}
+
+Thread::Thread(){
+    
+}
 
 int Thread::start(){
     Scheduler::put(myHandle);
