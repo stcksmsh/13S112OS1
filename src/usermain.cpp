@@ -4,7 +4,7 @@
 
 // sem_t semaphore;
 
-thread_t handle = nullptr;
+// thread_t handle = nullptr;
 
 void bullshit(void* arg){
     putc(' ');
@@ -19,15 +19,13 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    if(handle == thread::running)__putc('x');
     // sem_signal(semaphore);
-    // putc('X');
     // thread_sleep(1000);
-    // putc('X');
 }
 
 
 void usermain(){
+    thread_t handle;
     thread_create(&handle, bullshit, nullptr);
     // sem_open(&semaphore, 0);
     putc('H');

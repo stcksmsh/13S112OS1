@@ -78,6 +78,7 @@ bool thread::wasClosed(){
 
 void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(thread1)
     joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
+    if(node == nullptr)__putc('X');
     node->handle = running;
     node->next = nullptr;
     if(joinTail == nullptr){
