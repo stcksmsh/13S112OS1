@@ -1,7 +1,7 @@
 #include "../h/syscal_cpp.hpp"
 #include "../h/scheduler.hpp"
 
-void *  ::operator new(size_t size){
+void *  operator new(size_t size){
     size = (size + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
     __asm__ volatile("li a0, 0x1"); /// syscall code
     __asm__ volatile ("mv a1,%0" : : "r" (size)); /// size in blocks
@@ -12,7 +12,7 @@ void *  ::operator new(size_t size){
 }
 
 
-void ::operator delete(void* address){
+void operator delete(void* address){
     __asm__ volatile ("mv a1,%0" : : "r" (address));
     __asm__ volatile("li a0, 0x2");
     __asm__ volatile ("ecall");
