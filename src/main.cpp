@@ -15,7 +15,7 @@ void main(){
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
-    thread::running = Scheduler::get(); // the nullptr nullptr one ---/
+    // thread::running = Scheduler::get(); // the nullptr nullptr one ---/
     thread_create(&handle, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty()){
