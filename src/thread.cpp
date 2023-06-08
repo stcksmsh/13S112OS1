@@ -81,7 +81,7 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
     node->handle = running;
     node->next = nullptr;
     __putc('0');
-    if(this->joinTail == nullptr){
+    if(joinTail == nullptr){
         __putc('1');
         joinHead = node;
         joinTail = node;
@@ -96,7 +96,8 @@ void thread::joinTo(){/// thread1.join() is the same as invoking thread_join(thr
 }
 
 int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    thread_t newThread = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    *handle = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    thread_t newThread = *handle;
     newThread->start_routine = start_routine;
     newThread->arg = arg;
     if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
@@ -110,10 +111,10 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     newThread->joinHead = nullptr;
     newThread->joinTail = nullptr;
-    *handle = newThread;
     Scheduler::put(newThread);
     if(start_routine == nullptr)
         newThread->context.pc = 0;
+    *handle = newThread;
     return 0;
 }
 
