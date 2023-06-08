@@ -43,7 +43,7 @@ void usermain(){
     // thread_sleep(50);
     thread_join(handle);
     sem_wait(semaphore);
-    while(true){};
+    thread_sleep(100);
     putc('H');
     putc('o');
     putc('w');
