@@ -73,14 +73,10 @@ Semaphore::Semaphore(unsigned init) {
     __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
 }
 
-int sem_close(sem_t handle) {
-    sem_t h=handle;
-    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(h));
+Semaphore::~Semaphore() {
+    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(myHandle));
     __asm__ volatile("li a0,0x22");
     __asm__ volatile("ecall");
-    int returnValue;
-    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
-    return returnValue;
 }
 
 int Semaphore::wait() {
