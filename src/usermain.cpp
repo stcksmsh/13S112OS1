@@ -2,7 +2,7 @@
 #include "../h/usermain.hpp"
 #include "../h/thread.hpp"
 
-// sem_t semaphore;
+sem_t semaphore;
 
 // thread_t handle = nullptr;
 
@@ -19,7 +19,7 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    // sem_signal(semaphore);
+    sem_signal(semaphore);
     // thread_sleep(1000);
 }
 
@@ -27,7 +27,7 @@ void bullshit(void* arg){
 void usermain(){
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
-    // sem_open(&semaphore, 0);
+    sem_open(&semaphore, 0);
     putc('H');
     putc('e');
     putc('l');
@@ -42,8 +42,8 @@ void usermain(){
     putc('!');
     putc('\n');
     // thread_sleep(50);
-    thread_join(handle);
-    // sem_wait(semaphore);
+    // thread_join(handle);
+    sem_wait(semaphore);
     putc('H');
     putc('o');
     // thread_sleep(10);
