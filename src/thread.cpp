@@ -80,15 +80,15 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
     joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
     node->handle = running;
     node->next = nullptr;
-    // if(joinTail == nullptr){
-    //     joinHead = node;
-    //     joinTail = node;
-    // }else{
-    //     joinTail->next = node;
-    //     joinTail = node;
-    // }
-    joinHead = node;
-    joinTail = node;
+    if(joinTail == nullptr){
+        joinHead = node;
+        joinTail = node;
+    }else{
+        joinTail->next = node;
+        joinTail = node;
+    }
+
+    if(joinHead==nullptr)__putc('X');
 
     running->blocked = true;
     dispatch();
