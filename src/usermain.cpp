@@ -18,7 +18,7 @@ void bullshit(void* arg){
     putc('\n');
     sem_signal(semaphore);
     putc('X');
-    thread_sleep(1000);
+    thread_sleep(20);
     putc('X');
 }
 
