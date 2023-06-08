@@ -12,6 +12,7 @@ void* mem_alloc(size_t size){
 
 }
 
+
 int mem_free(void* address){
     __asm__ volatile ("mv a1,%0" : : "r" (address));
     __asm__ volatile("li a0, 0x2");
