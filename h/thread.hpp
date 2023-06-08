@@ -42,7 +42,7 @@ public:
 
     using func = void (*)(void*);
 
-    static int create( thread**, func, void*, void*, bool = false);
+    static int create( thread**, func, void*, void*, bool);
 
     static int exit();
 

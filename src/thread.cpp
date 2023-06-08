@@ -107,7 +107,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->joinHead = nullptr;
     newThread->joinTail = nullptr;
     *handle = newThread;
-    if(isCPP)
+    if(!isCPP)
         Scheduler::put(newThread);
     if(start_routine == nullptr)
         newThread->context.pc = 0;
