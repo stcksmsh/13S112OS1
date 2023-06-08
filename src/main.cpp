@@ -15,12 +15,12 @@ void main(){
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
-    thread::running = Scheduler::get(); // the nullptr nullptr one ---/
+    thread::running = Scheduler::get(); // the nullptr nullptr one ---/2
     thread_create(&handle, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty()){
             thread_dispatch();
         }
     }
-    while(!threadSleepHandler::isEmpty());
+    while(!threadSleepHandler::isEmpty() && !Scheduler::isEmpty());
 }
