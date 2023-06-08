@@ -1,7 +1,7 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.hpp"
 
-sem_t semaphore;
+// sem_t semaphore;
 
 void bullshit(void* arg){
     putc(' ');
@@ -16,8 +16,7 @@ void bullshit(void* arg){
     putc('t');
     putc('!');
     putc('\n');
-    sem_signal(semaphore);
-    return;
+    // sem_signal(semaphore);
     // putc('X');
     // thread_sleep(1000);
     // putc('X');
@@ -27,7 +26,7 @@ void bullshit(void* arg){
 void usermain(){
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
-    sem_open(&semaphore, 0);
+    // sem_open(&semaphore, 0);
     putc('H');
     putc('e');
     putc('l');
