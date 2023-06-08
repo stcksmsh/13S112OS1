@@ -1,5 +1,6 @@
 #include "../h/syscall_c.hpp"
 #include "../h/usermain.hpp"
+#include "../h/thread.hpp"
 
 sem_t semaphore;
 
@@ -26,6 +27,7 @@ void bullshit(void* arg){
 void usermain(){
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
+    if(handle->joinHead == nullptr)__putc('n');
     sem_open(&semaphore, 0);
     putc('H');
     putc('e');
