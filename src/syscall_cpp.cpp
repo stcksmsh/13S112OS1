@@ -1,0 +1,110 @@
+#include "../h/syscal_cpp.hpp"
+
+void *  ::operator new(size_t size){
+    size = (size + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
+    __asm__ volatile("li a0, 0x1"); /// syscall code
+    __asm__ volatile ("mv a1,%0" : : "r" (size)); /// size in blocks
+    __asm__ volatile ("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r" (returnValue)); /// get address
+    return (void*) returnValue;
+}
+
+
+void ::operator delete(void* address){
+    __asm__ volatile ("mv a1,%0" : : "r" (address));
+    __asm__ volatile("li a0, 0x2");
+    __asm__ volatile ("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+}
+
+Thread::Thread(void ( * body)(void * ), void *  arg) {
+    void* arguments=arg;
+    __asm__ volatile("mv a3,%0" : : "r" (arguments));
+    __asm__ volatile("mv a2,%0" : : "r" (body));
+    __asm__ volatile("mv a1,%0" : : "r" (&myHandle));
+    __asm__ volatile("li a0,0x11");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+}
+
+
+int Thread::sleep(time_t duration){
+    __asm__ volatile("li a0, 0x31");
+    __asm__ volatile("mv a1, %0" : : "r"(duration));
+    __asm__ volatile("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r"(returnValue));
+    return (int)returnValue;
+}
+
+
+
+void Thread::dispatch() {
+    ///the PC to return to is currently in ra, and will stay there during the syscall, as ecall puts pc into sepc and not ra
+    __asm__ volatile("li a0,0x13");
+    __asm__ volatile("ecall");
+}
+
+
+void Thread::join(){
+    __asm__ volatile("li a0, 0x14");
+    __asm__ volatile("mv a1, %0" : : "r"((uint64)myHandle));
+    __asm__ volatile("ecall");
+}
+
+
+Semaphore::Semaphore(unsigned init) {
+    unsigned int in=init;
+    __asm__ volatile("mv a2,%[init]"::[init]"r"(in));
+    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(&myHandle));
+    __asm__ volatile("li a0,0x21");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
+}
+
+int sem_close(sem_t handle) {
+    sem_t h=handle;
+    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(h));
+    __asm__ volatile("li a0,0x22");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
+    return returnValue;
+}
+
+int Semaphore::wait() {
+    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(myHandle));
+    __asm__ volatile("li a0,0x23");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
+    return returnValue;
+}
+
+int Semaphore::signal() {
+    __asm__ volatile("mv a1,%[handle]"::[handle]"r"(myHandle));
+    __asm__ volatile("li a0,0x24");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
+    return returnValue;
+}
+
+char Console::getc()
+{
+    __asm__ volatile("li a0,0x41");
+    __asm__ volatile("ecall");
+    int returnValue;
+    __asm__ volatile("mv %[returnValue], a0" : [returnValue]"=r" (returnValue));
+    return returnValue;
+}
+void Console::putc(char c)
+{
+    __asm__ volatile("mv a1,%0"::"r"(c));
+    __asm__ volatile("li a0,0x42");
+    __asm__ volatile("ecall");
+}
