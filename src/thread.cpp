@@ -80,13 +80,16 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
     joinList *node = (joinList*)MemoryAllocator::getInstance().mem_alloc((sizeof(joinList) + MEM_BLOCK_SIZE - 1)/MEM_BLOCK_SIZE);
     node->handle = running;
     node->next = nullptr;
-    if(joinTail == nullptr){
-        joinHead = node;
-        joinTail = node;
-    }else{
-        joinTail->next = node;
-        joinTail = node;
-    }
+    // if(joinTail == nullptr){
+    //     joinHead = node;
+    //     joinTail = node;
+    // }else{
+    //     joinTail->next = node;
+    //     joinTail = node;
+    // }
+    joinHead = node;
+    joinTail = node;
+
     running->blocked = true;
     dispatch();
 }
@@ -120,17 +123,15 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    // thread::joinList *previous = nullptr;
-    __putc('*');
-    if(running->joinHead == nullptr)__putc('.');
+    thread::joinList *previous = nullptr;
     while(running->joinHead != nullptr){
-        // previous = running->joinHead;
+        previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
-        // MemoryAllocator::getInstance().mem_free(previous);
+        MemoryAllocator::getInstance().mem_free(previous);
     }
-    // MemoryAllocator::getInstance().mem_free(running->stack_space);
+    MemoryAllocator::getInstance().mem_free(running->stack_space);
     dispatch();
     return 0;
 }
