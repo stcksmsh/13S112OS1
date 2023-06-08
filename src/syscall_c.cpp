@@ -22,7 +22,6 @@ int mem_free(void* address){
 }
 
 int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
-    __asm__ volatile("li a4, 0");
     void* arguments=arg;
     __asm__ volatile("mv a3,%0" : : "r" (arguments));
     void(*sr)(void*)=start_routine;
