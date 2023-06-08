@@ -23,4 +23,10 @@ void main(){
         }
     }
     while(!threadSleepHandler::isEmpty() && !Scheduler::isEmpty());
+    putc('\n');
+    putc('E');
+    putc('n');
+    putc('d');
+    putc('.');
+    putc('\n');
 }
