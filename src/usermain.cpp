@@ -19,7 +19,7 @@ void bullshit(void* arg){
     putc('\n');
     sem_signal(semaphore);
     putc('X');
-    thread_sleep(20);
+    // thread_sleep(20);
     putc('X');
 }
 
@@ -27,7 +27,6 @@ void bullshit(void* arg){
 void usermain(){
     thread_t handle;
     thread_create(&handle, bullshit, nullptr);
-    if(handle->joinHead == nullptr)__putc('n');
     sem_open(&semaphore, 0);
     putc('H');
     putc('e');
