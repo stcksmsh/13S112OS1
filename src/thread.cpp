@@ -120,11 +120,11 @@ void thread::wrapper(){
 
 int thread::exit(){
     running->finished = true;
-    thread::joinList *previous = nullptr;
+    // thread::joinList *previous = nullptr;
     __putc('*');
     if(running->joinHead == nullptr)__putc('.');
     while(running->joinHead != nullptr){
-        previous = running->joinHead;
+        // previous = running->joinHead;
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
