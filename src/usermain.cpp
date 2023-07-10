@@ -13,12 +13,14 @@ void usermain(){
     }
     putc('3');
     putc('\n');
-
+    int cnt = 0;
     for(int i = 0; i < 10000; i ++){
-        putc('0' + arr[i]%10);
-        putc(' ');
+        if(arr[i] == i)cnt ++;
     }
-    putc('4');
+    while(cnt > 0){
+        putc('0' + cnt%10);
+        cnt /= 10;
+    }
     putc('\n');
 
 }
