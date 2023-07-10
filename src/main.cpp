@@ -2,12 +2,14 @@
 #include "../h/thread.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/usermain.hpp"
+#include "../h/userMain.hpp"
 #include "../lib/console.h"
 #include "../h/console.hpp"
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
-    usermain();
+    // usermain();
+    userMain();
 }
 
 void main(){
