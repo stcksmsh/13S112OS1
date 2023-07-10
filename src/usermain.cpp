@@ -8,11 +8,13 @@ void usermain(){
     putc('\n');
     for(int i = 0; i < 100; i ++){
         putc('2');
-        putc('\n');
+        putc(' ');
         arr[i] = (int*)mem_alloc(sizeof(int) * 100);
         for(int j = 0; j < 100; j ++){
             arr[i][j] = i*100+j;
         }
+        putc('2');
+        putc('\n');
     }
     putc('3');
     putc('\n');
