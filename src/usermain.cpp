@@ -4,8 +4,8 @@
 
 void usermain(){
     int **arr;
+    putc('1');
     arr = (int**)mem_alloc(sizeof(int*) * 100);
-    // putc('1');
     // putc('\n');
     for(int i = 0; i < 100; i ++){
         putc('2');
