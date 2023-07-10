@@ -8,7 +8,7 @@ void usermain(){
     // putc('1');
     // putc('\n');
     for(int i = 0; i < 100; i ++){
-        // putc('2');
+        putc('2');
         arr[i] = (int*)mem_alloc(sizeof(int) * 100);
         for(int j = 0; j < 100 ; j++){
             arr[i][j] = 100*i + j;
