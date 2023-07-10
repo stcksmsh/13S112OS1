@@ -3,10 +3,10 @@
 
 void usermain(){
     int *arr;
-    arr = (int*)mem_alloc(sizeof(int) * 1000);
+    arr = (int*)mem_alloc(sizeof(int) * 10000);
     putc('1');
     putc('\n');
-    for(int i = 0; i < 1000; i ++){
+    for(int i = 0; i < 10000; i ++){
         putc('2');
         arr[i] = i;
         putc('\n');
@@ -14,7 +14,7 @@ void usermain(){
     putc('3');
     putc('\n');
 
-    for(int i = 0; i < 100; i ++){
+    for(int i = 0; i < 10000; i ++){
         putc('0' + arr[i]%10);
         putc(' ');
     }
