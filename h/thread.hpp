@@ -3,7 +3,7 @@
 
 #include "memoryAllocator.hpp"
 #include "scheduler.hpp"
-#include "syscall_c.hpp"
+#include "syscall_c.h"
 
 class threadSleepHandler{
     time_t time = 0;

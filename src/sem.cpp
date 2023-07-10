@@ -1,5 +1,5 @@
 #include "../h/sem.hpp"
-#include "../h/syscall_c.hpp"
+#include "../h/syscall_c.h"
 
 
 void sem::sem_open(sem_t* handle, unsigned init){

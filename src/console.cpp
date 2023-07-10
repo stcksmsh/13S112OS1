@@ -1,5 +1,5 @@
 #include "../h/console.hpp"
-#include "../h/syscall_c.hpp"
+#include "../h/syscall_c.h"
 
 char Console::read(){
     Console *c = getIntance();

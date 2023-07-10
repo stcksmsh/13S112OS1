@@ -1,4 +1,4 @@
-#include "../h/syscall_c.hpp"
+#include "../h/syscall_c.h"
 #include "../h/thread.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/usermain.hpp"

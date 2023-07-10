@@ -1,7 +1,7 @@
 #ifndef CONSOLEHEADERFILE
 #define CONSOLEHEADERFILE
 
-#include "syscall_c.hpp"
+#include "syscall_c.h"
 #include "memoryAllocator.hpp"
 
 #define BUFFER_SIZE 100
