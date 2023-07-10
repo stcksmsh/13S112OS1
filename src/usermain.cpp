@@ -1,63 +1,21 @@
 #include "../h/syscall_c.h"
 #include "../h/usermain.hpp"
-#include "../h/thread.hpp"
-
-sem_t semaphore;
-
-void bullshit(void* arg){
-    putc(' ');
-    putc(' ');
-    putc('B');
-    putc('u');
-    putc('l');
-    putc('l');
-    putc('s');
-    putc('h');
-    putc('i');
-    putc('t');
-    putc('!');
-    putc('\n');
-    sem_signal(semaphore);
-    putc('X');
-    // thread_sleep(20);
-    putc('X');
-}
-
 
 void usermain(){
-    thread_t handle;
-    thread_create(&handle, bullshit, nullptr);
-    sem_open(&semaphore, 0);
-    putc('H');
-    putc('e');
-    putc('l');
-    putc('l');
-    putc('o');
-    putc(' ');
-    putc('w');
-    putc('o');
-    putc('r');
-    putc('l');
-    putc('d');
-    putc('!');
-    putc('\n');
-    // thread_sleep(50);
-    thread_join(handle);
-    // sem_wait(semaphore);
-    // thread_dispatch();
-    putc('H');
-    putc('o');
-    putc('w');
-    putc(' ');
-    putc('d');
-    putc('a');
-    putc('r');
-    putc('e');
-    putc(' ');
-    putc('y');
-    putc('o');
-    putc('u');
-    putc('!');
-    putc('?');
-    putc('\n');
+    int **arr;
+    arr = (int**)mem_alloc(sizeof(int*) * 100);
+    for(int i = 0; i < 100; i ++){
+        arr[i] = (int*)mem_alloc(sizeof(int) * 100);
+        for(int j = 0; j < 100; j ++){
+            arr[i][j] = i*100+j;
+        }
+    }
+
+    for(int i = 0; i < 100; i ++){
+        for(int j = 0; j < 100; j ++){
+            putc('0' + arr[i][j]%10);
+        }
+        putc('\n');
+    }
+
 }
