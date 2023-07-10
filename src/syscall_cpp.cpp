@@ -1,4 +1,4 @@
-#include "../h/syscal_cpp.hpp"
+#include "../h/syscall_cpp.hpp"
 #include "../h/scheduler.hpp"
 
 void *  operator new(size_t size){
