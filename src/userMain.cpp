@@ -26,7 +26,7 @@
 #include "../test/ThreadSleep_C_API_test.hpp"
 // TEST 6 (zadatak 4. CPP API i asinhrona promena konteksta)
 #include "../test/ConsumerProducer_CPP_API_test.hpp"
-#include "../h/System_Mode_test.hpp".hpp"
+#include "../h/System_Mode_test.hpp"
 
 #endif
 
