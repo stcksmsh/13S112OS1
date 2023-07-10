@@ -8,8 +8,10 @@
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
-    // usermain();
-    userMain();
+    // private tests
+    usermain();
+    // public tests
+    // userMain();
 }
 
 void main(){
