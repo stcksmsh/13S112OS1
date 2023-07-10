@@ -1,5 +1,6 @@
 #include "../h/syscall_c.h"
 #include "../h/usermain.hpp"
+#include "../h/memoryAllocator.hpp"
 
 void usermain(){
     int **arr;
@@ -12,7 +13,12 @@ void usermain(){
         for(int j = 0; j < 100 ; j++){
             arr[i][j] = 100*i + j;
         }
-        // putc('\n');
+        int sgmntcnt = MemoryAllocator::getInstance().numberOfSegments();
+        while(sgmntcnt > 0){
+            putc('0' + sgmntcnt%10);
+            sgmntcnt/=10;
+        }
+        putc('\n');
     }
     // putc('3');
     // putc('\n');

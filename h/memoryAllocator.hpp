@@ -25,7 +25,7 @@ private:
     /// @brief deleted copy assignment operator to avoid singleton instance copies
     MemoryAllocator& operator=( MemoryAllocator const& ) = delete;
     /// @brief head of the doubly linked list described above
-    FreeMemorySegment *head = (FreeMemorySegment*)HEAP_END_ADDR + 1;
+    FreeMemorySegment *head = nullptr;
     /// @brief attempts to merge two successive segments
     /// @param FreeMemorySegment* the segment to attempt to merge with the next
     void attemptMerge( FreeMemorySegment* );
@@ -38,6 +38,8 @@ public:
     /// @param  void* the return value of MemoryAllocator::mem_alloc
     /// @return 0 if successful, and an error code if not
     int mem_free( void* );
+
+    int numberOfSegments();
 
 };
 

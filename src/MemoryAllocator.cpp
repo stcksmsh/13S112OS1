@@ -2,19 +2,59 @@
 #include "../lib/console.h"
 
 void *MemoryAllocator::mem_alloc( size_t size ){
-    /* 
-        adds one block to store size of allocated memory, so that it can be used by the MemoryAllocator:free function
-        this data is stored in a FreeMemorySegment object for convenience sake
-    */
-    size ++; 
     /// creates it only on first call of the function, thus the head can only be initialised once
-    if(head >(FreeMemorySegment*)HEAP_END_ADDR){
+    if(head == nullptr){
         head = (FreeMemorySegment*)((uint64)HEAP_START_ADDR);
         head->prevSegment = nullptr;
         head->nextSegment = nullptr;
         head->segmentSize = ((size_t)( (uint64)HEAP_END_ADDR - (uint64)HEAP_START_ADDR ) - sizeof(MemoryAllocator) ) / MEM_BLOCK_SIZE;
     }
-    void* returnValue = nullptr;
+    FreeMemorySegment* freeSegment = head;
+    /// search for segment with enough space
+    while(freeSegment != nullptr && freeSegment->segmentSize < size)freeSegment = freeSegment->nextSegment;
+    /// not enough space found, cant allocate
+    if(freeSegment == nullptr || freeSegment->segmentSize < size)return nullptr;
+
+    /// in case of perfect fit
+    if(freeSegment->segmentSize == size){
+        if(freeSegment->prevSegment != nullptr){
+            freeSegment->prevSegment->nextSegment = freeSegment->nextSegment;
+        }else{
+            head = freeSegment->nextSegment;
+        }
+
+        if(freeSegment->nextSegment != nullptr){
+            freeSegment->nextSegment->prevSegment = freeSegment->prevSegment;
+        }
+
+        return (void*)freeSegment;
+    }
+
+    /// not a perfect fit, must merge the remaining memory with the previous / following segment
+    FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)freeSegment + size + 1);
+    newSegment->segmentSize = freeSegment->segmentSize - size;
+    newSegment->prevSegment = freeSegment->prevSegment;
+    newSegment->nextSegment = freeSegment->nextSegment;
+    
+    if(newSegment->nextSegment != nullptr){
+        newSegment->nextSegment->prevSegment = newSegment;
+        /// attempts to merge newSegments and the one after it
+        attemptMerge(newSegment);
+    }
+
+    if(newSegment->prevSegment != nullptr){
+        newSegment->prevSegment->nextSegment = newSegment;
+        attemptMerge(newSegment->prevSegment);
+    }else{
+        head = newSegment;
+    }
+    
+    freeSegment->segmentSize = size;
+
+    return (void*)freeSegment;
+
+    /// end of new code
+    void * returnValue = nullptr;
     for(FreeMemorySegment* currentSegment = head; currentSegment != nullptr; currentSegment = currentSegment->nextSegment){
         /// not enough space, skip to the next one
         if(currentSegment->segmentSize < size)
@@ -88,16 +128,29 @@ void MemoryAllocator::attemptMerge( FreeMemorySegment *segment ) {
     if(segment->nextSegment) segment->nextSegment->prevSegment = segment;
 }
 
+int MemoryAllocator::numberOfSegments(){
+    int count = 0;
+    FreeMemorySegment *segment = head;
+    while(segment){
+        count ++;
+        segment = segment->nextSegment;
+    }
+    return count;
+}
+
 int MemoryAllocator::mem_free( void *address ) {
     /// if the given address is outside the allowed range, return -1 indicating an error
     if((uint64)address >= (uint64)HEAP_END_ADDR || (uint64)address < (uint64)HEAP_START_ADDR)
         return -1;
     /// searches for a FreeMemorySegment directly preceding the given address
     FreeMemorySegment* previousSegment = nullptr;
-    if(head)
-        for(previousSegment = head; previousSegment->nextSegment != nullptr && (uint64)previousSegment->nextSegment < (uint64)address; previousSegment = previousSegment->nextSegment);
-    
-    /// creates the new segment at the exact location the FreeMemSegment was left after mem_alloc, meaning the size is still in the segment
+    if(head && head->nextSegment < address){
+        previousSegment = head;
+        while(previousSegment->nextSegment != nullptr && previousSegment->nextSegment < address)
+            previousSegment = previousSegment->nextSegment;
+    }
+
+    /// creates the new segment at the exact location the FreeMemorySegment sturct was left during the mem_alloc
     FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)address - MEM_BLOCK_SIZE);
     /*
         previousSegment will remain nullptr if, and only if: 
