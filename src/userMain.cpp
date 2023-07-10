@@ -1,4 +1,4 @@
-#include "../h/printing.hpp".hpp"
+#include "../h/printing.hpp"
 
 #define LEVEL_1_IMPLEMENTED 0
 #define LEVEL_2_IMPLEMENTED 1
