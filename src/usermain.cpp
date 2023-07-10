@@ -2,25 +2,30 @@
 #include "../h/usermain.hpp"
 
 void usermain(){
-    int *arr;
-    arr = (int*)mem_alloc(sizeof(int) * 10000);
-    putc('1');
-    putc('\n');
-    for(int i = 0; i < 10000; i ++){
-        putc('2');
-        arr[i] = i;
-        putc('\n');
+    int **arr;
+    arr = (int**)mem_alloc(sizeof(int*) * 100);
+    // putc('1');
+    // putc('\n');
+    for(int i = 0; i < 100; i ++){
+        // putc('2');
+        arr[i] = (int*)mem_alloc(sizeof(int) * 100);
+        for(int j = 0; j < 100 ; j++){
+            arr[i][j] = 100*i + j;
+        }
+        // putc('\n');
     }
-    putc('3');
-    putc('\n');
+    // putc('3');
+    // putc('\n');
     int cnt = 0;
-    for(int i = 0; i < 10000; i ++){
-        if(arr[i] == i)cnt ++;
+    for(int i = 0; i < 100; i ++){
+        for(int j = 0; j < 100; j ++){
+            if(arr[i][j] == 100*i+j)cnt++;
+        }
     }
     while(cnt > 0){
         putc('0' + cnt%10);
         cnt /= 10;
     }
-    putc('\n');
+    // putc('\n');
 
 }
