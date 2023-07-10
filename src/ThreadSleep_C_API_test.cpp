@@ -12,7 +12,7 @@ static void sleepyRun(void *arg) {
         printString("Hello ");
         printInt(sleep_time);
         printString(" !\n");
-        time_sleep(sleep_time);
+        thread_sleep(sleep_time);
     }
     finished[sleep_time/10-1] = true;
 }
