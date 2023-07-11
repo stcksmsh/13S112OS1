@@ -4,7 +4,7 @@
 
 void usermain(){
     int **arr;
-    int size = 10;
+    int size = 100;
     putc('1');
     putc('\n');
     arr = (int**)mem_alloc(sizeof(int*) * size);
