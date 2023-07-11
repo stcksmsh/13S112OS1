@@ -3,7 +3,9 @@
 
 void *MemoryAllocator::mem_alloc( size_t size ){
     /// creates it only on first call of the function, thus the head can only be initialised once
-    if(head == nullptr){
+    static bool headInitialised = false;
+    if(!headInitialised){
+        headInitialised = true;
         head = (FreeMemorySegment*)((uint64)HEAP_START_ADDR);
         head->prevSegment = nullptr;
         head->nextSegment = nullptr;
@@ -14,22 +16,13 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     while(freeSegment != nullptr && freeSegment->segmentSize < size)freeSegment = freeSegment->nextSegment;
     /// not enough space found, cant allocate
     if(freeSegment == nullptr || freeSegment->segmentSize < size)return nullptr;
-
     /// in case of perfect fit
     if(freeSegment->segmentSize == size){
-        if(freeSegment->prevSegment != nullptr){
-            freeSegment->prevSegment->nextSegment = freeSegment->nextSegment;
-        }else{
-            head = freeSegment->nextSegment;
-        }
-
-        if(freeSegment->nextSegment != nullptr){
-            freeSegment->nextSegment->prevSegment = freeSegment->prevSegment;
-        }
-
+        if(freeSegment->prevSegment) freeSegment->prevSegment->nextSegment = freeSegment->nextSegment;
+        else head = freeSegment->nextSegment;
+        if(freeSegment->nextSegment != nullptr) freeSegment->nextSegment->prevSegment = freeSegment->prevSegment;
         return (void*)freeSegment;
     }
-
     /// not a perfect fit, must merge the remaining memory with the previous / following segment
     FreeMemorySegment* newSegment = (FreeMemorySegment*)((uint64)freeSegment + size + 1);
     newSegment->segmentSize = freeSegment->segmentSize - size;
@@ -41,18 +34,10 @@ void *MemoryAllocator::mem_alloc( size_t size ){
         /// attempts to merge newSegments and the one after it
         attemptMerge(newSegment);
     }
-
-    if(newSegment->prevSegment != nullptr){
-        newSegment->prevSegment->nextSegment = newSegment;
-        attemptMerge(newSegment->prevSegment);
-    }else{
-        head = newSegment;
-    }
-    
+    if(newSegment->prevSegment != nullptr)  newSegment->prevSegment->nextSegment = newSegment;
+    else head = newSegment;
     freeSegment->segmentSize = size;
-
     return (void*)((uint64)freeSegment + MEM_BLOCK_SIZE);
-
 }
 
 MemoryAllocator& MemoryAllocator::getInstance() {
