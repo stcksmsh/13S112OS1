@@ -37,7 +37,7 @@ static void workerBodyB(void* arg) {
     }
     printString("B finished!\n");
     finishedB = true;
-    thread_exit();
+    thread_dispatch();
 }
 
 static void workerBodyC(void* arg) {
@@ -64,7 +64,7 @@ static void workerBodyC(void* arg) {
 
     printString("A finished!\n");
     finishedC = true;
-    thread_exit();
+    thread_dispatch();
 }
 
 static void workerBodyD(void* arg) {
@@ -86,7 +86,7 @@ static void workerBodyD(void* arg) {
 
     printString("D finished!\n");
     finishedD = true;
-    thread_exit();
+    thread_dispatch();
 }
 
 
