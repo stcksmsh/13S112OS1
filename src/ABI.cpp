@@ -1,5 +1,5 @@
 #include "../lib/console.h"
-#include "../h/console.hpp"
+// #include "../h/console.hpp"
 #include "../h/ABI.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/thread.hpp"
