@@ -1,7 +1,7 @@
 #ifndef SCHEDULERHEADERFILE
 #define SCHEDULERHEADERFILE
 
-#include "memoryAllocator.hpp"
+#include "../h/syscall_c.h"
 
 class thread;
 typedef thread* thread_t;
