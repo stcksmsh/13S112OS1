@@ -27,6 +27,5 @@ void main(){
     thread_create(&handle, usermainWrapper, nullptr);
     while(!Scheduler::isEmpty() || !threadSleepHandler::isEmpty()){
         thread_dispatch();
-        putc('4');
     }
 }
