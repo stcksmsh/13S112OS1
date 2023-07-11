@@ -28,6 +28,7 @@ public:
 
 class thread{
     friend class threadSleepHandler;
+    friend class Scheduler;
 public:
     /// @brief total time the kernel has been running for (in timer units)
     struct joinList{
@@ -74,6 +75,7 @@ private:
         uint64 s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11;///general purpose registers
     };
 
+    func body;
     time_t timeLeftToRun;
     bool closed;
     bool blocked;

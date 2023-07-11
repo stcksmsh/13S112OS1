@@ -29,5 +29,5 @@ thread_t Scheduler::get(){
 }
 
 bool Scheduler::isEmpty(){
-    return head==nullptr;
+    return head==nullptr || head->thread->body == nullptr;
 }

@@ -108,6 +108,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->finished = false;
     newThread->sleeping =false;
     newThread->context.pc = (uint64)wrapper;
+    newThread->body = start_routine;
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     newThread->joinHead = nullptr;
     newThread->joinTail = nullptr;
