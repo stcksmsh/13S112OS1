@@ -9,9 +9,9 @@ extern "C" void trap();
 
 void usermainWrapper(void* arg){
     // private tests
-    usermain();
+    // usermain();
     // public tests
-    // userMain();
+    userMain();
 }
 
 void main(){
@@ -25,7 +25,7 @@ void main(){
     thread_create(&handle, nullptr, nullptr);// <----------------------7
     thread::running = handle; // the nullptr nullptr one ---/2
     thread_create(&handle, usermainWrapper, nullptr);
-    while(!Scheduler::isEmpty()){
+    while(!Scheduler::isEmpty() || !threadSleepHandler::isEmpty()){
         thread_dispatch();
         putc('4');
     }
