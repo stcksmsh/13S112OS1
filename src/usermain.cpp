@@ -14,9 +14,11 @@ void segPrint(){
 void usermain(){
     int **arr;
     arr = (int**)mem_alloc(sizeof(int*) * 100);
-    // putc('1');
-    // putc('\n');
+    putc('1');
+    putc('\n');
     segPrint();
+    putc('1');
+    putc('\n');
     for(int i = 0; i < 100; i ++){
         putc('2');
         arr[i] = (int*)mem_alloc(sizeof(int) * 100);
@@ -25,8 +27,8 @@ void usermain(){
             arr[i][j] = 100*i + j;
         }
     }
-    // putc('3');
-    // putc('\n');
+    putc('3');
+    putc('\n');
     int cnt = 0;
     for(int i = 0; i < 100; i ++){
         for(int j = 0; j < 100; j ++){
