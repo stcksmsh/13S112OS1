@@ -2,15 +2,6 @@
 #include "../h/usermain.hpp"
 #include "../h/memoryAllocator.hpp"
 
-void segPrint(){
-    int sgmntcnt = MemoryAllocator::getInstance().numberOfSegments();
-    while(sgmntcnt > 0){
-        putc('0' + sgmntcnt%10);
-        sgmntcnt/=10;
-    }
-    putc('\n');
-}
-
 void usermain(){
     int **arr;
     int size = 10;
