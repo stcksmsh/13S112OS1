@@ -17,8 +17,8 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
-    usermain();
-    return;
+    // usermain();
+    // return;
     putc('0');
     putc('\n');
     thread_t handle;
