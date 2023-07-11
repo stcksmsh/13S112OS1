@@ -21,8 +21,10 @@ void usermain(){
     putc('\n');
     for(int i = 0; i < size; i ++){
         putc('2');
+        putc('\n');
         arr[i] = (int*)mem_alloc(sizeof(int) * size);
-        segPrint();
+        putc('2');
+        putc('\n');
         for(int j = 0; j < size ; j++){
             arr[i][j] = size*i + j;
         }
