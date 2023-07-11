@@ -14,9 +14,9 @@ void segPrint(){
 void usermain(){
     int **arr;
     int size = 10;
-    arr = (int**)mem_alloc(sizeof(int*) * size);
     putc('1');
     putc('\n');
+    arr = (int**)mem_alloc(sizeof(int*) * size);
     putc('1');
     putc('\n');
     for(int i = 0; i < size; i ++){
