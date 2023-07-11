@@ -23,11 +23,8 @@ void *MemoryAllocator::mem_alloc( size_t size ){
     newSegment->prevSegment = freeSegment->prevSegment;
     newSegment->nextSegment = freeSegment->nextSegment;
     
-    if(newSegment->nextSegment != nullptr){
-        newSegment->nextSegment->prevSegment = newSegment;
-        attemptMerge(newSegment);
-    }
-    if(newSegment->prevSegment != nullptr)  newSegment->prevSegment->nextSegment = newSegment;
+    if(newSegment->nextSegment != nullptr) newSegment->nextSegment->prevSegment = newSegment;
+    if(newSegment->prevSegment != nullptr) newSegment->prevSegment->nextSegment = newSegment;
     else head = newSegment;
     freeSegment->segmentSize = size;
     return (void*)((uint64)freeSegment + MEM_BLOCK_SIZE);
