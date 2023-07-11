@@ -3,11 +3,7 @@
 
 #include "memoryAllocator.hpp"
 
-class thread{
-    friend class Scheduler;
-private:
-    void (*body)(void*);
-};
+class thread;
 typedef thread* thread_t;
 
 
