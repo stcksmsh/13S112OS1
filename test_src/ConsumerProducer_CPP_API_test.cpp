@@ -1,7 +1,7 @@
 #include "../h/syscall_cpp.hpp"
 
-#include "../h/buffer_CPP_API.hpp"
-#include "../h/printing.hpp"
+#include "../test_h/buffer_CPP_API.hpp"
+#include "../test_h/printing.hpp"
 
 static Semaphore *waitForAll;
 
