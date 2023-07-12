@@ -19,7 +19,7 @@ void main(){
     changeUser();
     thread_t handle;
     thread_create(&handle, nullptr, nullptr);// <----------------------7
-    thread::running = handle; // the nullptr nullptr one ---/2
+    thread::running = Scheduler::get(); // the nullptr nullptr one ---/2
     thread_create(&handle, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty()){
