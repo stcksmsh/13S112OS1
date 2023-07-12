@@ -11,7 +11,7 @@ void thread_test_1(void* args){
 }
 void thread_test_2(void* args){
     putc('2');
-    for(unsigned long long i = 0;i < 1000000000; i ++){
+    for(unsigned long long i = 0;i < 10000000000; i ++){
         i += 1;
         i -= 1;
         i += 1;
