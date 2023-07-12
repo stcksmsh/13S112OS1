@@ -27,7 +27,8 @@ void main(){
             putc('.');
             thread_dispatch();
         }
-    }while(!Scheduler::isEmpty()  || !threadSleepHandler::isEmpty());
+
+    }while(!Scheduler::isEmpty()  || !threadSleepHandler::allAwake());
     putc('\n');
     putc('E');
     putc('n');

@@ -15,9 +15,9 @@ class threadSleepHandler{
 
 public:
 
-    static void increment();
+    static void timeIncrement();
 
-    static bool isEmpty();
+    static bool allAwake();
 
     static threadSleepHandler *getInstance();
 

@@ -10,7 +10,7 @@ threadSleepHandler * threadSleepHandler::getInstance(){
     return &instance;
 }
 
-bool threadSleepHandler::isEmpty(){
+bool threadSleepHandler::allAwake(){
     return (threadSleepHandler::getInstance()->sleepHead!=nullptr);
 }
 
@@ -34,7 +34,7 @@ int threadSleepHandler::sleep(time_t duration){
     return 0;
 }
 
-void threadSleepHandler::increment(){
+void threadSleepHandler::timeIncrement(){
     getInstance()->time ++;
 }
 
