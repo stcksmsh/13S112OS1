@@ -10,8 +10,8 @@ void thread_test_1(void* args){
 }
 void thread_test_2(void* args){
     putc('2');
-    for(int i = 0;i < 100000000; i ++){
-        if(i % 10000000 == 0) putc('_');
+    for(int i = 0;i < 1000000000; i ++){
+        if(i % 100000000 == 0) putc('_');
     } /// busy waitgi
     // thread_sleep(1000);
     sem_signal(sem2);
