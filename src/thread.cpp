@@ -44,12 +44,12 @@ void threadSleepHandler::wake(){
         Scheduler::put(getInstance()->sleepHead->handle);
         sleepList *node = getInstance()->sleepHead;
         getInstance()->sleepHead = getInstance()->sleepHead->next;
-        MemoryAllocator::getInstance().mem_free(node);
+        mem_free(node);
     }
 }
 
 thread::~thread(){
-    MemoryAllocator::getInstance().mem_free(stack_space);
+    mem_free(stack_space);
 }
 
 void thread::setBlocked(bool blocked){
@@ -129,9 +129,9 @@ int thread::exit(){
         running->joinHead->handle->blocked = false;
         running->joinHead = running->joinHead->next;
         Scheduler::put(running->joinHead->handle);
-        MemoryAllocator::getInstance().mem_free(previous);
+        mem_free(previous);
     }
-    MemoryAllocator::getInstance().mem_free(running->stack_space);
+    mem_free(running->stack_space);
     dispatch();
     return 0;
 }
