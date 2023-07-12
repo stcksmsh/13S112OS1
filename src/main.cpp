@@ -21,7 +21,16 @@ void main(){
     thread_create(&handle, nullptr, nullptr);// <----------------------7
     thread::running = handle; // the nullptr nullptr one ---/2
     thread_create(&handle, usermainWrapper, nullptr);
-    while(!Scheduler::isEmpty() || !threadSleepHandler::isEmpty()){
-        thread_dispatch();
-    }
+    do{
+        while(!Scheduler::isEmpty()){
+            thread_dispatch();
+        }
+    }while(!Scheduler::isEmpty()  || !threadSleepHandler::isEmpty());
+    putc('\n');
+    putc('E');
+    putc('n');
+    putc('d');
+    putc('.');
+    putc('.');
+    putc('.');
 }
