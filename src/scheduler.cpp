@@ -8,11 +8,11 @@ void Scheduler::put(thread_t thread){
         head = tail = (Element*)mem_alloc(sizeof(Element));
         head->next = nullptr;
         head->thread = thread;
-        return;
+    }else{
+        tail = tail->next = (Element*)mem_alloc(sizeof(Element));
+        tail->next = nullptr;
+        tail->thread = thread;
     }
-    tail = tail->next = (Element*)mem_alloc(sizeof(Element));
-    tail->next = nullptr;
-    tail->thread = thread;
 }
 
 thread_t Scheduler::get(){
@@ -26,5 +26,5 @@ thread_t Scheduler::get(){
 }
 
 bool Scheduler::isEmpty(){
-    return head==nullptr || head->next == nullptr;
+    return head==nullptr;
 }
