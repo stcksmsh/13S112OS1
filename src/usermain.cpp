@@ -2,37 +2,25 @@
 #include "../h/usermain.hpp"
 #include "../h/memoryAllocator.hpp"
 
-void usermain(){
-    int **arr;
-    int size = 10;
-    putc('1');
-    putc('\n');
-    arr = (int**)mem_alloc(sizeof(int*) * size);
-    arr[1] = (int*)mem_alloc(sizeof(int) * size);
-    putc('1');
-    putc('\n');
-    for(int i = 0; i < size; i ++){
-        putc('2');
-        putc('\n');
-        arr[i] = (int*)mem_alloc(sizeof(int) * size);
-        putc('2');
-        putc('\n');
-        for(int j = 0; j < size ; j++){
-            arr[i][j] = size*i + j;
-        }
-    }
-    putc('3');
-    putc('\n');
-    int cnt = 0;
-    for(int i = 0; i < size; i ++){
-        for(int j = 0; j < size; j ++){
-            if(arr[i][j] == size*i+j)cnt++;
-        }
-    }
-    while(cnt > 0){
-        putc('0' + cnt%10);
-        cnt /= 10;
-    }
-    // putc('\n');
+sem_t sem1, sem2;
 
+void thread_test_1(void* args){
+    putc('1');
+    sem_signal(sem1);
+}
+void thread_test_2(void* args){
+    putc('2');
+    sem_signal(sem2);
+}
+
+void usermain(){
+    thread_t t1, t2;
+    putc('0');
+    sem_open(&sem1, 0);
+    sem_open(&sem2, 0);
+    thread_create(&t1, thread_test_1, nullptr);
+    thread_create(&t2, thread_test_2, nullptr);
+    sem_wait(sem1);
+    sem_wait(sem2);
+    putc('3');
 }
