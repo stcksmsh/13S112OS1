@@ -23,6 +23,7 @@ void main(){
     thread_create(&handle, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty()){
+            putc('.');
             thread_dispatch();
         }
     }while(!Scheduler::isEmpty()  || !threadSleepHandler::isEmpty());
