@@ -42,9 +42,9 @@ void threadSleepHandler::wake(){
     while(getInstance()->sleepHead != nullptr && (getInstance()->sleepHead)->wakeTime >= getInstance()->time){
         getInstance()->sleepHead->handle->sleeping = false;
         Scheduler::put(getInstance()->sleepHead->handle);
-        // sleepList *node = getInstance()->sleepHead;
+        sleepList *node = getInstance()->sleepHead;
         getInstance()->sleepHead = getInstance()->sleepHead->next;
-        // MemoryAllocator::getInstance().mem_free(node);
+        MemoryAllocator::getInstance().mem_free(node);
     }
 }
 

@@ -6,12 +6,24 @@ sem_t sem1, sem2;
 
 void thread_test_1(void* args){
     putc('1');
-    thread_sleep(500);
+    // thread_sleep(500);
     sem_signal(sem1);
 }
 void thread_test_2(void* args){
     putc('2');
-    thread_sleep(1000);
+    for(int i = 0;i < 1000000; i ++){
+        i += 1;
+        i -= 1;
+        i += 1;
+        i -= 1;
+        i += 1;
+        i -= 1;
+        i += 1;
+        i -= 1;
+        i += 1;
+        i -= 1;
+    } /// busy waitgi
+    // thread_sleep(1000);
     sem_signal(sem2);
 }
 
