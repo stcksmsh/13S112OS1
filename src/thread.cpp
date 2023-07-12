@@ -15,8 +15,7 @@ bool threadSleepHandler::isEmpty(){
 }
 
 int threadSleepHandler::sleep(time_t duration){
-    thread::running->sleeping = true;
-    sleepList *node = (sleepList*)MemoryAllocator::getInstance().mem_alloc((sizeof(sleepList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
     node->wakeTime = getInstance()->time + duration;
     sleepList *insertAfter = getInstance()->sleepHead;
@@ -26,13 +25,11 @@ int threadSleepHandler::sleep(time_t duration){
     if(insertAfter == nullptr){
         getInstance()->sleepHead = node;
         node -> next = nullptr;
-    }else if(insertAfter->next == nullptr){
-        insertAfter->next = node;
-        node->next = nullptr;
     }else{
         node->next = insertAfter->next;
         insertAfter->next = node;
     }
+    thread::running->sleeping = true;
     thread::dispatch();
     return 0;
 }
@@ -43,11 +40,11 @@ void threadSleepHandler::increment(){
 
 void threadSleepHandler::wake(){
     while(getInstance()->sleepHead != nullptr && (getInstance()->sleepHead)->wakeTime >= getInstance()->time){
-        (getInstance()->sleepHead)->handle->sleeping = false;
-        Scheduler::put((getInstance()->sleepHead)->handle);
+        getInstance()->sleepHead->handle->sleeping = false;
+        Scheduler::put(getInstance()->sleepHead->handle);
         sleepList *node = getInstance()->sleepHead;
-        getInstance()->sleepHead = (getInstance()->sleepHead)->next;
-        MemoryAllocator::getInstance().mem_free(node);
+        getInstance()->sleepHead = getInstance()->sleepHead->next;
+        // MemoryAllocator::getInstance().mem_free(node);
     }
 }
 
