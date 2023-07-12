@@ -6,7 +6,7 @@ sem_t sem1, sem2;
 
 void thread_test_1(void* args){
     putc('1');
-    thread_sleep(100);
+    thread_sleep(200);
     putc('x');
     sem_signal(sem1);
 }

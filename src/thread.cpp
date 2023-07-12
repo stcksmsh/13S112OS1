@@ -1,15 +1,7 @@
 #include "../h/thread.hpp"
 #include "../lib/console.h"
 
-extern "C" thread::func UMW;
-
 thread_t thread::running = nullptr;
-
-threadSleepHandler * threadSleepHandler::getInstance(){
-    static threadSleepHandler instance;
-    return &instance;
-}
-
 bool threadSleepHandler::allAwake(){
     return (threadSleepHandler::getInstance()->sleepHead!=nullptr);
 }
@@ -47,7 +39,6 @@ void threadSleepHandler::wake(){
         mem_free(node);
     }
 }
-
 
 thread::~thread(){
     mem_free(stack_space);
