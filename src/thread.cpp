@@ -22,11 +22,15 @@ int threadSleepHandler::sleep(time_t duration){
     node->wakeTime = getInstance().time + duration;
     node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
-    while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
-        insertAfter = insertAfter->next;
-    }
-    if(insertAfter == nullptr) getInstance().sleepHead = node;
-    else{
+    if(insertAfter == nullptr){
+        getInstance().sleepHead = node;
+    }else if(insertAfter->wakeTime >= node->wakeTime){
+        getInstance().sleepHead = node;
+        node->next = insertAfter;
+    }else{
+        while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
+            insertAfter = insertAfter->next;
+        }
         node->next = insertAfter->next;
         insertAfter->next = node;
     }
