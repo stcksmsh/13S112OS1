@@ -33,7 +33,7 @@ void thread_test_1(void* args){
 }
 void thread_test_2(void* args){
     putc('2');
-    for(int i = 0;i < 1000000000; i ++){} /// busy wait
+    // for(int i = 0;i < 1000000000; i ++){} /// busy wait
     putc('2');
     putc('s');
     thread_sleep(100);
