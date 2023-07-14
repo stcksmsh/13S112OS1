@@ -4,15 +4,6 @@
 
 sem_t sem1, sem2;
 
-void printTime(){
-    time_t time = threadSleepHandler::getTime();
-    putc('\n');
-    while(time > 0){
-        putc('0' + time % 10);
-        time /= 10;
-    }
-    putc('\n');
-}
 
 void printInt(int x){
     int zeroCounter=  0;
