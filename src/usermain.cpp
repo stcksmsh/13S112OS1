@@ -25,9 +25,7 @@ void printInt(int x){
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    printInt(threadSleepHandler::getTime());
     thread_sleep(200);
-    printInt(threadSleepHandler::getTime());
     putc('1');
     putc('S');
     sem_signal(sem1);

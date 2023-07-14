@@ -12,7 +12,7 @@ bool threadSleepHandler::allAwake(){
     return (threadSleepHandler::getInstance().sleepHead==nullptr);
 }
 
-int threadSleepHandler::getTime(){
+time_t threadSleepHandler::getTime(){
     return getInstance().time;
 }
 
