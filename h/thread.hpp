@@ -19,7 +19,7 @@ public:
 
     static bool allAwake();
 
-    static threadSleepHandler *getInstance();
+    static threadSleepHandler& getInstance();
 
     static int sleep(time_t);
 

@@ -2,20 +2,26 @@
 #include "../lib/console.h"
 
 thread_t thread::running = nullptr;
+
+threadSleepHandler& threadSleepHandler::getInstance(){
+    static threadSleepHandler instance;
+    return instance;
+}
+
 bool threadSleepHandler::allAwake(){
-    return (threadSleepHandler::getInstance()->sleepHead!=nullptr);
+    return (threadSleepHandler::getInstance().sleepHead!=nullptr);
 }
 
 int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
-    node->wakeTime = getInstance()->time + duration;
-    sleepList *insertAfter = getInstance()->sleepHead;
+    node->wakeTime = getInstance().time + duration;
+    sleepList *insertAfter = getInstance().sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
     }
     if(insertAfter == nullptr){
-        getInstance()->sleepHead = node;
+        getInstance().sleepHead = node;
         node -> next = nullptr;
     }else{
         node->next = insertAfter->next;
@@ -27,15 +33,15 @@ int threadSleepHandler::sleep(time_t duration){
 }
 
 void threadSleepHandler::timeIncrement(){
-    getInstance()->time ++;
+    getInstance().time ++;
 }
 
 void threadSleepHandler::wake(){
-    while(getInstance()->sleepHead != nullptr && (getInstance()->sleepHead)->wakeTime >= getInstance()->time){
-        getInstance()->sleepHead->handle->sleeping = false;
-        Scheduler::put(getInstance()->sleepHead->handle);
-        sleepList *node = getInstance()->sleepHead;
-        getInstance()->sleepHead = getInstance()->sleepHead->next;
+    while(getInstance().sleepHead != nullptr && (getInstance().sleepHead)->wakeTime >= getInstance().time){
+        getInstance().sleepHead->handle->sleeping = false;
+        Scheduler::put(getInstance().sleepHead->handle);
+        sleepList *node = getInstance().sleepHead;
+        getInstance().sleepHead = getInstance().sleepHead->next;
         mem_free(node);
     }
 }
