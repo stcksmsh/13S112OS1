@@ -45,9 +45,7 @@ void thread_test_2(void* args){
     for(int i = 0;i < 1000000000; i ++){} /// busy wait
     putc('2');
     putc('s');
-    printTime();
     thread_sleep(1000);
-    printTime();
     putc('2');
     putc('S');
     sem_signal(sem2);
