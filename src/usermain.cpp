@@ -4,6 +4,16 @@
 
 sem_t sem1, sem2;
 
+void printTime(){
+    time_t time = threadSleepHandler::getTime();
+    putc('\n');
+    while(time > 0){
+        putc('0' + time % 10);
+        time /= 10;
+    }
+    putc('\n');
+}
+
 void printInt(int x){
     int zeroCounter=  0;
     while(x > 0 && x % 10 == 0){
@@ -35,7 +45,9 @@ void thread_test_2(void* args){
     for(int i = 0;i < 1000000000; i ++){} /// busy wait
     putc('2');
     putc('s');
+    printTime();
     thread_sleep(1000);
+    printTime();
     putc('2');
     putc('S');
     sem_signal(sem2);
