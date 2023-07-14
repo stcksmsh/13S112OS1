@@ -9,7 +9,7 @@ threadSleepHandler& threadSleepHandler::getInstance(){
 }
 
 bool threadSleepHandler::allAwake(){
-    return (threadSleepHandler::getInstance().sleepHead!=nullptr);
+    return (threadSleepHandler::getInstance().sleepHead==nullptr);
 }
 
 int threadSleepHandler::sleep(time_t duration){
