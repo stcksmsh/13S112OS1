@@ -1,13 +1,33 @@
 #include "../h/syscall_c.h"
 #include "../h/usermain.hpp"
-#include "../h/memoryAllocator.hpp"
+#include "../h/thread.hpp"
 
 sem_t sem1, sem2;
+
+void printInt(int x){
+    int zeroCounter=  0;
+    while(x > 0 && x % 10 == 0){
+        zeroCounter++;
+        x/= 10;
+    }
+    int reverse = 0;
+    while(x > 0){
+        reverse = reverse * 10 + x % 10;
+        x /= 10;
+    }
+    while(reverse > 0){
+        putc('0' + reverse % 10);
+        reverse /= 10;
+    }
+    for(int i = 0; i < zeroCounter; i ++)putc('0');
+}
 
 void thread_test_1(void* args){
     putc('1');
     putc('s');
+    printInt(threadSleepHandler::getTime());
     thread_sleep(200);
+    printInt(threadSleepHandler::getTime());
     putc('1');
     putc('S');
     sem_signal(sem1);

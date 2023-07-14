@@ -12,6 +12,10 @@ bool threadSleepHandler::allAwake(){
     return (threadSleepHandler::getInstance().sleepHead==nullptr);
 }
 
+int threadSleepHandler::getTime(){
+    return getInstance().time;
+}
+
 int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;

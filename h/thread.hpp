@@ -23,6 +23,8 @@ public:
 
     static int sleep(time_t);
 
+    static int getTime();
+
     static void wake();
 };
 
