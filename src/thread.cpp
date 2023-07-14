@@ -39,12 +39,12 @@ int threadSleepHandler::sleep(time_t duration){
 
 void threadSleepHandler::timeIncrement(){
     getInstance().time ++;
+    putc('0' + getInstance().time%10);
 }
 
 void threadSleepHandler::wake(){
     sleepList *head = getInstance().sleepHead;
     while(head != nullptr && (head)->wakeTime >= getInstance().time){
-        putc('0' + getInstance().time % 10);
         head->handle->sleeping = false;
         Scheduler::put(head->handle);
         sleepList *node = head;
