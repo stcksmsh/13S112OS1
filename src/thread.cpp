@@ -23,14 +23,14 @@ int threadSleepHandler::sleep(time_t duration){
     node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
     if(insertAfter == nullptr){
-        putc('/');
+        // putc('/');
         getInstance().sleepHead = node;
     }else if(insertAfter->wakeTime > node->wakeTime){
-        putc('*');
+        // putc('*');
         getInstance().sleepHead = node;
         node->next = insertAfter;
     }else{
-        putc('-');
+        // putc('-');
         while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
             insertAfter = insertAfter->next;
         }
