@@ -27,24 +27,21 @@ int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
     node->wakeTime = getInstance().time + duration;
+    putc('\n');
+    printTime(duration);
+    putc('\n');
+    printTime(node->wakeTime);
+    putc('\n');
     node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
     if(insertAfter == nullptr){
         putc('-');
-        putc('\n');
-        printTime(node->wakeTime);
-        putc('\n');
         getInstance().sleepHead = node;
     }else if(insertAfter->wakeTime > node->wakeTime){
         putc('<');
         getInstance().sleepHead = node;
         node->next = insertAfter;
     }else{
-        putc('\n');
-        printTime(insertAfter->wakeTime);
-        putc('\n');
-        printTime(node->wakeTime);
-        putc('\n');
         putc('>');
         while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
             insertAfter = insertAfter->next;
