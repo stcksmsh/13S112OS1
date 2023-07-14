@@ -28,6 +28,8 @@ int threadSleepHandler::sleep(time_t duration){
     node->handle = thread::running;
     node->wakeTime = getInstance().time + duration;
     putc('\n');
+    printTime(getInstance().time);
+    putc('\n');
     printTime(duration);
     putc('\n');
     printTime(node->wakeTime);
