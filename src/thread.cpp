@@ -25,14 +25,12 @@ int threadSleepHandler::sleep(time_t duration){
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
     }
-    if(insertAfter == nullptr){
-        getInstance().sleepHead = node;
-        node -> next = nullptr;
-    }else{
+    if(insertAfter == nullptr) getInstance().sleepHead = node;
+    else{
         node->next = insertAfter->next;
         insertAfter->next = node;
     }
-    thread::running->sleeping = true;
+    node->handle->sleeping = true;
     thread::dispatch();
     return 0;
 }
