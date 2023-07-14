@@ -53,7 +53,7 @@ void threadSleepHandler::wake(){
         Scheduler::put(head->handle);
         sleepList *node = head;
         head = head->next;
-        mem_free(node);
+        // mem_free(node);
     }
     getInstance().sleepHead = head;
 }
