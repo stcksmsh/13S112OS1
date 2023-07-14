@@ -31,6 +31,9 @@ int threadSleepHandler::sleep(time_t duration){
     sleepList *insertAfter = getInstance().sleepHead;
     if(insertAfter == nullptr){
         putc('-');
+        putc('\n');
+        printTime(node->wakeTime);
+        putc('\n');
         getInstance().sleepHead = node;
     }else if(insertAfter->wakeTime > node->wakeTime){
         putc('<');
