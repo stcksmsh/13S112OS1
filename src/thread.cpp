@@ -148,13 +148,8 @@ void thread::dispatch(){
         Scheduler::put(oldThread);
     }
     oldThread->timeLeftToRun = DEFAULT_TIME_SLICE;
-    do{
-        running = Scheduler::get();
-        if(running == nullptr)break;
-    }while(running->sleeping || running->finished || running->blocked);
-    if(running == nullptr){
-        running = oldThread;
-    }else switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
+    running = Scheduler::get();
+    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
 }
 
