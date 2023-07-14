@@ -151,7 +151,7 @@ void thread::dispatch(){
     do{
         running = Scheduler::get();
         if(running == nullptr)break;
-    }while(running->sleeping || running->finished || running->blocked).
+    }while(running->sleeping || running->finished || running->blocked);
     if(running == nullptr){
         running = oldThread;
     }else switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
