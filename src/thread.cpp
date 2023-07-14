@@ -20,6 +20,7 @@ int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
     node->wakeTime = getInstance().time + duration;
+    node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
     while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
         insertAfter = insertAfter->next;
@@ -41,13 +42,15 @@ void threadSleepHandler::timeIncrement(){
 }
 
 void threadSleepHandler::wake(){
-    while(getInstance().sleepHead != nullptr && (getInstance().sleepHead)->wakeTime >= getInstance().time){
-        getInstance().sleepHead->handle->sleeping = false;
-        Scheduler::put(getInstance().sleepHead->handle);
-        sleepList *node = getInstance().sleepHead;
-        getInstance().sleepHead = getInstance().sleepHead->next;
+    sleepList *head = getInstance().sleepHead;
+    while(head != nullptr && (head)->wakeTime >= getInstance().time){
+        head->handle->sleeping = false;
+        Scheduler::put(head->handle);
+        sleepList *node = head;
+        head = head->next;
         mem_free(node);
     }
+    getInstance().sleepHead = head;
 }
 
 thread::~thread(){
