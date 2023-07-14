@@ -16,6 +16,13 @@ time_t threadSleepHandler::getTime(){
     return getInstance().time;
 }
 
+void printTime(uint64 time){
+    while(time > 0){
+        putc('0' + time % 10);
+        time /= 10;
+    }
+}
+
 int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
@@ -30,6 +37,11 @@ int threadSleepHandler::sleep(time_t duration){
         getInstance().sleepHead = node;
         node->next = insertAfter;
     }else{
+        putc('\n');
+        printTime(insertAfter->wakeTime);
+        putc('\n');
+        printTime(node->wakeTime);
+        putc('\n');
         putc('>');
         while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
             insertAfter = insertAfter->next;
