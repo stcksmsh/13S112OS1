@@ -22,13 +22,10 @@ void main(){
     thread::running = Scheduler::get(); // the nullptr nullptr one - - - /
     if(thread::running != handle)putc('e');
     thread_create(&handle, usermainWrapper, nullptr);
-    do{
-        while(!Scheduler::isEmpty()){
-            putc('.');
-            thread_dispatch();
-        }
-
-    }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty());
+    while(!Scheduler::isEmpty() || !threadSleepHandler::allAwake()){
+        putc('.');
+        thread_dispatch();
+    }
     putc('\n');
     putc('E');
     putc('n');
