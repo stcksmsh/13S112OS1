@@ -19,8 +19,6 @@ public:
     static thread_t get();
     static void put(thread_t);
     static bool isEmpty();
-    static void printCount();
-
 };
 
 #endif
