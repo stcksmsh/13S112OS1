@@ -19,11 +19,11 @@ void main(){
     // putc('0');
     // __asm__ volatile ("csrs sstatus, %0" : :  "r"(1 << 1)); // sets bit 1 of sstatus
     __putc('1');
-    changeUser();
     putc('2');
+    putc('3');
+    changeUser();
     thread_t out, main, prog;
     thread_create(&main, nullptr, nullptr);
-    putc('3');
     thread::running = Scheduler::get();
     thread_create(&out, Console::outThread, nullptr);
     putc('4');
