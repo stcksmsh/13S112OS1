@@ -136,9 +136,13 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x25){
             __putc('u');
             sstatusWrite(sstatus);
+            __putc('u');
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
+            __putc('u');
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
+            __putc('u');
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
+            __putc('u');
             return;
         }
         //sleep
