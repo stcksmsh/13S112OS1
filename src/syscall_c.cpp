@@ -126,5 +126,11 @@ void changeUser() {
     __asm__ volatile("li a0,0x25");
     __asm__ volatile("ecall");
     return;
+}
 
+
+void testUser(){
+    __asm__ volatile("li a0,0x26");
+    __asm__ volatile("ecall");
+    return;    
 }

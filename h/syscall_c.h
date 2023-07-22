@@ -22,7 +22,7 @@ void thread_join ( thread_t );
 
 int thread_sleep( time_t );
 
-
+void testUser();
 
 class sem;
 typedef sem* sem_t;
