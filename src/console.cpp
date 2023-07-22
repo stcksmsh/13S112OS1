@@ -70,7 +70,6 @@ void Console::console_handler(){
     Console *c = getInstance();
     while((((char*)CONSOLE_STATUS)[0] & CONSOLE_RX_STATUS_BIT) > 0 && !c->inBuffer.isFull()){
         char ch =((char*)CONSOLE_RX_DATA)[0];
-        __putc(ch);
         c->inBuffer.put(ch);
         sem_signal(c->readSem);
     }
