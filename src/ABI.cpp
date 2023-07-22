@@ -166,17 +166,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        __putc('_');
+        // __putc('_');
         ///Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
-        if(!thread::running->live())thread_dispatch();
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
         /// and finally we test for preemption
-        // if(!thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
-        //     thread::dispatch();
-        // }
+        if(!thread::running->live())thread::dispatch();
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
