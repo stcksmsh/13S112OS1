@@ -150,7 +150,7 @@ void thread::dispatch(){
     if(oldThread!=nullptr && !oldThread->closed && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping){
         Scheduler::put(oldThread);
     }
-    oldThread->timeLeftToRun = DEFAULT_TIME_SLICE;
+    if(oldThread != nullptr)oldThread->timeLeftToRun = DEFAULT_TIME_SLICE;
     running = Scheduler::get();
     switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
     return;
