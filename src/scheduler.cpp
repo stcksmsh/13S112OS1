@@ -35,10 +35,10 @@ thread_t Scheduler::get(){
 bool Scheduler::isEmpty(){
     Element* elem = head;
     int cnt = 0;
-    while(elem != nullptr && cnt <= 2){
+    while(elem != nullptr && cnt < 2){
         cnt ++;
         elem = elem->next;
     }
     __putc('0' + cnt % 10);
-    return cnt > 2;
+    return cnt < 2;
 }
