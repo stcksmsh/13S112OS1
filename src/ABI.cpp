@@ -158,7 +158,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
             Console::write(ch);
-            // __putc(ch);
+            // putc(ch);
         }
         sepc += 4;
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
