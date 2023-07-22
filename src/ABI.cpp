@@ -157,8 +157,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            // Console::write(ch);
-            __putc(ch);
+            Console::write(ch);
+            // __putc(ch);
         }
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sstatusWrite(sstatus);
