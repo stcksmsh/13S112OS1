@@ -18,7 +18,7 @@ void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     // putc('0');
     // __asm__ volatile ("csrs sstatus, %0" : :  "r"(1 << 1)); // sets bit 1 of sstatus
-    putc('1');
+    __putc('1');
     changeUser();
     putc('2');
     thread_t out, main, prog;
