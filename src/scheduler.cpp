@@ -33,12 +33,12 @@ thread_t Scheduler::get(){
 }
 
 bool Scheduler::isEmpty(){
-    // return head == nullptr;
     Element* elem = head;
-    while(elem != nullptr){
-        __putc('s');
-        if(elem->thread != out && elem->thread != main)return false;
+    int cnt = 0;
+    while(elem != nullptr && cnt < 2){
+        cnt ++;
         elem = elem->next;
     }
-    return true;
+    if(cnt < 2)return true;
+    return false;
 }
