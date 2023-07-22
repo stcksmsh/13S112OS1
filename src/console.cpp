@@ -45,7 +45,7 @@ void Console::stop(){
 
 char Console::read(){
     Console *c = getInstance();
-    while(c->inBuffer.isEmpty())thread_dispatch();
+    while(c->inBuffer.isEmpty())thread_sleep(1);
     return c->inBuffer.get();
 }
 
