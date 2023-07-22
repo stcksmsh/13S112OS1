@@ -41,3 +41,17 @@ bool Scheduler::isEmpty(){
     }
     return cnt < 2;
 }
+
+void Scheduler::printCount(){
+    Element* elem = head;
+    int cnt = 0;
+    while(elem != nullptr){
+        cnt ++;
+        elem = elem->next;
+    }
+    __putc('\n');
+    do{
+        __putc('0' + cnt%10);
+        cnt /= 10;
+    }while(cnt > 0);
+}
