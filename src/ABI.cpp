@@ -42,12 +42,12 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
     uint64 volatile sstatus = sstatusRead();
+    uint64 volatile  sepc;
+    __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
     // sstatus |= 1<<5;
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
-        uint64 volatile  sepc;
-        __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
         uint64 callID;
         __asm__ volatile("mv %0, a0" : "=r"(callID));
         // malloc
@@ -174,6 +174,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         threadSleepHandler::wake();
         /// and finally we test for preemption
         // if(!thread::running->live())thread::dispatch();
+        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
