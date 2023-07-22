@@ -1,5 +1,4 @@
 #include "../h/thread.hpp"
-#include "../lib/console.h"
 
 thread_t thread::running = nullptr;
 

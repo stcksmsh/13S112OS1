@@ -1,18 +1,18 @@
 #include "../h/syscall_c.h"
 #include "../h/thread.hpp"
 #include "../h/sem.hpp"
-#include "../h/memoryAllocator.hpp"
+#include "../h/console.hpp"
+
 #include "../h/usermain.hpp"
 #include "../test_h/userMain.hpp"
-#include "../lib/console.h"
-#include "../h/console.hpp"
+
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
     // private tests
-    usermain();
+    // usermain();
     // public tests
-    // userMain();
+    userMain();
 }
 
 void main(){
