@@ -8,7 +8,6 @@
 extern "C" void trap();
 
 void usermainWrapper(void* arg){
-    __putc('w');
     // private tests
     usermain();
     // public tests
