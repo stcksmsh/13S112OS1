@@ -33,7 +33,7 @@ void thread_test_1(void* args){
     putc('1');
     putc('s');
     // printInt(thread_sleep(50));
-    thread_sleep(100);
+    thread_sleep(50);
     putc('1');
     putc('S');
     // sem_signal(sem1);
@@ -42,7 +42,7 @@ void thread_test_2(void* args){
     // for(int i = 0;i < 1000000000; i ++){} /// busy wait
     putc('2');
     putc('s');
-    thread_sleep(50);
+    thread_sleep(25);
     putc('2');
     putc('S');
     // sem_signal(sem2);

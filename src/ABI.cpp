@@ -156,8 +156,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            // Console::write(ch);
-            __putc(ch);
+            Console::write(ch);
+            // __putc(ch);
         }
         sepc += 4;
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
@@ -167,6 +167,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         ///Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
+        putc('.');
         if(!thread::running->live())thread_dispatch();
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
