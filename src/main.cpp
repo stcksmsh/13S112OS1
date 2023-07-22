@@ -30,7 +30,6 @@ void main(){
     // putc('5');
     thread_create(&prog, usermainWrapper, nullptr);
     // putc('6');   
-    if(!Scheduler::isEmpty())return;
     do{
         while(!Scheduler::isEmpty())thread_dispatch();
     }while(!Scheduler::isEmpty() || !threadSleepHandler::allAwake());
