@@ -189,4 +189,5 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     sstatusWrite(sstatus);
     sipBitClear(1);
+    __asm__ volatile("sret");
 }
