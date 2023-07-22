@@ -168,14 +168,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {
         ///Timer
         /// first we increment the thread::time variable
-        __putc('.');
         threadSleepHandler::timeIncrement();
-        __putc('.');
         // if(!thread::running->live())thread_dispatch();
-        // __putc('.');
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
-        __putc('.');
         /// and finally we test for preemption
         // if(!thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
         //     thread::dispatch();
