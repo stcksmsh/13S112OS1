@@ -32,7 +32,10 @@ public:
     static void stop();
 
     static void write(char);
+
+    static bool noWait();
 private:
+    int getcWaitCount;
     sem_t readSem;
     bool running;
     consoleBuffer inBuffer, outBuffer;

@@ -36,6 +36,7 @@ bool Console::consoleBuffer::isFull(){
 Console::Console():inBuffer(BUFFER_SIZE), outBuffer(BUFFER_SIZE){
     running = true;
     sem_open(&readSem, 0);
+    getcWaitCount = 0;
 }
 
 
@@ -45,8 +46,11 @@ void Console::stop(){
 
 
 char Console::read(){
-    sem_wait(getInstance()->readSem);
-    return getInstance()->inBuffer.get();
+    Console *c = getInstance();
+    c->getcWaitCount ++;
+    sem_wait(c->readSem);
+    c->getcWaitCount --;
+    return c->inBuffer.get();
 }
 
 void Console::write(char ch){
@@ -73,4 +77,8 @@ void Console::console_handler(){
         c->inBuffer.put(ch);
         sem_signal(c->readSem);
     }
+}
+
+bool Console::noWait(){
+    return getInstance()->getcWaitCount == 0;
 }

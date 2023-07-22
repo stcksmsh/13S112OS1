@@ -1,8 +1,6 @@
 #include "../h/sem.hpp"
 #include "../h/syscall_c.h"
 
-int sem::waitCount = 0;
-
 void sem::sem_open(sem_t* handle, unsigned init){
     *handle = (sem_t)mem_alloc(sizeof(sem));
     (*handle)->value = init;
@@ -37,12 +35,8 @@ int sem::sem_wait(sem_t id){
             id->tail = node;
         }
         thread::running->setBlocked(true);
-        waitCount ++;
         thread_dispatch();
-        if(thread::running->wasClosed()){
-            waitCount--;
-            return -1;
-        }
+        if(thread::running->wasClosed()) return -1;
     }
     return 0;
 }
@@ -51,7 +45,6 @@ int sem::sem_signal(sem_t id){
     if(id == nullptr)return -1;
     if(id->value < 0 && id->head != nullptr){
         id->head->thread->setBlocked(false);
-        waitCount --;
         Scheduler::put(id->head->thread);
         sem::blockedList *tmp = id->head;
         id->head = id->head->next;
@@ -59,8 +52,4 @@ int sem::sem_signal(sem_t id){
     }
     id->value++;
     return 0;
-}
-
-bool sem::isEmpty(){
-    return waitCount == 0;
 }
