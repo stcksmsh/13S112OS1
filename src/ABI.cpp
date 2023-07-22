@@ -164,8 +164,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             Console::write(ch);
             // __putc(ch);
         }
-        sepc += 4;
-        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
+        // sepc += 4;
+        // __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
