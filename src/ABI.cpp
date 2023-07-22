@@ -42,6 +42,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
     uint64 volatile sstatus = sstatusRead();
+    // sstatus |= 1<<5;
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -135,8 +136,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x25){
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
-            // __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-            // __putc('.');
+            __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;
         }
@@ -157,27 +157,27 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            Console::write(ch);
-            // __putc(ch);
+            // Console::write(ch);
+            __putc(ch);
         }
-        // sepc += 4;
-        // __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
+        sepc += 4;
+        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
     else if (scause == 0x8000000000000001UL)
     {
-        __putc('_');
         ///Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
-        // if(!thread::running->live())thread_dispatch();
+        if(!thread::running->live())thread_dispatch();
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
         /// and finally we test for preemption
         // if(!thread::running->live()){/// it has run for longer than its alloted time slice (does not preempt the void main() thread)
         //     thread::dispatch();
         // }
+        sstatusWrite(sstatus);
         sipBitClear(1);
     }
     else if (scause== 0x8000000000000009UL)
