@@ -46,6 +46,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
+        if(scause == 0x08)__putc('k');
+        if(scause == 0x09)__putc('s');
         uint64 volatile  sepc;
         __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
         uint64 callID;
@@ -160,8 +162,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             Console::write(ch);
             // putc(ch);
         }
-        sepc += 4;
-        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
+        __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
