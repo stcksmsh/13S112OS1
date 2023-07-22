@@ -42,7 +42,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 scause;
     __asm__ volatile("csrr %0,scause": "=r"(scause));
     uint64 volatile sstatus = sstatusRead();
-    // sstatus |= 1<<5;
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
