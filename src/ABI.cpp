@@ -134,6 +134,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //change to user mode
         else if(callID==0x25){
+            __putc('u');
             sstatusWrite(sstatus);
             sstatusBitClear(8); /// clears SPP (sets desired mode to User) 
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
