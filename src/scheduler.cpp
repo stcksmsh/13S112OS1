@@ -36,6 +36,7 @@ bool Scheduler::isEmpty(){
     // return head == nullptr;
     Element* elem = head;
     while(elem != nullptr){
+        __putc('s');
         if(elem->thread != out && elem->thread != main)return false;
         elem = elem->next;
     }
