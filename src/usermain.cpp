@@ -32,7 +32,7 @@ void printInt(int i){
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    thread_sleep(50);
+    thread_sleep(5);
     putc('1');
     putc('S');
     // sem_signal(sem1);
