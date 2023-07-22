@@ -39,5 +39,6 @@ bool Scheduler::isEmpty(){
         cnt ++;
         elem = elem->next;
     }
+    __putc('0' + cnt%10);
     return cnt > 2;
 }

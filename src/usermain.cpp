@@ -50,7 +50,7 @@ void thread_test_2(void* args){
 
 void usermain(){
     // thread_t t1, t2;
-    putc('0');
+    putc('u');
     // sem_open(&sem1, 0);
     // sem_open(&sem2, 0);
     // thread_create(&t1, thread_test_1, nullptr);
