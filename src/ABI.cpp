@@ -167,7 +167,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         ///Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
-        putc('.');
+        __putc('.');
         if(!thread::running->live())thread_dispatch();
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
