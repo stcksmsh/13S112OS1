@@ -22,7 +22,7 @@ void main(){
     thread_t out, main, prog;
     thread_create(&main, nullptr, nullptr);
     // putc('2');
-    // thread::running = Scheduler::get();
+    thread::running = Scheduler::get();
     // putc('3');
     thread_create(&out, Console::outThread, nullptr);
     // putc('4');
