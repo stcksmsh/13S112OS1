@@ -7,10 +7,12 @@ thread_t Scheduler::main = nullptr;
 
 void Scheduler::put(thread_t thread){
     if(tail == nullptr){
+        __putc('n');
         head = tail = (Element*)mem_alloc(sizeof(Element));
         head->next = nullptr;
         head->thread = thread;
     }else{
+        __putc('o');
         tail = tail->next = (Element*)mem_alloc(sizeof(Element));
         tail->next = nullptr;
         tail->thread = thread;
