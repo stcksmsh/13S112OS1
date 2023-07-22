@@ -115,6 +115,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
     newThread->joinHead = nullptr;
     newThread->joinTail = nullptr;
+    __putc('?');
     Scheduler::put(newThread);
     if(start_routine == nullptr)
         newThread->context.pc = 0;
