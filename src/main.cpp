@@ -1,5 +1,6 @@
 #include "../h/syscall_c.h"
 #include "../h/thread.hpp"
+#include "../h/sem.hpp"
 #include "../h/memoryAllocator.hpp"
 #include "../h/usermain.hpp"
 #include "../test_h/userMain.hpp"
@@ -26,6 +27,6 @@ void main(){
     thread_create(&prog, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty())thread_dispatch();
-    }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
+    }while(!sem::isEmpty() || !threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
     Console::stop();
 }

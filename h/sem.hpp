@@ -11,7 +11,9 @@ class sem{
     
     int value;
 
+
 public:
+    static int waitCount;
     
     static void sem_open(sem**, unsigned);
 
@@ -20,6 +22,8 @@ public:
     static int sem_wait(sem*);
 
     static int sem_signal(sem*);
+
+    static bool isEmpty();
 
 };
 
