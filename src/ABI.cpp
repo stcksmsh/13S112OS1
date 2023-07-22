@@ -183,6 +183,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         int irq = plic_claim();
         if(irq == CONSOLE_IRQ){
             Console::console_handler();
+            __putc('c');
         }
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)

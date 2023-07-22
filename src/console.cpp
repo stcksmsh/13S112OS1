@@ -12,20 +12,11 @@ Console::consoleBuffer::consoleBuffer(int size){
     buff = (char*)mem_alloc(sizeof(char) * size);
 }
 
-Console::Console():inBuffer(BUFFER_SIZE), outBuffer(BUFFER_SIZE){
-    running = true;
-    sem_open(&readSem, 0);
-}
-
 char Console::consoleBuffer::get(){
     if(isEmpty())return EOF;
     char ret = buff[first++];
     first %= size;
     return ret;
-}
-
-void Console::stop(){
-    getInstance()->running = false;
 }
 
 void Console::consoleBuffer::put(char ch){
@@ -41,6 +32,17 @@ bool Console::consoleBuffer::isEmpty(){
 bool Console::consoleBuffer::isFull(){
     return ( last + 1 ) % size == first;
 }
+
+Console::Console():inBuffer(BUFFER_SIZE), outBuffer(BUFFER_SIZE){
+    running = true;
+    sem_open(&readSem, 0);
+}
+
+
+void Console::stop(){
+    getInstance()->running = false;
+}
+
 
 char Console::read(){
     sem_wait(getInstance()->readSem);
