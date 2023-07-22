@@ -29,7 +29,8 @@ void main(){
     Scheduler::setCore(out, main);
     // putc('5');
     thread_create(&prog, usermainWrapper, nullptr);
-    // putc('6');
+    // putc('6');   
+    return;
     do{
         while(!Scheduler::isEmpty())thread_dispatch();
     }while(!Scheduler::isEmpty() || !threadSleepHandler::allAwake());
