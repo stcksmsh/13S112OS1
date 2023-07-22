@@ -53,12 +53,12 @@ void usermain(){
     putc('0');
     // sem_open(&sem1, 0);
     // sem_open(&sem2, 0);
-    thread_create(&t1, thread_test_1, nullptr);
-    thread_create(&t2, thread_test_2, nullptr);
-    // sem_wait(sem2);
-    thread_join(t2);
-    putc('3');
-    thread_join(t1);
-    putc('4');
+    // thread_create(&t1, thread_test_1, nullptr);
+    // thread_create(&t2, thread_test_2, nullptr);
+    // // sem_wait(sem2);
+    // thread_join(t2);
+    // putc('3');
+    // thread_join(t1);
+    // putc('4');
     // sem_wait(sem2);
 }
