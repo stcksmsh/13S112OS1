@@ -171,8 +171,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         __putc('.');
         threadSleepHandler::timeIncrement();
         __putc('.');
-        if(!thread::running->live())thread_dispatch();
-        __putc('.');
+        // if(!thread::running->live())thread_dispatch();
+        // __putc('.');
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
         __putc('.');
