@@ -26,6 +26,6 @@ void main(){
     thread_create(&prog, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty())thread_dispatch();
-    }while(!Scheduler::isEmpty() || !threadSleepHandler::allAwake());
+    }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty());
     Console::stop();
 }
