@@ -18,11 +18,12 @@ static void sleepyRun(void *arg) {
 }
 
 void testSleeping() {
+    printString("Starting...\n");
     const int sleepy_thread_count = 2;
     time_t sleep_times[sleepy_thread_count] = {10, 20};
     thread_t sleepyThread[sleepy_thread_count];
 
-    printString("Starting...\nCreating threads: ");
+    printString("Creating threads: ");
     for (int i = 0; i < sleepy_thread_count; i++) {
         printInt(i);
         printString(" ");
