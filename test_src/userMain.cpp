@@ -104,4 +104,5 @@ void userMain() {
         default:
             printString("Niste uneli odgovarajuci broj za test\n");
     }
+    printString("Kraj izvrsavanja");
 }
