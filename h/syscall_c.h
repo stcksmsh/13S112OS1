@@ -2,7 +2,6 @@
 #define SYSCALLCHEADERFILE
 
 #include "../lib/hw.h"
-#include "../lib/console.h"
 
 void* mem_alloc ( size_t );
 
