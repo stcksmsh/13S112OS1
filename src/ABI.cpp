@@ -158,7 +158,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         //getc
         else if(callID==0x41){
             char ch = Console::read();
-            if(ch >= 32 && ch <= 127)putc(ch);
+            // if(ch >= 32 && ch <= 127)putc(ch);
             __asm__ volatile ("mv a0, %0" : : "r"(ch));
         }
         //putc
