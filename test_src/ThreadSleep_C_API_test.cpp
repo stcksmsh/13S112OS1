@@ -22,9 +22,12 @@ void testSleeping() {
     time_t sleep_times[sleepy_thread_count] = {10, 20};
     thread_t sleepyThread[sleepy_thread_count];
 
+    printString("Starting...\nCreating threads: ");
     for (int i = 0; i < sleepy_thread_count; i++) {
+        printInt(i);
+        printString(" ");
         thread_create(&sleepyThread[i], sleepyRun, sleep_times + i);
     }
-
+    printString("\nSuccesfully created all threads, now waiting for them to end");
     while (!(finished[0] && finished[1])) {}
 }
