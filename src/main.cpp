@@ -18,7 +18,7 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     uint64 sie;
-    __asm__ volatile ("csrr sie, %0" : "=r"(sie)); /// sets bit 1 of sie, enables interrupts
+    __asm__ volatile ("csrr %0, sie" : "=r"(sie)); /// sets bit 1 of sie, enables interrupts
     while(sie > 0){
         putc('0' + sie%10);
         sie /= 10;
