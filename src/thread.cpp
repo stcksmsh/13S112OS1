@@ -86,7 +86,6 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
     joinList *node = (joinList*)mem_alloc(sizeof(joinList));
     node->handle = running;
     node->next = nullptr;
-    putc('.');
     if(joinTail == nullptr){
         joinHead = node;
         joinTail = node;
@@ -94,6 +93,7 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
         joinTail->next = node;
         joinTail = node;
     }
+    putc('.');
     running->blocked = true;
     dispatch();
 }
