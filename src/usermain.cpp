@@ -54,6 +54,7 @@ void usermain(){
     thread_create(&t1, thread_test_1, nullptr);
     thread_create(&t2, thread_test_2, nullptr);
     putc('0');
+    thread_dispatch();
     // // sem_wait(sem2);
     thread_join(t2);
     putc('3');
