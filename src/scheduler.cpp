@@ -33,7 +33,7 @@ thread_t Scheduler::get(){
 }
 
 bool Scheduler::isEmpty(){
-    return head != nullptr
+    return head != nullptr;
     // Element* elem = head;
     // int cnt = 0;
     // while(elem != nullptr && cnt < 2){
