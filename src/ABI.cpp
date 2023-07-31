@@ -46,7 +46,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 volatile sstatus = sstatusRead();
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
-    // sstatus |= 1<<5;
+    sstatus |= 1<<5;
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -149,7 +149,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             if(scause == 0x9)putc('s');
             sstatusWrite(sstatus);
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
-            // sipBitClear(1); /// clears SSIP (there exists an interrupt request)
+            sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;
         }
         //sleep
@@ -161,8 +161,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         }
         //getc
         else if(callID==0x41){
-            char ch = Console::read();
-            // if(ch >= 32 && ch <= 127)putc(ch);
+            // char ch = Console::read();
+            // if(ch >= 32 && ch <= 127)Console::write(ch);
+            char ch = __getc();
+            if(ch >= 32 && ch <= 127)__putc(ch);
             __asm__ volatile ("mv a0, %0" : : "r"(ch));
         }
         //putc
@@ -171,15 +173,14 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
             // Console::write(ch);
             __putc(ch);
-            // __putc(ch);
         }
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sstatusWrite(sstatus);
-        // sipBitClear(1);
+        sipBitClear(1);
     }
     else if (scause == 0x0000000000000001UL)
     {
-        putc('X');
+        __putc('X');
         /// Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
@@ -189,7 +190,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         if(!thread::running->live())thread::dispatch();
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);
-        // sipBitClear(1);
+        sipBitClear(1);
     }
     else if (scause== 0x8000000000000009UL)
     {   
