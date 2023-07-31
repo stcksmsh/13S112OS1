@@ -32,11 +32,11 @@ inline void ABI::sstatusBitClear(uint64 bit)
 }
 
 inline void ABI::disableInterrupt(){
-    sstatusWrite(sstatusRead() | (1<<5));
+    __asm__ volatile ("csrs sstatus, %0" : : "r"(1 << 5));
 }
 
 inline void ABI::enableInterrupt(){
-    sstatusWrite(sstatusRead() & (~(1<<5)));
+    __asm__ volatile ("csrs sstatus, %0" : : "r"(1 << 5));
 }
 
 
@@ -46,7 +46,6 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     uint64 volatile sstatus = sstatusRead();
     uint64 volatile  sepc;
     __asm__ volatile ("csrr %0, sepc" : "=r" (sepc));
-    sstatus |= 1<<5;
     // User and Supervisor syscalls
     if (scause == 0x0000000000000009UL || scause == 0x0000000000000008UL)
     {
@@ -178,9 +177,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
-    else if (scause == 0x0000000000000001UL)
+    else if (scause == 0x1000000000000001UL)
     {
-        __putc('X');
         /// Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
