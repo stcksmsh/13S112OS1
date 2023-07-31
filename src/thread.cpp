@@ -93,7 +93,6 @@ void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(t
         joinTail->next = node;
         joinTail = node;
     }
-    putc('.');
     running->blocked = true;
     dispatch();
 }

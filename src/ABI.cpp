@@ -140,9 +140,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
             return;
         }
+        /// user test
         else if(callID==0x26){
-            // if(scause == 0x8)putc('u');
-            // if(scause == 0x9)putc('s');
+            if(scause == 0x8)putc('u');
+            if(scause == 0x9)putc('s');
             sstatusWrite(sstatus);
             __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
             sipBitClear(1); /// clears SSIP (there exists an interrupt request)
@@ -174,7 +175,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {
-        ///Timer
+        /// Timer
         /// first we increment the thread::time variable
         threadSleepHandler::timeIncrement();
         /// next we wake the sleeping threads;
