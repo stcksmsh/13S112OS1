@@ -58,6 +58,7 @@ void Console::outThread(void* arg){
     do{
         putc('c');
         while((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0 && !c->outBuffer.isEmpty())((char*)CONSOLE_TX_DATA)[0] = c->outBuffer.get();
+        putc('e');
         // while((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0 && !c->outBuffer.isEmpty())__putc(c->outBuffer.get());
         thread_dispatch();
     }while(c->running || !c->outBuffer.isEmpty());
