@@ -59,10 +59,10 @@ void Console::outThread(void* arg){
     do{
         putc('c');
         while((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0 && !c->outBuffer.isEmpty()){
-            putc('.');
             ((char*)CONSOLE_TX_DATA)[0] = c->outBuffer.get();
         }
-        putc('e');
+        if(c->outBuffer.isEmpty())putc('E');
+        if((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0)putc('e');
         // while((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0 && !c->outBuffer.isEmpty())__putc(c->outBuffer.get());
         thread_dispatch();
     }while(c->running || !c->outBuffer.isEmpty());
