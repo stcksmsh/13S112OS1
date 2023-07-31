@@ -177,7 +177,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         sstatusWrite(sstatus);
         sipBitClear(1);
     }
-    else if (scause == 0x1000000000000001UL)
+    else if (scause == 0x8000000000000001UL)
     {
         __putc('X');
         /// Timer
