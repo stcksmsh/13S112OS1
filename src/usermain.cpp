@@ -51,9 +51,9 @@ void usermain(){
     thread_t t1, t2;
     sem_open(&sem1, 0);
     // sem_open(&sem2, 0);
-    putc('0');
     thread_create(&t1, thread_test_1, nullptr);
     thread_create(&t2, thread_test_2, nullptr);
+    putc('0');
     // // sem_wait(sem2);
     thread_join(t2);
     putc('3');
