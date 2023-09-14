@@ -12,55 +12,44 @@ bool threadSleepHandler::allAwake(){
     return (threadSleepHandler::getInstance().sleepHead==nullptr);
 }
 
-time_t threadSleepHandler::getTime(){
-    return getInstance().time;
-}
 
 int threadSleepHandler::sleep(time_t duration){
     sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
     node->handle = thread::running;
-    node->wakeTime = getInstance().time + duration;
+    node->wakeTime = duration;
     node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
     if(insertAfter == nullptr){
-        // putc('-');
         getInstance().sleepHead = node;
     }else if(insertAfter->wakeTime > node->wakeTime){
-        // putc('<');
         getInstance().sleepHead = node;
         node->next = insertAfter;
     }else{
-        // putc('>');
-        while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->next->wakeTime <= node->wakeTime){
+        while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->wakeTime + insertAfter->next->wakeTime >= node->wakeTime){
+            node->wakeTime -= insertAfter->wakeTime;
             insertAfter = insertAfter->next;
         }
         node->next = insertAfter->next;
         insertAfter->next = node;
+        node->wakeTime -= insertAfter->wakeTime;
+        if(node->next)node->next->wakeTime -= node->wakeTime;
     }
     node->handle->sleeping = true;
     thread::dispatch();
     return 0;
 }
 
-void threadSleepHandler::timeIncrement(){
-    getInstance().time ++;
-    time_t t = getInstance().time;
-    if(t%10 != 0)return;
-    while(t>0){
-        putc('0' + t%10);
-        t /= 10;
-    }
-    putc('\n');
+void threadSleepHandler::sleepDecrement(){
+    sleepList *node = getInstance().sleepHead;
+    if(node)node->wakeTime--;
 }
 
 void threadSleepHandler::wake(){
     sleepList *head = getInstance().sleepHead;
-    while(head != nullptr && head->wakeTime <= getInstance().time){
-        head->handle->sleeping = false;
-        Scheduler::put(head->handle);
-        sleepList *node = head;
+    while(head && head->wakeTime == 0){
+        sleepList *tmp = head;
         head = head->next;
-        mem_free(node);
+        mem_free(tmp);
     }
     getInstance().sleepHead = head;
 }

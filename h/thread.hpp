@@ -6,7 +6,6 @@
 #include "syscall_c.h"
 
 class threadSleepHandler{
-    time_t time = 0;
     struct sleepList{
         thread *handle;
         time_t wakeTime;
@@ -17,7 +16,7 @@ public:
 
     threadSleepHandler(){};
 
-    static void timeIncrement();
+    static void sleepDecrement();
 
     static bool allAwake();
 
