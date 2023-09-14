@@ -10,16 +10,18 @@ Console::consoleBuffer::consoleBuffer(int size){
 }
 
 char Console::consoleBuffer::get(){
-    sem_wait(notEmpty);
+    while(isEmpty())thread_dispatch();
+    // sem_wait(notEmpty);
     char ret = buff[first++];
     first %= size;
     return ret;
 }
 
 void Console::consoleBuffer::put(char ch){
+    while(isFull())thread_dispatch();
     buff[last++] = ch;
     last %= size;
-    sem_signal(notEmpty);
+    // sem_signal(notEmpty);
 }
 
 bool Console::consoleBuffer::isEmpty(){
