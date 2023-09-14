@@ -17,7 +17,6 @@ char Console::consoleBuffer::get(){
 }
 
 void Console::consoleBuffer::put(char ch){
-    if(isFull())return;
     buff[last++] = ch;
     last %= size;
     sem_signal(notEmpty);
