@@ -10,15 +10,14 @@ extern "C" void trap();
 
 void usermainWrapper(void* arg){
     // private tests
-    usermain();
+    // usermain();
     // public tests
-    // userMain();
+    userMain();
 }
 
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
-    testUser();
     thread_t out, main, prog;
     thread_create(&main, nullptr, nullptr);
     thread::running = Scheduler::get();
