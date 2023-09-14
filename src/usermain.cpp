@@ -54,12 +54,12 @@ void usermain(){
     thread_create(&t1, thread_test_1, nullptr);
     thread_create(&t2, thread_test_2, nullptr);
     putc('0');
-    sem_wait(sem2);
+    sem_wait(sem1);
     // thread_join(t2);
     putc('3');
     // thread_join(t1);
     // putc('4');
     // if(getc() == 'a')putc('x');
+    sem_wait(sem2);
     putc('5');
-    sem_wait(sem1);
 }
