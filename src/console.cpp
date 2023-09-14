@@ -51,7 +51,7 @@ void Console::write(char ch){
 void Console::outThread(void* arg){
     Console *c = getInstance();
     do{
-        while(*((char*)(CONSOLE_STATUS)) & CONSOLE_TX_STATUS_BIT){
+        while((*((char*)(CONSOLE_STATUS)) & CONSOLE_TX_STATUS_BIT) && !c->outBuffer.isEmpty()){
             (*(char*)CONSOLE_TX_DATA) = c->outBuffer.get();
         }
         thread_dispatch();
@@ -65,7 +65,7 @@ Console* Console::getInstance(){
 
 void Console::console_handler(){
     Console *c = getInstance();
-    while(*((char*)(CONSOLE_STATUS)) & CONSOLE_RX_STATUS_BIT){
+    while((*((char*)(CONSOLE_STATUS)) & CONSOLE_RX_STATUS_BIT )){
         char ch =(*(char*)CONSOLE_RX_DATA);
         c->inBuffer.put(ch);
     }
