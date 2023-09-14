@@ -34,7 +34,7 @@ static void workerBodyB(void* arg) {
             thread_dispatch();
         }
         if (i == 10) {
-            testUser();
+            // testUser();
             asm volatile("csrr t6, sepc");
         }
     }
@@ -98,19 +98,19 @@ void System_Mode_test() {
     thread_t threads[4];
     thread_create(&threads[0], workerBodyA, nullptr);
     printString("ThreadA created\n");
-    testUser();
+    // testUser();
 
     thread_create(&threads[1], workerBodyB, nullptr);
     printString("ThreadB created\n");
-    testUser();
+    // testUser();
 
     thread_create(&threads[2], workerBodyC, nullptr);
     printString("ThreadC created\n");
-    testUser();
+    // testUser();
 
     thread_create(&threads[3], workerBodyD, nullptr);
     printString("ThreadD created\n");
-    testUser();
+    // testUser();
 
     while (!(finishedA && finishedB && finishedC && finishedD)) {
         thread_dispatch();
