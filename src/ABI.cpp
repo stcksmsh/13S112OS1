@@ -176,8 +176,8 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         else if(callID==0x42){
             uint64 ch;
             __asm__ volatile ("mv %0, a1" : "=r"(ch));
-            // Console::write(ch);
-            __putc(ch);
+            Console::write(ch);
+            // __putc(ch);
         }
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc + 4));
         sstatusWrite(sstatus);
@@ -199,11 +199,12 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause== 0x8000000000000009UL)
     {   
-        // int irq = plic_claim();
-        // if(irq == CONSOLE_IRQ)
-        //     Console::console_handler();
-        // plic_complete(irq);
+        int irq = plic_claim();
+        if(irq == CONSOLE_IRQ){
+            Console::console_handler();
+            plic_complete(irq);
+        }
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        console_handler();
+        // console_handler();
     }
 }

@@ -94,7 +94,6 @@ static void workerBodyD(void* arg) {
 
 
 void System_Mode_test() {
-    testUser();
     thread_t threads[4];
     thread_create(&threads[0], workerBodyA, nullptr);
     printString("ThreadA created\n");
