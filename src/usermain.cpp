@@ -48,6 +48,11 @@ void thread_test_2(void* args){
 }
 
 void usermain(){
+
+    while(true){
+        putc(getc());
+    }
+
     thread_t t1, t2;
     // sem_open(&sem1, 0);
     // sem_open(&sem2, 0);
