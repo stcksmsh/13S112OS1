@@ -59,8 +59,8 @@ void usermain(){
     // thread_join(t2);
     putc('3');
     // thread_join(t1);
-    putc('4');
-    if(getc() == 'a')putc('x');
+    // putc('4');
+    // if(getc() == 'a')putc('x');
     putc('5');
-    // sem_wait(sem1);
+    sem_wait(sem1);
 }
