@@ -6,21 +6,19 @@ Console::consoleBuffer::consoleBuffer(int size){
     first = 0;
     last = 0;
     buff = (char*)mem_alloc(sizeof(char) * size);
-    sem_open(&notEmpty, 0);
 }
 
 char Console::consoleBuffer::get(){
-    while(isEmpty())thread_dispatch();
-    // sem_wait(notEmpty);
+    if(isEmpty())return EOF;
     char ret = buff[first++];
     first %= size;
     return ret;
 }
 
 void Console::consoleBuffer::put(char ch){
+    if(isFull())return;
     buff[last++] = ch;
     last %= size;
-    // sem_signal(notEmpty);
 }
 
 bool Console::consoleBuffer::isEmpty(){

@@ -13,7 +13,6 @@ public:
     class consoleBuffer{
         char *buff;
         int first, last, size;
-        sem_t notEmpty;
     public:
         consoleBuffer(int);
         void put(char);
