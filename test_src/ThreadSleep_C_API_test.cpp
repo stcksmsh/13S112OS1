@@ -33,5 +33,5 @@ void testSleeping() {
         thread_create(&sleepyThread[i], sleepyRun, sleep_times + i);
     }
     printString("\nSuccesfully created all threads, now waiting for them to end");
-    while (!(finished[0] && finished[1])) {}
+    while (!(finished[0] && finished[1])) {thread_dispatch();}
 }
