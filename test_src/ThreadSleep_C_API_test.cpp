@@ -13,6 +13,7 @@ static void sleepyRun(void *arg) {
         printInt(sleep_time);
         printString(" !\n");
         thread_sleep(sleep_time);
+        putc('.');
     }
     finished[sleep_time/100-1] = true;
 }
