@@ -173,10 +173,18 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     __asm__ volatile ("sd s9, 11 * 8(a0)");
     __asm__ volatile ("sd s10, 12 * 8(a0)");
     __asm__ volatile ("sd s11, 13 * 8(a0)");
+    __asm__ volatile ("sd s11, 13 * 8(a0)");
+    
+    __asm__ volatile("csrr s0, sstatus");
+    __asm__ volatile ("sd s0, 14 * 8(a0)");
     }
     if(newContext->sp != 0)
     __asm__ volatile ("ld sp, 8(a1)");
     __asm__ volatile ("ld ra, 0(a1)");
+
+    __asm__ volatile ("ld s0, 14 * 8(a0)");
+    __asm__ volatile("csrw s0, sstatus");
+
     __asm__ volatile ("ld s0, 2 * 8(a1)");
     __asm__ volatile ("ld s1, 3 * 8(a1)");
     __asm__ volatile ("ld s2, 4 * 8(a1)");
@@ -189,5 +197,6 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     __asm__ volatile ("ld s9, 11 * 8(a1)");
     __asm__ volatile ("ld s10, 12 * 8(a1)");
     __asm__ volatile ("ld s11, 13 * 8(a1)");
+
     return;
 }
