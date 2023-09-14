@@ -44,6 +44,13 @@ int threadSleepHandler::sleep(time_t duration){
 
 void threadSleepHandler::timeIncrement(){
     getInstance().time ++;
+    time_t t = getInstance().time;
+    if(t%10 != 0)return;
+    while(t>0){
+        putc('0' + t%10);
+        t /= 10;
+    }
+    putc('\n');
 }
 
 void threadSleepHandler::wake(){
