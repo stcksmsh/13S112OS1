@@ -10,7 +10,7 @@ Console::consoleBuffer::consoleBuffer(int size){
 }
 
 char Console::consoleBuffer::get(){
-    if(isEmpty())sem_wait(notEmpty);
+    sem_wait(notEmpty);
     char ret = buff[first++];
     first %= size;
     return ret;
