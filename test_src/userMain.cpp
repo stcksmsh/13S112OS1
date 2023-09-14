@@ -35,7 +35,6 @@ void userMain() {
     int test = getc() - '0';
     getc(); // Enter posle broja
     putc(test);
-    return;
     if ((test >= 1 && test <= 2) || test == 7) {
         if (LEVEL_2_IMPLEMENTED == 0) {
             printString("Nije navedeno da je zadatak 2 implementiran\n");

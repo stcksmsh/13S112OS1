@@ -48,6 +48,9 @@ void thread_test_2(void* args){
 }
 
 void usermain(){
+    putc('x');
+    return;
+
 
     thread_t t1, t2;
     sem_open(&sem1, 0);
