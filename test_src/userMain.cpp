@@ -83,7 +83,6 @@ void userMain() {
             break;
         case 5:
 #if LEVEL_4_IMPLEMENTED == 1
-            printString("what is not working??\n");
             testSleeping();
             printString("TEST 5 (zadatak 4., thread_sleep test C API)\n");
 #endif

@@ -6,6 +6,9 @@ static volatile bool finished[2];
 
 static void sleepyRun(void *arg) {
     time_t sleep_time = *((time_t *) arg);
+    putc('\n');
+    printInt(sleep_time);
+    putc('\n');
     int i = 6;
     while (--i > 0) {
 
