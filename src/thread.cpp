@@ -46,6 +46,7 @@ void threadSleepHandler::sleepDecrement(){
 
 void threadSleepHandler::wake(){
     sleepList *head = getInstance().sleepHead;
+    if(head)putc('.');
     while(head && head->wakeTime == 0){
         sleepList *tmp = head;
         head = head->next;
