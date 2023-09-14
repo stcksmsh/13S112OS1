@@ -1,4 +1,5 @@
 #include "../h/thread.hpp"
+#include "../h/ABI.hpp"
 
 thread_t thread::running = nullptr;
 
@@ -122,6 +123,7 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 }
 
 void thread::wrapper(){
+    ABI::popSppSpie();
     running->start_routine(running->arg);
     exit();
 }

@@ -7,6 +7,12 @@
 
 #include "../lib/console.h"
 
+void ABI::popSppSpie() {
+    __asm__ volatile("csrw sepc, ra");
+    __asm__ volatile("sret");
+}
+
+
 
 inline uint64 ABI::sstatusRead()
 {
