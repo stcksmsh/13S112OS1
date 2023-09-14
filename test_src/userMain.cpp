@@ -32,6 +32,10 @@
 
 void userMain() {
     printString("Unesite broj testa? [1-7]\n");
+    putc('0');
+    putc(getc());
+    putc(getc());
+    putc(getc());
     int test = getc() - '0';
     getc(); // Enter posle broja
     putc(test);
