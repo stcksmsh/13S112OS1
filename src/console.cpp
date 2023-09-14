@@ -57,12 +57,9 @@ void Console::write(char ch){
 void Console::outThread(void* arg){
     Console *c = getInstance();
     do{
-
         while(!c->outBuffer.isEmpty() && (((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0){
             ((char*)CONSOLE_TX_DATA)[0] = c->outBuffer.get();
         }
-        // while((((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0 && !c->outBuffer.isEmpty())__putc(c->outBuffer.get());
-        // putc(',');
         thread_dispatch();
     }while(c->running || !c->outBuffer.isEmpty());
 }
