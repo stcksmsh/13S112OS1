@@ -94,18 +94,23 @@ static void workerBodyD(void* arg) {
 
 
 void System_Mode_test() {
+    testUser();
     thread_t threads[4];
     thread_create(&threads[0], workerBodyA, nullptr);
     printString("ThreadA created\n");
+    testUser();
 
     thread_create(&threads[1], workerBodyB, nullptr);
     printString("ThreadB created\n");
+    testUser();
 
     thread_create(&threads[2], workerBodyC, nullptr);
     printString("ThreadC created\n");
+    testUser();
 
     thread_create(&threads[3], workerBodyD, nullptr);
     printString("ThreadD created\n");
+    testUser();
 
     while (!(finishedA && finishedB && finishedC && finishedD)) {
         thread_dispatch();
