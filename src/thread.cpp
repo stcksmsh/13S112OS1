@@ -175,7 +175,7 @@ void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContex
     __asm__ volatile ("sd s11, 13 * 8(a0)");
     __asm__ volatile ("sd s11, 13 * 8(a0)");
     
-    __asm__ volatile("csrr s0, sstatus");
+    __asm__ volatile("csrr x0, sstatus");
     __asm__ volatile ("sd s0, 14 * 8(a0)");
     }
     if(newContext->sp != 0)
