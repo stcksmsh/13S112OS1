@@ -2,6 +2,7 @@
 #define CONSOLEHEADERFILE
 
 #include "syscall_c.h"
+#include "sem.hpp"
 #include "memoryAllocator.hpp"
 
 #define BUFFER_SIZE 100
@@ -12,6 +13,7 @@ public:
     class consoleBuffer{
         char *buff;
         int first, last, size;
+        sem_t notEmpty;
     public:
         consoleBuffer(int);
         void put(char);

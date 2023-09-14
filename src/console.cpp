@@ -1,20 +1,16 @@
 #include "../h/console.hpp"
 #include "../h/syscall_c.h"
-// #include "../lib/console.h"
-
-// Console::consoleBuffer(int i){
-
-// }
 
 Console::consoleBuffer::consoleBuffer(int size){
     this->size = size;
     first = 0;
     last = 0;
     buff = (char*)mem_alloc(sizeof(char) * size);
+    sem_open(&notEmpty, 0);
 }
 
 char Console::consoleBuffer::get(){
-    if(isEmpty())return EOF;
+    if(isEmpty())sem_wait(notEmpty);
     char ret = buff[first++];
     first %= size;
     return ret;
@@ -24,6 +20,7 @@ void Console::consoleBuffer::put(char ch){
     if(isFull())return;
     buff[last++] = ch;
     last %= size;
+    sem_signal(notEmpty);
 }
 
 bool Console::consoleBuffer::isEmpty(){
@@ -46,7 +43,6 @@ void Console::stop(){
 
 char Console::read(){
     Console *c = getInstance();
-    while(c->inBuffer.isEmpty())thread_dispatch();
     return c->inBuffer.get();
 }
 
@@ -57,8 +53,8 @@ void Console::write(char ch){
 void Console::outThread(void* arg){
     Console *c = getInstance();
     do{
-        while(!c->outBuffer.isEmpty() && (((char*)CONSOLE_STATUS)[0] & CONSOLE_TX_STATUS_BIT) > 0){
-            ((char*)CONSOLE_TX_DATA)[0] = c->outBuffer.get();
+        while(*((char*)(CONSOLE_STATUS)) & CONSOLE_TX_STATUS_BIT){
+            (*(char*)CONSOLE_TX_DATA) = c->outBuffer.get();
         }
         thread_dispatch();
     }while(c->running || !c->outBuffer.isEmpty());
@@ -71,8 +67,8 @@ Console* Console::getInstance(){
 
 void Console::console_handler(){
     Console *c = getInstance();
-    while((((char*)CONSOLE_STATUS)[0] & CONSOLE_RX_STATUS_BIT) > 0 && !c->inBuffer.isFull()){
-        char ch =((char*)CONSOLE_RX_DATA)[0];
+    while(*((char*)(CONSOLE_STATUS)) & CONSOLE_RX_STATUS_BIT){
+        char ch =(*(char*)CONSOLE_RX_DATA);
         c->inBuffer.put(ch);
     }
 }
