@@ -19,9 +19,6 @@ static void producerKeyboard(void *arg) {
     int key;
     int i = 0;
     while ((key = getc()) != 0x1b) {
-        // putc('p');
-        // putc(key);
-        // putc(',');
         data->buffer->put(key);
         i++;
 
@@ -102,11 +99,8 @@ void producerConsumer_C_API() {
         printString("Broj proizvodjaca mora biti veci od nula!\n");
         return;
     }
-    putc('0');
     Buffer *buffer = new Buffer(n);
-    putc('1');
     sem_open(&waitForAll, 0);
-    putc('2');
     thread_t threads[threadNum];
     thread_t consumerThread;
 
@@ -115,7 +109,6 @@ void producerConsumer_C_API() {
     data[threadNum].id = threadNum;
     data[threadNum].buffer = buffer;
     data[threadNum].wait = waitForAll;
-    putc('3');
     thread_create(&consumerThread, consumer, data + threadNum);
 
     for (int i = 0; i < threadNum; i++) {
@@ -127,19 +120,14 @@ void producerConsumer_C_API() {
                       i > 0 ? producer : producerKeyboard,
                       data + i);
     }
-    putc('4');
 
     thread_dispatch();
 
     for (int i = 0; i <= threadNum; i++) {
         sem_wait(waitForAll);
     }
-    putc('5');
 
     sem_close(waitForAll);
-    putc('6');
 
     delete buffer;
-
-    putc('7');
 }
