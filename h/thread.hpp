@@ -43,6 +43,8 @@ public:
 
     static int create( thread**, func, void*, void*);
 
+    static int createCPP( thread**, func, void*, void*);
+
     static int exit();
 
     static thread *running;

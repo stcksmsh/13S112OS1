@@ -124,6 +124,30 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
     return 0;
 }
 
+int thread::createCPP( thread_t* handle, func start_routine, void*  arg, void* stack_space){
+    *handle = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+    thread_t newThread = *handle;
+    newThread->start_routine = start_routine;
+    newThread->arg = arg;
+    if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
+    newThread->stack_space = (uint64*)stack_space;
+    newThread->timeLeftToRun = DEFAULT_TIME_SLICE;
+    newThread->blocked = false;
+    newThread->closed = false;
+    newThread->finished = false;
+    newThread->sleeping =false;
+    newThread->context.pc = (uint64)wrapper;
+    newThread->body = start_routine;
+    newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
+    newThread->joinHead = nullptr;
+    newThread->joinTail = nullptr;
+    if(start_routine == nullptr)
+        newThread->context.pc = 0;
+    *handle = newThread;
+    return 0;
+}
+
+
 void thread::wrapper(){
     ABI::popSppSpie();
     running->start_routine(running->arg);

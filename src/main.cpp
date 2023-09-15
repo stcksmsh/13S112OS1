@@ -33,10 +33,5 @@ void main(){
         // }
     }while(!mainEnd);
     Console::stop();
-    putc('\n');
-    putc('f');
-    putc('i');
-    putc('n');
-    putc('!');
     thread_dispatch();
 }
