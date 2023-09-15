@@ -13,6 +13,8 @@ typedef thread* thread_t;
 
 int thread_create ( thread_t*, void(*)(void*), void* );
 
+int thread_createCPP ( thread_t*, void(*)(void*), void* );
+
 int thread_exit ();
 
 void thread_dispatch ();

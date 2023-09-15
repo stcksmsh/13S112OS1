@@ -13,14 +13,13 @@ public:
     void join();
     static void dispatch ();
     static int sleep (time_t);
+    static void wrapper(void *);
 protected:
     Thread ();
     virtual void run () {}
 
 private:
-    thread_t myHandle;
-    void ( * body)(void * );
-    void *  arg;
+    thread_t handle;
 };
 class Semaphore {
 public:
@@ -29,7 +28,7 @@ public:
     int wait ();
     int signal ();
 private:
-    sem_t myHandle;
+    sem_t handle;
 };
 class PeriodicThread : public Thread {
 public:
@@ -37,7 +36,7 @@ public:
 protected:
     PeriodicThread (time_t period);
     virtual void periodicActivation () {}
-
+    virtual void run() override;
 private:
     time_t period;
 };
