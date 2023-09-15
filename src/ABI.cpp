@@ -189,6 +189,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         /// Timer
         /// first we decrement remaining time for the "first" sleeping thread
         threadSleepHandler::sleepDecrement();
+        /// next we wake the sleeping threads
         /// and finally we test for preemption
         if(!thread::running->live()){
             thread::dispatch();
