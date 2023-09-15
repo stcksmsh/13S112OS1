@@ -8,11 +8,14 @@
 
 extern "C" void trap();
 
+bool mainEnd = false;
+
 void usermainWrapper(void* arg){
     // private tests
     usermain();
     // public tests
     // userMain();
+    mainEnd = true;
 }
 
 void main(){
@@ -26,9 +29,9 @@ void main(){
     do{
         // for(int i = 0; i < 10000; i ++){}
         // while(!Scheduler::isEmpty()){
-        //     thread_dispatch();
+            thread_dispatch();
         // }
-    }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
+    }while(!mainEnd);
     Console::stop();
     putc('\n');
     putc('f');
