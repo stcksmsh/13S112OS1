@@ -185,7 +185,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     }
     else if (scause == 0x8000000000000001UL)
     {   
-        putc('.');
+        // putc('.');
         /// Timer
         /// first we decrement remaining time for the "first" sleeping thread
         threadSleepHandler::sleepDecrement();
@@ -194,7 +194,7 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         /// and finally we test for preemption
         if(!thread::running->live()){
             thread::dispatch();
-            putc('p');
+            // putc('p');
         }
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);

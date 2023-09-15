@@ -45,7 +45,10 @@ int threadSleepHandler::sleep(time_t duration){
 
 void threadSleepHandler::sleepDecrement(){
     sleepList *node = getInstance().sleepHead;
-    if(node)node->wakeTime--;
+    if(node){
+        node->wakeTime--;
+        putc('.');
+    }
 }
 
 void threadSleepHandler::wake(){
