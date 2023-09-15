@@ -1,4 +1,5 @@
 #include "../h/scheduler.hpp"
+#include "../h/console.hpp"
 
 Scheduler::Element* Scheduler::head = nullptr;
 Scheduler::Element* Scheduler::tail = nullptr;
@@ -35,8 +36,9 @@ thread_t Scheduler::get(){
 bool Scheduler::isEmpty(){
     Element* elem = head;
     int cnt = 0;
-    while(elem != nullptr && cnt < 2){
-        cnt ++;
+    while(elem != nullptr){
+        if(elem->thread->start_routine != Console::outThread)
+            cnt ++;
         elem = elem->next;
     }
     do{
