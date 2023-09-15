@@ -10,11 +10,11 @@ class threadSleepHandler{
         thread *handle;
         time_t wakeTime;
         sleepList *next;
-    } *sleepHead = nullptr;
+    } *sleepHead;
 
 public:
 
-    threadSleepHandler(){};
+    threadSleepHandler() : sleepHead(nullptr){};
 
     static void sleepDecrement();
 
