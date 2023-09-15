@@ -104,22 +104,25 @@ void testConsumerProducer() {
     }
 
     BufferCPP *buffer = new BufferCPP(n);
-
+    putc('.');
     waitForAll = new Semaphore(0);
     Thread *producers[threadNum];
     thread_data threadData[threadNum + 1];
+    putc('.');
 
     threadData[threadNum].id = threadNum;
     threadData[threadNum].buffer = buffer;
     threadData[threadNum].sem = waitForAll;
     Thread *consumer = new Consumer(&threadData[threadNum]);
     consumer->start();
+    putc('.');
 
     threadData[0].id = 0;
     threadData[0].buffer = buffer;
     threadData[0].sem = waitForAll;
     producers[0] = new ProducerKeyborad(&threadData[0]);
     producers[0]->start();
+    putc('.');
 
     for (int i = 1; i < threadNum; i++) {
         threadData[i].id = i;
