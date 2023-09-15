@@ -47,12 +47,12 @@ void threadSleepHandler::sleepDecrement(){
     sleepList *node = getInstance().sleepHead;
     if(node){
         time_t time = --node->wakeTime;
-        putc('\n');
-        do{
-            putc('0' + time % 10);
-            time /= 10;
-        }while(time > 0);
-        putc('\n');
+        // putc('\n');
+        // do{
+        //     putc('0' + time % 10);
+        //     time /= 10;
+        // }while(time > 0);
+        // putc('\n');
         if(node->wakeTime == 0)wake();
     }
 }
@@ -63,6 +63,9 @@ void threadSleepHandler::wake(){
     while(head && head->wakeTime == 0){
         sleepList *tmp = head;
         head = head->next;
+        thread_t handle = tmp->handle;
+        handle->sleeping = false;
+        Scheduler::put(handle);
         mem_free(tmp);
     }
     getInstance().sleepHead = head;
