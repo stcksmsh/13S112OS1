@@ -18,8 +18,8 @@ static void workerBodyA(void* arg) {
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 100; j++) {
-            // for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
-            thread_dispatch();
+            for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
+            // thread_dispatch();
         }
     }
     printString("A finished!\n");
