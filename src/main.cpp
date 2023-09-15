@@ -29,7 +29,7 @@ void main(){
     do{
         // for(int i = 0; i < 10000; i ++){}
         // while(!Scheduler::isEmpty()){
-            thread_dispatch();
+        // thread_dispatch();
         // }
     }while(!mainEnd);
     Console::stop();
