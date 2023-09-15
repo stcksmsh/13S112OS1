@@ -34,12 +34,13 @@ thread_t Scheduler::get(){
 }
 
 bool Scheduler::isEmpty(){
-    Element* elem = head;
-    int cnt = 0;
-    while(elem != nullptr && cnt == 0){
-        if(elem->thread->start_routine != Console::outThread)
-            cnt ++;
-        elem = elem->next;
-    }
-    return cnt == 0;;
+    return head == nullptr;
+    // Element* elem = head;
+    // int cnt = 0;
+    // while(elem != nullptr && cnt == 0){
+    //     if(elem->thread->start_routine != Console::outThread)
+    //         cnt ++;
+    //     elem = elem->next;
+    // }
+    // return cnt == 0;;
 }
