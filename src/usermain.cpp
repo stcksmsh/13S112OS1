@@ -24,7 +24,7 @@ void thread_test_2(void* args){
 }
 
 void usermain(){
-    thread_t t1, t2;
+    // thread_t t1, t2;
     sem_open(&sem1, 0);
     sem_open(&sem2, 0);
     // thread_create(&t2, thread_test_2, nullptr);
