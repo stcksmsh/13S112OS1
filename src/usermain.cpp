@@ -38,4 +38,6 @@ void usermain(){
     putc('4');
     sem_wait(sem2);
     putc('5');
+    while(true){}
+    putc('6');
 }
