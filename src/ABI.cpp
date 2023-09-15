@@ -192,7 +192,10 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         /// next we wake the sleeping threads;
         threadSleepHandler::wake();
         /// and finally we test for preemption
-        if(!thread::running->live())thread::dispatch();
+        if(!thread::running->live()){
+            thread::dispatch();
+            putc('p');
+        }
         __asm__ volatile ("csrw sepc, %0" : : "r" (sepc));
         sstatusWrite(sstatus);
         sipBitClear(1);
