@@ -26,7 +26,7 @@ void main(){
     do{
         // for(int i = 0; i < 10000; i ++){}
         // while(!Scheduler::isEmpty()){
-        thread_dispatch();
+        //     thread_dispatch();
         // }
     }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
     Console::stop();
