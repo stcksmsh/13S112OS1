@@ -53,7 +53,7 @@ void threadSleepHandler::sleepDecrement(){
         //     time /= 10;
         // }while(time > 0);
         // putc('\n');
-        if(node->wakeTime == 0)wake();
+        if(time == 0)wake();
     }
 }
 
