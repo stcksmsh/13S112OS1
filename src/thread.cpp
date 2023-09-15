@@ -48,12 +48,13 @@ void threadSleepHandler::sleepDecrement(){
     if(node){
         time_t time = node->wakeTime--;
         putc('\n');
-        while(time > 0){
+        do{
             putc('0' + time % 10);
             time /= 10;
-        }
+        }while(time > 0);
         putc('\n');
     }
+    if(node->wakeTime == 0)wake();
 }
 
 void threadSleepHandler::wake(){
