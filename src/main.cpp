@@ -12,9 +12,9 @@ bool mainEnd = false;
 
 void usermainWrapper(void* arg){
     // private tests
-    usermain();
+    // usermain();
     // public tests
-    // userMain();
+    userMain();
     mainEnd = true;
 }
 
