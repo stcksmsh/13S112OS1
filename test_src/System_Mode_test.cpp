@@ -30,8 +30,8 @@ static void workerBodyB(void* arg) {
     for (uint64 i = 0; i < 16; i++) {
         printString("B: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 100; j++) {
-            // for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
-            thread_dispatch();
+            for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
+            // thread_dispatch();
         }
         if (i == 10) {
             // testUser();
