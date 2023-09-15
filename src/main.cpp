@@ -24,6 +24,7 @@ void main(){
     thread_create(&out, Console::outThread, nullptr);
     thread_create(&prog, usermainWrapper, nullptr);
     do{
+        for(int i = 0; i < 10000; i ++){}
         // while(!Scheduler::isEmpty()){
         //     thread_dispatch();
         // }
