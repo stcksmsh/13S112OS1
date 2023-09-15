@@ -83,9 +83,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
             __asm__ volatile ("mv %0, a2" : "=r"(start_routine));
             uint64 arg;
             __asm__ volatile("mv %0, a3" : "=r"(arg));
-            // uint64 stack_space;
-            // __asm__ volatile("mv %0, a4" : "=r"(stack_space));
-            uint64* stack_space=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
+            uint64 stack_space;
+            __asm__ volatile("mv %0, a4" : "=r"(stack_space));
+            // uint64* stack_space=(uint64*)MemoryAllocator::getInstance().mem_alloc((DEFAULT_STACK_SIZE+ MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
             thread::create((thread_t*)handle, (thread::func)start_routine, (void*)arg, (void*)stack_space);
             uint64 retVal=0;
             if(handle == 0)retVal=-1;
