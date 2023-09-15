@@ -24,7 +24,7 @@ int mem_free(void* address){
 
 int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
     void* stack_space = mem_alloc(DEFAULT_STACK_SIZE);
-    __asm__ volatile ("mv a4, %0" : : "r"(stack_space));
+    __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space));
     void* arguments=arg;
     __asm__ volatile("mv a3,%0" : : "r" (arguments));
     void(*sr)(void*)=start_routine;
