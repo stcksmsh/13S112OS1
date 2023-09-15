@@ -23,14 +23,11 @@ int mem_free(void* address){
 }
 
 int thread_create(thread_t *handle, void (*start_routine)(void *), void *arg) {
+    __asm__ volatile("mv a3,%0" : : "r" (arg));
+    __asm__ volatile("mv a2,%0" : : "r" (start_routine));
+    __asm__ volatile("mv a1,%0" : : "r" (handle));
     void* stack_space = mem_alloc(DEFAULT_STACK_SIZE);
-    __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space));
-    void* arguments=arg;
-    __asm__ volatile("mv a3,%0" : : "r" (arguments));
-    void(*sr)(void*)=start_routine;
-    __asm__ volatile("mv a2,%0" : : "r" (sr));
-    thread_t* h=handle;
-    __asm__ volatile("mv a1,%0" : : "r" (h));
+    __asm__ volatile ("mv a4, %0" : : "r"(stack_space));
     __asm__ volatile("li a0,0x11");
     __asm__ volatile("ecall");
     int returnValue;
