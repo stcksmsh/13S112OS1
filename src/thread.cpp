@@ -19,16 +19,12 @@ int threadSleepHandler::sleep(time_t duration){
     node->wakeTime = duration;
     node->next = nullptr;
     sleepList *insertAfter = getInstance().sleepHead;
-    putc('0');
     if(insertAfter == nullptr){
-        putc('1');
         getInstance().sleepHead = node;
     }else if(insertAfter->wakeTime > node->wakeTime){
-        putc('2');
         getInstance().sleepHead = node;
         node->next = insertAfter;
     }else{
-        putc('3');
         while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->wakeTime + insertAfter->next->wakeTime >= node->wakeTime){
             node->wakeTime -= insertAfter->wakeTime;
             insertAfter = insertAfter->next;
@@ -46,20 +42,13 @@ int threadSleepHandler::sleep(time_t duration){
 void threadSleepHandler::sleepDecrement(){
     sleepList *node = getInstance().sleepHead;
     if(node){
-        time_t time = --node->wakeTime;
-        // putc('\n');
-        // do{
-        //     putc('0' + time % 10);
-        //     time /= 10;
-        // }while(time > 0);
-        // putc('\n');
-        if(time == 0)wake();
+        node->wakeTime--;
+        if(node->wakeTime == 0)wake();
     }
 }
 
 void threadSleepHandler::wake(){
     sleepList *head = getInstance().sleepHead;
-    if(head)putc('.');
     while(head && head->wakeTime == 0){
         sleepList *tmp = head;
         head = head->next;
