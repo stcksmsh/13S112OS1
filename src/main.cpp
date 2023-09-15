@@ -29,5 +29,10 @@ void main(){
         }
     }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
     Console::stop();
+    putc('\n');
+    putc('f');
+    putc('i');
+    putc('n');
+    putc('!');
     thread_dispatch();
 }

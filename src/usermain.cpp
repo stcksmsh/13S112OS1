@@ -35,7 +35,7 @@ void usermain(){
     putc('3');
     // thread_join(t1);
     if(getc() == 'a')putc('x');
-    // putc('4');
+    putc('4');
     sem_wait(sem2);
     putc('5');
 }
