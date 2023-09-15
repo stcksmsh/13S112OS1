@@ -139,6 +139,7 @@ int thread::exit(){
     }
     mem_free(running->stack_space);
     __asm__ volatile ("ecall");
+    return 0;
 }
 
 void thread::dispatch(){
