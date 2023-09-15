@@ -187,9 +187,9 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
     {   
         putc('.');
         /// Timer
-        /// first we increment the thread::time variable
+        /// first we decrement remaining time for the "first" sleeping thread
         threadSleepHandler::sleepDecrement();
-        /// next we wake the sleeping threads;
+        /// next we wake the sleeping threads
         threadSleepHandler::wake();
         /// and finally we test for preemption
         if(!thread::running->live()){
@@ -206,6 +206,5 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         if(irq == CONSOLE_IRQ)Console::console_handler();
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
-        // console_handler();
     }
 }

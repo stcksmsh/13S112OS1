@@ -22,6 +22,7 @@ void main(){
     thread_create(&main, nullptr, nullptr);
     thread::running = Scheduler::get();
     thread_create(&out, Console::outThread, nullptr);
+    while(true){}
     thread_create(&prog, usermainWrapper, nullptr);
     do{
         while(!Scheduler::isEmpty()){
