@@ -122,7 +122,19 @@ int thread::create( thread_t* handle, func start_routine, void*  arg, void* stac
 void thread::wrapper(){
     ABI::popSppSpie();
     running->start_routine(running->arg);
-    exit();
+    running->finished = true;
+    thread::joinList *previous = nullptr;
+    while(running->joinHead != nullptr){
+        previous = running->joinHead;
+        running->joinHead = running->joinHead->next;
+        if(!running->closed){
+            previous->handle->blocked = false;
+            Scheduler::put(previous->handle);
+        }
+        mem_free(previous);
+    }
+    mem_free(running->stack_space);
+    __asm__ volatile ("ecall");
 }
 
 int thread::exit(){
@@ -138,7 +150,6 @@ int thread::exit(){
         mem_free(previous);
     }
     mem_free(running->stack_space);
-    __asm__ volatile ("ecall");
     return 0;
 }
 
