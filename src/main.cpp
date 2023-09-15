@@ -22,12 +22,11 @@ void main(){
     thread_create(&main, nullptr, nullptr);
     thread::running = Scheduler::get();
     thread_create(&out, Console::outThread, nullptr);
-    while(true){}
     thread_create(&prog, usermainWrapper, nullptr);
     do{
-        while(!Scheduler::isEmpty()){
-            thread_dispatch();
-        }
+        // while(!Scheduler::isEmpty()){
+        //     thread_dispatch();
+        // }
     }while(!threadSleepHandler::allAwake() || !Scheduler::isEmpty() || !threadSleepHandler::allAwake());
     Console::stop();
     putc('\n');
