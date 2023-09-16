@@ -221,4 +221,81 @@ void ABI::trapHandler() {/// address to return to (in case of c/cpp syscalls is 
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
     }
+    else if (scause == 0x0000000000000002UL){   // illegal instruction
+        Console::write('\n');
+        Console::write('E');
+        Console::write('r');
+        Console::write('r');
+        Console::write('o');
+        Console::write('r');
+        Console::write(':');
+        Console::write(' ');
+        Console::write('i');
+        Console::write('l');
+        Console::write('l');
+        Console::write('e');
+        Console::write('g');
+        Console::write('a');
+        Console::write('l');
+        Console::write(' ');
+        Console::write('i');
+        Console::write('n');
+        Console::write('s');
+        Console::write('t');
+        Console::write('r');
+        Console::write('u');
+        Console::write('c');
+        Console::write('t');
+        Console::write('i');
+        Console::write('o');
+        Console::write('n');
+        Console::write('!');
+    }
+    else if (scause == 0x0000000000000005UL){   // illegal read operation
+        Console::write('\n');
+        Console::write('E');
+        Console::write('r');
+        Console::write('r');
+        Console::write('o');
+        Console::write('r');
+        Console::write(':');
+        Console::write(' ');
+        Console::write('i');
+        Console::write('l');
+        Console::write('l');
+        Console::write('e');
+        Console::write('g');
+        Console::write('a');
+        Console::write('l');
+        Console::write(' ');
+        Console::write('r');
+        Console::write('e');
+        Console::write('a');
+        Console::write('d');
+        Console::write('!');    
+    }
+    else if (scause == 0x0000000000000007UL){   // illegal write operation
+        Console::write('\n');
+        Console::write('E');
+        Console::write('r');
+        Console::write('r');
+        Console::write('o');
+        Console::write('r');
+        Console::write(':');
+        Console::write(' ');
+        Console::write('i');
+        Console::write('l');
+        Console::write('l');
+        Console::write('e');
+        Console::write('g');
+        Console::write('a');
+        Console::write('l');
+        Console::write(' ');
+        Console::write('w');
+        Console::write('r');
+        Console::write('i');
+        Console::write('t');
+        Console::write('e');
+        Console::write('!');        
+    }
 }
