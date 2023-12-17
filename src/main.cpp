@@ -21,6 +21,7 @@ void usermainWrapper(void* arg){
 void main(){
     __asm__ volatile ("csrw stvec, %0" : :  "r"(&trap)); // sets the syscall routine
     changeUser();
+    putc('x');
     thread_t out, main, prog;
     thread_create(&main, nullptr, nullptr);
     thread::running = Scheduler::get();

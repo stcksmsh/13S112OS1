@@ -1,2 +1,3 @@
-/riscv-privileged-20211203.pdf
-/riscv-spec-20191213.pdf
+*.pdf
+*.zip
+*.s
