@@ -1,0 +1,405 @@
+GAS LISTING /tmp/ccAxOupd.s 			page 1
+
+
+   1              		.file	"main.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	main
+   9              	main:
+  10              	.LFB7:
+  11              		.file 1 "src/main.cpp"
+   1:src/main.cpp  **** /**
+   2:src/main.cpp  ****  * @file main.cpp
+   3:src/main.cpp  ****  * @author stcksmsh (vukicevickosta@gmail.com)
+   4:src/main.cpp  ****  * @brief initialisation of the kernel
+   5:src/main.cpp  ****  * @version 0.1
+   6:src/main.cpp  ****  * @date 2023-12-31
+   7:src/main.cpp  ****  * 
+   8:src/main.cpp  ****  * @copyright Copyright (c) 2023
+   9:src/main.cpp  ****  * 
+  10:src/main.cpp  ****  */
+  11:src/main.cpp  **** 
+  12:src/main.cpp  **** #include "kernel.h"
+  13:src/main.cpp  **** 
+  14:src/main.cpp  **** /// @brief first function to be called
+  15:src/main.cpp  **** void main(){
+  12              		.loc 1 15 12
+  13              		.cfi_startproc
+  14              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+  15              		.cfi_lsda 0x1b,.LLSDA7
+  16 0000 130101FC 		addi	sp,sp,-64
+  17              		.cfi_def_cfa_offset 64
+  18 0004 233C1102 		sd	ra,56(sp)
+  19 0008 23388102 		sd	s0,48(sp)
+  20 000c 23349102 		sd	s1,40(sp)
+  21              		.cfi_offset 1, -8
+  22              		.cfi_offset 8, -16
+  23              		.cfi_offset 9, -24
+  24 0010 13040104 		addi	s0,sp,64
+  25              		.cfi_def_cfa 8, 0
+  16:src/main.cpp  ****     Kernel kernel = Kernel();
+  26              		.loc 1 16 5
+  27              	.LVL0:
+  28              	.LBB15:
+  29              	.LBB16:
+  30              	.LBB17:
+  31              		.file 2 "./h/kernel.h"
+   1:./h/kernel.h  **** /**
+   2:./h/kernel.h  ****  * @file kernel.h
+   3:./h/kernel.h  ****  * @author stcksmsh (vukicevickosta@gmail.com)
+   4:./h/kernel.h  ****  * @brief the kernel class
+   5:./h/kernel.h  ****  * @version 0.1
+   6:./h/kernel.h  ****  * @date 2023-12-31
+   7:./h/kernel.h  ****  * 
+   8:./h/kernel.h  ****  * @copyright Copyright (c) 2023
+   9:./h/kernel.h  ****  * 
+  10:./h/kernel.h  ****  */
+  11:./h/kernel.h  **** #ifndef KERNEL_H
+GAS LISTING /tmp/ccAxOupd.s 			page 2
+
+
+  12:./h/kernel.h  **** #define KERNEL_H
+  13:./h/kernel.h  **** 
+  14:./h/kernel.h  **** #include "types.h"
+  15:./h/kernel.h  **** #include "attributes.h"
+  16:./h/kernel.h  **** #include "heapManager.h"
+  17:./h/kernel.h  **** #include "sched.h"
+  18:./h/kernel.h  **** 
+  19:./h/kernel.h  **** class Kernel{
+  20:./h/kernel.h  ****     public:
+  21:./h/kernel.h  ****         /// @brief constructor
+  22:./h/kernel.h  ****         Kernel(){}; /// empty constructor
+  32              		.loc 2 22 17 is_stmt 0
+  33 0014 130504FC 		addi	a0,s0,-64
+  34              	.LVL1:
+  35              	.LEHB0:
+  36 0018 97000000 		call	_ZN11HeapManagerC1Ev@plt
+  36      E7800000 
+  37              	.LVL2:
+  38              	.LEHE0:
+  39 0020 130504FD 		addi	a0,s0,-48
+  40              	.LEHB1:
+  41 0024 97000000 		call	_ZN9SchedulerC1Ev@plt
+  41      E7800000 
+  42              	.LVL3:
+  43              	.LEHE1:
+  44 002c 6F000002 		j	.L12
+  45              	.L8:
+  46 0030 93040500 		mv	s1,a0
+  47 0034 130504FC 		addi	a0,s0,-64
+  48              	.LVL4:
+  49 0038 97000000 		call	_ZN11HeapManagerD1Ev@plt
+  49      E7800000 
+  50              	.LVL5:
+  51 0040 13850400 		mv	a0,s1
+  52              	.LEHB2:
+  53 0044 97000000 		call	_Unwind_Resume@plt
+  53      E7800000 
+  54              	.LVL6:
+  55              	.LEHE2:
+  56              	.L12:
+  57              	.LBE17:
+  58              	.LBE16:
+  59              	.LBE15:
+  17:src/main.cpp  ****     kernel.initialise();
+  60              		.loc 1 17 5 is_stmt 1
+  61              		.loc 1 17 22 is_stmt 0
+  62 004c 130504FC 		addi	a0,s0,-64
+  63              	.LEHB3:
+  64 0050 97000000 		call	_ZN6Kernel10initialiseEv@plt
+  64      E7800000 
+  65              	.LVL7:
+  18:src/main.cpp  ****     Kernel::EXIT_CODE exitCode = kernel.run();
+  66              		.loc 1 18 5 is_stmt 1
+  67              		.loc 1 18 44 is_stmt 0
+  68 0058 130504FC 		addi	a0,s0,-64
+  69 005c 97000000 		call	_ZN6Kernel3runEv@plt
+  69      E7800000 
+GAS LISTING /tmp/ccAxOupd.s 			page 3
+
+
+  70              	.LVL8:
+  71              	.LEHE3:
+  19:src/main.cpp  ****     if(exitCode == Kernel::EXIT_FAILURE){
+  72              		.loc 1 19 5 is_stmt 1
+  73 0064 93071000 		li	a5,1
+  74 0068 6314F500 		bne	a0,a5,.L4
+  75              	.L5:
+  20:src/main.cpp  ****         while(1){} /// infinite loop
+  76              		.loc 1 20 9 discriminator 1
+  77              		.loc 1 20 9 discriminator 1
+  78 006c 6F000000 		j	.L5
+  79              	.L4:
+  80              	.LVL9:
+  81              	.LBB18:
+  82              	.LBB19:
+  23:./h/kernel.h  ****         /// @brief destructor
+  24:./h/kernel.h  ****         ~Kernel(){};
+  83              		.loc 2 24 18 is_stmt 0
+  84 0070 130504FC 		addi	a0,s0,-64
+  85              	.LVL10:
+  86 0074 97000000 		call	_ZN11HeapManagerD1Ev@plt
+  86      E7800000 
+  87              	.LVL11:
+  88              	.LBE19:
+  89              	.LBE18:
+  21:src/main.cpp  ****     }
+  22:src/main.cpp  **** }...
+  90              		.loc 1 22 1
+  91 007c 83308103 		ld	ra,56(sp)
+  92              		.cfi_remember_state
+  93              		.cfi_restore 1
+  94 0080 03340103 		ld	s0,48(sp)
+  95              		.cfi_restore 8
+  96              		.cfi_def_cfa 2, 64
+  97 0084 83348102 		ld	s1,40(sp)
+  98              		.cfi_restore 9
+  99 0088 13010104 		addi	sp,sp,64
+ 100              		.cfi_def_cfa_offset 0
+ 101 008c 67800000 		jr	ra
+ 102              	.L7:
+ 103              		.cfi_restore_state
+ 104 0090 93040500 		mv	s1,a0
+ 105              	.LVL12:
+ 106              	.LBB20:
+ 107              	.LBB21:
+ 108              		.loc 2 24 18
+ 109 0094 130504FC 		addi	a0,s0,-64
+ 110              	.LVL13:
+ 111 0098 97000000 		call	_ZN11HeapManagerD1Ev@plt
+ 111      E7800000 
+ 112              	.LVL14:
+ 113 00a0 13850400 		mv	a0,s1
+ 114              	.LEHB4:
+ 115 00a4 97000000 		call	_Unwind_Resume@plt
+ 115      E7800000 
+ 116              	.LVL15:
+ 117              	.LEHE4:
+GAS LISTING /tmp/ccAxOupd.s 			page 4
+
+
+ 118              	.LBE21:
+ 119              	.LBE20:
+ 120              		.cfi_endproc
+ 121              	.LFE7:
+ 122              		.globl	__gxx_personality_v0
+ 123              		.section	.gcc_except_table,"a",@progbits
+ 124              	.LLSDA7:
+ 125 0000 FF       		.byte	0xff
+ 126 0001 FF       		.byte	0xff
+ 127 0002 03       		.byte	0x3
+ 128 0003 41       		.byte	0x41
+ 129 0004 00000000 		.4byte	.LEHB0-.LFB7
+ 130 0008 00000000 		.4byte	.LEHE0-.LEHB0
+ 131 000c 00000000 		.4byte	0
+ 132 0010 00       		.byte	0
+ 133 0011 00000000 		.4byte	.LEHB1-.LFB7
+ 134 0015 00000000 		.4byte	.LEHE1-.LEHB1
+ 135 0019 00000000 		.4byte	.L8-.LFB7
+ 136 001d 00       		.byte	0
+ 137 001e 00000000 		.4byte	.LEHB2-.LFB7
+ 138 0022 00000000 		.4byte	.LEHE2-.LEHB2
+ 139 0026 00000000 		.4byte	0
+ 140 002a 00       		.byte	0
+ 141 002b 00000000 		.4byte	.LEHB3-.LFB7
+ 142 002f 00000000 		.4byte	.LEHE3-.LEHB3
+ 143 0033 00000000 		.4byte	.L7-.LFB7
+ 144 0037 00       		.byte	0
+ 145 0038 00000000 		.4byte	.LEHB4-.LFB7
+ 146 003c 00000000 		.4byte	.LEHE4-.LEHB4
+ 147 0040 00000000 		.4byte	0
+ 148 0044 00       		.byte	0
+ 149              		.text
+ 151              	.Letext0:
+ 152              		.file 3 "./lib/hw.h"
+ 153              		.file 4 "./h/types.h"
+ 154              		.file 5 "./h/heapManager.h"
+ 155              		.file 6 "./h/sched.h"
+ 1716              		.align	3
+ 1719              	DW.ref.__gxx_personality_v0:
+ 1720 0000 00000000 		.dword	__gxx_personality_v0
+ 1720      00000000 
+ 1721              		.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+ 1722              		.section	.note.GNU-stack,"",@progbits
+GAS LISTING /tmp/ccAxOupd.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.cpp
+     /tmp/ccAxOupd.s:9      .text:0000000000000000 main
+     /tmp/ccAxOupd.s:13     .text:0000000000000000 .L0 
+     /tmp/ccAxOupd.s:1719   .data.rel.local.DW.ref.__gxx_personality_v0:0000000000000000 DW.ref.__gxx_personality_v0
+     /tmp/ccAxOupd.s:16     .text:0000000000000000 .L0 
+     /tmp/ccAxOupd.s:17     .text:0000000000000004 .L0 
+     /tmp/ccAxOupd.s:21     .text:0000000000000010 .L0 
+     /tmp/ccAxOupd.s:22     .text:0000000000000010 .L0 
+     /tmp/ccAxOupd.s:23     .text:0000000000000010 .L0 
+     /tmp/ccAxOupd.s:25     .text:0000000000000014 .L0 
+     /tmp/ccAxOupd.s:32     .text:0000000000000014 .L0 
+     /tmp/ccAxOupd.s:33     .text:0000000000000014 .L0 
+     /tmp/ccAxOupd.s:61     .text:000000000000004c .L0 
+     /tmp/ccAxOupd.s:62     .text:000000000000004c .L0 
+     /tmp/ccAxOupd.s:67     .text:0000000000000058 .L0 
+     /tmp/ccAxOupd.s:68     .text:0000000000000058 .L0 
+     /tmp/ccAxOupd.s:73     .text:0000000000000064 .L0 
+     /tmp/ccAxOupd.s:77     .text:000000000000006c .L0 
+     /tmp/ccAxOupd.s:78     .text:000000000000006c .L0 
+     /tmp/ccAxOupd.s:84     .text:0000000000000070 .L0 
+     /tmp/ccAxOupd.s:91     .text:000000000000007c .L0 
+     /tmp/ccAxOupd.s:92     .text:0000000000000080 .L0 
+     /tmp/ccAxOupd.s:93     .text:0000000000000080 .L0 
+     /tmp/ccAxOupd.s:95     .text:0000000000000084 .L0 
+     /tmp/ccAxOupd.s:96     .text:0000000000000084 .L0 
+     /tmp/ccAxOupd.s:98     .text:0000000000000088 .L0 
+     /tmp/ccAxOupd.s:100    .text:000000000000008c .L0 
+     /tmp/ccAxOupd.s:103    .text:0000000000000090 .L0 
+     /tmp/ccAxOupd.s:109    .text:0000000000000094 .L0 
+     /tmp/ccAxOupd.s:120    .text:00000000000000ac .L0 
+     /tmp/ccAxOupd.s:156    .text:00000000000000ac .L0 
+     /tmp/ccAxOupd.s:56     .text:000000000000004c .L12
+     /tmp/ccAxOupd.s:79     .text:0000000000000070 .L4
+     /tmp/ccAxOupd.s:75     .text:000000000000006c .L5
+     /tmp/ccAxOupd.s:35     .text:0000000000000018 .LEHB0
+     /tmp/ccAxOupd.s:10     .text:0000000000000000 .LFB7
+     /tmp/ccAxOupd.s:38     .text:0000000000000020 .LEHE0
+     /tmp/ccAxOupd.s:40     .text:0000000000000024 .LEHB1
+     /tmp/ccAxOupd.s:43     .text:000000000000002c .LEHE1
+     /tmp/ccAxOupd.s:45     .text:0000000000000030 .L8
+     /tmp/ccAxOupd.s:52     .text:0000000000000044 .LEHB2
+     /tmp/ccAxOupd.s:55     .text:000000000000004c .LEHE2
+     /tmp/ccAxOupd.s:63     .text:0000000000000050 .LEHB3
+     /tmp/ccAxOupd.s:71     .text:0000000000000064 .LEHE3
+     /tmp/ccAxOupd.s:102    .text:0000000000000090 .L7
+     /tmp/ccAxOupd.s:114    .text:00000000000000a4 .LEHB4
+     /tmp/ccAxOupd.s:117    .text:00000000000000ac .LEHE4
+     /tmp/ccAxOupd.s:864    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccAxOupd.s:1631   .debug_str:0000000000000254 .LASF70
+     /tmp/ccAxOupd.s:1649   .debug_str:0000000000000372 .LASF71
+     /tmp/ccAxOupd.s:1657   .debug_str:00000000000003a4 .LASF72
+     /tmp/ccAxOupd.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccAxOupd.s:151    .text:00000000000000ac .Letext0
+     /tmp/ccAxOupd.s:1551   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccAxOupd.s:1651   .debug_str:000000000000037f .LASF0
+     /tmp/ccAxOupd.s:1613   .debug_str:00000000000001e2 .LASF1
+GAS LISTING /tmp/ccAxOupd.s 			page 6
+
+
+     /tmp/ccAxOupd.s:1603   .debug_str:000000000000017e .LASF2
+     /tmp/ccAxOupd.s:1647   .debug_str:000000000000036b .LASF3
+     /tmp/ccAxOupd.s:1575   .debug_str:00000000000000a3 .LASF4
+     /tmp/ccAxOupd.s:1611   .debug_str:00000000000001d0 .LASF5
+     /tmp/ccAxOupd.s:1559   .debug_str:0000000000000032 .LASF6
+     /tmp/ccAxOupd.s:1557   .debug_str:000000000000001f .LASF7
+     /tmp/ccAxOupd.s:1597   .debug_str:0000000000000150 .LASF8
+     /tmp/ccAxOupd.s:1661   .debug_str:00000000000003b9 .LASF9
+     /tmp/ccAxOupd.s:1573   .debug_str:0000000000000095 .LASF10
+     /tmp/ccAxOupd.s:1711   .debug_str:00000000000004fd .LASF11
+     /tmp/ccAxOupd.s:1599   .debug_str:0000000000000163 .LASF12
+     /tmp/ccAxOupd.s:1695   .debug_str:000000000000048c .LASF13
+     /tmp/ccAxOupd.s:1673   .debug_str:0000000000000414 .LASF14
+     /tmp/ccAxOupd.s:1617   .debug_str:00000000000001fc .LASF15
+     /tmp/ccAxOupd.s:1587   .debug_str:00000000000000da .LASF16
+     /tmp/ccAxOupd.s:1667   .debug_str:00000000000003dd .LASF17
+     /tmp/ccAxOupd.s:1569   .debug_str:0000000000000077 .LASF18
+     /tmp/ccAxOupd.s:1601   .debug_str:0000000000000172 .LASF23
+     /tmp/ccAxOupd.s:1605   .debug_str:000000000000018c .LASF39
+     /tmp/ccAxOupd.s:1553   .debug_str:0000000000000000 .LASF19
+     /tmp/ccAxOupd.s:1701   .debug_str:00000000000004c2 .LASF20
+     /tmp/ccAxOupd.s:1697   .debug_str:000000000000049c .LASF21
+     /tmp/ccAxOupd.s:1581   .debug_str:00000000000000c3 .LASF22
+     /tmp/ccAxOupd.s:1671   .debug_str:00000000000003ff .LASF25
+     /tmp/ccAxOupd.s:1709   .debug_str:00000000000004f0 .LASF24
+     /tmp/ccAxOupd.s:1637   .debug_str:000000000000032c .LASF26
+     /tmp/ccAxOupd.s:1585   .debug_str:00000000000000d5 .LASF27
+     /tmp/ccAxOupd.s:1589   .debug_str:00000000000000f0 .LASF28
+     /tmp/ccAxOupd.s:1565   .debug_str:000000000000004d .LASF29
+     /tmp/ccAxOupd.s:1609   .debug_str:00000000000001aa .LASF31
+     /tmp/ccAxOupd.s:1579   .debug_str:00000000000000b6 .LASF30
+     /tmp/ccAxOupd.s:1593   .debug_str:0000000000000125 .LASF32
+     /tmp/ccAxOupd.s:1583   .debug_str:00000000000000cc .LASF33
+     /tmp/ccAxOupd.s:1689   .debug_str:0000000000000463 .LASF34
+     /tmp/ccAxOupd.s:1669   .debug_str:00000000000003f3 .LASF44
+     /tmp/ccAxOupd.s:1699   .debug_str:00000000000004a2 .LASF46
+     /tmp/ccAxOupd.s:1607   .debug_str:00000000000001a2 .LASF35
+     /tmp/ccAxOupd.s:1681   .debug_str:0000000000000444 .LASF36
+     /tmp/ccAxOupd.s:1679   .debug_str:000000000000043b .LASF50
+     /tmp/ccAxOupd.s:1663   .debug_str:00000000000003c9 .LASF37
+     /tmp/ccAxOupd.s:1683   .debug_str:000000000000044c .LASF73
+     /tmp/ccAxOupd.s:1595   .debug_str:0000000000000146 .LASF38
+     /tmp/ccAxOupd.s:1665   .debug_str:00000000000003d2 .LASF40
+     /tmp/ccAxOupd.s:1615   .debug_str:00000000000001f5 .LASF41
+     /tmp/ccAxOupd.s:1561   .debug_str:0000000000000039 .LASF42
+     /tmp/ccAxOupd.s:1645   .debug_str:0000000000000359 .LASF43
+     /tmp/ccAxOupd.s:1591   .debug_str:0000000000000109 .LASF74
+     /tmp/ccAxOupd.s:1571   .debug_str:0000000000000081 .LASF75
+     /tmp/ccAxOupd.s:1659   .debug_str:00000000000003b1 .LASF45
+     /tmp/ccAxOupd.s:1619   .debug_str:0000000000000208 .LASF47
+     /tmp/ccAxOupd.s:1641   .debug_str:000000000000034a .LASF48
+     /tmp/ccAxOupd.s:1687   .debug_str:000000000000045e .LASF49
+     /tmp/ccAxOupd.s:1707   .debug_str:00000000000004e6 .LASF51
+     /tmp/ccAxOupd.s:1693   .debug_str:0000000000000487 .LASF52
+     /tmp/ccAxOupd.s:1655   .debug_str:000000000000039d .LASF53
+     /tmp/ccAxOupd.s:1629   .debug_str:000000000000024a .LASF76
+     /tmp/ccAxOupd.s:1623   .debug_str:000000000000022b .LASF54
+GAS LISTING /tmp/ccAxOupd.s 			page 7
+
+
+     /tmp/ccAxOupd.s:1625   .debug_str:0000000000000238 .LASF55
+     /tmp/ccAxOupd.s:1705   .debug_str:00000000000004d7 .LASF56
+     /tmp/ccAxOupd.s:1677   .debug_str:0000000000000433 .LASF57
+     /tmp/ccAxOupd.s:1675   .debug_str:0000000000000424 .LASF58
+     /tmp/ccAxOupd.s:1653   .debug_str:000000000000038c .LASF77
+     /tmp/ccAxOupd.s:1621   .debug_str:0000000000000220 .LASF59
+     /tmp/ccAxOupd.s:1555   .debug_str:0000000000000006 .LASF60
+     /tmp/ccAxOupd.s:1577   .debug_str:00000000000000aa .LASF61
+     /tmp/ccAxOupd.s:1643   .debug_str:000000000000034f .LASF62
+     /tmp/ccAxOupd.s:1635   .debug_str:0000000000000327 .LASF63
+     /tmp/ccAxOupd.s:121    .text:00000000000000ac .LFE7
+     /tmp/ccAxOupd.s:1691   .debug_str:0000000000000480 .LASF64
+     /tmp/ccAxOupd.s:1639   .debug_str:0000000000000341 .LASF65
+     /tmp/ccAxOupd.s:1478   .debug_loc:0000000000000000 .LLST0
+     /tmp/ccAxOupd.s:28     .text:0000000000000014 .LBB15
+     /tmp/ccAxOupd.s:59     .text:000000000000004c .LBE15
+     /tmp/ccAxOupd.s:1485   .debug_loc:0000000000000023 .LLST1
+     /tmp/ccAxOupd.s:37     .text:0000000000000020 .LVL2
+     /tmp/ccAxOupd.s:42     .text:000000000000002c .LVL3
+     /tmp/ccAxOupd.s:50     .text:0000000000000040 .LVL5
+     /tmp/ccAxOupd.s:81     .text:0000000000000070 .LBB18
+     /tmp/ccAxOupd.s:89     .text:000000000000007c .LBE18
+     /tmp/ccAxOupd.s:1508   .debug_loc:0000000000000092 .LLST2
+     /tmp/ccAxOupd.s:87     .text:000000000000007c .LVL11
+     /tmp/ccAxOupd.s:106    .text:0000000000000094 .LBB20
+     /tmp/ccAxOupd.s:119    .text:00000000000000ac .LBE20
+     /tmp/ccAxOupd.s:1523   .debug_loc:00000000000000db .LLST3
+     /tmp/ccAxOupd.s:112    .text:00000000000000a0 .LVL14
+     /tmp/ccAxOupd.s:54     .text:000000000000004c .LVL6
+     /tmp/ccAxOupd.s:65     .text:0000000000000058 .LVL7
+     /tmp/ccAxOupd.s:70     .text:0000000000000064 .LVL8
+     /tmp/ccAxOupd.s:116    .text:00000000000000ac .LVL15
+     /tmp/ccAxOupd.s:1627   .debug_str:0000000000000245 .LASF66
+     /tmp/ccAxOupd.s:1685   .debug_str:0000000000000454 .LASF67
+     /tmp/ccAxOupd.s:1633   .debug_str:0000000000000318 .LASF68
+     /tmp/ccAxOupd.s:1563   .debug_str:000000000000003e .LASF69
+     /tmp/ccAxOupd.s:1703   .debug_str:00000000000004c8 .LASF78
+     /tmp/ccAxOupd.s:1567   .debug_str:000000000000005f .LASF79
+     /tmp/ccAxOupd.s:85     .text:0000000000000074 .LVL10
+     /tmp/ccAxOupd.s:27     .text:0000000000000014 .LVL0
+     /tmp/ccAxOupd.s:34     .text:0000000000000018 .LVL1
+     /tmp/ccAxOupd.s:48     .text:0000000000000038 .LVL4
+     /tmp/ccAxOupd.s:80     .text:0000000000000070 .LVL9
+     /tmp/ccAxOupd.s:105    .text:0000000000000094 .LVL12
+     /tmp/ccAxOupd.s:110    .text:0000000000000098 .LVL13
+     /tmp/ccAxOupd.s:157    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccAxOupd.s:124    .gcc_except_table:0000000000000000 .LLSDA7
+
+UNDEFINED SYMBOLS
+_ZN11HeapManagerC1Ev
+_ZN9SchedulerC1Ev
+_ZN11HeapManagerD1Ev
+_Unwind_Resume
+_ZN6Kernel10initialiseEv
+_ZN6Kernel3runEv
+__gxx_personality_v0

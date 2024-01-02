@@ -12,7 +12,7 @@
 #include "heapManager.h"
 #include "console.h"
 #include "thread.h"
-#include "semaphore.h"
+#include "sem.h"
 
 
 extern "C" void exceptionHandler(){
@@ -43,7 +43,8 @@ extern "C" void exceptionHandler(){
                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
                 break;
             case 0x11: /// thread_create
-                returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4, true);
+                returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((uint64)HeapManager::getInstance().heapAllocate(DEFAULT_STACK_SIZE / MEM_BLOCK_SIZE) + DEFAULT_STACK_SIZE - 1));
+                // returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4);
                 break;
             case 0x12: /// thread_exit
                 returnVal = _thread::currentThread->exit();
@@ -51,16 +52,16 @@ extern "C" void exceptionHandler(){
             case 0x13: /// thread_dispatch
                 _thread::dispatch();
                 break;
-            case 0x22: /// sem_open
+            case 0x21: /// sem_open
                 _sem::open((sem_t*)a1, unsigned(a2));
                 break;
-            case 0x23: /// sem_close
+            case 0x22: /// sem_close
                 _sem::close((sem_t)a1);
                 break;
-            case 0x24: /// sem_wait
+            case 0x23: /// sem_wait
                 _sem::wait((sem_t)a1);
                 break;
-            case 0x25: /// sem_signal
+            case 0x24: /// sem_signal
                 _sem::signal((sem_t)a1);
                 break;
             case 0x41:
@@ -71,7 +72,7 @@ extern "C" void exceptionHandler(){
                 break;
         }
         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
-        __asm__ volatile("csrw sepc, %0" :: "r"(sepc + 4));
+        __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
         __asm__ volatile("csrc sip, 0x2");
     }

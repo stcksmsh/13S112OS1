@@ -69,10 +69,10 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     (*thread)->function = function;
     (*thread)->arg = arg;
     (*thread)->ID = nextID++;
-    (*thread)->closed = 0;
-    (*thread)->blocked = 0;
-    (*thread)->sleeping = 0;
-    (*thread)->finished = 0;
+    (*thread)->closed = false;
+    (*thread)->blocked = false;
+    (*thread)->sleeping = false;
+    (*thread)->finished = false;
     (*thread)->reserved = 0;
     (*thread)->joinHead = nullptr;
     (*thread)->timeLeft = 0;
@@ -119,31 +119,24 @@ void _thread::setClosed(bool closed){
 
 void _thread::dispatch(){
     _thread* oldThread = currentThread;
-    _thread* newThread = Scheduler::get();
-    while(newThread != nullptr && (newThread->closed || newThread->blocked || newThread->sleeping || newThread->finished)){
-        newThread = Scheduler::get();
-    }
-    if(newThread == nullptr){
-        return;
-    }
-    contextWrapper* oldContext = nullptr;
-    if(oldThread != nullptr){
-        oldContext = &oldThread->context;
-        if(!oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
+    if(oldThread != nullptr && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
             Scheduler::put(oldThread);
-        }
-
     }   
-    currentThread = newThread;
-
-    contextSwitch(oldContext, &(newThread->context));
+    // while(newThread != nullptr && (newThread->closed || newThread->blocked || newThread->sleeping || newThread->finished)){
+    //     newThread = Scheduler::get();
+    // }
+    // if(newThread == nullptr){
+    //     return;
+    // }
+    currentThread =  Scheduler::get();
+    contextSwitch(oldThread == nullptr?nullptr:&oldThread->context, &(currentThread->context));
 }
 
 void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){
     if(oldContext != nullptr){
+
         __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
         __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));
-
 
         __asm__ volatile ("mv %0, s0" : "=r"(oldContext->s0));
         __asm__ volatile ("mv %0, s1" : "=r"(oldContext->s1));
@@ -165,8 +158,7 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
     if(newContext->sp != 0){
         __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
     }
-    
-    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+
     
     __asm__ volatile ("mv s0, %0" :: "r"(newContext->sstatus));
     __asm__ volatile ("csrw sstatus, s0");
@@ -184,5 +176,6 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
     __asm__ volatile ("mv s10, %0" :: "r"(newContext->s10));
     __asm__ volatile ("mv s11, %0" :: "r"(newContext->s11));
 
+    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
     return;
 }

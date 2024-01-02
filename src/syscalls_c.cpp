@@ -16,9 +16,9 @@ void* mem_alloc ( size_t nSize ){
     __asm__ volatile ("mv a1, %0" :: "r"(nSize));
     __asm__ volatile ("li a0, 0x1");
     __asm__ volatile ("ecall");
-    void* pAddress;
+    uint64 pAddress;
     __asm__ volatile ("mv %0, a0" : "=r"(pAddress));
-    return pAddress;
+    return (void*)pAddress;
 }
 
 int mem_free ( void* pAddress ){
@@ -33,8 +33,10 @@ int mem_free ( void* pAddress ){
 
 
 int thread_create ( thread_t* handle, void(*function)(void*), void* arg) {
-    void* stack_space = mem_alloc(DEFAULT_STACK_SIZE);
-    __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space));
+    // void* stack_space = mem_alloc(DEFAULT_STACK_SIZE);
+    // uint64 stack_start = (uint64)stack_space + DEFAULT_STACK_SIZE -1;
+    // __asm__ volatile ("mv a4, %0" : : "r"(stack_start));
+    // __asm__ volatile ("mv a4, %0" : : "r"((uint64)nullptr));
     __asm__ volatile("mv a3,%0" : : "r" ((uint64)arg));
     __asm__ volatile("mv a2,%0" : : "r" ((uint64)function));
     __asm__ volatile("mv a1,%0" : : "r" ((uint64)handle));

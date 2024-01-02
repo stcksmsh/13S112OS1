@@ -33,6 +33,8 @@ public:
 
     void setClosed(bool blocked);
     
+    uint32 ID;
+
 private:
     _thread(func function, void* arg);
 
@@ -54,7 +56,6 @@ private:
     /// @brief start of the stack
     void* stackStart;
     /// @brief the thread ID
-    uint32 ID;
     /// @brief flags
     uint32  closed: 1,
             blocked: 1,

@@ -14,6 +14,7 @@
 #include "assert.h"
 #include "syscalls_c.h"
 #include "thread.h"
+#include "sem.h"
 #include "sched.h"
 
 extern "C" void trap();
@@ -47,7 +48,9 @@ void testFunc(void* arg){
     putc('e');
     putc('s');
     putc('t');
+
     sem_wait(sem);
+
     putc(' ');
     putc('t');
     putc('h');
@@ -62,26 +65,34 @@ Kernel::EXIT_CODE Kernel::run(){
     
     thread_t t = (thread_t)mem_alloc(sizeof(_thread));
     
-    _thread::create(&t, nullptr, nullptr, nullptr, false);
-    _thread::currentThread = t;
+    // _thread::create(&t, nullptr, nullptr, nullptr, false);
+    // _thread::currentThread = t;
+
+    thread_create(&t, nullptr, nullptr);
+    _thread::currentThread = Scheduler::get();
 
     thread_t test = (thread_t)mem_alloc(sizeof(_thread));
-    // thread_create(&test, testFunc, nullptr);
-    _thread::create(&test, testFunc, nullptr, nullptr);
+    
+    // _thread::create(&test, testFunc, nullptr, nullptr);
+    thread_create(&test, testFunc, nullptr);
 
+    sem = (sem_t)mem_alloc(sizeof(_sem));
     sem_open(&sem, 0);
 
-    do{
-        thread_dispatch();
-        putc('.');
-        sem_signal(sem);
-    }while(!Scheduler::isEmpty());
+
+    thread_dispatch();
+    sem_signal(sem);
+    // do{
+    //     _thread::dispatch();
+    // }while(1);
 
     putc('m');
     putc('a');
     putc('i');
     putc('n');
     putc('\n');
+    
+    thread_dispatch();
 
     return EXIT_SUCCESS;
 }
