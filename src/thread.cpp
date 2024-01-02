@@ -1,223 +1,188 @@
-#include "../h/thread.hpp"
-#include "../h/ABI.hpp"
+/**
+ * @file thread.cpp
+ * @author stcksmsh (vukicevickosta@gmail.com)
+ * @brief the thread class implementation
+ * @version 0.1
+ * @date 2024-01-02
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 
-thread_t thread::running = nullptr;
 
-threadSleepHandler& threadSleepHandler::getInstance(){
-    static threadSleepHandler instance;
-    return instance;
+#include "thread.h"
+#include "assert.h"
+#include "sched.h"
+#include "syscalls_c.h"
+
+thread_t _thread::currentThread = nullptr;
+uint32 _thread::nextID = 0;
+
+_thread::_thread(func function, void* arg){
+    function = function;
+    arg = arg;
+    ID = nextID++;
+    closed = 0;
+    blocked = 0;
+    sleeping = 0;
+    finished = 0;
+    reserved = 0;
+    joinHead = nullptr;
+    timeLeft = 0;
+    stackStart = 0;
+    
+    context.s0 = 0;
+    context.s1 = 0;
+    context.s2 = 0;
+    context.s3 = 0;
+    context.s4 = 0;
+    context.s5 = 0;
+    context.s6 = 0;
+    context.s7 = 0;
+    context.s8 = 0;
+    context.s9 = 0;
+    context.s10 = 0;
+    context.s11 = 0;
+
+    context.sstatus = 0;
+    /// register x2 is the stack pointer
+    context.sp = (uint64)stackStart;
+    /// register x1 is the return address
+    context.pc = (uint64)wrapper;
 }
 
-bool threadSleepHandler::allAwake(){
-    return (threadSleepHandler::getInstance().sleepHead==nullptr);
+void popSppSpie(){
+    __asm__ volatile ("csrw sepc, ra");
+    __asm__ volatile ("sret");
 }
 
-
-int threadSleepHandler::sleep(time_t duration){
-    sleepList *node = (sleepList*)mem_alloc(sizeof(sleepList));
-    node->handle = thread::running;
-    node->wakeTime = duration;
-    node->next = nullptr;
-    sleepList *insertAfter = getInstance().sleepHead;
-    if(insertAfter == nullptr){
-        getInstance().sleepHead = node;
-    }else if(insertAfter->wakeTime > node->wakeTime){
-        getInstance().sleepHead = node;
-        node->next = insertAfter;
-    }else{
-        while(insertAfter != nullptr && insertAfter->next != nullptr && insertAfter->wakeTime + insertAfter->next->wakeTime >= node->wakeTime){
-            node->wakeTime -= insertAfter->wakeTime;
-            insertAfter = insertAfter->next;
-        }
-        node->next = insertAfter->next;
-        insertAfter->next = node;
-        node->wakeTime -= insertAfter->wakeTime;
-        if(node->next)node->next->wakeTime -= node->wakeTime;
-    }
-    node->handle->sleeping = true;
-    thread::dispatch();
-    return 0;
-}
-
-void threadSleepHandler::sleepDecrement(){
-    sleepList *node = getInstance().sleepHead;
-    if(node){
-        node->wakeTime--;
-        if(node->wakeTime == 0)wake();
-    }
-}
-
-void threadSleepHandler::wake(){
-    sleepList *head = getInstance().sleepHead;
-    while(head && head->wakeTime == 0){
-        sleepList *tmp = head;
-        head = head->next;
-        thread_t handle = tmp->handle;
-        handle->sleeping = false;
-        Scheduler::put(handle);
-        mem_free(tmp);
-    }
-    getInstance().sleepHead = head;
-}
-
-thread::~thread(){
-    mem_free(stack_space);
-}
-
-void thread::setBlocked(bool blocked){
-    this->blocked = blocked;
-}
-
-bool thread::live(){
-    return (--timeLeftToRun) > 0;
-}
-
-void thread::setFinished(bool finished){
-    this->finished = finished;
-}
-
-void thread::setClosed(bool closed){
-    this->closed = closed;
-}
-
-bool thread::wasClosed(){
-    return closed;
-}
-
-void thread::joinTo(){/// thread1.joinTo() is the same as invoking thread_join(thread1)w
-    if(finished || closed) return; /// cannot join to a thread that exited, or was closed
-    joinList *node = (joinList*)mem_alloc(sizeof(joinList));
-    node->handle = running;
-    node->next = nullptr;
-    if(joinTail == nullptr){
-        joinHead = node;
-        joinTail = node;
-    }else{
-        joinTail->next = node;
-        joinTail = node;
-    }
-    running->blocked = true;
+void _thread::wrapper(){
+    popSppSpie();
+    currentThread->function(currentThread->arg);
+    currentThread->finished = 1;
     dispatch();
 }
 
-int thread::create( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    createCPP(handle, start_routine, arg, stack_space);
-    Scheduler::put(*handle);
-    return 0;
-}
-
-int thread::createCPP( thread_t* handle, func start_routine, void*  arg, void* stack_space){
-    *handle = (thread_t)MemoryAllocator::getInstance().mem_alloc((sizeof(thread)+MEM_BLOCK_SIZE-1)/MEM_BLOCK_SIZE);
-    thread_t newThread = *handle;
-    newThread->start_routine = start_routine;
-    newThread->arg = arg;
-    if(newThread == nullptr || start_routine == nullptr)stack_space = nullptr;
-    newThread->stack_space = (uint64*)stack_space;
-    newThread->timeLeftToRun = DEFAULT_TIME_SLICE;
-    newThread->blocked = false;
-    newThread->closed = false;
-    newThread->finished = false;
-    newThread->sleeping =false;
-    newThread->context.pc = (uint64)wrapper;
-    newThread->body = start_routine;
-    newThread->context.sp = (newThread->stack_space!=0?(uint64)newThread->stack_space + DEFAULT_STACK_SIZE:0);
-    newThread->joinHead = nullptr;
-    newThread->joinTail = nullptr;
-    if(start_routine == nullptr)
-        newThread->context.pc = 0;
-    *handle = newThread;
-    return 0;
-}
-
-
-void thread::wrapper(){
-    ABI::popSppSpie();
-    running->start_routine(running->arg);
-    running->finished = true;
-    thread::joinList *previous = nullptr;
-    while(running->joinHead != nullptr){
-        previous = running->joinHead;
-        running->joinHead = running->joinHead->next;
-        if(!running->closed){
-            previous->handle->blocked = false;
-            Scheduler::put(previous->handle);
-        }
-        mem_free(previous);
-    }
-    mem_free(running->stack_space);
-    __asm__ volatile ("ecall");
-}
-
-int thread::exit(){
-    running->finished = true;
-    thread::joinList *previous = nullptr;
-    while(running->joinHead != nullptr){
-        previous = running->joinHead;
-        running->joinHead = running->joinHead->next;
-        if(!running->closed){
-            previous->handle->blocked = false;
-            Scheduler::put(previous->handle);
-        }
-        mem_free(previous);
-    }
-    mem_free(running->stack_space);
-    return 0;
-}
-
-void thread::dispatch(){
-    thread_t oldThread = running;
-    if(Scheduler::isEmpty())return;
-    if(oldThread!=nullptr && !oldThread->closed && !oldThread->finished && !oldThread->blocked && !oldThread->sleeping){
-        Scheduler::put(oldThread);
-    }
-    if(oldThread != nullptr)oldThread->timeLeftToRun = DEFAULT_TIME_SLICE;
-    running = Scheduler::get();
-    switchContext(oldThread==nullptr?nullptr:&(oldThread->context), &(running->context));
-    return;
-}
-
-void thread::switchContext(contextWrapper *oldContext, contextWrapper *newContext){
-    if(oldContext != nullptr){
-    // oldContext->pc = pc;
-    __asm__ volatile ("sd ra, 0 * 8(a0)");
-    __asm__ volatile ("sd sp, 1 * 8(a0)");
-
-    __asm__ volatile ("sd s0, 2 * 8(a0)");
-    __asm__ volatile ("sd s1, 3 * 8(a0)");
-    __asm__ volatile ("sd s2, 4 * 8(a0)");
-    __asm__ volatile ("sd s3, 5 * 8(a0)");
-    __asm__ volatile ("sd s4, 6 * 8(a0)");
-    __asm__ volatile ("sd s5, 7 * 8(a0)");
-    __asm__ volatile ("sd s6, 8 * 8(a0)");
-    __asm__ volatile ("sd s7, 9 * 8(a0)");
-    __asm__ volatile ("sd s8, 10 * 8(a0)");
-    __asm__ volatile ("sd s9, 11 * 8(a0)");
-    __asm__ volatile ("sd s10, 12 * 8(a0)");
-    __asm__ volatile ("sd s11, 13 * 8(a0)");
-    __asm__ volatile ("sd s11, 13 * 8(a0)");
+int _thread::create(thread_t* thread, func function, void* arg, void* stack, bool start){
+    *thread = (thread_t)mem_alloc(sizeof(_thread));
     
-    __asm__ volatile("csrr s0, sstatus");
-    __asm__ volatile ("sd s0, 14 * 8(a0)");
+    (*thread)->function = function;
+    (*thread)->arg = arg;
+    (*thread)->ID = nextID++;
+    (*thread)->closed = 0;
+    (*thread)->blocked = 0;
+    (*thread)->sleeping = 0;
+    (*thread)->finished = 0;
+    (*thread)->reserved = 0;
+    (*thread)->joinHead = nullptr;
+    (*thread)->timeLeft = 0;
+    (*thread)->stackStart = 0;
+
+    (*thread)->context.s0 = 0;
+    (*thread)->context.s1 = 0;
+    (*thread)->context.s2 = 0;
+    (*thread)->context.s3 = 0;
+    (*thread)->context.s4 = 0;
+    (*thread)->context.s5 = 0;
+    (*thread)->context.s6 = 0;
+    (*thread)->context.s7 = 0;
+    (*thread)->context.s8 = 0;
+    (*thread)->context.s9 = 0;
+    (*thread)->context.s10 = 0;
+    (*thread)->context.s11 = 0;
+
+    /// register x2 is the stack pointer
+    (*thread)->context.sp = (uint64)stack;
+    /// register x1 is the return address
+    (*thread)->context.pc = (uint64)wrapper;
+
+    (*thread)->stackStart = stack;
+    if(start){
+        Scheduler::put(*thread);
     }
-    if(newContext->sp != 0)
-    __asm__ volatile ("ld sp, 8(a1)");
-    __asm__ volatile ("ld ra, 0(a1)");
+    return 0;
+}
 
-    __asm__ volatile ("ld s0, 14 * 8(a0)");
-    __asm__ volatile("csrw sstatus, s0");
+int _thread::exit(){
+    this->finished = 1;
+    dispatch();    
+    return 0;
+}
 
-    __asm__ volatile ("ld s0, 2 * 8(a1)");
-    __asm__ volatile ("ld s1, 3 * 8(a1)");
-    __asm__ volatile ("ld s2, 4 * 8(a1)");
-    __asm__ volatile ("ld s3, 5 * 8(a1)");
-    __asm__ volatile ("ld s4, 6 * 8(a1)");
-    __asm__ volatile ("ld s5, 7 * 8(a1)");
-    __asm__ volatile ("ld s6, 8 * 8(a1)");
-    __asm__ volatile ("ld s7, 9 * 8(a1)");
-    __asm__ volatile ("ld s8, 10 * 8(a1)");
-    __asm__ volatile ("ld s9, 11 * 8(a1)");
-    __asm__ volatile ("ld s10, 12 * 8(a1)");
-    __asm__ volatile ("ld s11, 13 * 8(a1)");
+void _thread::setBlocked(bool blocked){
+    this->blocked = blocked;
+}
+
+void _thread::setClosed(bool closed){
+    this->closed = closed;
+}
+
+void _thread::dispatch(){
+    _thread* oldThread = currentThread;
+    _thread* newThread = Scheduler::get();
+    while(newThread != nullptr && (newThread->closed || newThread->blocked || newThread->sleeping || newThread->finished)){
+        newThread = Scheduler::get();
+    }
+    if(newThread == nullptr){
+        return;
+    }
+    contextWrapper* oldContext = nullptr;
+    if(oldThread != nullptr){
+        oldContext = &oldThread->context;
+        if(!oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
+            Scheduler::put(oldThread);
+        }
+
+    }   
+    currentThread = newThread;
+
+    contextSwitch(oldContext, &(newThread->context));
+}
+
+void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){
+    if(oldContext != nullptr){
+        __asm__ volatile ("mv %0, sp" : "=r"(oldContext->sp));
+        __asm__ volatile ("mv %0, ra" : "=r"(oldContext->pc));
+
+
+        __asm__ volatile ("mv %0, s0" : "=r"(oldContext->s0));
+        __asm__ volatile ("mv %0, s1" : "=r"(oldContext->s1));
+        __asm__ volatile ("mv %0, s2" : "=r"(oldContext->s2));
+        __asm__ volatile ("mv %0, s3" : "=r"(oldContext->s3));
+        __asm__ volatile ("mv %0, s4" : "=r"(oldContext->s4));
+        __asm__ volatile ("mv %0, s5" : "=r"(oldContext->s5));
+        __asm__ volatile ("mv %0, s6" : "=r"(oldContext->s6));
+        __asm__ volatile ("mv %0, s7" : "=r"(oldContext->s7));
+        __asm__ volatile ("mv %0, s8" : "=r"(oldContext->s8));
+        __asm__ volatile ("mv %0, s9" : "=r"(oldContext->s9));
+        __asm__ volatile ("mv %0, s10" : "=r"(oldContext->s10));
+        __asm__ volatile ("mv %0, s11" : "=r"(oldContext->s11));
+
+        __asm__ volatile ("csrr s0, sstatus");
+        __asm__ volatile ("mv %0, s0" : "=r"(oldContext->sstatus));
+
+    }
+    if(newContext->sp != 0){
+        __asm__ volatile ("mv sp, %0" :: "r"(newContext->sp));
+    }
+    
+    __asm__ volatile ("mv ra, %0" :: "r"(newContext->pc));
+    
+    __asm__ volatile ("mv s0, %0" :: "r"(newContext->sstatus));
+    __asm__ volatile ("csrw sstatus, s0");
+
+    __asm__ volatile ("mv s0, %0" :: "r"(newContext->s0));
+    __asm__ volatile ("mv s1, %0" :: "r"(newContext->s1));
+    __asm__ volatile ("mv s2, %0" :: "r"(newContext->s2));
+    __asm__ volatile ("mv s3, %0" :: "r"(newContext->s3));
+    __asm__ volatile ("mv s4, %0" :: "r"(newContext->s4));
+    __asm__ volatile ("mv s5, %0" :: "r"(newContext->s5));
+    __asm__ volatile ("mv s6, %0" :: "r"(newContext->s6));
+    __asm__ volatile ("mv s7, %0" :: "r"(newContext->s7));
+    __asm__ volatile ("mv s8, %0" :: "r"(newContext->s8));
+    __asm__ volatile ("mv s9, %0" :: "r"(newContext->s9));
+    __asm__ volatile ("mv s10, %0" :: "r"(newContext->s10));
+    __asm__ volatile ("mv s11, %0" :: "r"(newContext->s11));
 
     return;
 }
