@@ -32,6 +32,8 @@ public:
     void setBlocked(bool blocked);
 
     void setClosed(bool blocked);
+
+    void setSleeping(bool sleeping);
     
     uint32 ID;
 

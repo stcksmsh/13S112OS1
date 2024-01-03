@@ -10,13 +10,12 @@
  */
 
 #include "kernel.h"
+#include "assert.h"
 
 /// @brief first function to be called
 void main(){
     Kernel kernel = Kernel();
     kernel.initialise();
     Kernel::EXIT_CODE exitCode = kernel.run();
-    if(exitCode == Kernel::EXIT_FAILURE){
-        while(1){} /// infinite loop
-    }
+    assert(exitCode == Kernel::EXIT_SUCCESS);
 }

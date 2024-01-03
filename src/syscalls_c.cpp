@@ -9,10 +9,12 @@
  * 
  */
 
+#include "heapManager.h"
 #include "syscalls_c.h"
 
 void* mem_alloc ( size_t nSize ){
-    nSize = (nSize + MEM_BLOCK_SIZE - 1) & ~(MEM_BLOCK_SIZE - 1);
+    /// round nSize to the next multiple of MEM_BLOCK_SIZE and then divide by MEM_BLOCK_SIZE
+    nSize = (nSize + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
     __asm__ volatile ("mv a1, %0" :: "r"(nSize));
     __asm__ volatile ("li a0, 0x1");
     __asm__ volatile ("ecall");
@@ -33,10 +35,8 @@ int mem_free ( void* pAddress ){
 
 
 int thread_create ( thread_t* handle, void(*function)(void*), void* arg) {
-    // void* stack_space = mem_alloc(DEFAULT_STACK_SIZE);
-    // uint64 stack_start = (uint64)stack_space + DEFAULT_STACK_SIZE -1;
-    // __asm__ volatile ("mv a4, %0" : : "r"(stack_start));
-    // __asm__ volatile ("mv a4, %0" : : "r"((uint64)nullptr));
+    // void* stack_space = (void*)((uint64)HeapManager::getInstance().heapAllocate(DEFAULT_STACK_SIZE / MEM_BLOCK_SIZE) + DEFAULT_STACK_SIZE - 1);
+    // __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space));
     __asm__ volatile("mv a3,%0" : : "r" ((uint64)arg));
     __asm__ volatile("mv a2,%0" : : "r" ((uint64)function));
     __asm__ volatile("mv a1,%0" : : "r" ((uint64)handle));
@@ -62,7 +62,14 @@ void thread_dispatch () {
 
 // void thread_join ( thread_t );
 
-// int thread_sleep( time_t );
+int thread_sleep( time_t duration){
+    __asm__ volatile("mv a1, %0" : : "r"(duration));
+    __asm__ volatile("li a0, 0x31");
+    __asm__ volatile("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r"(returnValue));
+    return (int)returnValue;
+}
 
 int sem_open ( sem_t* handle, unsigned init) {
     __asm__ volatile("mv a2, %0"::"r"((uint64)init));

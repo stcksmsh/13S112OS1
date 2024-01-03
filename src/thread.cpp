@@ -117,6 +117,10 @@ void _thread::setClosed(bool closed){
     this->closed = closed;
 }
 
+void _thread::setSleeping(bool sleeping){
+    this->sleeping = sleeping;
+}
+
 void _thread::dispatch(){
     _thread* oldThread = currentThread;
     if(oldThread != nullptr && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){

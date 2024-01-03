@@ -16,8 +16,12 @@
 #include "thread.h"
 #include "sem.h"
 #include "sched.h"
+#include "timer.h"
 
 extern "C" void trap();
+
+Kernel::Kernel(): heapManager(), scheduler(), timer(){}
+ 
 
 void Kernel::initialise(){
     /// set the trap vector
@@ -52,6 +56,9 @@ void testFunc(void* arg){
     sem_wait(sem);
 
     putc(' ');
+
+    thread_sleep(100);
+
     putc('t');
     putc('h');
     putc('r');
@@ -82,9 +89,9 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_dispatch();
     sem_signal(sem);
-    // do{
-    //     _thread::dispatch();
-    // }while(1);
+    do{
+       thread_dispatch();
+    }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
 
     putc('m');
     putc('a');
@@ -92,7 +99,5 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('n');
     putc('\n');
     
-    thread_dispatch();
-
     return EXIT_SUCCESS;
 }

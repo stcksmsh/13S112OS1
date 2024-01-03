@@ -15,11 +15,12 @@
 #include "attributes.h"
 #include "heapManager.h"
 #include "sched.h"
+#include "timer.h"
 
 class Kernel{
     public:
         /// @brief constructor
-        Kernel(){}; /// empty constructor
+        Kernel(); /// empty constructor
         /// @brief destructor
         ~Kernel(){};
         /// @brief exit codes
@@ -36,6 +37,8 @@ class Kernel{
         HeapManager heapManager;
         /// @brief the scheduler
         Scheduler scheduler;
+        /// @brief the timer
+        Timer timer;
 };
 
 #endif // KERNEL_H

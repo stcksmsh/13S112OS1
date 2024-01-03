@@ -33,7 +33,7 @@ void thread_dispatch ();
 
 // void thread_join ( thread_t );
 
-// int thread_sleep( time_t );
+int thread_sleep( time_t );
 
 // void testUser();
 

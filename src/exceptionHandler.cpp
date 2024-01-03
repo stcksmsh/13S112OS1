@@ -13,6 +13,7 @@
 #include "console.h"
 #include "thread.h"
 #include "sem.h"
+#include "timer.h"
 
 
 extern "C" void exceptionHandler(){
@@ -33,8 +34,7 @@ extern "C" void exceptionHandler(){
     __asm__ volatile("mv %0, a3" : "=r"(a3));
     __asm__ volatile("mv %0, a4" : "=r"(a4));
     uint64 returnVal = 0;
-    /// check if the exception was a syscall
-    if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){
+    if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the exception was a syscall
         switch(a0){
             case 0x1: /// mem_alloc
                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
@@ -52,6 +52,9 @@ extern "C" void exceptionHandler(){
             case 0x13: /// thread_dispatch
                 _thread::dispatch();
                 break;
+            case 0x14: /// thread_join
+                // returnVal = _thread::join((thread_t)a1);
+                break;
             case 0x21: /// sem_open
                 _sem::open((sem_t*)a1, unsigned(a2));
                 break;
@@ -64,6 +67,9 @@ extern "C" void exceptionHandler(){
             case 0x24: /// sem_signal
                 _sem::signal((sem_t)a1);
                 break;
+            case 0x31: /// thread_sleep
+                returnVal = Timer::getInstance().sleep(a1);
+                break;
             case 0x41:
                 returnVal = __getc();
                 break;
@@ -75,5 +81,9 @@ extern "C" void exceptionHandler(){
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
         __asm__ volatile("csrc sip, 0x2");
+    }
+    else if(scause == 0x8000000000000001UL){    /// timer
+        __putc('x');
+        Timer::getInstance().tick();
     }
 }
