@@ -27,14 +27,15 @@ extern "C" void exceptionHandler(){
     uint64 sepc;
     __asm__ volatile("csrr %0, sepc" : "=r"(sepc));
 
-    uint64 a0 = 0, a1, a2, a3, a4;
+    uint64 a0 = 0;
     __asm__ volatile("mv %0, a0" : "=r"(a0));
-    __asm__ volatile("mv %0, a1" : "=r"(a1));
-    __asm__ volatile("mv %0, a2" : "=r"(a2));
-    __asm__ volatile("mv %0, a3" : "=r"(a3));
-    __asm__ volatile("mv %0, a4" : "=r"(a4));
     uint64 returnVal = 0;
     if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the exception was a syscall
+        uint64 a1, a2, a3, a4;
+        __asm__ volatile("mv %0, a1" : "=r"(a1));
+        __asm__ volatile("mv %0, a2" : "=r"(a2));
+        __asm__ volatile("mv %0, a3" : "=r"(a3));
+        __asm__ volatile("mv %0, a4" : "=r"(a4));
         switch(a0){
             case 0x1: /// mem_alloc
                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
@@ -53,7 +54,7 @@ extern "C" void exceptionHandler(){
                 _thread::dispatch();
                 break;
             case 0x14: /// thread_join
-                // returnVal = _thread::join((thread_t)a1);
+                _thread::currentThread->join((thread_t)a1);
                 break;
             case 0x21: /// sem_open
                 _sem::open((sem_t*)a1, unsigned(a2));
@@ -67,7 +68,7 @@ extern "C" void exceptionHandler(){
             case 0x24: /// sem_signal
                 _sem::signal((sem_t)a1);
                 break;
-            case 0x31: /// thread_sleep
+            case 0x31: /// time_sleep
                 returnVal = Timer::getInstance().sleep(a1);
                 break;
             case 0x41:
@@ -82,8 +83,11 @@ extern "C" void exceptionHandler(){
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
         __asm__ volatile("csrc sip, 0x2");
     }
-    else if(scause == 0x8000000000000001UL){    /// timer
-        __putc('x');
-        Timer::getInstance().tick();
-    }
+    // else if(scause == 0x8000000000000001UL){    /// timer
+    //     __putc('x');
+    //     Timer::getInstance().tick();
+    //     __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
+    //     __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+    //     __asm__ volatile("csrc sip, 0x2");
+    // }
 }

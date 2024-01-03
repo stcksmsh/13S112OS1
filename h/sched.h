@@ -28,12 +28,11 @@ public:
 
     static thread_t get();
 
-    // /// @brief the scheduler singleton
-    // static Scheduler* getInstance();
-
     /// @brief check if the scheduler is empty
     /// @return true if the scheduler is empty
     static bool isEmpty();
+
+    static int getCount();
 
 private:
 

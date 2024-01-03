@@ -22,10 +22,6 @@ Scheduler::Scheduler(){
     tail = nullptr;
 }
 
-// Scheduler* Scheduler::getInstance(){
-//     return singleton;
-// }
-
 bool Scheduler::isEmpty(){
     return singleton->head == nullptr;
 }
@@ -52,4 +48,15 @@ thread_t Scheduler::get(){
     singleton->head = tmp->next;
     mem_free(tmp);
     return thread;
+}
+
+
+int Scheduler::getCount(){
+    int count = 0;
+    ThreadList* tmp = singleton->head;
+    while(tmp != nullptr){
+        count++;
+        tmp = tmp->next;
+    }
+    return count;
 }

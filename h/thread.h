@@ -21,18 +21,30 @@ public:
 
     static int create(_thread** thread, func function, void* arg, void* stack, bool start = true);
 
-    int exit();
+    /// @brief exit from current thread
+    /// @return whether the exit was successful
+    static int exit();
 
+    /// @brief dispatch current thread
     static void dispatch();
 
+    /// @brief joins this thread onto the given thread
+    /// @param thread thread to join onto
     void join(_thread* thread);
 
+    /// @brief currently running thread (monoprocessor system)
     static _thread* currentThread;
 
+    /// @brief set thread blocked state
+    /// @param blocked new state
     void setBlocked(bool blocked);
 
-    void setClosed(bool blocked);
+    /// @brief set thread closed state
+    /// @param closed new state
+    void setClosed(bool closed);
 
+    /// @brief set thread sleeping state
+    /// @param sleeping new state
     void setSleeping(bool sleeping);
     
     uint32 ID;
@@ -42,6 +54,7 @@ private:
 
     static void wrapper();
 
+    void unJoin();
 
     struct contextWrapper{
         uint64 pc = 0, sp = 0;
@@ -52,7 +65,7 @@ private:
     struct ThreadJoinList{
         _thread* thread;
         ThreadJoinList* next;
-    }PACKED* joinHead;
+    }PACKED* joinHead, *joinTail;
     /// @brief time left to run
     time_t timeLeft;
     /// @brief start of the stack

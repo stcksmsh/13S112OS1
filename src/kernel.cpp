@@ -45,7 +45,7 @@ void Kernel::initialise(){
     return;
 }
 
-sem_t sem = nullptr;
+// sem_t sem = nullptr;
 
 void testFunc(void* arg){
     putc('t');
@@ -53,11 +53,13 @@ void testFunc(void* arg){
     putc('s');
     putc('t');
 
-    sem_wait(sem);
+    // sem_wait(sem);
+    // thread_dispatch();
+    // thread_dispatch();
+    // thread_dispatch();
 
     putc(' ');
-
-    thread_sleep(100);
+    // time_sleep(100);
 
     putc('t');
     putc('h');
@@ -82,16 +84,20 @@ Kernel::EXIT_CODE Kernel::run(){
     
     // _thread::create(&test, testFunc, nullptr, nullptr);
     thread_create(&test, testFunc, nullptr);
+    // sem = (sem_t)mem_alloc(sizeof(_sem));
+    // sem_open(&sem, 0);
 
-    sem = (sem_t)mem_alloc(sizeof(_sem));
-    sem_open(&sem, 0);
 
+    thread_join(test);
+    // int cnt = Scheduler::getCount();
+    // do{
+    //     putc('0' + cnt);
+    //     cnt /= 10;
+    // }while(cnt > 0);
 
-    thread_dispatch();
-    sem_signal(sem);
     do{
-       thread_dispatch();
-    }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
+        thread_dispatch();
+    }while(!Scheduler::isEmpty());
 
     putc('m');
     putc('a');

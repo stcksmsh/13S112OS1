@@ -60,9 +60,13 @@ void thread_dispatch () {
     __asm__ volatile("ecall");
 }
 
-// void thread_join ( thread_t );
+void thread_join ( thread_t handle){
+    __asm__ volatile("mv a1, %0" : : "r"((uint64)handle));
+    __asm__ volatile("li a0, 0x14");
+    __asm__ volatile("ecall");
+}
 
-int thread_sleep( time_t duration){
+int time_sleep( time_t duration){
     __asm__ volatile("mv a1, %0" : : "r"(duration));
     __asm__ volatile("li a0, 0x31");
     __asm__ volatile("ecall");

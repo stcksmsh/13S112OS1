@@ -59,8 +59,20 @@ void popSppSpie(){
 void _thread::wrapper(){
     popSppSpie();
     currentThread->function(currentThread->arg);
-    currentThread->finished = 1;
-    dispatch();
+    currentThread->unJoin();
+    exit();
+}
+
+void _thread::unJoin(){
+    // putc('u');
+    ThreadJoinList* current = joinHead;
+    while(current != nullptr){
+        thread_t thread = current->thread;
+        Scheduler::put(thread);
+        ThreadJoinList* next = current->next;
+        mem_free(current);
+        current = next;
+    }
 }
 
 int _thread::create(thread_t* thread, func function, void* arg, void* stack, bool start){
@@ -75,6 +87,7 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     (*thread)->finished = false;
     (*thread)->reserved = 0;
     (*thread)->joinHead = nullptr;
+    (*thread)->joinTail = nullptr;
     (*thread)->timeLeft = 0;
     (*thread)->stackStart = 0;
 
@@ -103,9 +116,38 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     return 0;
 }
 
+void _thread::join(thread_t thread){
+    /// cannot join to a finished or closed thread
+    if(thread->finished || thread->closed){
+        return;
+    }
+    ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
+    this->blocked = true;
+    newJoin->thread = this;
+    newJoin->next = nullptr;
+    if(thread->joinHead == nullptr){
+        thread->joinHead = newJoin;
+        thread->joinTail = newJoin;
+    }else{
+        thread->joinTail->next = newJoin;
+        thread->joinTail = newJoin;
+    }
+    // Scheduler::remove(this);
+    dispatch();
+}
+
 int _thread::exit(){
-    this->finished = 1;
-    dispatch();    
+    if(currentThread->closed){
+        return -1;
+    }
+    if(currentThread->blocked){
+        return -2;
+    }
+    if(currentThread->sleeping){
+        return -3;
+    }
+    currentThread->finished = 1;
+    dispatch();
     return 0;
 }
 
@@ -133,6 +175,9 @@ void _thread::dispatch(){
     //     return;
     // }
     currentThread =  Scheduler::get();
+    if(currentThread == nullptr){
+        return;
+    }
     contextSwitch(oldThread == nullptr?nullptr:&oldThread->context, &(currentThread->context));
 }
 

@@ -31,9 +31,9 @@ int thread_exit ();
 
 void thread_dispatch ();
 
-// void thread_join ( thread_t );
+void thread_join ( thread_t );
 
-int thread_sleep( time_t );
+int time_sleep( time_t );
 
 // void testUser();
 
