@@ -10,7 +10,7 @@ sem_t sem2;
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    // thread_sleep(50);
+    // time_sleep(50);
     putc('1');
     sem_signal(sem1);
     putc('S');
@@ -19,7 +19,7 @@ void thread_test_1(void* args){
 void thread_test_2(void* args){
     putc('2');
     putc('s');
-    // thread_sleep(25);
+    // time_sleep(25);
     putc('2');
     putc('S');
     sem_signal(sem2);

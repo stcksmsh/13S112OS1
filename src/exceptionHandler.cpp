@@ -18,6 +18,13 @@
 
 
 extern "C" void exceptionHandler(){
+    uint64 a0, a1, a2, a3, a4;
+    __asm__ volatile("mv %0, a4" : "=r"(a4));
+    __asm__ volatile("mv %0, a3" : "=r"(a3));
+    __asm__ volatile("mv %0, a2" : "=r"(a2));
+    __asm__ volatile("mv %0, a1" : "=r"(a1));
+    __asm__ volatile("mv %0, a0" : "=r"(a0));
+
     uint64 scause;
     __asm__ volatile("csrr %0, scause" : "=r"(scause));
 
@@ -27,14 +34,7 @@ extern "C" void exceptionHandler(){
     uint64 sepc;
     __asm__ volatile("csrr %0, sepc" : "=r"(sepc));
 
-    uint64 a0 = 0;
-    __asm__ volatile("mv %0, a0" : "=r"(a0));
 
-    uint64 a1, a2, a3, a4;
-    __asm__ volatile("mv %0, a1" : "=r"(a1));
-    __asm__ volatile("mv %0, a2" : "=r"(a2));
-    __asm__ volatile("mv %0, a3" : "=r"(a3));
-    __asm__ volatile("mv %0, a4" : "=r"(a4));
 
     uint64 returnVal = 0;
     if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the exception was a syscall
@@ -46,8 +46,9 @@ extern "C" void exceptionHandler(){
                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
                 break;
             case 0x11: /// thread_create
-                returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((uint64)HeapManager::getInstance().heapAllocate(DEFAULT_STACK_SIZE / MEM_BLOCK_SIZE) + DEFAULT_STACK_SIZE - 1));
-                // returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4);
+                __putc('\0'); /// removing this line causes everything to break
+                /// some __putc is needed, i don't know why, please help
+                returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4);
                 break;
             case 0x12: /// thread_exit
                 returnVal = _thread::currentThread->exit();
@@ -168,10 +169,13 @@ extern "C" void exceptionHandler(){
         }        
         assert(false);
     }
-    // else if(scause == 0x8000000000000001UL){    /// timer
-    //     Timer::getInstance().tick();
-    //     __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
-    //     __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-    //     __asm__ volatile("csrc sip, 0x2");
-    // }
+    else if(scause == 0x8000000000000001UL){    /// timer
+        __putc('.');
+        Timer::getInstance().tick();
+        __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
+        __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+        __asm__ volatile("csrc sip, 0x2");
+    }else{
+        __putc(',');
+    }
 }

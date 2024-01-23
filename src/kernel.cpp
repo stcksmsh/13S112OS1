@@ -76,11 +76,17 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_t t, test;
     
-    thread_create(&t, nullptr, nullptr);
+    thread_create(&t, 0, 0);
     _thread::currentThread = Scheduler::get();
     
     thread_create(&test, usermain, 0);
-
+    putc('k');
+    putc('e');
+    putc('r');
+    putc('n');
+    putc('e');
+    putc('l');
+    putc('\n');
     int loop = 0;
     do{
         thread_dispatch();
@@ -93,6 +99,6 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('i');
     putc('n');
     putc('\n');
-    
+    while(1){}
     return EXIT_SUCCESS;
 }
