@@ -9,7 +9,6 @@
  * 
  */
 
-#include "heapManager.h"
 #include "syscalls_c.h"
 
 void* mem_alloc ( size_t nSize ){
@@ -34,7 +33,7 @@ int mem_free ( void* pAddress ){
 }
 
 
-int thread_create ( thread_t* handle, void(*function)(void*), void* arg) {
+int thread_create ( thread_t* handle, void(*function)(void*), void* arg ) {
     // void* stack_space = (void*)((uint64)HeapManager::getInstance().heapAllocate(DEFAULT_STACK_SIZE / MEM_BLOCK_SIZE) + DEFAULT_STACK_SIZE - 1);
     // __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space));
     __asm__ volatile("mv a3,%0" : : "r" ((uint64)arg));
@@ -60,13 +59,13 @@ void thread_dispatch () {
     __asm__ volatile("ecall");
 }
 
-void thread_join ( thread_t handle){
+void thread_join ( thread_t handle ) {
     __asm__ volatile("mv a1, %0" : : "r"((uint64)handle));
     __asm__ volatile("li a0, 0x14");
     __asm__ volatile("ecall");
 }
 
-int time_sleep( time_t duration){
+int time_sleep( time_t duration ) {
     __asm__ volatile("mv a1, %0" : : "r"(duration));
     __asm__ volatile("li a0, 0x31");
     __asm__ volatile("ecall");
@@ -75,7 +74,7 @@ int time_sleep( time_t duration){
     return (int)returnValue;
 }
 
-int sem_open ( sem_t* handle, unsigned init) {
+int sem_open ( sem_t* handle, unsigned init ) {
     __asm__ volatile("mv a2, %0"::"r"((uint64)init));
 
     __asm__ volatile("mv a1,%0":: "r"((uint64)handle));
@@ -86,7 +85,7 @@ int sem_open ( sem_t* handle, unsigned init) {
     return (int)returnValue;
 }
 
-int sem_close ( sem_t handle) {
+int sem_close ( sem_t handle ) {
     __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
     __asm__ volatile("li a0,0x22");
     __asm__ volatile("ecall");
@@ -95,7 +94,7 @@ int sem_close ( sem_t handle) {
     return (int)returnValue;
 }
 
-int sem_wait ( sem_t handle) {
+int sem_wait ( sem_t handle ) {
     __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
     __asm__ volatile("li a0,0x23");
     __asm__ volatile("ecall");
@@ -104,7 +103,7 @@ int sem_wait ( sem_t handle) {
     return (int)returnValue;
 }
 
-int sem_signal ( sem_t handle) {
+int sem_signal ( sem_t handle ) {
     __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
     __asm__ volatile("li a0,0x24");
     __asm__ volatile("ecall");
@@ -113,7 +112,7 @@ int sem_signal ( sem_t handle) {
     return (int)returnValue;
 }
 
-char getc(){
+char getc() {
     __asm__ volatile ("li a0, 0x41");
     __asm__ volatile ("ecall");
     char chr;
@@ -123,8 +122,7 @@ char getc(){
 
 #include "console.h"
 
-void putc(char chr)
-{
+void putc(char chr ) {
     __asm__ volatile("mv a1,%0"::"r"(chr));
     __asm__ volatile("li a0,0x42");
     __asm__ volatile("ecall");

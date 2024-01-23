@@ -76,6 +76,7 @@ private:
             blocked: 1,
             sleeping: 1,
             finished: 1,
+            kernel: 1,
             reserved: 28;
     /// @brief the function to run
     func function;
@@ -84,6 +85,8 @@ private:
     static uint32 nextID;
 
     static void contextSwitch(contextWrapper* oldContext, contextWrapper* newContext);
+
+    friend class Scheduler;
 
 };
 

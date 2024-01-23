@@ -61,8 +61,6 @@ private:
 
     /// @brief pointer to the first free section in the heap
     HeapFreeSectionHeader* m_pHead;
-    /// @brief pointer to the last free section in the heap
-    HeapFreeSectionHeader* m_pTail;
 
     /// @brief singleton instance
     static HeapManager* instance;

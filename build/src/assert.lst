@@ -1,4 +1,4 @@
-GAS LISTING /tmp/ccfuCR9P.s 			page 1
+GAS LISTING /tmp/cc44rInf.s 			page 1
 
 
    1              		.file	"assert.cpp"
@@ -7,8 +7,8 @@ GAS LISTING /tmp/ccfuCR9P.s 			page 1
    4              		.text
    5              	.Ltext0:
    6              		.align	2
-   7              		.globl	_Z13assert_failedPKci
-   9              	_Z13assert_failedPKci:
+   7              		.globl	_Z13assert_failedPKcS0_jS0_
+   9              	_Z13assert_failedPKcS0_jS0_:
   10              	.LFB0:
   11              		.file 1 "src/assert.cpp"
    1:src/assert.cpp **** /**
@@ -24,594 +24,850 @@ GAS LISTING /tmp/ccfuCR9P.s 			page 1
   11:src/assert.cpp **** #include "assert.h"
   12:src/assert.cpp **** #include "syscalls_c.h"
   13:src/assert.cpp **** 
-  14:src/assert.cpp **** void assert_failed( const char* file, int line ){
-  12              		.loc 1 14 49
+  14:src/assert.cpp **** void assert_failed( const char * __assertion, const char * __file, unsigned int __line, const char 
+  12              		.loc 1 14 114
   13              		.cfi_startproc
   14              	.LVL0:
-  15 0000 130101FC 		addi	sp,sp,-64
-  16              		.cfi_def_cfa_offset 64
-  17 0004 233C1102 		sd	ra,56(sp)
-  18 0008 23388102 		sd	s0,48(sp)
-  19 000c 23349102 		sd	s1,40(sp)
-  20 0010 23302103 		sd	s2,32(sp)
-  21              		.cfi_offset 1, -8
-  22              		.cfi_offset 8, -16
-  23              		.cfi_offset 9, -24
-  24              		.cfi_offset 18, -32
-  25 0014 13040104 		addi	s0,sp,64
-  26              		.cfi_def_cfa 8, 0
-  27 0018 93040500 		mv	s1,a0
-  28 001c 13890500 		mv	s2,a1
+  15 0000 130101FB 		addi	sp,sp,-80
+  16              		.cfi_def_cfa_offset 80
+  17 0004 23341104 		sd	ra,72(sp)
+  18 0008 23308104 		sd	s0,64(sp)
+  19 000c 233C9102 		sd	s1,56(sp)
+  20 0010 23382103 		sd	s2,48(sp)
+  21 0014 23343103 		sd	s3,40(sp)
+  22 0018 23304103 		sd	s4,32(sp)
+  23              		.cfi_offset 1, -8
+  24              		.cfi_offset 8, -16
+  25              		.cfi_offset 9, -24
+  26              		.cfi_offset 18, -32
+  27              		.cfi_offset 19, -40
+  28              		.cfi_offset 20, -48
+  29 001c 13040105 		addi	s0,sp,80
+  30              		.cfi_def_cfa 8, 0
+  31 0020 93090500 		mv	s3,a0
+  32 0024 93840500 		mv	s1,a1
+  33 0028 13090600 		mv	s2,a2
+  34 002c 138A0600 		mv	s4,a3
   15:src/assert.cpp ****     putc('\n');
-  29              		.loc 1 15 5
-  30              		.loc 1 15 9 is_stmt 0
-  31 0020 1305A000 		li	a0,10
-  32              	.LVL1:
-  33 0024 97000000 		call	_Z4putcc@plt
-  33      E7800000 
-  34              	.LVL2:
+  35              		.loc 1 15 5
+  36              		.loc 1 15 9 is_stmt 0
+  37 0030 1305A000 		li	a0,10
+  38              	.LVL1:
+  39 0034 97000000 		call	_Z4putcc@plt
+  39      E7800000 
+  40              	.LVL2:
   16:src/assert.cpp ****     putc('A');
-  35              		.loc 1 16 5 is_stmt 1
-  36              		.loc 1 16 9 is_stmt 0
-  37 002c 13051004 		li	a0,65
-  38 0030 97000000 		call	_Z4putcc@plt
-  38      E7800000 
-  39              	.LVL3:
+  41              		.loc 1 16 5 is_stmt 1
+GAS LISTING /tmp/cc44rInf.s 			page 2
+
+
+  42              		.loc 1 16 9 is_stmt 0
+  43 003c 13051004 		li	a0,65
+  44 0040 97000000 		call	_Z4putcc@plt
+  44      E7800000 
+  45              	.LVL3:
   17:src/assert.cpp ****     putc('s');
-GAS LISTING /tmp/ccfuCR9P.s 			page 2
-
-
-  40              		.loc 1 17 5 is_stmt 1
-  41              		.loc 1 17 9 is_stmt 0
-  42 0038 13053007 		li	a0,115
-  43 003c 97000000 		call	_Z4putcc@plt
-  43      E7800000 
-  44              	.LVL4:
+  46              		.loc 1 17 5 is_stmt 1
+  47              		.loc 1 17 9 is_stmt 0
+  48 0048 13053007 		li	a0,115
+  49 004c 97000000 		call	_Z4putcc@plt
+  49      E7800000 
+  50              	.LVL4:
   18:src/assert.cpp ****     putc('s');
-  45              		.loc 1 18 5 is_stmt 1
-  46              		.loc 1 18 9 is_stmt 0
-  47 0044 13053007 		li	a0,115
-  48 0048 97000000 		call	_Z4putcc@plt
-  48      E7800000 
-  49              	.LVL5:
+  51              		.loc 1 18 5 is_stmt 1
+  52              		.loc 1 18 9 is_stmt 0
+  53 0054 13053007 		li	a0,115
+  54 0058 97000000 		call	_Z4putcc@plt
+  54      E7800000 
+  55              	.LVL5:
   19:src/assert.cpp ****     putc('e');
-  50              		.loc 1 19 5 is_stmt 1
-  51              		.loc 1 19 9 is_stmt 0
-  52 0050 13055006 		li	a0,101
-  53 0054 97000000 		call	_Z4putcc@plt
-  53      E7800000 
-  54              	.LVL6:
+  56              		.loc 1 19 5 is_stmt 1
+  57              		.loc 1 19 9 is_stmt 0
+  58 0060 13055006 		li	a0,101
+  59 0064 97000000 		call	_Z4putcc@plt
+  59      E7800000 
+  60              	.LVL6:
   20:src/assert.cpp ****     putc('r');
-  55              		.loc 1 20 5 is_stmt 1
-  56              		.loc 1 20 9 is_stmt 0
-  57 005c 13052007 		li	a0,114
-  58 0060 97000000 		call	_Z4putcc@plt
-  58      E7800000 
-  59              	.LVL7:
+  61              		.loc 1 20 5 is_stmt 1
+  62              		.loc 1 20 9 is_stmt 0
+  63 006c 13052007 		li	a0,114
+  64 0070 97000000 		call	_Z4putcc@plt
+  64      E7800000 
+  65              	.LVL7:
   21:src/assert.cpp ****     putc('t');
-  60              		.loc 1 21 5 is_stmt 1
-  61              		.loc 1 21 9 is_stmt 0
-  62 0068 13054007 		li	a0,116
-  63 006c 97000000 		call	_Z4putcc@plt
-  63      E7800000 
-  64              	.LVL8:
+  66              		.loc 1 21 5 is_stmt 1
+  67              		.loc 1 21 9 is_stmt 0
+  68 0078 13054007 		li	a0,116
+  69 007c 97000000 		call	_Z4putcc@plt
+  69      E7800000 
+  70              	.LVL8:
   22:src/assert.cpp ****     putc('i');
-  65              		.loc 1 22 5 is_stmt 1
-  66              		.loc 1 22 9 is_stmt 0
-  67 0074 13059006 		li	a0,105
-  68 0078 97000000 		call	_Z4putcc@plt
-  68      E7800000 
-  69              	.LVL9:
+  71              		.loc 1 22 5 is_stmt 1
+  72              		.loc 1 22 9 is_stmt 0
+  73 0084 13059006 		li	a0,105
+  74 0088 97000000 		call	_Z4putcc@plt
+  74      E7800000 
+  75              	.LVL9:
   23:src/assert.cpp ****     putc('o');
-  70              		.loc 1 23 5 is_stmt 1
-  71              		.loc 1 23 9 is_stmt 0
-  72 0080 1305F006 		li	a0,111
-  73 0084 97000000 		call	_Z4putcc@plt
-  73      E7800000 
-  74              	.LVL10:
+  76              		.loc 1 23 5 is_stmt 1
+  77              		.loc 1 23 9 is_stmt 0
+  78 0090 1305F006 		li	a0,111
+  79 0094 97000000 		call	_Z4putcc@plt
+  79      E7800000 
+  80              	.LVL10:
   24:src/assert.cpp ****     putc('n');
-  75              		.loc 1 24 5 is_stmt 1
-  76              		.loc 1 24 9 is_stmt 0
-  77 008c 1305E006 		li	a0,110
-  78 0090 97000000 		call	_Z4putcc@plt
-  78      E7800000 
-  79              	.LVL11:
+  81              		.loc 1 24 5 is_stmt 1
+  82              		.loc 1 24 9 is_stmt 0
+GAS LISTING /tmp/cc44rInf.s 			page 3
+
+
+  83 009c 1305E006 		li	a0,110
+  84 00a0 97000000 		call	_Z4putcc@plt
+  84      E7800000 
+  85              	.LVL11:
   25:src/assert.cpp ****     putc(' ');
-  80              		.loc 1 25 5 is_stmt 1
-GAS LISTING /tmp/ccfuCR9P.s 			page 3
-
-
-  81              		.loc 1 25 9 is_stmt 0
-  82 0098 13050002 		li	a0,32
-  83 009c 97000000 		call	_Z4putcc@plt
-  83      E7800000 
-  84              	.LVL12:
-  26:src/assert.cpp ****     putc('f');
-  85              		.loc 1 26 5 is_stmt 1
-  86              		.loc 1 26 9 is_stmt 0
-  87 00a4 13056006 		li	a0,102
-  88 00a8 97000000 		call	_Z4putcc@plt
-  88      E7800000 
-  89              	.LVL13:
-  27:src/assert.cpp ****     putc('a');
-  90              		.loc 1 27 5 is_stmt 1
-  91              		.loc 1 27 9 is_stmt 0
-  92 00b0 13051006 		li	a0,97
-  93 00b4 97000000 		call	_Z4putcc@plt
-  93      E7800000 
-  94              	.LVL14:
-  28:src/assert.cpp ****     putc('i');
-  95              		.loc 1 28 5 is_stmt 1
-  96              		.loc 1 28 9 is_stmt 0
-  97 00bc 13059006 		li	a0,105
-  98 00c0 97000000 		call	_Z4putcc@plt
-  98      E7800000 
-  99              	.LVL15:
-  29:src/assert.cpp ****     putc('l');
- 100              		.loc 1 29 5 is_stmt 1
- 101              		.loc 1 29 9 is_stmt 0
- 102 00c8 1305C006 		li	a0,108
- 103 00cc 97000000 		call	_Z4putcc@plt
- 103      E7800000 
- 104              	.LVL16:
-  30:src/assert.cpp ****     putc('e');
- 105              		.loc 1 30 5 is_stmt 1
- 106              		.loc 1 30 9 is_stmt 0
- 107 00d4 13055006 		li	a0,101
- 108 00d8 97000000 		call	_Z4putcc@plt
- 108      E7800000 
- 109              	.LVL17:
-  31:src/assert.cpp ****     putc('d');
- 110              		.loc 1 31 5 is_stmt 1
- 111              		.loc 1 31 9 is_stmt 0
- 112 00e0 13054006 		li	a0,100
- 113 00e4 97000000 		call	_Z4putcc@plt
- 113      E7800000 
- 114              	.LVL18:
+  86              		.loc 1 25 5 is_stmt 1
+  87              		.loc 1 25 9 is_stmt 0
+  88 00a8 13050002 		li	a0,32
+  89 00ac 97000000 		call	_Z4putcc@plt
+  89      E7800000 
+  90              	.LVL12:
+  26:src/assert.cpp ****     putc('\'');
+  91              		.loc 1 26 5 is_stmt 1
+  92              		.loc 1 26 9 is_stmt 0
+  93 00b4 13057002 		li	a0,39
+  94 00b8 97000000 		call	_Z4putcc@plt
+  94      E7800000 
+  95              	.LVL13:
+  96              	.L3:
+  27:src/assert.cpp ****     while(*__assertion != 0){
+  97              		.loc 1 27 5 is_stmt 1
+  98              		.loc 1 27 24
+  99              		.loc 1 27 11 is_stmt 0
+ 100 00c0 03C50900 		lbu	a0,0(s3)
+ 101              		.loc 1 27 24
+ 102 00c4 630A0500 		beqz	a0,.L2
+  28:src/assert.cpp ****         putc(*__assertion);
+ 103              		.loc 1 28 9 is_stmt 1
+ 104              		.loc 1 28 13 is_stmt 0
+ 105 00c8 97000000 		call	_Z4putcc@plt
+ 105      E7800000 
+ 106              	.LVL14:
+  29:src/assert.cpp ****         __assertion++;
+ 107              		.loc 1 29 9 is_stmt 1
+ 108              		.loc 1 29 20 is_stmt 0
+ 109 00d0 93891900 		addi	s3,s3,1
+ 110              	.LVL15:
+  27:src/assert.cpp ****     while(*__assertion != 0){
+ 111              		.loc 1 27 5
+ 112 00d4 6FF0DFFE 		j	.L3
+ 113              	.L2:
+  30:src/assert.cpp ****     }
+  31:src/assert.cpp ****     putc('\'');
+ 114              		.loc 1 31 5 is_stmt 1
+ 115              		.loc 1 31 9 is_stmt 0
+ 116 00d8 13057002 		li	a0,39
+ 117 00dc 97000000 		call	_Z4putcc@plt
+ 117      E7800000 
+ 118              	.LVL16:
   32:src/assert.cpp ****     putc(' ');
- 115              		.loc 1 32 5 is_stmt 1
- 116              		.loc 1 32 9 is_stmt 0
- 117 00ec 13050002 		li	a0,32
- 118 00f0 97000000 		call	_Z4putcc@plt
- 118      E7800000 
- 119              	.LVL19:
-  33:src/assert.cpp ****     putc('i');
- 120              		.loc 1 33 5 is_stmt 1
- 121              		.loc 1 33 9 is_stmt 0
-GAS LISTING /tmp/ccfuCR9P.s 			page 4
+ 119              		.loc 1 32 5 is_stmt 1
+ 120              		.loc 1 32 9 is_stmt 0
+ 121 00e4 13050002 		li	a0,32
+ 122 00e8 97000000 		call	_Z4putcc@plt
+ 122      E7800000 
+ 123              	.LVL17:
+  33:src/assert.cpp ****     putc('f');
+GAS LISTING /tmp/cc44rInf.s 			page 4
 
 
- 122 00f8 13059006 		li	a0,105
- 123 00fc 97000000 		call	_Z4putcc@plt
- 123      E7800000 
- 124              	.LVL20:
-  34:src/assert.cpp ****     putc('n');
- 125              		.loc 1 34 5 is_stmt 1
- 126              		.loc 1 34 9 is_stmt 0
- 127 0104 1305E006 		li	a0,110
- 128 0108 97000000 		call	_Z4putcc@plt
- 128      E7800000 
- 129              	.LVL21:
-  35:src/assert.cpp ****     putc(' ');
- 130              		.loc 1 35 5 is_stmt 1
- 131              		.loc 1 35 9 is_stmt 0
- 132 0110 13050002 		li	a0,32
- 133 0114 97000000 		call	_Z4putcc@plt
- 133      E7800000 
- 134              	.LVL22:
-  36:src/assert.cpp ****     putc('f');
- 135              		.loc 1 36 5 is_stmt 1
- 136              		.loc 1 36 9 is_stmt 0
- 137 011c 13056006 		li	a0,102
- 138 0120 97000000 		call	_Z4putcc@plt
- 138      E7800000 
- 139              	.LVL23:
-  37:src/assert.cpp ****     putc('i');
- 140              		.loc 1 37 5 is_stmt 1
- 141              		.loc 1 37 9 is_stmt 0
- 142 0128 13059006 		li	a0,105
- 143 012c 97000000 		call	_Z4putcc@plt
- 143      E7800000 
- 144              	.LVL24:
-  38:src/assert.cpp ****     putc('l');
- 145              		.loc 1 38 5 is_stmt 1
- 146              		.loc 1 38 9 is_stmt 0
- 147 0134 1305C006 		li	a0,108
- 148 0138 97000000 		call	_Z4putcc@plt
- 148      E7800000 
- 149              	.LVL25:
-  39:src/assert.cpp ****     putc('e');
- 150              		.loc 1 39 5 is_stmt 1
- 151              		.loc 1 39 9 is_stmt 0
- 152 0140 13055006 		li	a0,101
- 153 0144 97000000 		call	_Z4putcc@plt
- 153      E7800000 
- 154              	.LVL26:
-  40:src/assert.cpp ****     putc(':');
- 155              		.loc 1 40 5 is_stmt 1
- 156              		.loc 1 40 9 is_stmt 0
- 157 014c 1305A003 		li	a0,58
- 158 0150 97000000 		call	_Z4putcc@plt
- 158      E7800000 
- 159              	.LVL27:
-  41:src/assert.cpp ****     putc(' ');
- 160              		.loc 1 41 5 is_stmt 1
- 161              		.loc 1 41 9 is_stmt 0
- 162 0158 13050002 		li	a0,32
-GAS LISTING /tmp/ccfuCR9P.s 			page 5
+ 124              		.loc 1 33 5 is_stmt 1
+ 125              		.loc 1 33 9 is_stmt 0
+ 126 00f0 13056006 		li	a0,102
+ 127 00f4 97000000 		call	_Z4putcc@plt
+ 127      E7800000 
+ 128              	.LVL18:
+  34:src/assert.cpp ****     putc('a');
+ 129              		.loc 1 34 5 is_stmt 1
+ 130              		.loc 1 34 9 is_stmt 0
+ 131 00fc 13051006 		li	a0,97
+ 132 0100 97000000 		call	_Z4putcc@plt
+ 132      E7800000 
+ 133              	.LVL19:
+  35:src/assert.cpp ****     putc('i');
+ 134              		.loc 1 35 5 is_stmt 1
+ 135              		.loc 1 35 9 is_stmt 0
+ 136 0108 13059006 		li	a0,105
+ 137 010c 97000000 		call	_Z4putcc@plt
+ 137      E7800000 
+ 138              	.LVL20:
+  36:src/assert.cpp ****     putc('l');
+ 139              		.loc 1 36 5 is_stmt 1
+ 140              		.loc 1 36 9 is_stmt 0
+ 141 0114 1305C006 		li	a0,108
+ 142 0118 97000000 		call	_Z4putcc@plt
+ 142      E7800000 
+ 143              	.LVL21:
+  37:src/assert.cpp ****     putc('e');
+ 144              		.loc 1 37 5 is_stmt 1
+ 145              		.loc 1 37 9 is_stmt 0
+ 146 0120 13055006 		li	a0,101
+ 147 0124 97000000 		call	_Z4putcc@plt
+ 147      E7800000 
+ 148              	.LVL22:
+  38:src/assert.cpp ****     putc('d');
+ 149              		.loc 1 38 5 is_stmt 1
+ 150              		.loc 1 38 9 is_stmt 0
+ 151 012c 13054006 		li	a0,100
+ 152 0130 97000000 		call	_Z4putcc@plt
+ 152      E7800000 
+ 153              	.LVL23:
+  39:src/assert.cpp ****     putc(' ');
+ 154              		.loc 1 39 5 is_stmt 1
+ 155              		.loc 1 39 9 is_stmt 0
+ 156 0138 13050002 		li	a0,32
+ 157 013c 97000000 		call	_Z4putcc@plt
+ 157      E7800000 
+ 158              	.LVL24:
+  40:src/assert.cpp ****     putc('i');
+ 159              		.loc 1 40 5 is_stmt 1
+ 160              		.loc 1 40 9 is_stmt 0
+ 161 0144 13059006 		li	a0,105
+ 162 0148 97000000 		call	_Z4putcc@plt
+ 162      E7800000 
+ 163              	.LVL25:
+  41:src/assert.cpp ****     putc('n');
+ 164              		.loc 1 41 5 is_stmt 1
+GAS LISTING /tmp/cc44rInf.s 			page 5
 
 
- 163 015c 97000000 		call	_Z4putcc@plt
- 163      E7800000 
- 164              	.LVL28:
- 165              	.L3:
-  42:src/assert.cpp ****     while(*file != 0){
- 166              		.loc 1 42 5 is_stmt 1
- 167              		.loc 1 42 17
- 168              		.loc 1 42 11 is_stmt 0
- 169 0164 03C50400 		lbu	a0,0(s1)
- 170              		.loc 1 42 17
- 171 0168 630A0500 		beqz	a0,.L2
-  43:src/assert.cpp ****         putc(*file);
- 172              		.loc 1 43 9 is_stmt 1
- 173              		.loc 1 43 13 is_stmt 0
- 174 016c 97000000 		call	_Z4putcc@plt
- 174      E7800000 
- 175              	.LVL29:
-  44:src/assert.cpp ****         file++;
- 176              		.loc 1 44 9 is_stmt 1
- 177              		.loc 1 44 13 is_stmt 0
- 178 0174 93841400 		addi	s1,s1,1
- 179              	.LVL30:
-  42:src/assert.cpp ****     while(*file != 0){
- 180              		.loc 1 42 5
- 181 0178 6FF0DFFE 		j	.L3
- 182              	.L2:
-  45:src/assert.cpp ****     }
-  46:src/assert.cpp ****     putc('\n');
- 183              		.loc 1 46 5 is_stmt 1
- 184              		.loc 1 46 9 is_stmt 0
- 185 017c 1305A000 		li	a0,10
- 186 0180 97000000 		call	_Z4putcc@plt
- 186      E7800000 
- 187              	.LVL31:
-  47:src/assert.cpp ****     putc('l');
- 188              		.loc 1 47 5 is_stmt 1
- 189              		.loc 1 47 9 is_stmt 0
- 190 0188 1305C006 		li	a0,108
- 191 018c 97000000 		call	_Z4putcc@plt
- 191      E7800000 
- 192              	.LVL32:
-  48:src/assert.cpp ****     putc('i');
- 193              		.loc 1 48 5 is_stmt 1
- 194              		.loc 1 48 9 is_stmt 0
- 195 0194 13059006 		li	a0,105
- 196 0198 97000000 		call	_Z4putcc@plt
- 196      E7800000 
- 197              	.LVL33:
-  49:src/assert.cpp ****     putc('n');
- 198              		.loc 1 49 5 is_stmt 1
- 199              		.loc 1 49 9 is_stmt 0
- 200 01a0 1305E006 		li	a0,110
- 201 01a4 97000000 		call	_Z4putcc@plt
- 201      E7800000 
- 202              	.LVL34:
-  50:src/assert.cpp ****     putc('e');
- 203              		.loc 1 50 5 is_stmt 1
-GAS LISTING /tmp/ccfuCR9P.s 			page 6
+ 165              		.loc 1 41 9 is_stmt 0
+ 166 0150 1305E006 		li	a0,110
+ 167 0154 97000000 		call	_Z4putcc@plt
+ 167      E7800000 
+ 168              	.LVL26:
+  42:src/assert.cpp ****     putc(' ');
+ 169              		.loc 1 42 5 is_stmt 1
+ 170              		.loc 1 42 9 is_stmt 0
+ 171 015c 13050002 		li	a0,32
+ 172 0160 97000000 		call	_Z4putcc@plt
+ 172      E7800000 
+ 173              	.LVL27:
+  43:src/assert.cpp ****     putc('f');
+ 174              		.loc 1 43 5 is_stmt 1
+ 175              		.loc 1 43 9 is_stmt 0
+ 176 0168 13056006 		li	a0,102
+ 177 016c 97000000 		call	_Z4putcc@plt
+ 177      E7800000 
+ 178              	.LVL28:
+  44:src/assert.cpp ****     putc('i');
+ 179              		.loc 1 44 5 is_stmt 1
+ 180              		.loc 1 44 9 is_stmt 0
+ 181 0174 13059006 		li	a0,105
+ 182 0178 97000000 		call	_Z4putcc@plt
+ 182      E7800000 
+ 183              	.LVL29:
+  45:src/assert.cpp ****     putc('l');
+ 184              		.loc 1 45 5 is_stmt 1
+ 185              		.loc 1 45 9 is_stmt 0
+ 186 0180 1305C006 		li	a0,108
+ 187 0184 97000000 		call	_Z4putcc@plt
+ 187      E7800000 
+ 188              	.LVL30:
+  46:src/assert.cpp ****     putc('e');
+ 189              		.loc 1 46 5 is_stmt 1
+ 190              		.loc 1 46 9 is_stmt 0
+ 191 018c 13055006 		li	a0,101
+ 192 0190 97000000 		call	_Z4putcc@plt
+ 192      E7800000 
+ 193              	.LVL31:
+  47:src/assert.cpp ****     putc(':');
+ 194              		.loc 1 47 5 is_stmt 1
+ 195              		.loc 1 47 9 is_stmt 0
+ 196 0198 1305A003 		li	a0,58
+ 197 019c 97000000 		call	_Z4putcc@plt
+ 197      E7800000 
+ 198              	.LVL32:
+  48:src/assert.cpp ****     putc(' ');
+ 199              		.loc 1 48 5 is_stmt 1
+ 200              		.loc 1 48 9 is_stmt 0
+ 201 01a4 13050002 		li	a0,32
+ 202 01a8 97000000 		call	_Z4putcc@plt
+ 202      E7800000 
+ 203              	.LVL33:
+ 204              	.L5:
+  49:src/assert.cpp ****     while(*__file != 0){
+ 205              		.loc 1 49 5 is_stmt 1
+GAS LISTING /tmp/cc44rInf.s 			page 6
 
 
- 204              		.loc 1 50 9 is_stmt 0
- 205 01ac 13055006 		li	a0,101
- 206 01b0 97000000 		call	_Z4putcc@plt
- 206      E7800000 
- 207              	.LVL35:
-  51:src/assert.cpp ****     putc(':');
- 208              		.loc 1 51 5 is_stmt 1
- 209              		.loc 1 51 9 is_stmt 0
- 210 01b8 1305A003 		li	a0,58
- 211 01bc 97000000 		call	_Z4putcc@plt
- 211      E7800000 
- 212              	.LVL36:
-  52:src/assert.cpp ****     putc(' ');
- 213              		.loc 1 52 5 is_stmt 1
- 214              		.loc 1 52 9 is_stmt 0
- 215 01c4 13050002 		li	a0,32
- 216 01c8 97000000 		call	_Z4putcc@plt
- 216      E7800000 
- 217              	.LVL37:
-  53:src/assert.cpp ****     char buffer[20];
-  54:src/assert.cpp ****     int i = 0;
- 218              		.loc 1 54 9
- 219 01d0 93040000 		li	s1,0
- 220              	.LVL38:
- 221              	.L5:
-  55:src/assert.cpp ****     while(line != 0){
- 222              		.loc 1 55 5 is_stmt 1
- 223              		.loc 1 55 16
- 224 01d4 63040902 		beqz	s2,.L4
-  56:src/assert.cpp ****         buffer[i] = line % 10 + '0';
- 225              		.loc 1 56 9
- 226              		.loc 1 56 26 is_stmt 0
- 227 01d8 1307A000 		li	a4,10
- 228 01dc BB67E902 		remw	a5,s2,a4
- 229              		.loc 1 56 31
- 230 01e0 9B870703 		addiw	a5,a5,48
- 231              		.loc 1 56 19
- 232 01e4 930604FE 		addi	a3,s0,-32
- 233 01e8 B3869600 		add	a3,a3,s1
- 234 01ec 2384F6FE 		sb	a5,-24(a3)
-  57:src/assert.cpp ****         line /= 10;
- 235              		.loc 1 57 9 is_stmt 1
- 236              		.loc 1 57 14 is_stmt 0
- 237 01f0 3B49E902 		divw	s2,s2,a4
- 238              	.LVL39:
-  58:src/assert.cpp ****         i++;
- 239              		.loc 1 58 9 is_stmt 1
- 240              		.loc 1 58 10 is_stmt 0
- 241 01f4 9B841400 		addiw	s1,s1,1
- 242              	.LVL40:
-  55:src/assert.cpp ****         buffer[i] = line % 10 + '0';
- 243              		.loc 1 55 5
- 244 01f8 6FF0DFFD 		j	.L5
- 245              	.LVL41:
- 246              	.L4:
-  59:src/assert.cpp ****     }
-  60:src/assert.cpp ****     while(i != 0){
-GAS LISTING /tmp/ccfuCR9P.s 			page 7
+ 206              		.loc 1 49 19
+ 207              		.loc 1 49 11 is_stmt 0
+ 208 01b0 03C50400 		lbu	a0,0(s1)
+ 209              		.loc 1 49 19
+ 210 01b4 630A0500 		beqz	a0,.L4
+  50:src/assert.cpp ****         putc(*__file);
+ 211              		.loc 1 50 9 is_stmt 1
+ 212              		.loc 1 50 13 is_stmt 0
+ 213 01b8 97000000 		call	_Z4putcc@plt
+ 213      E7800000 
+ 214              	.LVL34:
+  51:src/assert.cpp ****         __file++;
+ 215              		.loc 1 51 9 is_stmt 1
+ 216              		.loc 1 51 15 is_stmt 0
+ 217 01c0 93841400 		addi	s1,s1,1
+ 218              	.LVL35:
+  49:src/assert.cpp ****     while(*__file != 0){
+ 219              		.loc 1 49 5
+ 220 01c4 6FF0DFFE 		j	.L5
+ 221              	.L4:
+  52:src/assert.cpp ****     }
+  53:src/assert.cpp ****     putc('\n');
+ 222              		.loc 1 53 5 is_stmt 1
+ 223              		.loc 1 53 9 is_stmt 0
+ 224 01c8 1305A000 		li	a0,10
+ 225 01cc 97000000 		call	_Z4putcc@plt
+ 225      E7800000 
+ 226              	.LVL36:
+  54:src/assert.cpp ****     putc('l');
+ 227              		.loc 1 54 5 is_stmt 1
+ 228              		.loc 1 54 9 is_stmt 0
+ 229 01d4 1305C006 		li	a0,108
+ 230 01d8 97000000 		call	_Z4putcc@plt
+ 230      E7800000 
+ 231              	.LVL37:
+  55:src/assert.cpp ****     putc('i');
+ 232              		.loc 1 55 5 is_stmt 1
+ 233              		.loc 1 55 9 is_stmt 0
+ 234 01e0 13059006 		li	a0,105
+ 235 01e4 97000000 		call	_Z4putcc@plt
+ 235      E7800000 
+ 236              	.LVL38:
+  56:src/assert.cpp ****     putc('n');
+ 237              		.loc 1 56 5 is_stmt 1
+ 238              		.loc 1 56 9 is_stmt 0
+ 239 01ec 1305E006 		li	a0,110
+ 240 01f0 97000000 		call	_Z4putcc@plt
+ 240      E7800000 
+ 241              	.LVL39:
+  57:src/assert.cpp ****     putc('e');
+ 242              		.loc 1 57 5 is_stmt 1
+ 243              		.loc 1 57 9 is_stmt 0
+ 244 01f8 13055006 		li	a0,101
+ 245 01fc 97000000 		call	_Z4putcc@plt
+ 245      E7800000 
+ 246              	.LVL40:
+  58:src/assert.cpp ****     putc(':');
+GAS LISTING /tmp/cc44rInf.s 			page 7
 
 
- 247              		.loc 1 60 5 is_stmt 1
- 248              		.loc 1 60 13
- 249 01fc 63800402 		beqz	s1,.L6
-  61:src/assert.cpp ****         i--;
- 250              		.loc 1 61 9
- 251              		.loc 1 61 10 is_stmt 0
- 252 0200 9B84F4FF 		addiw	s1,s1,-1
- 253              	.LVL42:
-  62:src/assert.cpp ****         putc(buffer[i]);
- 254              		.loc 1 62 9 is_stmt 1
- 255              		.loc 1 62 13 is_stmt 0
- 256 0204 930704FE 		addi	a5,s0,-32
- 257 0208 B3879700 		add	a5,a5,s1
- 258 020c 03C587FE 		lbu	a0,-24(a5)
- 259 0210 97000000 		call	_Z4putcc@plt
- 259      E7800000 
- 260              	.LVL43:
- 261 0218 6FF05FFE 		j	.L4
- 262              	.LVL44:
- 263              	.L6:
-  63:src/assert.cpp ****     }
-  64:src/assert.cpp ****     putc('\n');
- 264              		.loc 1 64 5 is_stmt 1
- 265              		.loc 1 64 9 is_stmt 0
- 266 021c 1305A000 		li	a0,10
- 267 0220 97000000 		call	_Z4putcc@plt
- 267      E7800000 
- 268              	.LVL45:
- 269              	.L7:
-  65:src/assert.cpp ****     while(1);
- 270              		.loc 1 65 5 is_stmt 1 discriminator 1
- 271              		.loc 1 65 5 discriminator 1
- 272 0228 6F000000 		j	.L7
- 273              		.cfi_endproc
- 274              	.LFE0:
- 276              	.Letext0:
- 277              		.file 2 "./lib/hw.h"
- 278              		.file 3 "./h/syscalls_c.h"
-GAS LISTING /tmp/ccfuCR9P.s 			page 8
+ 247              		.loc 1 58 5 is_stmt 1
+ 248              		.loc 1 58 9 is_stmt 0
+ 249 0204 1305A003 		li	a0,58
+ 250 0208 97000000 		call	_Z4putcc@plt
+ 250      E7800000 
+ 251              	.LVL41:
+  59:src/assert.cpp ****     putc(' ');
+ 252              		.loc 1 59 5 is_stmt 1
+ 253              		.loc 1 59 9 is_stmt 0
+ 254 0210 13050002 		li	a0,32
+ 255 0214 97000000 		call	_Z4putcc@plt
+ 255      E7800000 
+ 256              	.LVL42:
+  60:src/assert.cpp ****     char buffer[20];
+  61:src/assert.cpp ****     int i = 0;
+ 257              		.loc 1 61 9
+ 258 021c 93040000 		li	s1,0
+ 259              	.LVL43:
+ 260              	.L7:
+  62:src/assert.cpp ****     while(__line != 0){
+ 261              		.loc 1 62 5 is_stmt 1
+ 262              		.loc 1 62 18
+ 263 0220 63040902 		beqz	s2,.L6
+  63:src/assert.cpp ****         buffer[i] = __line % 10 + '0';
+ 264              		.loc 1 63 9
+ 265              		.loc 1 63 28 is_stmt 0
+ 266 0224 1307A000 		li	a4,10
+ 267 0228 BB77E902 		remuw	a5,s2,a4
+ 268              		.loc 1 63 33
+ 269 022c 9B870703 		addiw	a5,a5,48
+ 270              		.loc 1 63 19
+ 271 0230 930604FD 		addi	a3,s0,-48
+ 272 0234 B3869600 		add	a3,a3,s1
+ 273 0238 2384F6FE 		sb	a5,-24(a3)
+  64:src/assert.cpp ****         __line /= 10;
+ 274              		.loc 1 64 9 is_stmt 1
+ 275              		.loc 1 64 16 is_stmt 0
+ 276 023c 3B59E902 		divuw	s2,s2,a4
+ 277              	.LVL44:
+  65:src/assert.cpp ****         i++;
+ 278              		.loc 1 65 9 is_stmt 1
+ 279              		.loc 1 65 10 is_stmt 0
+ 280 0240 9B841400 		addiw	s1,s1,1
+ 281              	.LVL45:
+  62:src/assert.cpp ****         buffer[i] = __line % 10 + '0';
+ 282              		.loc 1 62 5
+ 283 0244 6FF0DFFD 		j	.L7
+ 284              	.LVL46:
+ 285              	.L6:
+  66:src/assert.cpp ****     }
+  67:src/assert.cpp ****     while(i != 0){
+ 286              		.loc 1 67 5 is_stmt 1
+ 287              		.loc 1 67 13
+ 288 0248 63800402 		beqz	s1,.L8
+  68:src/assert.cpp ****         i--;
+ 289              		.loc 1 68 9
+ 290              		.loc 1 68 10 is_stmt 0
+GAS LISTING /tmp/cc44rInf.s 			page 8
+
+
+ 291 024c 9B84F4FF 		addiw	s1,s1,-1
+ 292              	.LVL47:
+  69:src/assert.cpp ****         putc(buffer[i]);
+ 293              		.loc 1 69 9 is_stmt 1
+ 294              		.loc 1 69 13 is_stmt 0
+ 295 0250 930704FD 		addi	a5,s0,-48
+ 296 0254 B3879700 		add	a5,a5,s1
+ 297 0258 03C587FE 		lbu	a0,-24(a5)
+ 298 025c 97000000 		call	_Z4putcc@plt
+ 298      E7800000 
+ 299              	.LVL48:
+ 300 0264 6FF05FFE 		j	.L6
+ 301              	.LVL49:
+ 302              	.L8:
+  70:src/assert.cpp ****     }
+  71:src/assert.cpp ****     putc('\n');
+ 303              		.loc 1 71 5 is_stmt 1
+ 304              		.loc 1 71 9 is_stmt 0
+ 305 0268 1305A000 		li	a0,10
+ 306 026c 97000000 		call	_Z4putcc@plt
+ 306      E7800000 
+ 307              	.LVL50:
+  72:src/assert.cpp ****     putc('f');
+ 308              		.loc 1 72 5 is_stmt 1
+ 309              		.loc 1 72 9 is_stmt 0
+ 310 0274 13056006 		li	a0,102
+ 311 0278 97000000 		call	_Z4putcc@plt
+ 311      E7800000 
+ 312              	.LVL51:
+  73:src/assert.cpp ****     putc('u');
+ 313              		.loc 1 73 5 is_stmt 1
+ 314              		.loc 1 73 9 is_stmt 0
+ 315 0280 13055007 		li	a0,117
+ 316 0284 97000000 		call	_Z4putcc@plt
+ 316      E7800000 
+ 317              	.LVL52:
+  74:src/assert.cpp ****     putc('n');
+ 318              		.loc 1 74 5 is_stmt 1
+ 319              		.loc 1 74 9 is_stmt 0
+ 320 028c 1305E006 		li	a0,110
+ 321 0290 97000000 		call	_Z4putcc@plt
+ 321      E7800000 
+ 322              	.LVL53:
+  75:src/assert.cpp ****     putc('c');
+ 323              		.loc 1 75 5 is_stmt 1
+ 324              		.loc 1 75 9 is_stmt 0
+ 325 0298 13053006 		li	a0,99
+ 326 029c 97000000 		call	_Z4putcc@plt
+ 326      E7800000 
+ 327              	.LVL54:
+  76:src/assert.cpp ****     putc('t');
+ 328              		.loc 1 76 5 is_stmt 1
+ 329              		.loc 1 76 9 is_stmt 0
+ 330 02a4 13054007 		li	a0,116
+ 331 02a8 97000000 		call	_Z4putcc@plt
+ 331      E7800000 
+ 332              	.LVL55:
+GAS LISTING /tmp/cc44rInf.s 			page 9
+
+
+  77:src/assert.cpp ****     putc('i');
+ 333              		.loc 1 77 5 is_stmt 1
+ 334              		.loc 1 77 9 is_stmt 0
+ 335 02b0 13059006 		li	a0,105
+ 336 02b4 97000000 		call	_Z4putcc@plt
+ 336      E7800000 
+ 337              	.LVL56:
+  78:src/assert.cpp ****     putc('o');
+ 338              		.loc 1 78 5 is_stmt 1
+ 339              		.loc 1 78 9 is_stmt 0
+ 340 02bc 1305F006 		li	a0,111
+ 341 02c0 97000000 		call	_Z4putcc@plt
+ 341      E7800000 
+ 342              	.LVL57:
+  79:src/assert.cpp ****     putc('n');
+ 343              		.loc 1 79 5 is_stmt 1
+ 344              		.loc 1 79 9 is_stmt 0
+ 345 02c8 1305E006 		li	a0,110
+ 346 02cc 97000000 		call	_Z4putcc@plt
+ 346      E7800000 
+ 347              	.LVL58:
+  80:src/assert.cpp ****     putc(':');
+ 348              		.loc 1 80 5 is_stmt 1
+ 349              		.loc 1 80 9 is_stmt 0
+ 350 02d4 1305A003 		li	a0,58
+ 351 02d8 97000000 		call	_Z4putcc@plt
+ 351      E7800000 
+ 352              	.LVL59:
+  81:src/assert.cpp ****     putc(' ');
+ 353              		.loc 1 81 5 is_stmt 1
+ 354              		.loc 1 81 9 is_stmt 0
+ 355 02e0 13050002 		li	a0,32
+ 356 02e4 97000000 		call	_Z4putcc@plt
+ 356      E7800000 
+ 357              	.LVL60:
+  82:src/assert.cpp ****     putc('\'');
+ 358              		.loc 1 82 5 is_stmt 1
+ 359              		.loc 1 82 9 is_stmt 0
+ 360 02ec 13057002 		li	a0,39
+ 361 02f0 97000000 		call	_Z4putcc@plt
+ 361      E7800000 
+ 362              	.LVL61:
+ 363              	.L10:
+  83:src/assert.cpp ****     while(*__function != 0){
+ 364              		.loc 1 83 5 is_stmt 1
+ 365              		.loc 1 83 23
+ 366              		.loc 1 83 11 is_stmt 0
+ 367 02f8 03450A00 		lbu	a0,0(s4)
+ 368              		.loc 1 83 23
+ 369 02fc 630A0500 		beqz	a0,.L9
+  84:src/assert.cpp ****         putc(*__function);
+ 370              		.loc 1 84 9 is_stmt 1
+ 371              		.loc 1 84 13 is_stmt 0
+ 372 0300 97000000 		call	_Z4putcc@plt
+ 372      E7800000 
+ 373              	.LVL62:
+  85:src/assert.cpp ****         __function ++;
+GAS LISTING /tmp/cc44rInf.s 			page 10
+
+
+ 374              		.loc 1 85 9 is_stmt 1
+ 375              		.loc 1 85 20 is_stmt 0
+ 376 0308 130A1A00 		addi	s4,s4,1
+ 377              	.LVL63:
+  83:src/assert.cpp ****     while(*__function != 0){
+ 378              		.loc 1 83 5
+ 379 030c 6FF0DFFE 		j	.L10
+ 380              	.L9:
+  86:src/assert.cpp ****     }
+  87:src/assert.cpp ****     putc('\'');
+ 381              		.loc 1 87 5 is_stmt 1
+ 382              		.loc 1 87 9 is_stmt 0
+ 383 0310 13057002 		li	a0,39
+ 384 0314 97000000 		call	_Z4putcc@plt
+ 384      E7800000 
+ 385              	.LVL64:
+  88:src/assert.cpp ****     putc('\n');
+ 386              		.loc 1 88 5 is_stmt 1
+ 387              		.loc 1 88 9 is_stmt 0
+ 388 031c 1305A000 		li	a0,10
+ 389 0320 97000000 		call	_Z4putcc@plt
+ 389      E7800000 
+ 390              	.LVL65:
+ 391              	.L11:
+  89:src/assert.cpp ****     while(1);
+ 392              		.loc 1 89 5 is_stmt 1 discriminator 1
+ 393              		.loc 1 89 5 discriminator 1
+ 394 0328 6F000000 		j	.L11
+ 395              		.cfi_endproc
+ 396              	.LFE0:
+ 398              	.Letext0:
+ 399              		.file 2 "./lib/hw.h"
+ 400              		.file 3 "./h/syscalls_c.h"
+GAS LISTING /tmp/cc44rInf.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 assert.cpp
-     /tmp/ccfuCR9P.s:9      .text:0000000000000000 _Z13assert_failedPKci
-     /tmp/ccfuCR9P.s:13     .text:0000000000000000 .L0 
-     /tmp/ccfuCR9P.s:15     .text:0000000000000000 .L0 
-     /tmp/ccfuCR9P.s:16     .text:0000000000000004 .L0 
-     /tmp/ccfuCR9P.s:21     .text:0000000000000014 .L0 
-     /tmp/ccfuCR9P.s:22     .text:0000000000000014 .L0 
-     /tmp/ccfuCR9P.s:23     .text:0000000000000014 .L0 
-     /tmp/ccfuCR9P.s:24     .text:0000000000000014 .L0 
-     /tmp/ccfuCR9P.s:26     .text:0000000000000018 .L0 
-     /tmp/ccfuCR9P.s:30     .text:0000000000000020 .L0 
-     /tmp/ccfuCR9P.s:31     .text:0000000000000020 .L0 
-     /tmp/ccfuCR9P.s:36     .text:000000000000002c .L0 
-     /tmp/ccfuCR9P.s:37     .text:000000000000002c .L0 
-     /tmp/ccfuCR9P.s:41     .text:0000000000000038 .L0 
-     /tmp/ccfuCR9P.s:42     .text:0000000000000038 .L0 
-     /tmp/ccfuCR9P.s:46     .text:0000000000000044 .L0 
-     /tmp/ccfuCR9P.s:47     .text:0000000000000044 .L0 
-     /tmp/ccfuCR9P.s:51     .text:0000000000000050 .L0 
-     /tmp/ccfuCR9P.s:52     .text:0000000000000050 .L0 
-     /tmp/ccfuCR9P.s:56     .text:000000000000005c .L0 
-     /tmp/ccfuCR9P.s:57     .text:000000000000005c .L0 
-     /tmp/ccfuCR9P.s:61     .text:0000000000000068 .L0 
-     /tmp/ccfuCR9P.s:62     .text:0000000000000068 .L0 
-     /tmp/ccfuCR9P.s:66     .text:0000000000000074 .L0 
-     /tmp/ccfuCR9P.s:67     .text:0000000000000074 .L0 
-     /tmp/ccfuCR9P.s:71     .text:0000000000000080 .L0 
-     /tmp/ccfuCR9P.s:72     .text:0000000000000080 .L0 
-     /tmp/ccfuCR9P.s:76     .text:000000000000008c .L0 
-     /tmp/ccfuCR9P.s:77     .text:000000000000008c .L0 
-     /tmp/ccfuCR9P.s:81     .text:0000000000000098 .L0 
-     /tmp/ccfuCR9P.s:82     .text:0000000000000098 .L0 
-     /tmp/ccfuCR9P.s:86     .text:00000000000000a4 .L0 
-     /tmp/ccfuCR9P.s:87     .text:00000000000000a4 .L0 
-     /tmp/ccfuCR9P.s:91     .text:00000000000000b0 .L0 
-     /tmp/ccfuCR9P.s:92     .text:00000000000000b0 .L0 
-     /tmp/ccfuCR9P.s:96     .text:00000000000000bc .L0 
-     /tmp/ccfuCR9P.s:97     .text:00000000000000bc .L0 
-     /tmp/ccfuCR9P.s:101    .text:00000000000000c8 .L0 
-     /tmp/ccfuCR9P.s:102    .text:00000000000000c8 .L0 
-     /tmp/ccfuCR9P.s:106    .text:00000000000000d4 .L0 
-     /tmp/ccfuCR9P.s:107    .text:00000000000000d4 .L0 
-     /tmp/ccfuCR9P.s:111    .text:00000000000000e0 .L0 
-     /tmp/ccfuCR9P.s:112    .text:00000000000000e0 .L0 
-     /tmp/ccfuCR9P.s:116    .text:00000000000000ec .L0 
-     /tmp/ccfuCR9P.s:117    .text:00000000000000ec .L0 
-     /tmp/ccfuCR9P.s:121    .text:00000000000000f8 .L0 
-     /tmp/ccfuCR9P.s:122    .text:00000000000000f8 .L0 
-     /tmp/ccfuCR9P.s:126    .text:0000000000000104 .L0 
-     /tmp/ccfuCR9P.s:127    .text:0000000000000104 .L0 
-     /tmp/ccfuCR9P.s:131    .text:0000000000000110 .L0 
-     /tmp/ccfuCR9P.s:132    .text:0000000000000110 .L0 
-     /tmp/ccfuCR9P.s:136    .text:000000000000011c .L0 
-     /tmp/ccfuCR9P.s:137    .text:000000000000011c .L0 
-     /tmp/ccfuCR9P.s:141    .text:0000000000000128 .L0 
-     /tmp/ccfuCR9P.s:142    .text:0000000000000128 .L0 
-GAS LISTING /tmp/ccfuCR9P.s 			page 9
+     /tmp/cc44rInf.s:9      .text:0000000000000000 _Z13assert_failedPKcS0_jS0_
+     /tmp/cc44rInf.s:13     .text:0000000000000000 .L0 
+     /tmp/cc44rInf.s:15     .text:0000000000000000 .L0 
+     /tmp/cc44rInf.s:16     .text:0000000000000004 .L0 
+     /tmp/cc44rInf.s:23     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:24     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:25     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:26     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:27     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:28     .text:000000000000001c .L0 
+     /tmp/cc44rInf.s:30     .text:0000000000000020 .L0 
+     /tmp/cc44rInf.s:36     .text:0000000000000030 .L0 
+     /tmp/cc44rInf.s:37     .text:0000000000000030 .L0 
+     /tmp/cc44rInf.s:42     .text:000000000000003c .L0 
+     /tmp/cc44rInf.s:43     .text:000000000000003c .L0 
+     /tmp/cc44rInf.s:47     .text:0000000000000048 .L0 
+     /tmp/cc44rInf.s:48     .text:0000000000000048 .L0 
+     /tmp/cc44rInf.s:52     .text:0000000000000054 .L0 
+     /tmp/cc44rInf.s:53     .text:0000000000000054 .L0 
+     /tmp/cc44rInf.s:57     .text:0000000000000060 .L0 
+     /tmp/cc44rInf.s:58     .text:0000000000000060 .L0 
+     /tmp/cc44rInf.s:62     .text:000000000000006c .L0 
+     /tmp/cc44rInf.s:63     .text:000000000000006c .L0 
+     /tmp/cc44rInf.s:67     .text:0000000000000078 .L0 
+     /tmp/cc44rInf.s:68     .text:0000000000000078 .L0 
+     /tmp/cc44rInf.s:72     .text:0000000000000084 .L0 
+     /tmp/cc44rInf.s:73     .text:0000000000000084 .L0 
+     /tmp/cc44rInf.s:77     .text:0000000000000090 .L0 
+     /tmp/cc44rInf.s:78     .text:0000000000000090 .L0 
+     /tmp/cc44rInf.s:82     .text:000000000000009c .L0 
+     /tmp/cc44rInf.s:83     .text:000000000000009c .L0 
+     /tmp/cc44rInf.s:87     .text:00000000000000a8 .L0 
+     /tmp/cc44rInf.s:88     .text:00000000000000a8 .L0 
+     /tmp/cc44rInf.s:92     .text:00000000000000b4 .L0 
+     /tmp/cc44rInf.s:93     .text:00000000000000b4 .L0 
+     /tmp/cc44rInf.s:98     .text:00000000000000c0 .L0 
+     /tmp/cc44rInf.s:99     .text:00000000000000c0 .L0 
+     /tmp/cc44rInf.s:100    .text:00000000000000c0 .L0 
+     /tmp/cc44rInf.s:102    .text:00000000000000c4 .L0 
+     /tmp/cc44rInf.s:104    .text:00000000000000c8 .L0 
+     /tmp/cc44rInf.s:105    .text:00000000000000c8 .L0 
+     /tmp/cc44rInf.s:108    .text:00000000000000d0 .L0 
+     /tmp/cc44rInf.s:109    .text:00000000000000d0 .L0 
+     /tmp/cc44rInf.s:112    .text:00000000000000d4 .L0 
+     /tmp/cc44rInf.s:115    .text:00000000000000d8 .L0 
+     /tmp/cc44rInf.s:116    .text:00000000000000d8 .L0 
+     /tmp/cc44rInf.s:120    .text:00000000000000e4 .L0 
+     /tmp/cc44rInf.s:121    .text:00000000000000e4 .L0 
+     /tmp/cc44rInf.s:125    .text:00000000000000f0 .L0 
+     /tmp/cc44rInf.s:126    .text:00000000000000f0 .L0 
+     /tmp/cc44rInf.s:130    .text:00000000000000fc .L0 
+     /tmp/cc44rInf.s:131    .text:00000000000000fc .L0 
+     /tmp/cc44rInf.s:135    .text:0000000000000108 .L0 
+     /tmp/cc44rInf.s:136    .text:0000000000000108 .L0 
+     /tmp/cc44rInf.s:140    .text:0000000000000114 .L0 
+GAS LISTING /tmp/cc44rInf.s 			page 12
 
 
-     /tmp/ccfuCR9P.s:146    .text:0000000000000134 .L0 
-     /tmp/ccfuCR9P.s:147    .text:0000000000000134 .L0 
-     /tmp/ccfuCR9P.s:151    .text:0000000000000140 .L0 
-     /tmp/ccfuCR9P.s:152    .text:0000000000000140 .L0 
-     /tmp/ccfuCR9P.s:156    .text:000000000000014c .L0 
-     /tmp/ccfuCR9P.s:157    .text:000000000000014c .L0 
-     /tmp/ccfuCR9P.s:161    .text:0000000000000158 .L0 
-     /tmp/ccfuCR9P.s:162    .text:0000000000000158 .L0 
-     /tmp/ccfuCR9P.s:167    .text:0000000000000164 .L0 
-     /tmp/ccfuCR9P.s:168    .text:0000000000000164 .L0 
-     /tmp/ccfuCR9P.s:169    .text:0000000000000164 .L0 
-     /tmp/ccfuCR9P.s:171    .text:0000000000000168 .L0 
-     /tmp/ccfuCR9P.s:173    .text:000000000000016c .L0 
-     /tmp/ccfuCR9P.s:174    .text:000000000000016c .L0 
-     /tmp/ccfuCR9P.s:177    .text:0000000000000174 .L0 
-     /tmp/ccfuCR9P.s:178    .text:0000000000000174 .L0 
-     /tmp/ccfuCR9P.s:181    .text:0000000000000178 .L0 
-     /tmp/ccfuCR9P.s:184    .text:000000000000017c .L0 
-     /tmp/ccfuCR9P.s:185    .text:000000000000017c .L0 
-     /tmp/ccfuCR9P.s:189    .text:0000000000000188 .L0 
-     /tmp/ccfuCR9P.s:190    .text:0000000000000188 .L0 
-     /tmp/ccfuCR9P.s:194    .text:0000000000000194 .L0 
-     /tmp/ccfuCR9P.s:195    .text:0000000000000194 .L0 
-     /tmp/ccfuCR9P.s:199    .text:00000000000001a0 .L0 
-     /tmp/ccfuCR9P.s:200    .text:00000000000001a0 .L0 
-     /tmp/ccfuCR9P.s:204    .text:00000000000001ac .L0 
-     /tmp/ccfuCR9P.s:205    .text:00000000000001ac .L0 
-     /tmp/ccfuCR9P.s:209    .text:00000000000001b8 .L0 
-     /tmp/ccfuCR9P.s:210    .text:00000000000001b8 .L0 
-     /tmp/ccfuCR9P.s:214    .text:00000000000001c4 .L0 
-     /tmp/ccfuCR9P.s:215    .text:00000000000001c4 .L0 
-     /tmp/ccfuCR9P.s:219    .text:00000000000001d0 .L0 
-     /tmp/ccfuCR9P.s:223    .text:00000000000001d4 .L0 
-     /tmp/ccfuCR9P.s:224    .text:00000000000001d4 .L0 
-     /tmp/ccfuCR9P.s:226    .text:00000000000001d8 .L0 
-     /tmp/ccfuCR9P.s:227    .text:00000000000001d8 .L0 
-     /tmp/ccfuCR9P.s:230    .text:00000000000001e0 .L0 
-     /tmp/ccfuCR9P.s:232    .text:00000000000001e4 .L0 
-     /tmp/ccfuCR9P.s:236    .text:00000000000001f0 .L0 
-     /tmp/ccfuCR9P.s:237    .text:00000000000001f0 .L0 
-     /tmp/ccfuCR9P.s:240    .text:00000000000001f4 .L0 
-     /tmp/ccfuCR9P.s:241    .text:00000000000001f4 .L0 
-     /tmp/ccfuCR9P.s:244    .text:00000000000001f8 .L0 
-     /tmp/ccfuCR9P.s:248    .text:00000000000001fc .L0 
-     /tmp/ccfuCR9P.s:249    .text:00000000000001fc .L0 
-     /tmp/ccfuCR9P.s:251    .text:0000000000000200 .L0 
-     /tmp/ccfuCR9P.s:252    .text:0000000000000200 .L0 
-     /tmp/ccfuCR9P.s:255    .text:0000000000000204 .L0 
-     /tmp/ccfuCR9P.s:256    .text:0000000000000204 .L0 
-     /tmp/ccfuCR9P.s:265    .text:000000000000021c .L0 
-     /tmp/ccfuCR9P.s:266    .text:000000000000021c .L0 
-     /tmp/ccfuCR9P.s:271    .text:0000000000000228 .L0 
-     /tmp/ccfuCR9P.s:272    .text:0000000000000228 .L0 
-     /tmp/ccfuCR9P.s:273    .text:000000000000022c .L0 
-     /tmp/ccfuCR9P.s:279    .text:000000000000022c .L0 
-     /tmp/ccfuCR9P.s:182    .text:000000000000017c .L2
-     /tmp/ccfuCR9P.s:165    .text:0000000000000164 .L3
-GAS LISTING /tmp/ccfuCR9P.s 			page 10
+     /tmp/cc44rInf.s:141    .text:0000000000000114 .L0 
+     /tmp/cc44rInf.s:145    .text:0000000000000120 .L0 
+     /tmp/cc44rInf.s:146    .text:0000000000000120 .L0 
+     /tmp/cc44rInf.s:150    .text:000000000000012c .L0 
+     /tmp/cc44rInf.s:151    .text:000000000000012c .L0 
+     /tmp/cc44rInf.s:155    .text:0000000000000138 .L0 
+     /tmp/cc44rInf.s:156    .text:0000000000000138 .L0 
+     /tmp/cc44rInf.s:160    .text:0000000000000144 .L0 
+     /tmp/cc44rInf.s:161    .text:0000000000000144 .L0 
+     /tmp/cc44rInf.s:165    .text:0000000000000150 .L0 
+     /tmp/cc44rInf.s:166    .text:0000000000000150 .L0 
+     /tmp/cc44rInf.s:170    .text:000000000000015c .L0 
+     /tmp/cc44rInf.s:171    .text:000000000000015c .L0 
+     /tmp/cc44rInf.s:175    .text:0000000000000168 .L0 
+     /tmp/cc44rInf.s:176    .text:0000000000000168 .L0 
+     /tmp/cc44rInf.s:180    .text:0000000000000174 .L0 
+     /tmp/cc44rInf.s:181    .text:0000000000000174 .L0 
+     /tmp/cc44rInf.s:185    .text:0000000000000180 .L0 
+     /tmp/cc44rInf.s:186    .text:0000000000000180 .L0 
+     /tmp/cc44rInf.s:190    .text:000000000000018c .L0 
+     /tmp/cc44rInf.s:191    .text:000000000000018c .L0 
+     /tmp/cc44rInf.s:195    .text:0000000000000198 .L0 
+     /tmp/cc44rInf.s:196    .text:0000000000000198 .L0 
+     /tmp/cc44rInf.s:200    .text:00000000000001a4 .L0 
+     /tmp/cc44rInf.s:201    .text:00000000000001a4 .L0 
+     /tmp/cc44rInf.s:206    .text:00000000000001b0 .L0 
+     /tmp/cc44rInf.s:207    .text:00000000000001b0 .L0 
+     /tmp/cc44rInf.s:208    .text:00000000000001b0 .L0 
+     /tmp/cc44rInf.s:210    .text:00000000000001b4 .L0 
+     /tmp/cc44rInf.s:212    .text:00000000000001b8 .L0 
+     /tmp/cc44rInf.s:213    .text:00000000000001b8 .L0 
+     /tmp/cc44rInf.s:216    .text:00000000000001c0 .L0 
+     /tmp/cc44rInf.s:217    .text:00000000000001c0 .L0 
+     /tmp/cc44rInf.s:220    .text:00000000000001c4 .L0 
+     /tmp/cc44rInf.s:223    .text:00000000000001c8 .L0 
+     /tmp/cc44rInf.s:224    .text:00000000000001c8 .L0 
+     /tmp/cc44rInf.s:228    .text:00000000000001d4 .L0 
+     /tmp/cc44rInf.s:229    .text:00000000000001d4 .L0 
+     /tmp/cc44rInf.s:233    .text:00000000000001e0 .L0 
+     /tmp/cc44rInf.s:234    .text:00000000000001e0 .L0 
+     /tmp/cc44rInf.s:238    .text:00000000000001ec .L0 
+     /tmp/cc44rInf.s:239    .text:00000000000001ec .L0 
+     /tmp/cc44rInf.s:243    .text:00000000000001f8 .L0 
+     /tmp/cc44rInf.s:244    .text:00000000000001f8 .L0 
+     /tmp/cc44rInf.s:248    .text:0000000000000204 .L0 
+     /tmp/cc44rInf.s:249    .text:0000000000000204 .L0 
+     /tmp/cc44rInf.s:253    .text:0000000000000210 .L0 
+     /tmp/cc44rInf.s:254    .text:0000000000000210 .L0 
+     /tmp/cc44rInf.s:258    .text:000000000000021c .L0 
+     /tmp/cc44rInf.s:262    .text:0000000000000220 .L0 
+     /tmp/cc44rInf.s:263    .text:0000000000000220 .L0 
+     /tmp/cc44rInf.s:265    .text:0000000000000224 .L0 
+     /tmp/cc44rInf.s:266    .text:0000000000000224 .L0 
+     /tmp/cc44rInf.s:269    .text:000000000000022c .L0 
+     /tmp/cc44rInf.s:271    .text:0000000000000230 .L0 
+     /tmp/cc44rInf.s:275    .text:000000000000023c .L0 
+     /tmp/cc44rInf.s:276    .text:000000000000023c .L0 
+GAS LISTING /tmp/cc44rInf.s 			page 13
 
 
-     /tmp/ccfuCR9P.s:246    .text:00000000000001fc .L4
-     /tmp/ccfuCR9P.s:221    .text:00000000000001d4 .L5
-     /tmp/ccfuCR9P.s:263    .text:000000000000021c .L6
-     /tmp/ccfuCR9P.s:269    .text:0000000000000228 .L7
-     /tmp/ccfuCR9P.s:874    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/ccfuCR9P.s:1262   .debug_str:00000000000000fb .LASF21
-     /tmp/ccfuCR9P.s:1228   .debug_str:0000000000000012 .LASF22
-     /tmp/ccfuCR9P.s:1252   .debug_str:00000000000000ad .LASF23
-     /tmp/ccfuCR9P.s:5      .text:0000000000000000 .Ltext0
-     /tmp/ccfuCR9P.s:276    .text:000000000000022c .Letext0
-     /tmp/ccfuCR9P.s:1222   .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/ccfuCR9P.s:1226   .debug_str:0000000000000005 .LASF0
-     /tmp/ccfuCR9P.s:1260   .debug_str:00000000000000e8 .LASF1
-     /tmp/ccfuCR9P.s:1244   .debug_str:000000000000007f .LASF2
-     /tmp/ccfuCR9P.s:1240   .debug_str:000000000000006c .LASF4
-     /tmp/ccfuCR9P.s:1236   .debug_str:0000000000000047 .LASF3
-     /tmp/ccfuCR9P.s:1232   .debug_str:0000000000000030 .LASF5
-     /tmp/ccfuCR9P.s:1238   .debug_str:0000000000000059 .LASF6
-     /tmp/ccfuCR9P.s:1258   .debug_str:00000000000000d5 .LASF7
-     /tmp/ccfuCR9P.s:1274   .debug_str:0000000000000209 .LASF8
-     /tmp/ccfuCR9P.s:1268   .debug_str:00000000000001d7 .LASF9
-     /tmp/ccfuCR9P.s:1230   .debug_str:0000000000000021 .LASF10
-     /tmp/ccfuCR9P.s:1264   .debug_str:00000000000001bf .LASF11
-     /tmp/ccfuCR9P.s:1234   .debug_str:0000000000000037 .LASF12
-     /tmp/ccfuCR9P.s:1276   .debug_str:0000000000000219 .LASF13
-     /tmp/ccfuCR9P.s:1242   .debug_str:0000000000000073 .LASF14
-     /tmp/ccfuCR9P.s:1256   .debug_str:00000000000000bf .LASF15
-     /tmp/ccfuCR9P.s:1250   .debug_str:0000000000000097 .LASF16
-     /tmp/ccfuCR9P.s:1272   .debug_str:00000000000001fb .LASF24
-     /tmp/ccfuCR9P.s:1270   .debug_str:00000000000001e5 .LASF25
-     /tmp/ccfuCR9P.s:10     .text:0000000000000000 .LFB0
-     /tmp/ccfuCR9P.s:274    .text:000000000000022c .LFE0
-     /tmp/ccfuCR9P.s:1254   .debug_str:00000000000000ba .LASF17
-     /tmp/ccfuCR9P.s:1161   .debug_loc:0000000000000000 .LLST0
-     /tmp/ccfuCR9P.s:1224   .debug_str:0000000000000000 .LASF18
-     /tmp/ccfuCR9P.s:1172   .debug_loc:0000000000000036 .LLST1
-     /tmp/ccfuCR9P.s:1278   .debug_str:0000000000000229 .LASF19
-     /tmp/ccfuCR9P.s:1194   .debug_loc:0000000000000095 .LLST2
-     /tmp/ccfuCR9P.s:34     .text:000000000000002c .LVL2
-     /tmp/ccfuCR9P.s:39     .text:0000000000000038 .LVL3
-     /tmp/ccfuCR9P.s:44     .text:0000000000000044 .LVL4
-     /tmp/ccfuCR9P.s:49     .text:0000000000000050 .LVL5
-     /tmp/ccfuCR9P.s:54     .text:000000000000005c .LVL6
-     /tmp/ccfuCR9P.s:59     .text:0000000000000068 .LVL7
-     /tmp/ccfuCR9P.s:64     .text:0000000000000074 .LVL8
-     /tmp/ccfuCR9P.s:69     .text:0000000000000080 .LVL9
-     /tmp/ccfuCR9P.s:74     .text:000000000000008c .LVL10
-     /tmp/ccfuCR9P.s:79     .text:0000000000000098 .LVL11
-     /tmp/ccfuCR9P.s:84     .text:00000000000000a4 .LVL12
-     /tmp/ccfuCR9P.s:89     .text:00000000000000b0 .LVL13
-     /tmp/ccfuCR9P.s:94     .text:00000000000000bc .LVL14
-     /tmp/ccfuCR9P.s:99     .text:00000000000000c8 .LVL15
-     /tmp/ccfuCR9P.s:104    .text:00000000000000d4 .LVL16
-     /tmp/ccfuCR9P.s:109    .text:00000000000000e0 .LVL17
-     /tmp/ccfuCR9P.s:114    .text:00000000000000ec .LVL18
-     /tmp/ccfuCR9P.s:119    .text:00000000000000f8 .LVL19
-     /tmp/ccfuCR9P.s:124    .text:0000000000000104 .LVL20
-GAS LISTING /tmp/ccfuCR9P.s 			page 11
+     /tmp/cc44rInf.s:279    .text:0000000000000240 .L0 
+     /tmp/cc44rInf.s:280    .text:0000000000000240 .L0 
+     /tmp/cc44rInf.s:283    .text:0000000000000244 .L0 
+     /tmp/cc44rInf.s:287    .text:0000000000000248 .L0 
+     /tmp/cc44rInf.s:288    .text:0000000000000248 .L0 
+     /tmp/cc44rInf.s:290    .text:000000000000024c .L0 
+     /tmp/cc44rInf.s:291    .text:000000000000024c .L0 
+     /tmp/cc44rInf.s:294    .text:0000000000000250 .L0 
+     /tmp/cc44rInf.s:295    .text:0000000000000250 .L0 
+     /tmp/cc44rInf.s:304    .text:0000000000000268 .L0 
+     /tmp/cc44rInf.s:305    .text:0000000000000268 .L0 
+     /tmp/cc44rInf.s:309    .text:0000000000000274 .L0 
+     /tmp/cc44rInf.s:310    .text:0000000000000274 .L0 
+     /tmp/cc44rInf.s:314    .text:0000000000000280 .L0 
+     /tmp/cc44rInf.s:315    .text:0000000000000280 .L0 
+     /tmp/cc44rInf.s:319    .text:000000000000028c .L0 
+     /tmp/cc44rInf.s:320    .text:000000000000028c .L0 
+     /tmp/cc44rInf.s:324    .text:0000000000000298 .L0 
+     /tmp/cc44rInf.s:325    .text:0000000000000298 .L0 
+     /tmp/cc44rInf.s:329    .text:00000000000002a4 .L0 
+     /tmp/cc44rInf.s:330    .text:00000000000002a4 .L0 
+     /tmp/cc44rInf.s:334    .text:00000000000002b0 .L0 
+     /tmp/cc44rInf.s:335    .text:00000000000002b0 .L0 
+     /tmp/cc44rInf.s:339    .text:00000000000002bc .L0 
+     /tmp/cc44rInf.s:340    .text:00000000000002bc .L0 
+     /tmp/cc44rInf.s:344    .text:00000000000002c8 .L0 
+     /tmp/cc44rInf.s:345    .text:00000000000002c8 .L0 
+     /tmp/cc44rInf.s:349    .text:00000000000002d4 .L0 
+     /tmp/cc44rInf.s:350    .text:00000000000002d4 .L0 
+     /tmp/cc44rInf.s:354    .text:00000000000002e0 .L0 
+     /tmp/cc44rInf.s:355    .text:00000000000002e0 .L0 
+     /tmp/cc44rInf.s:359    .text:00000000000002ec .L0 
+     /tmp/cc44rInf.s:360    .text:00000000000002ec .L0 
+     /tmp/cc44rInf.s:365    .text:00000000000002f8 .L0 
+     /tmp/cc44rInf.s:366    .text:00000000000002f8 .L0 
+     /tmp/cc44rInf.s:367    .text:00000000000002f8 .L0 
+     /tmp/cc44rInf.s:369    .text:00000000000002fc .L0 
+     /tmp/cc44rInf.s:371    .text:0000000000000300 .L0 
+     /tmp/cc44rInf.s:372    .text:0000000000000300 .L0 
+     /tmp/cc44rInf.s:375    .text:0000000000000308 .L0 
+     /tmp/cc44rInf.s:376    .text:0000000000000308 .L0 
+     /tmp/cc44rInf.s:379    .text:000000000000030c .L0 
+     /tmp/cc44rInf.s:382    .text:0000000000000310 .L0 
+     /tmp/cc44rInf.s:383    .text:0000000000000310 .L0 
+     /tmp/cc44rInf.s:387    .text:000000000000031c .L0 
+     /tmp/cc44rInf.s:388    .text:000000000000031c .L0 
+     /tmp/cc44rInf.s:393    .text:0000000000000328 .L0 
+     /tmp/cc44rInf.s:394    .text:0000000000000328 .L0 
+     /tmp/cc44rInf.s:395    .text:000000000000032c .L0 
+     /tmp/cc44rInf.s:401    .text:000000000000032c .L0 
+     /tmp/cc44rInf.s:113    .text:00000000000000d8 .L2
+     /tmp/cc44rInf.s:96     .text:00000000000000c0 .L3
+     /tmp/cc44rInf.s:221    .text:00000000000001c8 .L4
+     /tmp/cc44rInf.s:204    .text:00000000000001b0 .L5
+     /tmp/cc44rInf.s:285    .text:0000000000000248 .L6
+     /tmp/cc44rInf.s:260    .text:0000000000000220 .L7
+     /tmp/cc44rInf.s:302    .text:0000000000000268 .L8
+GAS LISTING /tmp/cc44rInf.s 			page 14
 
 
-     /tmp/ccfuCR9P.s:129    .text:0000000000000110 .LVL21
-     /tmp/ccfuCR9P.s:134    .text:000000000000011c .LVL22
-     /tmp/ccfuCR9P.s:139    .text:0000000000000128 .LVL23
-     /tmp/ccfuCR9P.s:144    .text:0000000000000134 .LVL24
-     /tmp/ccfuCR9P.s:149    .text:0000000000000140 .LVL25
-     /tmp/ccfuCR9P.s:154    .text:000000000000014c .LVL26
-     /tmp/ccfuCR9P.s:159    .text:0000000000000158 .LVL27
-     /tmp/ccfuCR9P.s:164    .text:0000000000000164 .LVL28
-     /tmp/ccfuCR9P.s:175    .text:0000000000000174 .LVL29
-     /tmp/ccfuCR9P.s:187    .text:0000000000000188 .LVL31
-     /tmp/ccfuCR9P.s:192    .text:0000000000000194 .LVL32
-     /tmp/ccfuCR9P.s:197    .text:00000000000001a0 .LVL33
-     /tmp/ccfuCR9P.s:202    .text:00000000000001ac .LVL34
-     /tmp/ccfuCR9P.s:207    .text:00000000000001b8 .LVL35
-     /tmp/ccfuCR9P.s:212    .text:00000000000001c4 .LVL36
-     /tmp/ccfuCR9P.s:217    .text:00000000000001d0 .LVL37
-     /tmp/ccfuCR9P.s:260    .text:0000000000000218 .LVL43
-     /tmp/ccfuCR9P.s:268    .text:0000000000000228 .LVL45
-     /tmp/ccfuCR9P.s:1246   .debug_str:000000000000008d .LASF20
-     /tmp/ccfuCR9P.s:1266   .debug_str:00000000000001ce .LASF26
-     /tmp/ccfuCR9P.s:1248   .debug_str:0000000000000092 .LASF27
-     /tmp/ccfuCR9P.s:14     .text:0000000000000000 .LVL0
-     /tmp/ccfuCR9P.s:32     .text:0000000000000024 .LVL1
-     /tmp/ccfuCR9P.s:220    .text:00000000000001d4 .LVL38
-     /tmp/ccfuCR9P.s:238    .text:00000000000001f4 .LVL39
-     /tmp/ccfuCR9P.s:245    .text:00000000000001fc .LVL41
-     /tmp/ccfuCR9P.s:242    .text:00000000000001f8 .LVL40
-     /tmp/ccfuCR9P.s:253    .text:0000000000000204 .LVL42
-     /tmp/ccfuCR9P.s:262    .text:000000000000021c .LVL44
-     /tmp/ccfuCR9P.s:280    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/cc44rInf.s:380    .text:0000000000000310 .L9
+     /tmp/cc44rInf.s:363    .text:00000000000002f8 .L10
+     /tmp/cc44rInf.s:391    .text:0000000000000328 .L11
+     /tmp/cc44rInf.s:1191   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/cc44rInf.s:1603   .debug_str:0000000000000113 .LASF23
+     /tmp/cc44rInf.s:1567   .debug_str:0000000000000019 .LASF24
+     /tmp/cc44rInf.s:1593   .debug_str:00000000000000c3 .LASF25
+     /tmp/cc44rInf.s:5      .text:0000000000000000 .Ltext0
+     /tmp/cc44rInf.s:398    .text:000000000000032c .Letext0
+     /tmp/cc44rInf.s:1561   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/cc44rInf.s:1563   .debug_str:0000000000000000 .LASF0
+     /tmp/cc44rInf.s:1601   .debug_str:0000000000000100 .LASF1
+     /tmp/cc44rInf.s:1587   .debug_str:000000000000009a .LASF2
+     /tmp/cc44rInf.s:1583   .debug_str:0000000000000087 .LASF4
+     /tmp/cc44rInf.s:1579   .debug_str:0000000000000062 .LASF3
+     /tmp/cc44rInf.s:1571   .debug_str:0000000000000037 .LASF5
+     /tmp/cc44rInf.s:1581   .debug_str:0000000000000074 .LASF6
+     /tmp/cc44rInf.s:1599   .debug_str:00000000000000ed .LASF7
+     /tmp/cc44rInf.s:1617   .debug_str:000000000000022a .LASF8
+     /tmp/cc44rInf.s:1611   .debug_str:0000000000000209 .LASF9
+     /tmp/cc44rInf.s:1569   .debug_str:0000000000000028 .LASF10
+     /tmp/cc44rInf.s:1605   .debug_str:00000000000001d7 .LASF11
+     /tmp/cc44rInf.s:1575   .debug_str:0000000000000049 .LASF12
+     /tmp/cc44rInf.s:1619   .debug_str:000000000000023a .LASF13
+     /tmp/cc44rInf.s:1585   .debug_str:000000000000008e .LASF14
+     /tmp/cc44rInf.s:1597   .debug_str:00000000000000d7 .LASF15
+     /tmp/cc44rInf.s:1591   .debug_str:00000000000000ad .LASF16
+     /tmp/cc44rInf.s:1615   .debug_str:000000000000021c .LASF26
+     /tmp/cc44rInf.s:1607   .debug_str:00000000000001e6 .LASF27
+     /tmp/cc44rInf.s:10     .text:0000000000000000 .LFB0
+     /tmp/cc44rInf.s:396    .text:000000000000032c .LFE0
+     /tmp/cc44rInf.s:1565   .debug_str:000000000000000d .LASF17
+     /tmp/cc44rInf.s:1478   .debug_loc:0000000000000000 .LLST0
+     /tmp/cc44rInf.s:1609   .debug_str:0000000000000202 .LASF18
+     /tmp/cc44rInf.s:1489   .debug_loc:0000000000000036 .LLST1
+     /tmp/cc44rInf.s:1595   .debug_str:00000000000000d0 .LASF19
+     /tmp/cc44rInf.s:1500   .debug_loc:000000000000006c .LLST2
+     /tmp/cc44rInf.s:1573   .debug_str:000000000000003e .LASF20
+     /tmp/cc44rInf.s:1522   .debug_loc:00000000000000cb .LLST3
+     /tmp/cc44rInf.s:1621   .debug_str:000000000000024a .LASF21
+     /tmp/cc44rInf.s:1533   .debug_loc:0000000000000101 .LLST4
+     /tmp/cc44rInf.s:40     .text:000000000000003c .LVL2
+     /tmp/cc44rInf.s:45     .text:0000000000000048 .LVL3
+     /tmp/cc44rInf.s:50     .text:0000000000000054 .LVL4
+     /tmp/cc44rInf.s:55     .text:0000000000000060 .LVL5
+     /tmp/cc44rInf.s:60     .text:000000000000006c .LVL6
+     /tmp/cc44rInf.s:65     .text:0000000000000078 .LVL7
+     /tmp/cc44rInf.s:70     .text:0000000000000084 .LVL8
+     /tmp/cc44rInf.s:75     .text:0000000000000090 .LVL9
+     /tmp/cc44rInf.s:80     .text:000000000000009c .LVL10
+     /tmp/cc44rInf.s:85     .text:00000000000000a8 .LVL11
+     /tmp/cc44rInf.s:90     .text:00000000000000b4 .LVL12
+     /tmp/cc44rInf.s:95     .text:00000000000000c0 .LVL13
+     /tmp/cc44rInf.s:106    .text:00000000000000d0 .LVL14
+     /tmp/cc44rInf.s:118    .text:00000000000000e4 .LVL16
+     /tmp/cc44rInf.s:123    .text:00000000000000f0 .LVL17
+     /tmp/cc44rInf.s:128    .text:00000000000000fc .LVL18
+GAS LISTING /tmp/cc44rInf.s 			page 15
+
+
+     /tmp/cc44rInf.s:133    .text:0000000000000108 .LVL19
+     /tmp/cc44rInf.s:138    .text:0000000000000114 .LVL20
+     /tmp/cc44rInf.s:143    .text:0000000000000120 .LVL21
+     /tmp/cc44rInf.s:148    .text:000000000000012c .LVL22
+     /tmp/cc44rInf.s:153    .text:0000000000000138 .LVL23
+     /tmp/cc44rInf.s:158    .text:0000000000000144 .LVL24
+     /tmp/cc44rInf.s:163    .text:0000000000000150 .LVL25
+     /tmp/cc44rInf.s:168    .text:000000000000015c .LVL26
+     /tmp/cc44rInf.s:173    .text:0000000000000168 .LVL27
+     /tmp/cc44rInf.s:178    .text:0000000000000174 .LVL28
+     /tmp/cc44rInf.s:183    .text:0000000000000180 .LVL29
+     /tmp/cc44rInf.s:188    .text:000000000000018c .LVL30
+     /tmp/cc44rInf.s:193    .text:0000000000000198 .LVL31
+     /tmp/cc44rInf.s:198    .text:00000000000001a4 .LVL32
+     /tmp/cc44rInf.s:203    .text:00000000000001b0 .LVL33
+     /tmp/cc44rInf.s:214    .text:00000000000001c0 .LVL34
+     /tmp/cc44rInf.s:226    .text:00000000000001d4 .LVL36
+     /tmp/cc44rInf.s:231    .text:00000000000001e0 .LVL37
+     /tmp/cc44rInf.s:236    .text:00000000000001ec .LVL38
+     /tmp/cc44rInf.s:241    .text:00000000000001f8 .LVL39
+     /tmp/cc44rInf.s:246    .text:0000000000000204 .LVL40
+     /tmp/cc44rInf.s:251    .text:0000000000000210 .LVL41
+     /tmp/cc44rInf.s:256    .text:000000000000021c .LVL42
+     /tmp/cc44rInf.s:299    .text:0000000000000264 .LVL48
+     /tmp/cc44rInf.s:307    .text:0000000000000274 .LVL50
+     /tmp/cc44rInf.s:312    .text:0000000000000280 .LVL51
+     /tmp/cc44rInf.s:317    .text:000000000000028c .LVL52
+     /tmp/cc44rInf.s:322    .text:0000000000000298 .LVL53
+     /tmp/cc44rInf.s:327    .text:00000000000002a4 .LVL54
+     /tmp/cc44rInf.s:332    .text:00000000000002b0 .LVL55
+     /tmp/cc44rInf.s:337    .text:00000000000002bc .LVL56
+     /tmp/cc44rInf.s:342    .text:00000000000002c8 .LVL57
+     /tmp/cc44rInf.s:347    .text:00000000000002d4 .LVL58
+     /tmp/cc44rInf.s:352    .text:00000000000002e0 .LVL59
+     /tmp/cc44rInf.s:357    .text:00000000000002ec .LVL60
+     /tmp/cc44rInf.s:362    .text:00000000000002f8 .LVL61
+     /tmp/cc44rInf.s:373    .text:0000000000000308 .LVL62
+     /tmp/cc44rInf.s:385    .text:000000000000031c .LVL64
+     /tmp/cc44rInf.s:390    .text:0000000000000328 .LVL65
+     /tmp/cc44rInf.s:1589   .debug_str:00000000000000a8 .LASF22
+     /tmp/cc44rInf.s:1577   .debug_str:0000000000000059 .LASF28
+     /tmp/cc44rInf.s:1613   .debug_str:0000000000000217 .LASF29
+     /tmp/cc44rInf.s:14     .text:0000000000000000 .LVL0
+     /tmp/cc44rInf.s:38     .text:0000000000000034 .LVL1
+     /tmp/cc44rInf.s:259    .text:0000000000000220 .LVL43
+     /tmp/cc44rInf.s:277    .text:0000000000000240 .LVL44
+     /tmp/cc44rInf.s:284    .text:0000000000000248 .LVL46
+     /tmp/cc44rInf.s:281    .text:0000000000000244 .LVL45
+     /tmp/cc44rInf.s:292    .text:0000000000000250 .LVL47
+     /tmp/cc44rInf.s:301    .text:0000000000000268 .LVL49
+     /tmp/cc44rInf.s:402    .debug_info:0000000000000000 .Ldebug_info0
 
 UNDEFINED SYMBOLS
 _Z4putcc

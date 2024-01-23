@@ -14,18 +14,18 @@
 #include "sched.h"
 #include "assert.h"
 
-Timer* Timer::instance = nullptr;
+Timer* Timer::instance = 0;
 
 Timer::Timer(){
-    assert(instance == nullptr);
+    assert(instance == 0);
     instance = this;
-    sleepingHead = nullptr;
+    sleepingHead = 0;
     time = 0;
 }
 
 Timer::~Timer(){
     threadSleepWrapper* current = sleepingHead;
-    while(current != nullptr){
+    while(current != 0){
         threadSleepWrapper* next = current->next;
         mem_free(current);
         current = next;
@@ -33,19 +33,25 @@ Timer::~Timer(){
 }
 
 Timer& Timer::getInstance(){
-    assert(instance != nullptr);
+    assert(instance != 0);
     return *instance;
 }
 
 void Timer::tick(){
-    putc('t');
+    if(time % 10 == 0){
+        putc('t');
+    }
     time += 1;
     threadSleepWrapper* current = sleepingHead;
-    while(current != nullptr){
+    while(current != 0){
         if(current->wakeUpTime <= time){
+            putc('w');
             current->thread->setSleeping(false);
             Scheduler::put(current->thread);
             threadSleepWrapper* next = current->next;
+            if(current == sleepingHead){
+                sleepingHead = next;
+            }
             mem_free(current);
             current = next;
         }else{
@@ -59,13 +65,21 @@ int Timer::sleep(time_t timeToSleep){
     threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)mem_alloc(sizeof(threadSleepWrapper));
     newSleepingThread->thread = thread;
     newSleepingThread->wakeUpTime = time + timeToSleep;
-    newSleepingThread->next = nullptr;
+    newSleepingThread->next = 0;
 
-    if(sleepingHead == nullptr){
+    time_t w = newSleepingThread->wakeUpTime;
+    putc('w');
+    while(w > 0){
+        putc('0' + w % 10);
+        w /= 10;
+    }
+    putc('\n');
+
+    if(sleepingHead == 0){
         sleepingHead = newSleepingThread;
     }else{
         threadSleepWrapper* current = sleepingHead;
-        while(current->next != nullptr && current->next->wakeUpTime < newSleepingThread->wakeUpTime){
+        while(current->next != 0 && current->next->wakeUpTime < newSleepingThread->wakeUpTime){
             current = current->next;
         }
         newSleepingThread->next = current->next;
@@ -78,5 +92,5 @@ int Timer::sleep(time_t timeToSleep){
 }
 
 bool Timer::noSleepingThreads(){
-    return sleepingHead == nullptr;
+    return sleepingHead == 0;
 }

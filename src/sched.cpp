@@ -12,41 +12,46 @@
 #include "sched.h"
 #include "assert.h"
 #include "syscalls_c.h"
+#include "console.h"
+#include "thread.h"
 
-Scheduler* Scheduler::singleton = nullptr;
+Scheduler* Scheduler::singleton = 0;
 
 Scheduler::Scheduler(){
-    assert(singleton == nullptr);
+    assert(singleton == 0);
     singleton = this;
-    head = nullptr;
-    tail = nullptr;
+    head = 0;
+    tail = 0;
 }
 
 bool Scheduler::isEmpty(){
-    return singleton->head == nullptr;
+    return singleton->head == 0;
 }
 
 void Scheduler::put(thread_t thread){
-    if(singleton->head == nullptr){
+    if(singleton->head == 0){
         singleton->head = singleton->tail = (ThreadList*)mem_alloc(sizeof(ThreadList));
         singleton->head->thread = thread;
-        singleton->head->next = nullptr;
+        singleton->head->next = 0;
     }else{
         singleton->tail->next = (ThreadList*)mem_alloc(sizeof(ThreadList));
         singleton->tail = singleton->tail->next;
         singleton->tail->thread = thread;
-        singleton->tail->next = nullptr;
+        singleton->tail->next = 0;
     }
 }
 
 thread_t Scheduler::get(){    
     ThreadList* tmp = singleton->head;
-    if(tmp == nullptr){
-        return nullptr;
+    if(tmp == 0){
+        return 0;
     }
     thread_t thread = tmp->thread;
     singleton->head = tmp->next;
-    mem_free(tmp);
+    if(singleton->head == 0){
+        singleton->tail = 0;
+    }
+    // mem_free(tmp);
     return thread;
 }
 
@@ -54,7 +59,7 @@ thread_t Scheduler::get(){
 int Scheduler::getCount(){
     int count = 0;
     ThreadList* tmp = singleton->head;
-    while(tmp != nullptr){
+    while(tmp != 0){
         count++;
         tmp = tmp->next;
     }

@@ -11,7 +11,7 @@
 #include "assert.h"
 #include "syscalls_c.h"
 
-void assert_failed( const char* file, int line ){
+void assert_failed( const char * __assertion, const char * __file, unsigned int __line, const char * __function ){
     putc('\n');
     putc('A');
     putc('s');
@@ -22,6 +22,13 @@ void assert_failed( const char* file, int line ){
     putc('i');
     putc('o');
     putc('n');
+    putc(' ');
+    putc('\'');
+    while(*__assertion != 0){
+        putc(*__assertion);
+        __assertion++;
+    }
+    putc('\'');
     putc(' ');
     putc('f');
     putc('a');
@@ -39,9 +46,9 @@ void assert_failed( const char* file, int line ){
     putc('e');
     putc(':');
     putc(' ');
-    while(*file != 0){
-        putc(*file);
-        file++;
+    while(*__file != 0){
+        putc(*__file);
+        __file++;
     }
     putc('\n');
     putc('l');
@@ -52,15 +59,32 @@ void assert_failed( const char* file, int line ){
     putc(' ');
     char buffer[20];
     int i = 0;
-    while(line != 0){
-        buffer[i] = line % 10 + '0';
-        line /= 10;
+    while(__line != 0){
+        buffer[i] = __line % 10 + '0';
+        __line /= 10;
         i++;
     }
     while(i != 0){
         i--;
         putc(buffer[i]);
     }
+    putc('\n');
+    putc('f');
+    putc('u');
+    putc('n');
+    putc('c');
+    putc('t');
+    putc('i');
+    putc('o');
+    putc('n');
+    putc(':');
+    putc(' ');
+    putc('\'');
+    while(*__function != 0){
+        putc(*__function);
+        __function ++;
+    }
+    putc('\'');
     putc('\n');
     while(1);
 

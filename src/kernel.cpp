@@ -16,7 +16,9 @@
 #include "thread.h"
 #include "sem.h"
 #include "sched.h"
-#include "timer.h"
+#include "usermain.h"
+
+#include "console.h"
 
 extern "C" void trap();
 
@@ -45,7 +47,7 @@ void Kernel::initialise(){
     return;
 }
 
-// sem_t sem = nullptr;
+// sem_t sem = 0;
 
 void testFunc(void* arg){
     putc('t');
@@ -56,10 +58,10 @@ void testFunc(void* arg){
     // sem_wait(sem);
     // thread_dispatch();
     // thread_dispatch();
-    // thread_dispatch();
+    thread_dispatch();
 
+    // time_sleep(10);
     putc(' ');
-    // time_sleep(100);
 
     putc('t');
     putc('h');
@@ -71,33 +73,20 @@ void testFunc(void* arg){
 }
 
 Kernel::EXIT_CODE Kernel::run(){
-    
-    thread_t t = (thread_t)mem_alloc(sizeof(_thread));
-    
-    // _thread::create(&t, nullptr, nullptr, nullptr, false);
-    // _thread::currentThread = t;
 
+    thread_t t, test;
+    
     thread_create(&t, nullptr, nullptr);
     _thread::currentThread = Scheduler::get();
-
-    thread_t test = (thread_t)mem_alloc(sizeof(_thread));
     
-    // _thread::create(&test, testFunc, nullptr, nullptr);
-    thread_create(&test, testFunc, nullptr);
-    // sem = (sem_t)mem_alloc(sizeof(_sem));
-    // sem_open(&sem, 0);
+    thread_create(&test, usermain, 0);
 
-
-    thread_join(test);
-    // int cnt = Scheduler::getCount();
-    // do{
-    //     putc('0' + cnt);
-    //     cnt /= 10;
-    // }while(cnt > 0);
-
+    int loop = 0;
     do{
         thread_dispatch();
-    }while(!Scheduler::isEmpty());
+        loop++;
+    }while(!Scheduler::isEmpty() && loop < 4);
+    // }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
 
     putc('m');
     putc('a');

@@ -1,4 +1,4 @@
-GAS LISTING /tmp/cc44LysP.s 			page 1
+GAS LISTING /tmp/ccCryeBd.s 			page 1
 
 
    1              		.file	"exceptionHandler.cpp"
@@ -6,11 +6,32 @@ GAS LISTING /tmp/cc44LysP.s 			page 1
    3              		.option norelax
    4              		.text
    5              	.Ltext0:
-   6              		.align	2
-   7              		.globl	exceptionHandler
-   9              	exceptionHandler:
-  10              	.LFB1:
-  11              		.file 1 "src/exceptionHandler.cpp"
+   6              		.section	.rodata.str1.8,"aMS",@progbits,1
+   7              		.align	3
+   8              	.LC0:
+   9 0000 766F6964 		.string	"void exceptionHandler()"
+   9      20657863 
+   9      65707469 
+   9      6F6E4861 
+   9      6E646C65 
+  10              		.align	3
+  11              	.LC1:
+  12 0018 7372632F 		.string	"src/exceptionHandler.cpp"
+  12      65786365 
+  12      7074696F 
+  12      6E48616E 
+  12      646C6572 
+  13 0031 00000000 		.align	3
+  13      000000
+  14              	.LC2:
+  15 0038 66616C73 		.string	"false"
+  15      6500
+  16              		.text
+  17              		.align	2
+  18              		.globl	exceptionHandler
+  20              	exceptionHandler:
+  21              	.LFB1:
+  22              		.file 1 "src/exceptionHandler.cpp"
    1:src/exceptionHandler.cpp **** /**
    2:src/exceptionHandler.cpp ****  * @file trap.cpp
    3:src/exceptionHandler.cpp ****  * @author stcksmsh (vukicevickosta@gmail.com)
@@ -27,314 +48,568 @@ GAS LISTING /tmp/cc44LysP.s 			page 1
   14:src/exceptionHandler.cpp **** #include "thread.h"
   15:src/exceptionHandler.cpp **** #include "sem.h"
   16:src/exceptionHandler.cpp **** #include "timer.h"
-  17:src/exceptionHandler.cpp **** 
+  17:src/exceptionHandler.cpp **** #include "assert.h"
   18:src/exceptionHandler.cpp **** 
-  19:src/exceptionHandler.cpp **** extern "C" void exceptionHandler(){
-  12              		.loc 1 19 35
-  13              		.cfi_startproc
-  14 0000 130101FC 		addi	sp,sp,-64
-  15              		.cfi_def_cfa_offset 64
-  16 0004 233C1102 		sd	ra,56(sp)
-  17 0008 23388102 		sd	s0,48(sp)
-  18 000c 23349102 		sd	s1,40(sp)
-  19 0010 23302103 		sd	s2,32(sp)
-  20 0014 233C3101 		sd	s3,24(sp)
-  21 0018 23384101 		sd	s4,16(sp)
-  22 001c 23345101 		sd	s5,8(sp)
-  23              		.cfi_offset 1, -8
-  24              		.cfi_offset 8, -16
-  25              		.cfi_offset 9, -24
-  26              		.cfi_offset 18, -32
-  27              		.cfi_offset 19, -40
-  28              		.cfi_offset 20, -48
-  29              		.cfi_offset 21, -56
-  30 0020 13040104 		addi	s0,sp,64
-  31              		.cfi_def_cfa 8, 0
-  20:src/exceptionHandler.cpp **** 
+  19:src/exceptionHandler.cpp **** 
+  20:src/exceptionHandler.cpp **** extern "C" void exceptionHandler(){
+  23              		.loc 1 20 35
+  24              		.cfi_startproc
+  25 0000 130101FC 		addi	sp,sp,-64
+  26              		.cfi_def_cfa_offset 64
+  27 0004 233C1102 		sd	ra,56(sp)
+  28 0008 23388102 		sd	s0,48(sp)
+GAS LISTING /tmp/ccCryeBd.s 			page 2
+
+
+  29 000c 23349102 		sd	s1,40(sp)
+  30 0010 23302103 		sd	s2,32(sp)
+  31 0014 233C3101 		sd	s3,24(sp)
+  32 0018 23384101 		sd	s4,16(sp)
+  33 001c 23345101 		sd	s5,8(sp)
+  34              		.cfi_offset 1, -8
+  35              		.cfi_offset 8, -16
+  36              		.cfi_offset 9, -24
+  37              		.cfi_offset 18, -32
+  38              		.cfi_offset 19, -40
+  39              		.cfi_offset 20, -48
+  40              		.cfi_offset 21, -56
+  41 0020 13040104 		addi	s0,sp,64
+  42              		.cfi_def_cfa 8, 0
   21:src/exceptionHandler.cpp ****     uint64 scause;
-  32              		.loc 1 21 5
+  43              		.loc 1 21 5
   22:src/exceptionHandler.cpp ****     __asm__ volatile("csrr %0, scause" : "=r"(scause));
-  33              		.loc 1 22 5
-  34              		.loc 1 22 55 is_stmt 0
-  35              	#APP
-  36              	# 22 "src/exceptionHandler.cpp" 1
-GAS LISTING /tmp/cc44LysP.s 			page 2
-
-
+  44              		.loc 1 22 5
+  45              		.loc 1 22 55 is_stmt 0
+  46              	#APP
+  47              	# 22 "src/exceptionHandler.cpp" 1
   23              	
-  37              		csrr a5, scause
-  38              	# 0 "" 2
-  39              	.LVL0:
+  48              		csrr a4, scause
+  49              	# 0 "" 2
+  50              	.LVL0:
   24:src/exceptionHandler.cpp ****     uint64 sstatus;
-  40              		.loc 1 24 5 is_stmt 1
+  51              		.loc 1 24 5 is_stmt 1
   25:src/exceptionHandler.cpp ****     __asm__ volatile("csrr %0, sstatus" : "=r"(sstatus));
-  41              		.loc 1 25 5
-  42              		.loc 1 25 57 is_stmt 0
-  43              	# 25 "src/exceptionHandler.cpp" 1
+  52              		.loc 1 25 5
+  53              		.loc 1 25 57 is_stmt 0
+  54              	# 25 "src/exceptionHandler.cpp" 1
   26              	
-  44              		csrr s2, sstatus
-  45              	# 0 "" 2
-  46              	.LVL1:
+  55              		csrr s2, sstatus
+  56              	# 0 "" 2
+  57              	.LVL1:
   27:src/exceptionHandler.cpp ****     uint64 sepc;
-  47              		.loc 1 27 5 is_stmt 1
+  58              		.loc 1 27 5 is_stmt 1
   28:src/exceptionHandler.cpp ****     __asm__ volatile("csrr %0, sepc" : "=r"(sepc));
-  48              		.loc 1 28 5
-  49              		.loc 1 28 51 is_stmt 0
-  50              	# 28 "src/exceptionHandler.cpp" 1
+  59              		.loc 1 28 5
+  60              		.loc 1 28 51 is_stmt 0
+  61              	# 28 "src/exceptionHandler.cpp" 1
   29              	
-  51              		csrr s1, sepc
-  52              	# 0 "" 2
-  53              	.LVL2:
+  62              		csrr s1, sepc
+  63              	# 0 "" 2
+  64              	.LVL2:
   30:src/exceptionHandler.cpp ****     uint64 a0 = 0;
-  54              		.loc 1 30 5 is_stmt 1
+  65              		.loc 1 30 5 is_stmt 1
   31:src/exceptionHandler.cpp ****     __asm__ volatile("mv %0, a0" : "=r"(a0));
-  55              		.loc 1 31 5
-  56              		.loc 1 31 45 is_stmt 0
-  57              	# 31 "src/exceptionHandler.cpp" 1
-  32              	    uint64 returnVal = 0;
-  58              		mv a4, a0
-  59              	# 0 "" 2
-  60              	.LVL3:
-  61              		.loc 1 32 5 is_stmt 1
-  33:src/exceptionHandler.cpp ****     if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the except
-  62              		.loc 1 33 5
-  63              	#NO_APP
-  64              	.LBB10:
-  65              		.loc 1 33 39 is_stmt 0
-  66 0034 938787FF 		addi	a5,a5,-8
-  67              	.LVL4:
-  68              		.loc 1 33 5
-  69 0038 93061000 		li	a3,1
-  70 003c 63F4F602 		bleu	a5,a3,.L20
-  71              	.LVL5:
-  72              	.L1:
-  73              	.LBE10:
-  34:src/exceptionHandler.cpp ****         uint64 a1, a2, a3, a4;
-  35:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a1" : "=r"(a1));
-  36:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a2" : "=r"(a2));
-  37:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a3" : "=r"(a3));
-  38:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a4" : "=r"(a4));
-  39:src/exceptionHandler.cpp ****         switch(a0){
-  40:src/exceptionHandler.cpp ****             case 0x1: /// mem_alloc
-  41:src/exceptionHandler.cpp ****                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
-  42:src/exceptionHandler.cpp ****                 break;
-GAS LISTING /tmp/cc44LysP.s 			page 3
+  66              		.loc 1 31 5
+  67              		.loc 1 31 45 is_stmt 0
+  68              	# 31 "src/exceptionHandler.cpp" 1
+  32              	
+  69              		mv a5, a0
+  70              	# 0 "" 2
+  71              	.LVL3:
+  33:src/exceptionHandler.cpp ****     uint64 a1, a2, a3, a4;
+  72              		.loc 1 33 5 is_stmt 1
+GAS LISTING /tmp/ccCryeBd.s 			page 3
 
 
-  43:src/exceptionHandler.cpp ****             case 0x2: /// mem_free
-  44:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
-  45:src/exceptionHandler.cpp ****                 break;
-  46:src/exceptionHandler.cpp ****             case 0x11: /// thread_create
-  47:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
-  48:src/exceptionHandler.cpp ****                 // returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*
-  49:src/exceptionHandler.cpp ****                 break;
-  50:src/exceptionHandler.cpp ****             case 0x12: /// thread_exit
-  51:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
-  52:src/exceptionHandler.cpp ****                 break;
-  53:src/exceptionHandler.cpp ****             case 0x13: /// thread_dispatch
-  54:src/exceptionHandler.cpp ****                 _thread::dispatch();
-  55:src/exceptionHandler.cpp ****                 break;
-  56:src/exceptionHandler.cpp ****             case 0x14: /// thread_join
-  57:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
-  58:src/exceptionHandler.cpp ****                 break;
-  59:src/exceptionHandler.cpp ****             case 0x21: /// sem_open
-  60:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
-  61:src/exceptionHandler.cpp ****                 break;
-  62:src/exceptionHandler.cpp ****             case 0x22: /// sem_close
-  63:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
-  64:src/exceptionHandler.cpp ****                 break;
-  65:src/exceptionHandler.cpp ****             case 0x23: /// sem_wait
-  66:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
-  67:src/exceptionHandler.cpp ****                 break;
-  68:src/exceptionHandler.cpp ****             case 0x24: /// sem_signal
-  69:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
-  70:src/exceptionHandler.cpp ****                 break;
-  71:src/exceptionHandler.cpp ****             case 0x31: /// time_sleep
-  72:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
-  73:src/exceptionHandler.cpp ****                 break;
-  74:src/exceptionHandler.cpp ****             case 0x41:
-  75:src/exceptionHandler.cpp ****                 returnVal = __getc();
-  76:src/exceptionHandler.cpp ****                 break;
-  77:src/exceptionHandler.cpp ****             case 0x42:
-  78:src/exceptionHandler.cpp ****                 __putc(a1);
-  79:src/exceptionHandler.cpp ****                 break;
-  80:src/exceptionHandler.cpp ****         }
-  81:src/exceptionHandler.cpp ****         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
-  82:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
-  83:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
-  85:src/exceptionHandler.cpp ****     }
-  86:src/exceptionHandler.cpp ****     // else if(scause == 0x8000000000000001UL){    /// timer
-  87:src/exceptionHandler.cpp ****     //     __putc('x');
-  88:src/exceptionHandler.cpp ****     //     Timer::getInstance().tick();
-  89:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
-  90:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-  91:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrc sip, 0x2");
-  92:src/exceptionHandler.cpp ****     // }
-  93:src/exceptionHandler.cpp **** }...
-  74              		.loc 1 93 1
-  75 0040 83308103 		ld	ra,56(sp)
-  76              		.cfi_remember_state
-  77              		.cfi_restore 1
-  78 0044 03340103 		ld	s0,48(sp)
-  79              		.cfi_restore 8
-GAS LISTING /tmp/cc44LysP.s 			page 4
+  34:src/exceptionHandler.cpp ****     __asm__ volatile("mv %0, a1" : "=r"(a1));
+  73              		.loc 1 34 5
+  74              		.loc 1 34 45 is_stmt 0
+  75              	# 34 "src/exceptionHandler.cpp" 1
+  35              	    __asm__ volatile("mv %0, a2" : "=r"(a2));
+  76              		mv s3, a1
+  77              	# 0 "" 2
+  78              	.LVL4:
+  79              		.loc 1 35 5 is_stmt 1
+  80              		.loc 1 35 45 is_stmt 0
+  81              	# 35 "src/exceptionHandler.cpp" 1
+  36              	    __asm__ volatile("mv %0, a3" : "=r"(a3));
+  82              		mv s4, a2
+  83              	# 0 "" 2
+  84              	.LVL5:
+  85              		.loc 1 36 5 is_stmt 1
+  86              		.loc 1 36 45 is_stmt 0
+  87              	# 36 "src/exceptionHandler.cpp" 1
+  37              	    __asm__ volatile("mv %0, a4" : "=r"(a4));
+  88              		mv s5, a3
+  89              	# 0 "" 2
+  90              	.LVL6:
+  91              		.loc 1 37 5 is_stmt 1
+  92              		.loc 1 37 45 is_stmt 0
+  93              	# 37 "src/exceptionHandler.cpp" 1
+  38              	
+  94              		mv a3, a4
+  95              	# 0 "" 2
+  96              	.LVL7:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+  97              		.loc 1 39 5 is_stmt 1
+  40:src/exceptionHandler.cpp ****     if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the except
+  98              		.loc 1 40 5
+  99              	#NO_APP
+ 100              	.LBB17:
+ 101              		.loc 1 40 39 is_stmt 0
+ 102 0044 130687FF 		addi	a2,a4,-8
+ 103              		.loc 1 40 5
+ 104 0048 93061000 		li	a3,1
+ 105 004c 63FEC616 		bleu	a2,a3,.L30
+ 106              	.LBE17:
+  41:src/exceptionHandler.cpp ****         switch(a0){
+  42:src/exceptionHandler.cpp ****             case 0x1: /// mem_alloc
+  43:src/exceptionHandler.cpp ****                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
+  44:src/exceptionHandler.cpp ****                 break;
+  45:src/exceptionHandler.cpp ****             case 0x2: /// mem_free
+  46:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
+  47:src/exceptionHandler.cpp ****                 break;
+  48:src/exceptionHandler.cpp ****             case 0x11: /// thread_create
+  49:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
+  50:src/exceptionHandler.cpp ****                 // returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*
+  51:src/exceptionHandler.cpp ****                 break;
+  52:src/exceptionHandler.cpp ****             case 0x12: /// thread_exit
+  53:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
+  54:src/exceptionHandler.cpp ****                 break;
+  55:src/exceptionHandler.cpp ****             case 0x13: /// thread_dispatch
+  56:src/exceptionHandler.cpp ****                 _thread::dispatch();
+GAS LISTING /tmp/ccCryeBd.s 			page 4
 
 
-  80              		.cfi_def_cfa 2, 64
-  81 0048 83348102 		ld	s1,40(sp)
-  82              		.cfi_restore 9
-  83 004c 03390102 		ld	s2,32(sp)
-  84              		.cfi_restore 18
-  85              	.LVL6:
-  86 0050 83398101 		ld	s3,24(sp)
-  87              		.cfi_restore 19
-  88 0054 033A0101 		ld	s4,16(sp)
-  89              		.cfi_restore 20
-  90 0058 833A8100 		ld	s5,8(sp)
-  91              		.cfi_restore 21
-  92 005c 13010104 		addi	sp,sp,64
-  93              		.cfi_def_cfa_offset 0
-  94 0060 67800000 		jr	ra
-  95              	.LVL7:
-  96              	.L20:
-  97              		.cfi_restore_state
-  98              	.LBB25:
-  99              	.LBB11:
-  34:src/exceptionHandler.cpp ****         uint64 a1, a2, a3, a4;
- 100              		.loc 1 34 9 is_stmt 1
-  35:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a1" : "=r"(a1));
- 101              		.loc 1 35 9
-  35:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a1" : "=r"(a1));
- 102              		.loc 1 35 49 is_stmt 0
- 103              	#APP
- 104              	# 35 "src/exceptionHandler.cpp" 1
- 105              		mv s3, a1
- 106              	# 0 "" 2
- 107              	.LVL8:
-  36:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a2" : "=r"(a2));
- 108              		.loc 1 36 9 is_stmt 1
-  36:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a2" : "=r"(a2));
- 109              		.loc 1 36 49 is_stmt 0
- 110              	# 36 "src/exceptionHandler.cpp" 1
- 111              		mv s4, a2
- 112              	# 0 "" 2
- 113              	.LVL9:
-  37:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a3" : "=r"(a3));
- 114              		.loc 1 37 9 is_stmt 1
-  37:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a3" : "=r"(a3));
- 115              		.loc 1 37 49 is_stmt 0
- 116              	# 37 "src/exceptionHandler.cpp" 1
- 117              		mv s5, a3
- 118              	# 0 "" 2
- 119              	.LVL10:
-  38:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a4" : "=r"(a4));
- 120              		.loc 1 38 9 is_stmt 1
-  38:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a4" : "=r"(a4));
- 121              		.loc 1 38 49 is_stmt 0
- 122              	# 38 "src/exceptionHandler.cpp" 1
- 123              		mv a5, a4
- 124              	# 0 "" 2
- 125              	.LVL11:
-  39:src/exceptionHandler.cpp ****         switch(a0){
- 126              		.loc 1 39 9 is_stmt 1
-GAS LISTING /tmp/cc44LysP.s 			page 5
+  57:src/exceptionHandler.cpp ****                 break;
+  58:src/exceptionHandler.cpp ****             case 0x14: /// thread_join
+  59:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
+  60:src/exceptionHandler.cpp ****                 break;
+  61:src/exceptionHandler.cpp ****             case 0x21: /// sem_open
+  62:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
+  63:src/exceptionHandler.cpp ****                 break;
+  64:src/exceptionHandler.cpp ****             case 0x22: /// sem_close
+  65:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
+  66:src/exceptionHandler.cpp ****                 break;
+  67:src/exceptionHandler.cpp ****             case 0x23: /// sem_wait
+  68:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
+  69:src/exceptionHandler.cpp ****                 break;
+  70:src/exceptionHandler.cpp ****             case 0x24: /// sem_signal
+  71:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
+  72:src/exceptionHandler.cpp ****                 break;
+  73:src/exceptionHandler.cpp ****             case 0x31: /// time_sleep
+  74:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
+  75:src/exceptionHandler.cpp ****                 break;
+  76:src/exceptionHandler.cpp ****             case 0x41:
+  77:src/exceptionHandler.cpp ****                 returnVal = __getc();
+  78:src/exceptionHandler.cpp ****                 break;
+  79:src/exceptionHandler.cpp ****             case 0x42:
+  80:src/exceptionHandler.cpp ****                 __putc(a1);
+  81:src/exceptionHandler.cpp ****                 break;
+  82:src/exceptionHandler.cpp ****         }
+  83:src/exceptionHandler.cpp ****         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
+  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
+  85:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+  86:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
+  87:src/exceptionHandler.cpp ****     }
+  88:src/exceptionHandler.cpp ****     else if (scause == 0x0000000000000005UL){   // illegal read operation
+ 107              		.loc 1 88 10 is_stmt 1
+ 108              	.LBB39:
+ 109              	.LBB18:
+ 110 0050 93075000 		li	a5,5
+ 111              	.LVL8:
+ 112 0054 630AF730 		beq	a4,a5,.L31
+ 113              	.LBE18:
+ 114              	.LBE39:
+  89:src/exceptionHandler.cpp ****         __putc('\n');
+  90:src/exceptionHandler.cpp ****         __putc('E');
+  91:src/exceptionHandler.cpp ****         __putc('r');
+  92:src/exceptionHandler.cpp ****         __putc('r');
+  93:src/exceptionHandler.cpp ****         __putc('o');
+  94:src/exceptionHandler.cpp ****         __putc('r');
+  95:src/exceptionHandler.cpp ****         __putc(':');
+  96:src/exceptionHandler.cpp ****         __putc(' ');
+  97:src/exceptionHandler.cpp ****         __putc('i');
+  98:src/exceptionHandler.cpp ****         __putc('l');
+  99:src/exceptionHandler.cpp ****         __putc('l');
+ 100:src/exceptionHandler.cpp ****         __putc('e');
+ 101:src/exceptionHandler.cpp ****         __putc('g');
+ 102:src/exceptionHandler.cpp ****         __putc('a');
+ 103:src/exceptionHandler.cpp ****         __putc('l');
+ 104:src/exceptionHandler.cpp ****         __putc(' ');
+ 105:src/exceptionHandler.cpp ****         __putc('r');
+GAS LISTING /tmp/ccCryeBd.s 			page 5
 
 
- 127              	#NO_APP
- 128 0074 93072004 		li	a5,66
- 129 0078 63E0E716 		bgtu	a4,a5,.L18
- 130 007c 13172700 		slli	a4,a4,2
- 131              	.LVL12:
- 132 0080 97060000 		lla	a3,.L5
- 132      93860600 
- 133 0088 3307D700 		add	a4,a4,a3
- 134 008c 83270700 		lw	a5,0(a4)
- 135 0090 B387D700 		add	a5,a5,a3
- 136 0094 67800700 		jr	a5
- 137              		.section	.rodata
- 138              		.align	2
- 139              		.align	2
- 140              	.L5:
- 141 0000 00000000 		.word	.L18-.L5
- 142 0004 00000000 		.word	.L17-.L5
- 143 0008 00000000 		.word	.L16-.L5
- 144 000c 00000000 		.word	.L18-.L5
- 145 0010 00000000 		.word	.L18-.L5
- 146 0014 00000000 		.word	.L18-.L5
- 147 0018 00000000 		.word	.L18-.L5
- 148 001c 00000000 		.word	.L18-.L5
- 149 0020 00000000 		.word	.L18-.L5
- 150 0024 00000000 		.word	.L18-.L5
- 151 0028 00000000 		.word	.L18-.L5
- 152 002c 00000000 		.word	.L18-.L5
- 153 0030 00000000 		.word	.L18-.L5
- 154 0034 00000000 		.word	.L18-.L5
- 155 0038 00000000 		.word	.L18-.L5
- 156 003c 00000000 		.word	.L18-.L5
- 157 0040 00000000 		.word	.L18-.L5
- 158 0044 00000000 		.word	.L15-.L5
- 159 0048 00000000 		.word	.L14-.L5
- 160 004c 00000000 		.word	.L13-.L5
- 161 0050 00000000 		.word	.L12-.L5
- 162 0054 00000000 		.word	.L18-.L5
- 163 0058 00000000 		.word	.L18-.L5
- 164 005c 00000000 		.word	.L18-.L5
- 165 0060 00000000 		.word	.L18-.L5
- 166 0064 00000000 		.word	.L18-.L5
- 167 0068 00000000 		.word	.L18-.L5
- 168 006c 00000000 		.word	.L18-.L5
- 169 0070 00000000 		.word	.L18-.L5
- 170 0074 00000000 		.word	.L18-.L5
- 171 0078 00000000 		.word	.L18-.L5
- 172 007c 00000000 		.word	.L18-.L5
- 173 0080 00000000 		.word	.L18-.L5
- 174 0084 00000000 		.word	.L11-.L5
- 175 0088 00000000 		.word	.L10-.L5
- 176 008c 00000000 		.word	.L9-.L5
- 177 0090 00000000 		.word	.L8-.L5
- 178 0094 00000000 		.word	.L18-.L5
- 179 0098 00000000 		.word	.L18-.L5
- 180 009c 00000000 		.word	.L18-.L5
- 181 00a0 00000000 		.word	.L18-.L5
- 182 00a4 00000000 		.word	.L18-.L5
-GAS LISTING /tmp/cc44LysP.s 			page 6
+ 106:src/exceptionHandler.cpp ****         __putc('e');
+ 107:src/exceptionHandler.cpp ****         __putc('a');
+ 108:src/exceptionHandler.cpp ****         __putc('d');
+ 109:src/exceptionHandler.cpp ****         __putc('!');
+ 110:src/exceptionHandler.cpp ****         uint64 pc;
+ 111:src/exceptionHandler.cpp ****         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
+ 112:src/exceptionHandler.cpp ****         __putc('\n');
+ 113:src/exceptionHandler.cpp ****         __putc('P');
+ 114:src/exceptionHandler.cpp ****         __putc('C');
+ 115:src/exceptionHandler.cpp ****         __putc(':');
+ 116:src/exceptionHandler.cpp ****         __putc(' ');
+ 117:src/exceptionHandler.cpp ****         __putc('0');
+ 118:src/exceptionHandler.cpp ****         __putc('x');
+ 119:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 120:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 121:src/exceptionHandler.cpp ****             if(tmp < 10){
+ 122:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 123:src/exceptionHandler.cpp ****             }else{
+ 124:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 125:src/exceptionHandler.cpp ****             }
+ 126:src/exceptionHandler.cpp ****         }
+ 127:src/exceptionHandler.cpp ****         assert(false);
+ 128:src/exceptionHandler.cpp ****     }
+ 129:src/exceptionHandler.cpp ****     else if (scause == 0x0000000000000007UL){   // illegal write operation
+ 115              		.loc 1 129 10
+ 116              	.LBB40:
+ 117              	.LBB31:
+ 118              	.LBB19:
+ 119 0058 93077000 		li	a5,7
+ 120 005c 631EF71A 		bne	a4,a5,.L1
+ 121              	.LBB20:
+ 130:src/exceptionHandler.cpp ****         __putc('\n');
+ 122              		.loc 1 130 9
+ 123              		.loc 1 130 15 is_stmt 0
+ 124 0060 1305A000 		li	a0,10
+ 125 0064 97000000 		call	__putc@plt
+ 125      E7800000 
+ 126              	.LVL9:
+ 131:src/exceptionHandler.cpp ****         __putc('E');
+ 127              		.loc 1 131 9 is_stmt 1
+ 128              		.loc 1 131 15 is_stmt 0
+ 129 006c 13055004 		li	a0,69
+ 130 0070 97000000 		call	__putc@plt
+ 130      E7800000 
+ 131              	.LVL10:
+ 132:src/exceptionHandler.cpp ****         __putc('r');
+ 132              		.loc 1 132 9 is_stmt 1
+ 133              		.loc 1 132 15 is_stmt 0
+ 134 0078 13052007 		li	a0,114
+ 135 007c 97000000 		call	__putc@plt
+ 135      E7800000 
+ 136              	.LVL11:
+ 133:src/exceptionHandler.cpp ****         __putc('r');
+ 137              		.loc 1 133 9 is_stmt 1
+ 138              		.loc 1 133 15 is_stmt 0
+ 139 0084 13052007 		li	a0,114
+ 140 0088 97000000 		call	__putc@plt
+GAS LISTING /tmp/ccCryeBd.s 			page 6
 
 
- 183 00a8 00000000 		.word	.L18-.L5
- 184 00ac 00000000 		.word	.L18-.L5
- 185 00b0 00000000 		.word	.L18-.L5
- 186 00b4 00000000 		.word	.L18-.L5
- 187 00b8 00000000 		.word	.L18-.L5
- 188 00bc 00000000 		.word	.L18-.L5
- 189 00c0 00000000 		.word	.L18-.L5
- 190 00c4 00000000 		.word	.L7-.L5
- 191 00c8 00000000 		.word	.L18-.L5
- 192 00cc 00000000 		.word	.L18-.L5
- 193 00d0 00000000 		.word	.L18-.L5
- 194 00d4 00000000 		.word	.L18-.L5
- 195 00d8 00000000 		.word	.L18-.L5
- 196 00dc 00000000 		.word	.L18-.L5
- 197 00e0 00000000 		.word	.L18-.L5
- 198 00e4 00000000 		.word	.L18-.L5
- 199 00e8 00000000 		.word	.L18-.L5
- 200 00ec 00000000 		.word	.L18-.L5
- 201 00f0 00000000 		.word	.L18-.L5
- 202 00f4 00000000 		.word	.L18-.L5
- 203 00f8 00000000 		.word	.L18-.L5
- 204 00fc 00000000 		.word	.L18-.L5
- 205 0100 00000000 		.word	.L18-.L5
- 206 0104 00000000 		.word	.L6-.L5
- 207 0108 00000000 		.word	.L4-.L5
- 208              		.text
- 209              	.L17:
-  40:src/exceptionHandler.cpp ****             case 0x1: /// mem_alloc
- 210              		.loc 1 40 13
-  41:src/exceptionHandler.cpp ****                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
- 211              		.loc 1 41 17
- 212              	.LBB12:
- 213              	.LBB13:
- 214              		.file 2 "./h/heapManager.h"
+ 140      E7800000 
+ 141              	.LVL12:
+ 134:src/exceptionHandler.cpp ****         __putc('o');
+ 142              		.loc 1 134 9 is_stmt 1
+ 143              		.loc 1 134 15 is_stmt 0
+ 144 0090 1305F006 		li	a0,111
+ 145 0094 97000000 		call	__putc@plt
+ 145      E7800000 
+ 146              	.LVL13:
+ 135:src/exceptionHandler.cpp ****         __putc('r');
+ 147              		.loc 1 135 9 is_stmt 1
+ 148              		.loc 1 135 15 is_stmt 0
+ 149 009c 13052007 		li	a0,114
+ 150 00a0 97000000 		call	__putc@plt
+ 150      E7800000 
+ 151              	.LVL14:
+ 136:src/exceptionHandler.cpp ****         __putc(':');
+ 152              		.loc 1 136 9 is_stmt 1
+ 153              		.loc 1 136 15 is_stmt 0
+ 154 00a8 1305A003 		li	a0,58
+ 155 00ac 97000000 		call	__putc@plt
+ 155      E7800000 
+ 156              	.LVL15:
+ 137:src/exceptionHandler.cpp ****         __putc(' ');
+ 157              		.loc 1 137 9 is_stmt 1
+ 158              		.loc 1 137 15 is_stmt 0
+ 159 00b4 13050002 		li	a0,32
+ 160 00b8 97000000 		call	__putc@plt
+ 160      E7800000 
+ 161              	.LVL16:
+ 138:src/exceptionHandler.cpp ****         __putc('i');
+ 162              		.loc 1 138 9 is_stmt 1
+ 163              		.loc 1 138 15 is_stmt 0
+ 164 00c0 13059006 		li	a0,105
+ 165 00c4 97000000 		call	__putc@plt
+ 165      E7800000 
+ 166              	.LVL17:
+ 139:src/exceptionHandler.cpp ****         __putc('l');
+ 167              		.loc 1 139 9 is_stmt 1
+ 168              		.loc 1 139 15 is_stmt 0
+ 169 00cc 1305C006 		li	a0,108
+ 170 00d0 97000000 		call	__putc@plt
+ 170      E7800000 
+ 171              	.LVL18:
+ 140:src/exceptionHandler.cpp ****         __putc('l');
+ 172              		.loc 1 140 9 is_stmt 1
+ 173              		.loc 1 140 15 is_stmt 0
+ 174 00d8 1305C006 		li	a0,108
+ 175 00dc 97000000 		call	__putc@plt
+ 175      E7800000 
+ 176              	.LVL19:
+ 141:src/exceptionHandler.cpp ****         __putc('e');
+ 177              		.loc 1 141 9 is_stmt 1
+ 178              		.loc 1 141 15 is_stmt 0
+ 179 00e4 13055006 		li	a0,101
+ 180 00e8 97000000 		call	__putc@plt
+ 180      E7800000 
+GAS LISTING /tmp/ccCryeBd.s 			page 7
+
+
+ 181              	.LVL20:
+ 142:src/exceptionHandler.cpp ****         __putc('g');
+ 182              		.loc 1 142 9 is_stmt 1
+ 183              		.loc 1 142 15 is_stmt 0
+ 184 00f0 13057006 		li	a0,103
+ 185 00f4 97000000 		call	__putc@plt
+ 185      E7800000 
+ 186              	.LVL21:
+ 143:src/exceptionHandler.cpp ****         __putc('a');
+ 187              		.loc 1 143 9 is_stmt 1
+ 188              		.loc 1 143 15 is_stmt 0
+ 189 00fc 13051006 		li	a0,97
+ 190 0100 97000000 		call	__putc@plt
+ 190      E7800000 
+ 191              	.LVL22:
+ 144:src/exceptionHandler.cpp ****         __putc('l');
+ 192              		.loc 1 144 9 is_stmt 1
+ 193              		.loc 1 144 15 is_stmt 0
+ 194 0108 1305C006 		li	a0,108
+ 195 010c 97000000 		call	__putc@plt
+ 195      E7800000 
+ 196              	.LVL23:
+ 145:src/exceptionHandler.cpp ****         __putc(' ');
+ 197              		.loc 1 145 9 is_stmt 1
+ 198              		.loc 1 145 15 is_stmt 0
+ 199 0114 13050002 		li	a0,32
+ 200 0118 97000000 		call	__putc@plt
+ 200      E7800000 
+ 201              	.LVL24:
+ 146:src/exceptionHandler.cpp ****         __putc('w');
+ 202              		.loc 1 146 9 is_stmt 1
+ 203              		.loc 1 146 15 is_stmt 0
+ 204 0120 13057007 		li	a0,119
+ 205 0124 97000000 		call	__putc@plt
+ 205      E7800000 
+ 206              	.LVL25:
+ 147:src/exceptionHandler.cpp ****         __putc('r');
+ 207              		.loc 1 147 9 is_stmt 1
+ 208              		.loc 1 147 15 is_stmt 0
+ 209 012c 13052007 		li	a0,114
+ 210 0130 97000000 		call	__putc@plt
+ 210      E7800000 
+ 211              	.LVL26:
+ 148:src/exceptionHandler.cpp ****         __putc('i');
+ 212              		.loc 1 148 9 is_stmt 1
+ 213              		.loc 1 148 15 is_stmt 0
+ 214 0138 13059006 		li	a0,105
+ 215 013c 97000000 		call	__putc@plt
+ 215      E7800000 
+ 216              	.LVL27:
+ 149:src/exceptionHandler.cpp ****         __putc('t');
+ 217              		.loc 1 149 9 is_stmt 1
+ 218              		.loc 1 149 15 is_stmt 0
+ 219 0144 13054007 		li	a0,116
+ 220 0148 97000000 		call	__putc@plt
+ 220      E7800000 
+ 221              	.LVL28:
+GAS LISTING /tmp/ccCryeBd.s 			page 8
+
+
+ 150:src/exceptionHandler.cpp ****         __putc('e');
+ 222              		.loc 1 150 9 is_stmt 1
+ 223              		.loc 1 150 15 is_stmt 0
+ 224 0150 13055006 		li	a0,101
+ 225 0154 97000000 		call	__putc@plt
+ 225      E7800000 
+ 226              	.LVL29:
+ 151:src/exceptionHandler.cpp ****         __putc('!');
+ 227              		.loc 1 151 9 is_stmt 1
+ 228              		.loc 1 151 15 is_stmt 0
+ 229 015c 13051002 		li	a0,33
+ 230 0160 97000000 		call	__putc@plt
+ 230      E7800000 
+ 231              	.LVL30:
+ 152:src/exceptionHandler.cpp ****         uint64 pc;
+ 232              		.loc 1 152 9 is_stmt 1
+ 153:src/exceptionHandler.cpp ****         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
+ 233              		.loc 1 153 9
+ 234              		.loc 1 153 53 is_stmt 0
+ 235              	#APP
+ 236              	# 153 "src/exceptionHandler.cpp" 1
+ 154              	        __putc('\n');
+ 237              		csrr s2, sepc
+ 238              	# 0 "" 2
+ 239              	.LVL31:
+ 240              		.loc 1 154 9 is_stmt 1
+ 241              		.loc 1 154 15 is_stmt 0
+ 242              	#NO_APP
+ 243 016c 1305A000 		li	a0,10
+ 244 0170 97000000 		call	__putc@plt
+ 244      E7800000 
+ 245              	.LVL32:
+ 155:src/exceptionHandler.cpp ****         __putc('P');
+ 246              		.loc 1 155 9 is_stmt 1
+ 247              		.loc 1 155 15 is_stmt 0
+ 248 0178 13050005 		li	a0,80
+ 249 017c 97000000 		call	__putc@plt
+ 249      E7800000 
+ 250              	.LVL33:
+ 156:src/exceptionHandler.cpp ****         __putc('C');
+ 251              		.loc 1 156 9 is_stmt 1
+ 252              		.loc 1 156 15 is_stmt 0
+ 253 0184 13053004 		li	a0,67
+ 254 0188 97000000 		call	__putc@plt
+ 254      E7800000 
+ 255              	.LVL34:
+ 157:src/exceptionHandler.cpp ****         __putc(':');
+ 256              		.loc 1 157 9 is_stmt 1
+ 257              		.loc 1 157 15 is_stmt 0
+ 258 0190 1305A003 		li	a0,58
+ 259 0194 97000000 		call	__putc@plt
+ 259      E7800000 
+ 260              	.LVL35:
+ 158:src/exceptionHandler.cpp ****         __putc(' ');
+ 261              		.loc 1 158 9 is_stmt 1
+ 262              		.loc 1 158 15 is_stmt 0
+ 263 019c 13050002 		li	a0,32
+GAS LISTING /tmp/ccCryeBd.s 			page 9
+
+
+ 264 01a0 97000000 		call	__putc@plt
+ 264      E7800000 
+ 265              	.LVL36:
+ 159:src/exceptionHandler.cpp ****         __putc('0');
+ 266              		.loc 1 159 9 is_stmt 1
+ 267              		.loc 1 159 15 is_stmt 0
+ 268 01a8 13050003 		li	a0,48
+ 269 01ac 97000000 		call	__putc@plt
+ 269      E7800000 
+ 270              	.LVL37:
+ 160:src/exceptionHandler.cpp ****         __putc('x');
+ 271              		.loc 1 160 9 is_stmt 1
+ 272              		.loc 1 160 15 is_stmt 0
+ 273 01b4 13058007 		li	a0,120
+ 274 01b8 97000000 		call	__putc@plt
+ 274      E7800000 
+ 275              	.LVL38:
+ 161:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 276              		.loc 1 161 9 is_stmt 1
+ 277              	.LBB21:
+ 278              		.loc 1 161 17 is_stmt 0
+ 279 01c0 9304F000 		li	s1,15
+ 280              	.LVL39:
+ 281 01c4 6F000037 		j	.L27
+ 282              	.LVL40:
+ 283              	.L30:
+ 284              	.LBE21:
+ 285              	.LBE20:
+ 286              	.LBE19:
+ 287              	.LBE31:
+  41:src/exceptionHandler.cpp ****             case 0x1: /// mem_alloc
+ 288              		.loc 1 41 9 is_stmt 1
+ 289 01c8 13072004 		li	a4,66
+ 290              	.LVL41:
+ 291 01cc 636AF718 		bgtu	a5,a4,.L28
+ 292 01d0 93972700 		slli	a5,a5,2
+ 293              	.LVL42:
+ 294 01d4 17070000 		lla	a4,.L5
+ 294      13070700 
+ 295 01dc B387E700 		add	a5,a5,a4
+ 296 01e0 83A70700 		lw	a5,0(a5)
+ 297 01e4 B387E700 		add	a5,a5,a4
+ 298 01e8 67800700 		jr	a5
+ 299              		.section	.rodata
+ 300              		.align	2
+ 301              		.align	2
+ 302              	.L5:
+ 303 0000 00000000 		.word	.L28-.L5
+ 304 0004 00000000 		.word	.L17-.L5
+ 305 0008 00000000 		.word	.L16-.L5
+ 306 000c 00000000 		.word	.L28-.L5
+ 307 0010 00000000 		.word	.L28-.L5
+ 308 0014 00000000 		.word	.L28-.L5
+ 309 0018 00000000 		.word	.L28-.L5
+ 310 001c 00000000 		.word	.L28-.L5
+ 311 0020 00000000 		.word	.L28-.L5
+ 312 0024 00000000 		.word	.L28-.L5
+GAS LISTING /tmp/ccCryeBd.s 			page 10
+
+
+ 313 0028 00000000 		.word	.L28-.L5
+ 314 002c 00000000 		.word	.L28-.L5
+ 315 0030 00000000 		.word	.L28-.L5
+ 316 0034 00000000 		.word	.L28-.L5
+ 317 0038 00000000 		.word	.L28-.L5
+ 318 003c 00000000 		.word	.L28-.L5
+ 319 0040 00000000 		.word	.L28-.L5
+ 320 0044 00000000 		.word	.L15-.L5
+ 321 0048 00000000 		.word	.L14-.L5
+ 322 004c 00000000 		.word	.L13-.L5
+ 323 0050 00000000 		.word	.L12-.L5
+ 324 0054 00000000 		.word	.L28-.L5
+ 325 0058 00000000 		.word	.L28-.L5
+ 326 005c 00000000 		.word	.L28-.L5
+ 327 0060 00000000 		.word	.L28-.L5
+ 328 0064 00000000 		.word	.L28-.L5
+ 329 0068 00000000 		.word	.L28-.L5
+ 330 006c 00000000 		.word	.L28-.L5
+ 331 0070 00000000 		.word	.L28-.L5
+ 332 0074 00000000 		.word	.L28-.L5
+ 333 0078 00000000 		.word	.L28-.L5
+ 334 007c 00000000 		.word	.L28-.L5
+ 335 0080 00000000 		.word	.L28-.L5
+ 336 0084 00000000 		.word	.L11-.L5
+ 337 0088 00000000 		.word	.L10-.L5
+ 338 008c 00000000 		.word	.L9-.L5
+ 339 0090 00000000 		.word	.L8-.L5
+ 340 0094 00000000 		.word	.L28-.L5
+ 341 0098 00000000 		.word	.L28-.L5
+ 342 009c 00000000 		.word	.L28-.L5
+ 343 00a0 00000000 		.word	.L28-.L5
+ 344 00a4 00000000 		.word	.L28-.L5
+ 345 00a8 00000000 		.word	.L28-.L5
+ 346 00ac 00000000 		.word	.L28-.L5
+ 347 00b0 00000000 		.word	.L28-.L5
+ 348 00b4 00000000 		.word	.L28-.L5
+ 349 00b8 00000000 		.word	.L28-.L5
+ 350 00bc 00000000 		.word	.L28-.L5
+ 351 00c0 00000000 		.word	.L28-.L5
+ 352 00c4 00000000 		.word	.L7-.L5
+ 353 00c8 00000000 		.word	.L28-.L5
+ 354 00cc 00000000 		.word	.L28-.L5
+ 355 00d0 00000000 		.word	.L28-.L5
+ 356 00d4 00000000 		.word	.L28-.L5
+ 357 00d8 00000000 		.word	.L28-.L5
+ 358 00dc 00000000 		.word	.L28-.L5
+ 359 00e0 00000000 		.word	.L28-.L5
+ 360 00e4 00000000 		.word	.L28-.L5
+ 361 00e8 00000000 		.word	.L28-.L5
+ 362 00ec 00000000 		.word	.L28-.L5
+ 363 00f0 00000000 		.word	.L28-.L5
+ 364 00f4 00000000 		.word	.L28-.L5
+ 365 00f8 00000000 		.word	.L28-.L5
+ 366 00fc 00000000 		.word	.L28-.L5
+ 367 0100 00000000 		.word	.L28-.L5
+ 368 0104 00000000 		.word	.L6-.L5
+ 369 0108 00000000 		.word	.L4-.L5
+GAS LISTING /tmp/ccCryeBd.s 			page 11
+
+
+ 370              		.text
+ 371              	.L17:
+  42:src/exceptionHandler.cpp ****                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
+ 372              		.loc 1 42 13
+  43:src/exceptionHandler.cpp ****                 break;
+ 373              		.loc 1 43 17
+ 374              	.LBB32:
+ 375              	.LBB33:
+ 376              		.file 2 "./h/heapManager.h"
    1:./h/heapManager.h **** /**
    2:./h/heapManager.h ****  * @file heapAllocator.h
    3:./h/heapManager.h ****  * @author stcksmsh (stcksmsh@gmail.com)
@@ -358,9 +633,6 @@ GAS LISTING /tmp/cc44LysP.s 			page 1
   21:./h/heapManager.h **** 
   22:./h/heapManager.h ****     ~HeapManager();
   23:./h/heapManager.h **** 
-GAS LISTING /tmp/cc44LysP.s 			page 7
-
-
   24:./h/heapManager.h ****     /// @brief initialize the heap
   25:./h/heapManager.h ****     /// @param nStart start address of the heap
   26:./h/heapManager.h ****     /// @param nEnd end address of the heap
@@ -383,739 +655,1490 @@ GAS LISTING /tmp/cc44LysP.s 			page 1
   43:./h/heapManager.h ****     /// @brief returns the singleton instance
   44:./h/heapManager.h ****     static HeapManager& getInstance(){
   45:./h/heapManager.h ****         return *instance;
- 215              		.loc 2 45 9
- 216              	.LBE13:
- 217              	.LBE12:
-  41:src/exceptionHandler.cpp ****                 returnVal = uint64(HeapManager::getInstance().heapAllocate(a1));
- 218              		.loc 1 41 75 is_stmt 0
- 219 0098 93850900 		mv	a1,s3
- 220 009c 97070000 		la	a5,_ZN11HeapManager8instanceE
- 220      83B70700 
- 221 00a4 03B50700 		ld	a0,0(a5)
- 222 00a8 97000000 		call	_ZN11HeapManager12heapAllocateEm@plt
- 222      E7800000 
- 223              	.LVL13:
-  42:src/exceptionHandler.cpp ****                 break;
- 224              		.loc 1 42 17 is_stmt 1
- 225 00b0 6F00C012 		j	.L3
- 226              	.LVL14:
- 227              	.L16:
-  43:src/exceptionHandler.cpp ****             case 0x2: /// mem_free
- 228              		.loc 1 43 13
-  44:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
- 229              		.loc 1 44 17
- 230              	.LBB14:
- 231              	.LBB15:
- 232              		.loc 2 45 9
- 233              	.LBE15:
- 234              	.LBE14:
-  44:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
- 235              		.loc 1 44 64 is_stmt 0
- 236 00b4 93850900 		mv	a1,s3
- 237 00b8 97070000 		la	a5,_ZN11HeapManager8instanceE
- 237      83B70700 
- 238 00c0 03B50700 		ld	a0,0(a5)
- 239 00c4 97000000 		call	_ZN11HeapManager8heapFreeEPv@plt
- 239      E7800000 
- 240              	.LVL15:
-GAS LISTING /tmp/cc44LysP.s 			page 8
+ 377              		.loc 2 45 9
+ 378              	.LBE33:
+ 379              	.LBE32:
+GAS LISTING /tmp/ccCryeBd.s 			page 12
 
 
-  45:src/exceptionHandler.cpp ****                 break;
- 241              		.loc 1 45 17 is_stmt 1
- 242 00cc 6F000011 		j	.L3
- 243              	.LVL16:
- 244              	.L15:
-  46:src/exceptionHandler.cpp ****             case 0x11: /// thread_create
- 245              		.loc 1 46 13
-  47:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
- 246              		.loc 1 47 17
- 247              	.LBB16:
- 248              	.LBB17:
- 249              		.loc 2 45 9
- 250              	.LBE17:
- 251              	.LBE16:
-  47:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
- 252              		.loc 1 47 146 is_stmt 0
- 253 00d0 93050004 		li	a1,64
- 254 00d4 97070000 		la	a5,_ZN11HeapManager8instanceE
- 254      83B70700 
- 255 00dc 03B50700 		ld	a0,0(a5)
- 256 00e0 97000000 		call	_ZN11HeapManager12heapAllocateEm@plt
- 256      E7800000 
- 257              	.LVL17:
-  47:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
- 258              		.loc 1 47 44
- 259 00e8 13071000 		li	a4,1
- 260 00ec B7170000 		li	a5,4096
- 261 00f0 9387F7FF 		addi	a5,a5,-1
- 262 00f4 B306F500 		add	a3,a0,a5
- 263 00f8 13860A00 		mv	a2,s5
- 264 00fc 93050A00 		mv	a1,s4
- 265 0100 13850900 		mv	a0,s3
- 266 0104 97000000 		call	_ZN7_thread6createEPPS_PFvPvES2_S2_b@plt
- 266      E7800000 
- 267              	.LVL18:
-  49:src/exceptionHandler.cpp ****                 break;
- 268              		.loc 1 49 17 is_stmt 1
- 269 010c 6F00000D 		j	.L3
- 270              	.LVL19:
- 271              	.L14:
-  50:src/exceptionHandler.cpp ****             case 0x12: /// thread_exit
- 272              		.loc 1 50 13
-  51:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
- 273              		.loc 1 51 17
-  51:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
- 274              		.loc 1 51 57 is_stmt 0
- 275 0110 97000000 		call	_ZN7_thread4exitEv@plt
- 275      E7800000 
- 276              	.LVL20:
-  52:src/exceptionHandler.cpp ****                 break;
- 277              		.loc 1 52 17 is_stmt 1
- 278 0118 6F00400C 		j	.L3
- 279              	.LVL21:
- 280              	.L13:
-  53:src/exceptionHandler.cpp ****             case 0x13: /// thread_dispatch
- 281              		.loc 1 53 13
-  54:src/exceptionHandler.cpp ****                 _thread::dispatch();
-GAS LISTING /tmp/cc44LysP.s 			page 9
+  43:src/exceptionHandler.cpp ****                 break;
+ 380              		.loc 1 43 75 is_stmt 0
+ 381 01ec 93850900 		mv	a1,s3
+ 382 01f0 97070000 		la	a5,_ZN11HeapManager8instanceE
+ 382      83B70700 
+ 383 01f8 03B50700 		ld	a0,0(a5)
+ 384 01fc 97000000 		call	_ZN11HeapManager12heapAllocateEm@plt
+ 384      E7800000 
+ 385              	.LVL43:
+  44:src/exceptionHandler.cpp ****             case 0x2: /// mem_free
+ 386              		.loc 1 44 17 is_stmt 1
+ 387              	.L3:
+  83:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
+ 388              		.loc 1 83 9
+  83:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
+ 389              		.loc 1 83 57 is_stmt 0
+ 390              	#APP
+ 391              	# 83 "src/exceptionHandler.cpp" 1
+  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+ 392              		mv a0, a0
+ 393              	# 0 "" 2
+ 394              		.loc 1 84 9 is_stmt 1
+  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+ 395              		.loc 1 84 53 is_stmt 0
+ 396              	#NO_APP
+ 397 0208 93844400 		addi	s1,s1,4
+ 398              	.LVL44:
+  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+ 399              		.loc 1 84 57
+ 400              	#APP
+ 401              	# 84 "src/exceptionHandler.cpp" 1
+  85:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
+ 402              		csrw sepc, s1
+ 403              	# 0 "" 2
+ 404              		.loc 1 85 9 is_stmt 1
+  85:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
+ 405              		.loc 1 85 61 is_stmt 0
+ 406              	# 85 "src/exceptionHandler.cpp" 1
+  86:src/exceptionHandler.cpp ****     }
+ 407              		csrw sstatus, s2
+ 408              	# 0 "" 2
+ 409              		.loc 1 86 9 is_stmt 1
+  86:src/exceptionHandler.cpp ****     }
+ 410              		.loc 1 86 42 is_stmt 0
+ 411              	# 86 "src/exceptionHandler.cpp" 1
+ 412              		csrc sip, 0x2
+ 413              	# 0 "" 2
+ 414              	.LVL45:
+ 415              	#NO_APP
+ 416              	.L1:
+ 417              	.LBE40:
+ 162:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 163:src/exceptionHandler.cpp ****             if(tmp < 10){
+ 164:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 165:src/exceptionHandler.cpp ****             }else{
+ 166:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 167:src/exceptionHandler.cpp ****             }
+GAS LISTING /tmp/ccCryeBd.s 			page 13
 
 
- 282              		.loc 1 54 17
-  54:src/exceptionHandler.cpp ****                 _thread::dispatch();
- 283              		.loc 1 54 34 is_stmt 0
- 284 011c 97000000 		call	_ZN7_thread8dispatchEv@plt
- 284      E7800000 
- 285              	.LVL22:
-  55:src/exceptionHandler.cpp ****                 break;
- 286              		.loc 1 55 17 is_stmt 1
- 287              	.LBE11:
- 288              	.LBE25:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 289              		.loc 1 32 12 is_stmt 0
- 290 0124 13050000 		li	a0,0
- 291              	.LBB26:
- 292              	.LBB18:
-  55:src/exceptionHandler.cpp ****                 break;
- 293              		.loc 1 55 17
- 294 0128 6F00400B 		j	.L3
- 295              	.L12:
-  56:src/exceptionHandler.cpp ****             case 0x14: /// thread_join
- 296              		.loc 1 56 13 is_stmt 1
-  57:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
- 297              		.loc 1 57 17
-  57:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
- 298              		.loc 1 57 45 is_stmt 0
- 299 012c 93850900 		mv	a1,s3
- 300 0130 97070000 		la	a5,_ZN7_thread13currentThreadE
- 300      83B70700 
- 301 0138 03B50700 		ld	a0,0(a5)
- 302 013c 97000000 		call	_ZN7_thread4joinEPS_@plt
- 302      E7800000 
- 303              	.LVL23:
-  58:src/exceptionHandler.cpp ****                 break;
- 304              		.loc 1 58 17 is_stmt 1
- 305              	.LBE18:
- 306              	.LBE26:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 307              		.loc 1 32 12 is_stmt 0
- 308 0144 13050000 		li	a0,0
- 309              	.LBB27:
- 310              	.LBB19:
-  58:src/exceptionHandler.cpp ****                 break;
- 311              		.loc 1 58 17
- 312 0148 6F004009 		j	.L3
- 313              	.L11:
-  59:src/exceptionHandler.cpp ****             case 0x21: /// sem_open
- 314              		.loc 1 59 13 is_stmt 1
-  60:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
- 315              		.loc 1 60 17
-  60:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
- 316              		.loc 1 60 27 is_stmt 0
- 317 014c 9B050A00 		sext.w	a1,s4
- 318 0150 13850900 		mv	a0,s3
- 319 0154 97000000 		call	_ZN4_sem4openEPPS_j@plt
- 319      E7800000 
- 320              	.LVL24:
-  61:src/exceptionHandler.cpp ****                 break;
-GAS LISTING /tmp/cc44LysP.s 			page 10
+ 168:src/exceptionHandler.cpp ****         }        
+ 169:src/exceptionHandler.cpp ****         assert(false);
+ 170:src/exceptionHandler.cpp ****     }
+ 171:src/exceptionHandler.cpp ****     // else if(scause == 0x8000000000000001UL){    /// timer
+ 172:src/exceptionHandler.cpp ****     //     Timer::getInstance().tick();
+ 173:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
+ 174:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+ 175:src/exceptionHandler.cpp ****     //     __asm__ volatile("csrc sip, 0x2");
+ 176:src/exceptionHandler.cpp ****     // }
+ 177:src/exceptionHandler.cpp **** }...
+ 418              		.loc 1 177 1
+ 419 0218 83308103 		ld	ra,56(sp)
+ 420              		.cfi_remember_state
+ 421              		.cfi_restore 1
+ 422 021c 03340103 		ld	s0,48(sp)
+ 423              		.cfi_restore 8
+ 424              		.cfi_def_cfa 2, 64
+ 425 0220 83348102 		ld	s1,40(sp)
+ 426              		.cfi_restore 9
+ 427 0224 03390102 		ld	s2,32(sp)
+ 428              		.cfi_restore 18
+ 429 0228 83398101 		ld	s3,24(sp)
+ 430              		.cfi_restore 19
+ 431              	.LVL46:
+ 432 022c 033A0101 		ld	s4,16(sp)
+ 433              		.cfi_restore 20
+ 434              	.LVL47:
+ 435 0230 833A8100 		ld	s5,8(sp)
+ 436              		.cfi_restore 21
+ 437              	.LVL48:
+ 438 0234 13010104 		addi	sp,sp,64
+ 439              		.cfi_def_cfa_offset 0
+ 440 0238 67800000 		jr	ra
+ 441              	.LVL49:
+ 442              	.L16:
+ 443              		.cfi_restore_state
+ 444              	.LBB41:
+  45:src/exceptionHandler.cpp ****             case 0x2: /// mem_free
+ 445              		.loc 1 45 13 is_stmt 1
+  46:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
+ 446              		.loc 1 46 17
+ 447              	.LBB34:
+ 448              	.LBB35:
+ 449              		.loc 2 45 9
+ 450              	.LBE35:
+ 451              	.LBE34:
+  46:src/exceptionHandler.cpp ****                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
+ 452              		.loc 1 46 64 is_stmt 0
+ 453 023c 93850900 		mv	a1,s3
+ 454 0240 97070000 		la	a5,_ZN11HeapManager8instanceE
+ 454      83B70700 
+ 455 0248 03B50700 		ld	a0,0(a5)
+ 456 024c 97000000 		call	_ZN11HeapManager8heapFreeEPv@plt
+ 456      E7800000 
+ 457              	.LVL50:
+  47:src/exceptionHandler.cpp ****                 break;
+ 458              		.loc 1 47 17 is_stmt 1
+GAS LISTING /tmp/ccCryeBd.s 			page 14
 
 
- 321              		.loc 1 61 17 is_stmt 1
- 322              	.LBE19:
- 323              	.LBE27:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 324              		.loc 1 32 12 is_stmt 0
- 325 015c 13050000 		li	a0,0
- 326              	.LBB28:
- 327              	.LBB20:
-  61:src/exceptionHandler.cpp ****                 break;
- 328              		.loc 1 61 17
- 329 0160 6F00C007 		j	.L3
- 330              	.L10:
-  62:src/exceptionHandler.cpp ****             case 0x22: /// sem_close
- 331              		.loc 1 62 13 is_stmt 1
-  63:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
- 332              		.loc 1 63 17
-  63:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
- 333              		.loc 1 63 28 is_stmt 0
- 334 0164 13850900 		mv	a0,s3
- 335 0168 97000000 		call	_ZN4_sem5closeEPS_@plt
- 335      E7800000 
- 336              	.LVL25:
-  64:src/exceptionHandler.cpp ****                 break;
- 337              		.loc 1 64 17 is_stmt 1
- 338              	.LBE20:
- 339              	.LBE28:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 340              		.loc 1 32 12 is_stmt 0
- 341 0170 13050000 		li	a0,0
- 342              	.LBB29:
- 343              	.LBB21:
-  64:src/exceptionHandler.cpp ****                 break;
- 344              		.loc 1 64 17
- 345 0174 6F008006 		j	.L3
- 346              	.L9:
-  65:src/exceptionHandler.cpp ****             case 0x23: /// sem_wait
- 347              		.loc 1 65 13 is_stmt 1
-  66:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
- 348              		.loc 1 66 17
-  66:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
- 349              		.loc 1 66 27 is_stmt 0
- 350 0178 13850900 		mv	a0,s3
- 351 017c 97000000 		call	_ZN4_sem4waitEPS_@plt
- 351      E7800000 
- 352              	.LVL26:
-  67:src/exceptionHandler.cpp ****                 break;
- 353              		.loc 1 67 17 is_stmt 1
- 354              	.LBE21:
- 355              	.LBE29:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 356              		.loc 1 32 12 is_stmt 0
- 357 0184 13050000 		li	a0,0
- 358              	.LBB30:
- 359              	.LBB22:
-  67:src/exceptionHandler.cpp ****                 break;
- 360              		.loc 1 67 17
- 361 0188 6F004005 		j	.L3
-GAS LISTING /tmp/cc44LysP.s 			page 11
+ 459 0254 6FF01FFB 		j	.L3
+ 460              	.LVL51:
+ 461              	.L15:
+  48:src/exceptionHandler.cpp ****             case 0x11: /// thread_create
+ 462              		.loc 1 48 13
+  49:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
+ 463              		.loc 1 49 17
+ 464              	.LBB36:
+ 465              	.LBB37:
+ 466              		.loc 2 45 9
+ 467              	.LBE37:
+ 468              	.LBE36:
+  49:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
+ 469              		.loc 1 49 146 is_stmt 0
+ 470 0258 93050004 		li	a1,64
+ 471 025c 97070000 		la	a5,_ZN11HeapManager8instanceE
+ 471      83B70700 
+ 472 0264 03B50700 		ld	a0,0(a5)
+ 473 0268 97000000 		call	_ZN11HeapManager12heapAllocateEm@plt
+ 473      E7800000 
+ 474              	.LVL52:
+  49:src/exceptionHandler.cpp ****                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)((
+ 475              		.loc 1 49 44
+ 476 0270 13071000 		li	a4,1
+ 477 0274 B7170000 		li	a5,4096
+ 478 0278 9387F7FF 		addi	a5,a5,-1
+ 479 027c B306F500 		add	a3,a0,a5
+ 480 0280 13860A00 		mv	a2,s5
+ 481 0284 93050A00 		mv	a1,s4
+ 482 0288 13850900 		mv	a0,s3
+ 483 028c 97000000 		call	_ZN7_thread6createEPPS_PFvPvES2_S2_b@plt
+ 483      E7800000 
+ 484              	.LVL53:
+  51:src/exceptionHandler.cpp ****                 break;
+ 485              		.loc 1 51 17 is_stmt 1
+ 486 0294 6FF01FF7 		j	.L3
+ 487              	.LVL54:
+ 488              	.L14:
+  52:src/exceptionHandler.cpp ****             case 0x12: /// thread_exit
+ 489              		.loc 1 52 13
+  53:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
+ 490              		.loc 1 53 17
+  53:src/exceptionHandler.cpp ****                 returnVal = _thread::currentThread->exit();
+ 491              		.loc 1 53 57 is_stmt 0
+ 492 0298 97000000 		call	_ZN7_thread4exitEv@plt
+ 492      E7800000 
+ 493              	.LVL55:
+  54:src/exceptionHandler.cpp ****                 break;
+ 494              		.loc 1 54 17 is_stmt 1
+ 495 02a0 6FF05FF6 		j	.L3
+ 496              	.LVL56:
+ 497              	.L13:
+  55:src/exceptionHandler.cpp ****             case 0x13: /// thread_dispatch
+ 498              		.loc 1 55 13
+  56:src/exceptionHandler.cpp ****                 _thread::dispatch();
+ 499              		.loc 1 56 17
+  56:src/exceptionHandler.cpp ****                 _thread::dispatch();
+GAS LISTING /tmp/ccCryeBd.s 			page 15
 
 
- 362              	.L8:
-  68:src/exceptionHandler.cpp ****             case 0x24: /// sem_signal
- 363              		.loc 1 68 13 is_stmt 1
-  69:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
- 364              		.loc 1 69 17
-  69:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
- 365              		.loc 1 69 29 is_stmt 0
- 366 018c 13850900 		mv	a0,s3
- 367 0190 97000000 		call	_ZN4_sem6signalEPS_@plt
- 367      E7800000 
- 368              	.LVL27:
-  70:src/exceptionHandler.cpp ****                 break;
- 369              		.loc 1 70 17 is_stmt 1
- 370              	.LBE22:
- 371              	.LBE30:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 372              		.loc 1 32 12 is_stmt 0
- 373 0198 13050000 		li	a0,0
- 374              	.LBB31:
- 375              	.LBB23:
-  70:src/exceptionHandler.cpp ****                 break;
- 376              		.loc 1 70 17
- 377 019c 6F000004 		j	.L3
- 378              	.L7:
-  71:src/exceptionHandler.cpp ****             case 0x31: /// time_sleep
- 379              		.loc 1 71 13 is_stmt 1
-  72:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
- 380              		.loc 1 72 17
-  72:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
- 381              		.loc 1 72 48 is_stmt 0
- 382 01a0 97000000 		call	_ZN5Timer11getInstanceEv@plt
- 382      E7800000 
- 383              	.LVL28:
-  72:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
- 384              		.loc 1 72 55
- 385 01a8 93850900 		mv	a1,s3
- 386 01ac 97000000 		call	_ZN5Timer5sleepEm@plt
- 386      E7800000 
- 387              	.LVL29:
-  73:src/exceptionHandler.cpp ****                 break;
- 388              		.loc 1 73 17 is_stmt 1
- 389 01b4 6F008002 		j	.L3
- 390              	.LVL30:
- 391              	.L6:
-  74:src/exceptionHandler.cpp ****             case 0x41:
- 392              		.loc 1 74 13
-  75:src/exceptionHandler.cpp ****                 returnVal = __getc();
- 393              		.loc 1 75 17
-  75:src/exceptionHandler.cpp ****                 returnVal = __getc();
- 394              		.loc 1 75 35 is_stmt 0
- 395 01b8 97000000 		call	__getc@plt
- 395      E7800000 
- 396              	.LVL31:
-  76:src/exceptionHandler.cpp ****                 break;
- 397              		.loc 1 76 17 is_stmt 1
- 398 01c0 6F00C001 		j	.L3
- 399              	.LVL32:
-GAS LISTING /tmp/cc44LysP.s 			page 12
+ 500              		.loc 1 56 34 is_stmt 0
+ 501 02a4 97000000 		call	_ZN7_thread8dispatchEv@plt
+ 501      E7800000 
+ 502              	.LVL57:
+  57:src/exceptionHandler.cpp ****                 break;
+ 503              		.loc 1 57 17 is_stmt 1
+ 504              	.LBE41:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 505              		.loc 1 39 12 is_stmt 0
+ 506 02ac 13050000 		li	a0,0
+ 507              	.LBB42:
+  57:src/exceptionHandler.cpp ****                 break;
+ 508              		.loc 1 57 17
+ 509 02b0 6FF05FF5 		j	.L3
+ 510              	.LVL58:
+ 511              	.L12:
+  58:src/exceptionHandler.cpp ****             case 0x14: /// thread_join
+ 512              		.loc 1 58 13 is_stmt 1
+  59:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
+ 513              		.loc 1 59 17
+  59:src/exceptionHandler.cpp ****                 _thread::currentThread->join((thread_t)a1);
+ 514              		.loc 1 59 45 is_stmt 0
+ 515 02b4 93850900 		mv	a1,s3
+ 516 02b8 97070000 		la	a5,_ZN7_thread13currentThreadE
+ 516      83B70700 
+ 517 02c0 03B50700 		ld	a0,0(a5)
+ 518 02c4 97000000 		call	_ZN7_thread4joinEPS_@plt
+ 518      E7800000 
+ 519              	.LVL59:
+  60:src/exceptionHandler.cpp ****                 break;
+ 520              		.loc 1 60 17 is_stmt 1
+ 521              	.LBE42:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 522              		.loc 1 39 12 is_stmt 0
+ 523 02cc 13050000 		li	a0,0
+ 524              	.LBB43:
+  60:src/exceptionHandler.cpp ****                 break;
+ 525              		.loc 1 60 17
+ 526 02d0 6FF05FF3 		j	.L3
+ 527              	.LVL60:
+ 528              	.L11:
+  61:src/exceptionHandler.cpp ****             case 0x21: /// sem_open
+ 529              		.loc 1 61 13 is_stmt 1
+  62:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
+ 530              		.loc 1 62 17
+  62:src/exceptionHandler.cpp ****                 _sem::open((sem_t*)a1, unsigned(a2));
+ 531              		.loc 1 62 27 is_stmt 0
+ 532 02d4 9B050A00 		sext.w	a1,s4
+ 533 02d8 13850900 		mv	a0,s3
+ 534 02dc 97000000 		call	_ZN4_sem4openEPPS_j@plt
+ 534      E7800000 
+ 535              	.LVL61:
+  63:src/exceptionHandler.cpp ****                 break;
+ 536              		.loc 1 63 17 is_stmt 1
+ 537              	.LBE43:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 538              		.loc 1 39 12 is_stmt 0
+GAS LISTING /tmp/ccCryeBd.s 			page 16
 
 
- 400              	.L4:
-  77:src/exceptionHandler.cpp ****             case 0x42:
- 401              		.loc 1 77 13
-  78:src/exceptionHandler.cpp ****                 __putc(a1);
- 402              		.loc 1 78 17
-  78:src/exceptionHandler.cpp ****                 __putc(a1);
- 403              		.loc 1 78 23 is_stmt 0
- 404 01c4 13F5F90F 		andi	a0,s3,0xff
- 405 01c8 97000000 		call	__putc@plt
- 405      E7800000 
- 406              	.LVL33:
-  79:src/exceptionHandler.cpp ****                 break;
- 407              		.loc 1 79 17 is_stmt 1
- 408              	.LBE23:
- 409              	.LBE31:
-  32:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
- 410              		.loc 1 32 12 is_stmt 0
- 411 01d0 13050000 		li	a0,0
- 412              	.LBB32:
- 413              	.LBB24:
-  79:src/exceptionHandler.cpp ****                 break;
- 414              		.loc 1 79 17
- 415 01d4 6F008000 		j	.L3
- 416              	.L18:
-  38:src/exceptionHandler.cpp ****         __asm__ volatile("mv %0, a4" : "=r"(a4));
- 417              		.loc 1 38 49
- 418 01d8 13050000 		li	a0,0
- 419              	.LVL34:
- 420              	.L3:
-  81:src/exceptionHandler.cpp ****         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
- 421              		.loc 1 81 9 is_stmt 1
-  81:src/exceptionHandler.cpp ****         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
- 422              		.loc 1 81 57 is_stmt 0
- 423              	#APP
- 424              	# 81 "src/exceptionHandler.cpp" 1
-  82:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
- 425              		mv a0, a0
- 426              	# 0 "" 2
- 427              		.loc 1 82 9 is_stmt 1
-  82:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
- 428              		.loc 1 82 53 is_stmt 0
- 429              	#NO_APP
- 430 01e0 93844400 		addi	s1,s1,4
- 431              	.LVL35:
-  82:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
- 432              		.loc 1 82 57
- 433              	#APP
- 434              	# 82 "src/exceptionHandler.cpp" 1
-  83:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
- 435              		csrw sepc, s1
- 436              	# 0 "" 2
- 437              		.loc 1 83 9 is_stmt 1
-  83:src/exceptionHandler.cpp ****         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
- 438              		.loc 1 83 61 is_stmt 0
- 439              	# 83 "src/exceptionHandler.cpp" 1
-  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
- 440              		csrw sstatus, s2
-GAS LISTING /tmp/cc44LysP.s 			page 13
+ 539 02e4 13050000 		li	a0,0
+ 540              	.LBB44:
+  63:src/exceptionHandler.cpp ****                 break;
+ 541              		.loc 1 63 17
+ 542 02e8 6FF0DFF1 		j	.L3
+ 543              	.LVL62:
+ 544              	.L10:
+  64:src/exceptionHandler.cpp ****             case 0x22: /// sem_close
+ 545              		.loc 1 64 13 is_stmt 1
+  65:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
+ 546              		.loc 1 65 17
+  65:src/exceptionHandler.cpp ****                 _sem::close((sem_t)a1);
+ 547              		.loc 1 65 28 is_stmt 0
+ 548 02ec 13850900 		mv	a0,s3
+ 549 02f0 97000000 		call	_ZN4_sem5closeEPS_@plt
+ 549      E7800000 
+ 550              	.LVL63:
+  66:src/exceptionHandler.cpp ****                 break;
+ 551              		.loc 1 66 17 is_stmt 1
+ 552              	.LBE44:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 553              		.loc 1 39 12 is_stmt 0
+ 554 02f8 13050000 		li	a0,0
+ 555              	.LBB45:
+  66:src/exceptionHandler.cpp ****                 break;
+ 556              		.loc 1 66 17
+ 557 02fc 6FF09FF0 		j	.L3
+ 558              	.LVL64:
+ 559              	.L9:
+  67:src/exceptionHandler.cpp ****             case 0x23: /// sem_wait
+ 560              		.loc 1 67 13 is_stmt 1
+  68:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
+ 561              		.loc 1 68 17
+  68:src/exceptionHandler.cpp ****                 _sem::wait((sem_t)a1);
+ 562              		.loc 1 68 27 is_stmt 0
+ 563 0300 13850900 		mv	a0,s3
+ 564 0304 97000000 		call	_ZN4_sem4waitEPS_@plt
+ 564      E7800000 
+ 565              	.LVL65:
+  69:src/exceptionHandler.cpp ****                 break;
+ 566              		.loc 1 69 17 is_stmt 1
+ 567              	.LBE45:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 568              		.loc 1 39 12 is_stmt 0
+ 569 030c 13050000 		li	a0,0
+ 570              	.LBB46:
+  69:src/exceptionHandler.cpp ****                 break;
+ 571              		.loc 1 69 17
+ 572 0310 6FF05FEF 		j	.L3
+ 573              	.LVL66:
+ 574              	.L8:
+  70:src/exceptionHandler.cpp ****             case 0x24: /// sem_signal
+ 575              		.loc 1 70 13 is_stmt 1
+  71:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
+ 576              		.loc 1 71 17
+  71:src/exceptionHandler.cpp ****                 _sem::signal((sem_t)a1);
+ 577              		.loc 1 71 29 is_stmt 0
+GAS LISTING /tmp/ccCryeBd.s 			page 17
 
 
- 441              	# 0 "" 2
- 442              		.loc 1 84 9 is_stmt 1
-  84:src/exceptionHandler.cpp ****         __asm__ volatile("csrc sip, 0x2");
- 443              		.loc 1 84 42 is_stmt 0
- 444              	# 84 "src/exceptionHandler.cpp" 1
- 445              		csrc sip, 0x2
- 446              	# 0 "" 2
- 447              	#NO_APP
- 448              	.LBE24:
- 449              	.LBE32:
- 450              		.loc 1 93 1
- 451 01f0 6FF01FE5 		j	.L1
- 452              		.cfi_endproc
- 453              	.LFE1:
- 455              	.Letext0:
- 456              		.file 3 "./lib/hw.h"
- 457              		.file 4 "./h/types.h"
- 458              		.file 5 "./h/thread.h"
- 459              		.file 6 "./h/sem.h"
- 460              		.file 7 "./h/timer.h"
- 461              		.file 8 "./lib/console.h"
-GAS LISTING /tmp/cc44LysP.s 			page 14
+ 578 0314 13850900 		mv	a0,s3
+ 579 0318 97000000 		call	_ZN4_sem6signalEPS_@plt
+ 579      E7800000 
+ 580              	.LVL67:
+  72:src/exceptionHandler.cpp ****                 break;
+ 581              		.loc 1 72 17 is_stmt 1
+ 582              	.LBE46:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 583              		.loc 1 39 12 is_stmt 0
+ 584 0320 13050000 		li	a0,0
+ 585              	.LBB47:
+  72:src/exceptionHandler.cpp ****                 break;
+ 586              		.loc 1 72 17
+ 587 0324 6FF01FEE 		j	.L3
+ 588              	.LVL68:
+ 589              	.L7:
+  73:src/exceptionHandler.cpp ****             case 0x31: /// time_sleep
+ 590              		.loc 1 73 13 is_stmt 1
+  74:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
+ 591              		.loc 1 74 17
+  74:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
+ 592              		.loc 1 74 48 is_stmt 0
+ 593 0328 97000000 		call	_ZN5Timer11getInstanceEv@plt
+ 593      E7800000 
+ 594              	.LVL69:
+  74:src/exceptionHandler.cpp ****                 returnVal = Timer::getInstance().sleep(a1);
+ 595              		.loc 1 74 55
+ 596 0330 93850900 		mv	a1,s3
+ 597 0334 97000000 		call	_ZN5Timer5sleepEm@plt
+ 597      E7800000 
+ 598              	.LVL70:
+  75:src/exceptionHandler.cpp ****                 break;
+ 599              		.loc 1 75 17 is_stmt 1
+ 600 033c 6FF09FEC 		j	.L3
+ 601              	.LVL71:
+ 602              	.L6:
+  76:src/exceptionHandler.cpp ****             case 0x41:
+ 603              		.loc 1 76 13
+  77:src/exceptionHandler.cpp ****                 returnVal = __getc();
+ 604              		.loc 1 77 17
+  77:src/exceptionHandler.cpp ****                 returnVal = __getc();
+ 605              		.loc 1 77 35 is_stmt 0
+ 606 0340 97000000 		call	__getc@plt
+ 606      E7800000 
+ 607              	.LVL72:
+  78:src/exceptionHandler.cpp ****                 break;
+ 608              		.loc 1 78 17 is_stmt 1
+ 609 0348 6FF0DFEB 		j	.L3
+ 610              	.LVL73:
+ 611              	.L4:
+  79:src/exceptionHandler.cpp ****             case 0x42:
+ 612              		.loc 1 79 13
+  80:src/exceptionHandler.cpp ****                 __putc(a1);
+ 613              		.loc 1 80 17
+  80:src/exceptionHandler.cpp ****                 __putc(a1);
+ 614              		.loc 1 80 23 is_stmt 0
+ 615 034c 13F5F90F 		andi	a0,s3,0xff
+GAS LISTING /tmp/ccCryeBd.s 			page 18
+
+
+ 616 0350 97000000 		call	__putc@plt
+ 616      E7800000 
+ 617              	.LVL74:
+  81:src/exceptionHandler.cpp ****                 break;
+ 618              		.loc 1 81 17 is_stmt 1
+ 619              	.LBE47:
+  39:src/exceptionHandler.cpp ****     uint64 returnVal = 0;
+ 620              		.loc 1 39 12 is_stmt 0
+ 621 0358 13050000 		li	a0,0
+ 622              	.LBB48:
+  81:src/exceptionHandler.cpp ****                 break;
+ 623              		.loc 1 81 17
+ 624 035c 6FF09FEA 		j	.L3
+ 625              	.LVL75:
+ 626              	.L28:
+  40:src/exceptionHandler.cpp ****     if(scause == 0x0000000000000009UL || scause == 0x0000000000000008UL){   /// check if the except
+ 627              		.loc 1 40 5
+ 628 0360 13050000 		li	a0,0
+ 629 0364 6FF01FEA 		j	.L3
+ 630              	.LVL76:
+ 631              	.L31:
+ 632              	.LBB38:
+ 633              	.LBB26:
+  89:src/exceptionHandler.cpp ****         __putc('\n');
+ 634              		.loc 1 89 9 is_stmt 1
+  89:src/exceptionHandler.cpp ****         __putc('\n');
+ 635              		.loc 1 89 15 is_stmt 0
+ 636 0368 1305A000 		li	a0,10
+ 637 036c 97000000 		call	__putc@plt
+ 637      E7800000 
+ 638              	.LVL77:
+  90:src/exceptionHandler.cpp ****         __putc('E');
+ 639              		.loc 1 90 9 is_stmt 1
+  90:src/exceptionHandler.cpp ****         __putc('E');
+ 640              		.loc 1 90 15 is_stmt 0
+ 641 0374 13055004 		li	a0,69
+ 642 0378 97000000 		call	__putc@plt
+ 642      E7800000 
+ 643              	.LVL78:
+  91:src/exceptionHandler.cpp ****         __putc('r');
+ 644              		.loc 1 91 9 is_stmt 1
+  91:src/exceptionHandler.cpp ****         __putc('r');
+ 645              		.loc 1 91 15 is_stmt 0
+ 646 0380 13052007 		li	a0,114
+ 647 0384 97000000 		call	__putc@plt
+ 647      E7800000 
+ 648              	.LVL79:
+  92:src/exceptionHandler.cpp ****         __putc('r');
+ 649              		.loc 1 92 9 is_stmt 1
+  92:src/exceptionHandler.cpp ****         __putc('r');
+ 650              		.loc 1 92 15 is_stmt 0
+ 651 038c 13052007 		li	a0,114
+ 652 0390 97000000 		call	__putc@plt
+ 652      E7800000 
+ 653              	.LVL80:
+  93:src/exceptionHandler.cpp ****         __putc('o');
+ 654              		.loc 1 93 9 is_stmt 1
+GAS LISTING /tmp/ccCryeBd.s 			page 19
+
+
+  93:src/exceptionHandler.cpp ****         __putc('o');
+ 655              		.loc 1 93 15 is_stmt 0
+ 656 0398 1305F006 		li	a0,111
+ 657 039c 97000000 		call	__putc@plt
+ 657      E7800000 
+ 658              	.LVL81:
+  94:src/exceptionHandler.cpp ****         __putc('r');
+ 659              		.loc 1 94 9 is_stmt 1
+  94:src/exceptionHandler.cpp ****         __putc('r');
+ 660              		.loc 1 94 15 is_stmt 0
+ 661 03a4 13052007 		li	a0,114
+ 662 03a8 97000000 		call	__putc@plt
+ 662      E7800000 
+ 663              	.LVL82:
+  95:src/exceptionHandler.cpp ****         __putc(':');
+ 664              		.loc 1 95 9 is_stmt 1
+  95:src/exceptionHandler.cpp ****         __putc(':');
+ 665              		.loc 1 95 15 is_stmt 0
+ 666 03b0 1305A003 		li	a0,58
+ 667 03b4 97000000 		call	__putc@plt
+ 667      E7800000 
+ 668              	.LVL83:
+  96:src/exceptionHandler.cpp ****         __putc(' ');
+ 669              		.loc 1 96 9 is_stmt 1
+  96:src/exceptionHandler.cpp ****         __putc(' ');
+ 670              		.loc 1 96 15 is_stmt 0
+ 671 03bc 13050002 		li	a0,32
+ 672 03c0 97000000 		call	__putc@plt
+ 672      E7800000 
+ 673              	.LVL84:
+  97:src/exceptionHandler.cpp ****         __putc('i');
+ 674              		.loc 1 97 9 is_stmt 1
+  97:src/exceptionHandler.cpp ****         __putc('i');
+ 675              		.loc 1 97 15 is_stmt 0
+ 676 03c8 13059006 		li	a0,105
+ 677 03cc 97000000 		call	__putc@plt
+ 677      E7800000 
+ 678              	.LVL85:
+  98:src/exceptionHandler.cpp ****         __putc('l');
+ 679              		.loc 1 98 9 is_stmt 1
+  98:src/exceptionHandler.cpp ****         __putc('l');
+ 680              		.loc 1 98 15 is_stmt 0
+ 681 03d4 1305C006 		li	a0,108
+ 682 03d8 97000000 		call	__putc@plt
+ 682      E7800000 
+ 683              	.LVL86:
+  99:src/exceptionHandler.cpp ****         __putc('l');
+ 684              		.loc 1 99 9 is_stmt 1
+  99:src/exceptionHandler.cpp ****         __putc('l');
+ 685              		.loc 1 99 15 is_stmt 0
+ 686 03e0 1305C006 		li	a0,108
+ 687 03e4 97000000 		call	__putc@plt
+ 687      E7800000 
+ 688              	.LVL87:
+ 100:src/exceptionHandler.cpp ****         __putc('e');
+ 689              		.loc 1 100 9 is_stmt 1
+ 100:src/exceptionHandler.cpp ****         __putc('e');
+GAS LISTING /tmp/ccCryeBd.s 			page 20
+
+
+ 690              		.loc 1 100 15 is_stmt 0
+ 691 03ec 13055006 		li	a0,101
+ 692 03f0 97000000 		call	__putc@plt
+ 692      E7800000 
+ 693              	.LVL88:
+ 101:src/exceptionHandler.cpp ****         __putc('g');
+ 694              		.loc 1 101 9 is_stmt 1
+ 101:src/exceptionHandler.cpp ****         __putc('g');
+ 695              		.loc 1 101 15 is_stmt 0
+ 696 03f8 13057006 		li	a0,103
+ 697 03fc 97000000 		call	__putc@plt
+ 697      E7800000 
+ 698              	.LVL89:
+ 102:src/exceptionHandler.cpp ****         __putc('a');
+ 699              		.loc 1 102 9 is_stmt 1
+ 102:src/exceptionHandler.cpp ****         __putc('a');
+ 700              		.loc 1 102 15 is_stmt 0
+ 701 0404 13051006 		li	a0,97
+ 702 0408 97000000 		call	__putc@plt
+ 702      E7800000 
+ 703              	.LVL90:
+ 103:src/exceptionHandler.cpp ****         __putc('l');
+ 704              		.loc 1 103 9 is_stmt 1
+ 103:src/exceptionHandler.cpp ****         __putc('l');
+ 705              		.loc 1 103 15 is_stmt 0
+ 706 0410 1305C006 		li	a0,108
+ 707 0414 97000000 		call	__putc@plt
+ 707      E7800000 
+ 708              	.LVL91:
+ 104:src/exceptionHandler.cpp ****         __putc(' ');
+ 709              		.loc 1 104 9 is_stmt 1
+ 104:src/exceptionHandler.cpp ****         __putc(' ');
+ 710              		.loc 1 104 15 is_stmt 0
+ 711 041c 13050002 		li	a0,32
+ 712 0420 97000000 		call	__putc@plt
+ 712      E7800000 
+ 713              	.LVL92:
+ 105:src/exceptionHandler.cpp ****         __putc('r');
+ 714              		.loc 1 105 9 is_stmt 1
+ 105:src/exceptionHandler.cpp ****         __putc('r');
+ 715              		.loc 1 105 15 is_stmt 0
+ 716 0428 13052007 		li	a0,114
+ 717 042c 97000000 		call	__putc@plt
+ 717      E7800000 
+ 718              	.LVL93:
+ 106:src/exceptionHandler.cpp ****         __putc('e');
+ 719              		.loc 1 106 9 is_stmt 1
+ 106:src/exceptionHandler.cpp ****         __putc('e');
+ 720              		.loc 1 106 15 is_stmt 0
+ 721 0434 13055006 		li	a0,101
+ 722 0438 97000000 		call	__putc@plt
+ 722      E7800000 
+ 723              	.LVL94:
+ 107:src/exceptionHandler.cpp ****         __putc('a');
+ 724              		.loc 1 107 9 is_stmt 1
+ 107:src/exceptionHandler.cpp ****         __putc('a');
+ 725              		.loc 1 107 15 is_stmt 0
+GAS LISTING /tmp/ccCryeBd.s 			page 21
+
+
+ 726 0440 13051006 		li	a0,97
+ 727 0444 97000000 		call	__putc@plt
+ 727      E7800000 
+ 728              	.LVL95:
+ 108:src/exceptionHandler.cpp ****         __putc('d');
+ 729              		.loc 1 108 9 is_stmt 1
+ 108:src/exceptionHandler.cpp ****         __putc('d');
+ 730              		.loc 1 108 15 is_stmt 0
+ 731 044c 13054006 		li	a0,100
+ 732 0450 97000000 		call	__putc@plt
+ 732      E7800000 
+ 733              	.LVL96:
+ 109:src/exceptionHandler.cpp ****         __putc('!');
+ 734              		.loc 1 109 9 is_stmt 1
+ 109:src/exceptionHandler.cpp ****         __putc('!');
+ 735              		.loc 1 109 15 is_stmt 0
+ 736 0458 13051002 		li	a0,33
+ 737 045c 97000000 		call	__putc@plt
+ 737      E7800000 
+ 738              	.LVL97:
+ 110:src/exceptionHandler.cpp ****         uint64 pc;
+ 739              		.loc 1 110 9 is_stmt 1
+ 111:src/exceptionHandler.cpp ****         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
+ 740              		.loc 1 111 9
+ 111:src/exceptionHandler.cpp ****         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
+ 741              		.loc 1 111 53 is_stmt 0
+ 742              	#APP
+ 743              	# 111 "src/exceptionHandler.cpp" 1
+ 744              		csrr s2, sepc
+ 745              	# 0 "" 2
+ 746              	.LVL98:
+ 112:src/exceptionHandler.cpp ****         __putc('\n');
+ 747              		.loc 1 112 9 is_stmt 1
+ 112:src/exceptionHandler.cpp ****         __putc('\n');
+ 748              		.loc 1 112 15 is_stmt 0
+ 749              	#NO_APP
+ 750 0468 1305A000 		li	a0,10
+ 751 046c 97000000 		call	__putc@plt
+ 751      E7800000 
+ 752              	.LVL99:
+ 113:src/exceptionHandler.cpp ****         __putc('P');
+ 753              		.loc 1 113 9 is_stmt 1
+ 113:src/exceptionHandler.cpp ****         __putc('P');
+ 754              		.loc 1 113 15 is_stmt 0
+ 755 0474 13050005 		li	a0,80
+ 756 0478 97000000 		call	__putc@plt
+ 756      E7800000 
+ 757              	.LVL100:
+ 114:src/exceptionHandler.cpp ****         __putc('C');
+ 758              		.loc 1 114 9 is_stmt 1
+ 114:src/exceptionHandler.cpp ****         __putc('C');
+ 759              		.loc 1 114 15 is_stmt 0
+ 760 0480 13053004 		li	a0,67
+ 761 0484 97000000 		call	__putc@plt
+ 761      E7800000 
+ 762              	.LVL101:
+ 115:src/exceptionHandler.cpp ****         __putc(':');
+GAS LISTING /tmp/ccCryeBd.s 			page 22
+
+
+ 763              		.loc 1 115 9 is_stmt 1
+ 115:src/exceptionHandler.cpp ****         __putc(':');
+ 764              		.loc 1 115 15 is_stmt 0
+ 765 048c 1305A003 		li	a0,58
+ 766 0490 97000000 		call	__putc@plt
+ 766      E7800000 
+ 767              	.LVL102:
+ 116:src/exceptionHandler.cpp ****         __putc(' ');
+ 768              		.loc 1 116 9 is_stmt 1
+ 116:src/exceptionHandler.cpp ****         __putc(' ');
+ 769              		.loc 1 116 15 is_stmt 0
+ 770 0498 13050002 		li	a0,32
+ 771 049c 97000000 		call	__putc@plt
+ 771      E7800000 
+ 772              	.LVL103:
+ 117:src/exceptionHandler.cpp ****         __putc('0');
+ 773              		.loc 1 117 9 is_stmt 1
+ 117:src/exceptionHandler.cpp ****         __putc('0');
+ 774              		.loc 1 117 15 is_stmt 0
+ 775 04a4 13050003 		li	a0,48
+ 776 04a8 97000000 		call	__putc@plt
+ 776      E7800000 
+ 777              	.LVL104:
+ 118:src/exceptionHandler.cpp ****         __putc('x');
+ 778              		.loc 1 118 9 is_stmt 1
+ 118:src/exceptionHandler.cpp ****         __putc('x');
+ 779              		.loc 1 118 15 is_stmt 0
+ 780 04b0 13058007 		li	a0,120
+ 781 04b4 97000000 		call	__putc@plt
+ 781      E7800000 
+ 782              	.LVL105:
+ 119:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 783              		.loc 1 119 9 is_stmt 1
+ 784              	.LBB27:
+ 119:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 785              		.loc 1 119 17 is_stmt 0
+ 786 04bc 9304F000 		li	s1,15
+ 787              	.LVL106:
+ 788 04c0 6F004001 		j	.L23
+ 789              	.LVL107:
+ 790              	.L21:
+ 791              	.LBB28:
+ 124:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 792              		.loc 1 124 17 is_stmt 1
+ 124:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 793              		.loc 1 124 23 is_stmt 0
+ 794 04c4 13057503 		addi	a0,a0,55
+ 795              	.LVL108:
+ 796 04c8 97000000 		call	__putc@plt
+ 796      E7800000 
+ 797              	.LVL109:
+ 798              	.L22:
+ 799              	.LBE28:
+ 119:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 800              		.loc 1 119 9 is_stmt 1 discriminator 2
+ 801 04d0 9B84F4FF 		addiw	s1,s1,-1
+ 802              	.LVL110:
+GAS LISTING /tmp/ccCryeBd.s 			page 23
+
+
+ 803              	.L23:
+ 119:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 804              		.loc 1 119 27 discriminator 1
+ 805 04d4 63C40402 		bltz	s1,.L20
+ 806              	.LBB29:
+ 120:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 807              		.loc 1 120 13
+ 120:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 808              		.loc 1 120 36 is_stmt 0
+ 809 04d8 1B952400 		slliw	a0,s1,2
+ 120:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 810              		.loc 1 120 30
+ 811 04dc 3355A900 		srl	a0,s2,a0
+ 120:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 812              		.loc 1 120 20
+ 813 04e0 1375F500 		andi	a0,a0,15
+ 814              	.LVL111:
+ 121:src/exceptionHandler.cpp ****             if(tmp < 10){
+ 815              		.loc 1 121 13 is_stmt 1
+ 816 04e4 93079000 		li	a5,9
+ 817 04e8 E3EEA7FC 		bgtu	a0,a5,.L21
+ 122:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 818              		.loc 1 122 17
+ 122:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 819              		.loc 1 122 23 is_stmt 0
+ 820 04ec 13050503 		addi	a0,a0,48
+ 821              	.LVL112:
+ 822 04f0 97000000 		call	__putc@plt
+ 822      E7800000 
+ 823              	.LVL113:
+ 824 04f8 6FF09FFD 		j	.L22
+ 825              	.LVL114:
+ 826              	.L20:
+ 827              	.LBE29:
+ 828              	.LBE27:
+ 127:src/exceptionHandler.cpp ****         assert(false);
+ 829              		.loc 1 127 9 is_stmt 1
+ 127:src/exceptionHandler.cpp ****         assert(false);
+ 830              		.loc 1 127 9
+ 831 04fc 97060000 		lla	a3,.LC0
+ 831      93860600 
+ 832 0504 1306F007 		li	a2,127
+ 833 0508 97050000 		lla	a1,.LC1
+ 833      93850500 
+ 834 0510 17050000 		lla	a0,.LC2
+ 834      13050500 
+ 835 0518 97000000 		call	_Z13assert_failedPKcS0_jS0_@plt
+ 835      E7800000 
+ 836              	.LVL115:
+ 127:src/exceptionHandler.cpp ****         assert(false);
+ 837              		.loc 1 127 22
+ 838              	.LBE26:
+ 839 0520 6FF09FCF 		j	.L1
+ 840              	.LVL116:
+ 841              	.L25:
+ 842              	.LBB30:
+ 843              	.LBB25:
+GAS LISTING /tmp/ccCryeBd.s 			page 24
+
+
+ 844              	.LBB24:
+ 845              	.LBB22:
+ 166:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 846              		.loc 1 166 17
+ 166:src/exceptionHandler.cpp ****                 __putc('A' + tmp - 10);
+ 847              		.loc 1 166 23 is_stmt 0
+ 848 0524 13057503 		addi	a0,a0,55
+ 849              	.LVL117:
+ 850 0528 97000000 		call	__putc@plt
+ 850      E7800000 
+ 851              	.LVL118:
+ 852              	.L26:
+ 853              	.LBE22:
+ 161:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 854              		.loc 1 161 9 is_stmt 1 discriminator 2
+ 855 0530 9B84F4FF 		addiw	s1,s1,-1
+ 856              	.LVL119:
+ 857              	.L27:
+ 161:src/exceptionHandler.cpp ****         for(int i = 15; i >= 0; i--){
+ 858              		.loc 1 161 27 discriminator 1
+ 859 0534 63C40402 		bltz	s1,.L24
+ 860              	.LBB23:
+ 162:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 861              		.loc 1 162 13
+ 162:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 862              		.loc 1 162 36 is_stmt 0
+ 863 0538 1B952400 		slliw	a0,s1,2
+ 162:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 864              		.loc 1 162 30
+ 865 053c 3355A900 		srl	a0,s2,a0
+ 162:src/exceptionHandler.cpp ****             uint64 tmp = (pc >> (i * 4)) & 0xF;
+ 866              		.loc 1 162 20
+ 867 0540 1375F500 		andi	a0,a0,15
+ 868              	.LVL120:
+ 163:src/exceptionHandler.cpp ****             if(tmp < 10){
+ 869              		.loc 1 163 13 is_stmt 1
+ 870 0544 93079000 		li	a5,9
+ 871 0548 E3EEA7FC 		bgtu	a0,a5,.L25
+ 164:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 872              		.loc 1 164 17
+ 164:src/exceptionHandler.cpp ****                 __putc('0' + tmp);
+ 873              		.loc 1 164 23 is_stmt 0
+ 874 054c 13050503 		addi	a0,a0,48
+ 875              	.LVL121:
+ 876 0550 97000000 		call	__putc@plt
+ 876      E7800000 
+ 877              	.LVL122:
+ 878 0558 6FF09FFD 		j	.L26
+ 879              	.LVL123:
+ 880              	.L24:
+ 881              	.LBE23:
+ 882              	.LBE24:
+ 169:src/exceptionHandler.cpp ****         assert(false);
+ 883              		.loc 1 169 9 is_stmt 1
+ 169:src/exceptionHandler.cpp ****         assert(false);
+ 884              		.loc 1 169 9
+ 885 055c 97060000 		lla	a3,.LC0
+GAS LISTING /tmp/ccCryeBd.s 			page 25
+
+
+ 885      93860600 
+ 886 0564 1306900A 		li	a2,169
+ 887 0568 97050000 		lla	a1,.LC1
+ 887      93850500 
+ 888 0570 17050000 		lla	a0,.LC2
+ 888      13050500 
+ 889 0578 97000000 		call	_Z13assert_failedPKcS0_jS0_@plt
+ 889      E7800000 
+ 890              	.LVL124:
+ 169:src/exceptionHandler.cpp ****         assert(false);
+ 891              		.loc 1 169 22
+ 892              	.LBE25:
+ 893              	.LBE30:
+ 894              	.LBE38:
+ 895              	.LBE48:
+ 896              		.loc 1 177 1 is_stmt 0
+ 897 0580 6FF09FC9 		j	.L1
+ 898              		.cfi_endproc
+ 899              	.LFE1:
+ 901              	.Letext0:
+ 902              		.file 3 "./lib/hw.h"
+ 903              		.file 4 "./h/types.h"
+ 904              		.file 5 "./h/thread.h"
+ 905              		.file 6 "./h/sem.h"
+ 906              		.file 7 "./h/timer.h"
+ 907              		.file 8 "./lib/console.h"
+ 908              		.file 9 "./h/assert.h"
+GAS LISTING /tmp/ccCryeBd.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 exceptionHandler.cpp
-     /tmp/cc44LysP.s:9      .text:0000000000000000 exceptionHandler
-     /tmp/cc44LysP.s:13     .text:0000000000000000 .L0 
-     /tmp/cc44LysP.s:14     .text:0000000000000000 .L0 
-     /tmp/cc44LysP.s:15     .text:0000000000000004 .L0 
-     /tmp/cc44LysP.s:23     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:24     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:25     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:26     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:27     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:28     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:29     .text:0000000000000020 .L0 
-     /tmp/cc44LysP.s:31     .text:0000000000000024 .L0 
-     /tmp/cc44LysP.s:33     .text:0000000000000024 .L0 
-     /tmp/cc44LysP.s:34     .text:0000000000000024 .L0 
+     /tmp/ccCryeBd.s:20     .text:0000000000000000 exceptionHandler
+     /tmp/ccCryeBd.s:24     .text:0000000000000000 .L0 
+     /tmp/ccCryeBd.s:25     .text:0000000000000000 .L0 
+     /tmp/ccCryeBd.s:26     .text:0000000000000004 .L0 
+     /tmp/ccCryeBd.s:34     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:35     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:36     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:37     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:38     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:39     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:40     .text:0000000000000020 .L0 
+     /tmp/ccCryeBd.s:42     .text:0000000000000024 .L0 
+     /tmp/ccCryeBd.s:44     .text:0000000000000024 .L0 
+     /tmp/ccCryeBd.s:45     .text:0000000000000024 .L0 
 src/exceptionHandler.cpp:22     .text:0000000000000024 .L0 
-     /tmp/cc44LysP.s:41     .text:0000000000000028 .L0 
-     /tmp/cc44LysP.s:42     .text:0000000000000028 .L0 
+     /tmp/ccCryeBd.s:52     .text:0000000000000028 .L0 
+     /tmp/ccCryeBd.s:53     .text:0000000000000028 .L0 
 src/exceptionHandler.cpp:25     .text:0000000000000028 .L0 
-     /tmp/cc44LysP.s:48     .text:000000000000002c .L0 
-     /tmp/cc44LysP.s:49     .text:000000000000002c .L0 
+     /tmp/ccCryeBd.s:59     .text:000000000000002c .L0 
+     /tmp/ccCryeBd.s:60     .text:000000000000002c .L0 
 src/exceptionHandler.cpp:28     .text:000000000000002c .L0 
-     /tmp/cc44LysP.s:55     .text:0000000000000030 .L0 
-     /tmp/cc44LysP.s:56     .text:0000000000000030 .L0 
+     /tmp/ccCryeBd.s:66     .text:0000000000000030 .L0 
+     /tmp/ccCryeBd.s:67     .text:0000000000000030 .L0 
 src/exceptionHandler.cpp:31     .text:0000000000000030 .L0 
-     /tmp/cc44LysP.s:62     .text:0000000000000034 .L0 
-     /tmp/cc44LysP.s:65     .text:0000000000000034 .L0 
-     /tmp/cc44LysP.s:66     .text:0000000000000034 .L0 
-     /tmp/cc44LysP.s:69     .text:0000000000000038 .L0 
-     /tmp/cc44LysP.s:75     .text:0000000000000040 .L0 
-     /tmp/cc44LysP.s:76     .text:0000000000000044 .L0 
-     /tmp/cc44LysP.s:77     .text:0000000000000044 .L0 
-     /tmp/cc44LysP.s:79     .text:0000000000000048 .L0 
-     /tmp/cc44LysP.s:80     .text:0000000000000048 .L0 
-     /tmp/cc44LysP.s:82     .text:000000000000004c .L0 
-     /tmp/cc44LysP.s:84     .text:0000000000000050 .L0 
-     /tmp/cc44LysP.s:87     .text:0000000000000054 .L0 
-     /tmp/cc44LysP.s:89     .text:0000000000000058 .L0 
-     /tmp/cc44LysP.s:91     .text:000000000000005c .L0 
-     /tmp/cc44LysP.s:93     .text:0000000000000060 .L0 
-     /tmp/cc44LysP.s:97     .text:0000000000000064 .L0 
-     /tmp/cc44LysP.s:101    .text:0000000000000064 .L0 
-     /tmp/cc44LysP.s:102    .text:0000000000000064 .L0 
-src/exceptionHandler.cpp:35     .text:0000000000000064 .L0 
-     /tmp/cc44LysP.s:109    .text:0000000000000068 .L0 
-src/exceptionHandler.cpp:36     .text:0000000000000068 .L0 
-     /tmp/cc44LysP.s:115    .text:000000000000006c .L0 
-src/exceptionHandler.cpp:37     .text:000000000000006c .L0 
-     /tmp/cc44LysP.s:121    .text:0000000000000070 .L0 
-src/exceptionHandler.cpp:38     .text:0000000000000070 .L0 
-     /tmp/cc44LysP.s:128    .text:0000000000000074 .L0 
-     /tmp/cc44LysP.s:211    .text:0000000000000098 .L0 
-     /tmp/cc44LysP.s:215    .text:0000000000000098 .L0 
-     /tmp/cc44LysP.s:218    .text:0000000000000098 .L0 
-     /tmp/cc44LysP.s:219    .text:0000000000000098 .L0 
-     /tmp/cc44LysP.s:225    .text:00000000000000b0 .L0 
-GAS LISTING /tmp/cc44LysP.s 			page 15
+     /tmp/ccCryeBd.s:73     .text:0000000000000034 .L0 
+     /tmp/ccCryeBd.s:74     .text:0000000000000034 .L0 
+src/exceptionHandler.cpp:34     .text:0000000000000034 .L0 
+     /tmp/ccCryeBd.s:80     .text:0000000000000038 .L0 
+src/exceptionHandler.cpp:35     .text:0000000000000038 .L0 
+     /tmp/ccCryeBd.s:86     .text:000000000000003c .L0 
+src/exceptionHandler.cpp:36     .text:000000000000003c .L0 
+     /tmp/ccCryeBd.s:92     .text:0000000000000040 .L0 
+src/exceptionHandler.cpp:37     .text:0000000000000040 .L0 
+     /tmp/ccCryeBd.s:98     .text:0000000000000044 .L0 
+     /tmp/ccCryeBd.s:101    .text:0000000000000044 .L0 
+     /tmp/ccCryeBd.s:102    .text:0000000000000044 .L0 
+     /tmp/ccCryeBd.s:104    .text:0000000000000048 .L0 
+     /tmp/ccCryeBd.s:110    .text:0000000000000050 .L0 
+     /tmp/ccCryeBd.s:119    .text:0000000000000058 .L0 
+     /tmp/ccCryeBd.s:123    .text:0000000000000060 .L0 
+     /tmp/ccCryeBd.s:124    .text:0000000000000060 .L0 
+     /tmp/ccCryeBd.s:128    .text:000000000000006c .L0 
+     /tmp/ccCryeBd.s:129    .text:000000000000006c .L0 
+     /tmp/ccCryeBd.s:133    .text:0000000000000078 .L0 
+     /tmp/ccCryeBd.s:134    .text:0000000000000078 .L0 
+     /tmp/ccCryeBd.s:138    .text:0000000000000084 .L0 
+     /tmp/ccCryeBd.s:139    .text:0000000000000084 .L0 
+     /tmp/ccCryeBd.s:143    .text:0000000000000090 .L0 
+     /tmp/ccCryeBd.s:144    .text:0000000000000090 .L0 
+     /tmp/ccCryeBd.s:148    .text:000000000000009c .L0 
+     /tmp/ccCryeBd.s:149    .text:000000000000009c .L0 
+     /tmp/ccCryeBd.s:153    .text:00000000000000a8 .L0 
+     /tmp/ccCryeBd.s:154    .text:00000000000000a8 .L0 
+     /tmp/ccCryeBd.s:158    .text:00000000000000b4 .L0 
+     /tmp/ccCryeBd.s:159    .text:00000000000000b4 .L0 
+GAS LISTING /tmp/ccCryeBd.s 			page 27
 
 
-     /tmp/cc44LysP.s:229    .text:00000000000000b4 .L0 
-     /tmp/cc44LysP.s:232    .text:00000000000000b4 .L0 
-     /tmp/cc44LysP.s:235    .text:00000000000000b4 .L0 
-     /tmp/cc44LysP.s:236    .text:00000000000000b4 .L0 
-     /tmp/cc44LysP.s:242    .text:00000000000000cc .L0 
-     /tmp/cc44LysP.s:246    .text:00000000000000d0 .L0 
-     /tmp/cc44LysP.s:249    .text:00000000000000d0 .L0 
-     /tmp/cc44LysP.s:252    .text:00000000000000d0 .L0 
-     /tmp/cc44LysP.s:253    .text:00000000000000d0 .L0 
-     /tmp/cc44LysP.s:259    .text:00000000000000e8 .L0 
-     /tmp/cc44LysP.s:269    .text:000000000000010c .L0 
-     /tmp/cc44LysP.s:273    .text:0000000000000110 .L0 
-     /tmp/cc44LysP.s:274    .text:0000000000000110 .L0 
-     /tmp/cc44LysP.s:275    .text:0000000000000110 .L0 
-     /tmp/cc44LysP.s:278    .text:0000000000000118 .L0 
-     /tmp/cc44LysP.s:282    .text:000000000000011c .L0 
-     /tmp/cc44LysP.s:283    .text:000000000000011c .L0 
-     /tmp/cc44LysP.s:284    .text:000000000000011c .L0 
-     /tmp/cc44LysP.s:289    .text:0000000000000124 .L0 
-     /tmp/cc44LysP.s:290    .text:0000000000000124 .L0 
-     /tmp/cc44LysP.s:294    .text:0000000000000128 .L0 
-     /tmp/cc44LysP.s:297    .text:000000000000012c .L0 
-     /tmp/cc44LysP.s:298    .text:000000000000012c .L0 
-     /tmp/cc44LysP.s:299    .text:000000000000012c .L0 
-     /tmp/cc44LysP.s:307    .text:0000000000000144 .L0 
-     /tmp/cc44LysP.s:308    .text:0000000000000144 .L0 
-     /tmp/cc44LysP.s:312    .text:0000000000000148 .L0 
-     /tmp/cc44LysP.s:315    .text:000000000000014c .L0 
-     /tmp/cc44LysP.s:316    .text:000000000000014c .L0 
-     /tmp/cc44LysP.s:317    .text:000000000000014c .L0 
-     /tmp/cc44LysP.s:324    .text:000000000000015c .L0 
-     /tmp/cc44LysP.s:325    .text:000000000000015c .L0 
-     /tmp/cc44LysP.s:329    .text:0000000000000160 .L0 
-     /tmp/cc44LysP.s:332    .text:0000000000000164 .L0 
-     /tmp/cc44LysP.s:333    .text:0000000000000164 .L0 
-     /tmp/cc44LysP.s:334    .text:0000000000000164 .L0 
-     /tmp/cc44LysP.s:340    .text:0000000000000170 .L0 
-     /tmp/cc44LysP.s:341    .text:0000000000000170 .L0 
-     /tmp/cc44LysP.s:345    .text:0000000000000174 .L0 
-     /tmp/cc44LysP.s:348    .text:0000000000000178 .L0 
-     /tmp/cc44LysP.s:349    .text:0000000000000178 .L0 
-     /tmp/cc44LysP.s:350    .text:0000000000000178 .L0 
-     /tmp/cc44LysP.s:356    .text:0000000000000184 .L0 
-     /tmp/cc44LysP.s:357    .text:0000000000000184 .L0 
-     /tmp/cc44LysP.s:361    .text:0000000000000188 .L0 
-     /tmp/cc44LysP.s:364    .text:000000000000018c .L0 
-     /tmp/cc44LysP.s:365    .text:000000000000018c .L0 
-     /tmp/cc44LysP.s:366    .text:000000000000018c .L0 
-     /tmp/cc44LysP.s:372    .text:0000000000000198 .L0 
-     /tmp/cc44LysP.s:373    .text:0000000000000198 .L0 
-     /tmp/cc44LysP.s:377    .text:000000000000019c .L0 
-     /tmp/cc44LysP.s:380    .text:00000000000001a0 .L0 
-     /tmp/cc44LysP.s:381    .text:00000000000001a0 .L0 
-     /tmp/cc44LysP.s:382    .text:00000000000001a0 .L0 
-     /tmp/cc44LysP.s:385    .text:00000000000001a8 .L0 
-     /tmp/cc44LysP.s:389    .text:00000000000001b4 .L0 
-     /tmp/cc44LysP.s:393    .text:00000000000001b8 .L0 
-GAS LISTING /tmp/cc44LysP.s 			page 16
+     /tmp/ccCryeBd.s:163    .text:00000000000000c0 .L0 
+     /tmp/ccCryeBd.s:164    .text:00000000000000c0 .L0 
+     /tmp/ccCryeBd.s:168    .text:00000000000000cc .L0 
+     /tmp/ccCryeBd.s:169    .text:00000000000000cc .L0 
+     /tmp/ccCryeBd.s:173    .text:00000000000000d8 .L0 
+     /tmp/ccCryeBd.s:174    .text:00000000000000d8 .L0 
+     /tmp/ccCryeBd.s:178    .text:00000000000000e4 .L0 
+     /tmp/ccCryeBd.s:179    .text:00000000000000e4 .L0 
+     /tmp/ccCryeBd.s:183    .text:00000000000000f0 .L0 
+     /tmp/ccCryeBd.s:184    .text:00000000000000f0 .L0 
+     /tmp/ccCryeBd.s:188    .text:00000000000000fc .L0 
+     /tmp/ccCryeBd.s:189    .text:00000000000000fc .L0 
+     /tmp/ccCryeBd.s:193    .text:0000000000000108 .L0 
+     /tmp/ccCryeBd.s:194    .text:0000000000000108 .L0 
+     /tmp/ccCryeBd.s:198    .text:0000000000000114 .L0 
+     /tmp/ccCryeBd.s:199    .text:0000000000000114 .L0 
+     /tmp/ccCryeBd.s:203    .text:0000000000000120 .L0 
+     /tmp/ccCryeBd.s:204    .text:0000000000000120 .L0 
+     /tmp/ccCryeBd.s:208    .text:000000000000012c .L0 
+     /tmp/ccCryeBd.s:209    .text:000000000000012c .L0 
+     /tmp/ccCryeBd.s:213    .text:0000000000000138 .L0 
+     /tmp/ccCryeBd.s:214    .text:0000000000000138 .L0 
+     /tmp/ccCryeBd.s:218    .text:0000000000000144 .L0 
+     /tmp/ccCryeBd.s:219    .text:0000000000000144 .L0 
+     /tmp/ccCryeBd.s:223    .text:0000000000000150 .L0 
+     /tmp/ccCryeBd.s:224    .text:0000000000000150 .L0 
+     /tmp/ccCryeBd.s:228    .text:000000000000015c .L0 
+     /tmp/ccCryeBd.s:229    .text:000000000000015c .L0 
+     /tmp/ccCryeBd.s:233    .text:0000000000000168 .L0 
+     /tmp/ccCryeBd.s:234    .text:0000000000000168 .L0 
+src/exceptionHandler.cpp:153    .text:0000000000000168 .L0 
+     /tmp/ccCryeBd.s:241    .text:000000000000016c .L0 
+     /tmp/ccCryeBd.s:243    .text:000000000000016c .L0 
+     /tmp/ccCryeBd.s:247    .text:0000000000000178 .L0 
+     /tmp/ccCryeBd.s:248    .text:0000000000000178 .L0 
+     /tmp/ccCryeBd.s:252    .text:0000000000000184 .L0 
+     /tmp/ccCryeBd.s:253    .text:0000000000000184 .L0 
+     /tmp/ccCryeBd.s:257    .text:0000000000000190 .L0 
+     /tmp/ccCryeBd.s:258    .text:0000000000000190 .L0 
+     /tmp/ccCryeBd.s:262    .text:000000000000019c .L0 
+     /tmp/ccCryeBd.s:263    .text:000000000000019c .L0 
+     /tmp/ccCryeBd.s:267    .text:00000000000001a8 .L0 
+     /tmp/ccCryeBd.s:268    .text:00000000000001a8 .L0 
+     /tmp/ccCryeBd.s:272    .text:00000000000001b4 .L0 
+     /tmp/ccCryeBd.s:273    .text:00000000000001b4 .L0 
+     /tmp/ccCryeBd.s:278    .text:00000000000001c0 .L0 
+     /tmp/ccCryeBd.s:279    .text:00000000000001c0 .L0 
+     /tmp/ccCryeBd.s:289    .text:00000000000001c8 .L0 
+     /tmp/ccCryeBd.s:373    .text:00000000000001ec .L0 
+     /tmp/ccCryeBd.s:377    .text:00000000000001ec .L0 
+     /tmp/ccCryeBd.s:380    .text:00000000000001ec .L0 
+     /tmp/ccCryeBd.s:381    .text:00000000000001ec .L0 
+     /tmp/ccCryeBd.s:388    .text:0000000000000204 .L0 
+     /tmp/ccCryeBd.s:389    .text:0000000000000204 .L0 
+src/exceptionHandler.cpp:83     .text:0000000000000204 .L0 
+     /tmp/ccCryeBd.s:395    .text:0000000000000208 .L0 
+     /tmp/ccCryeBd.s:397    .text:0000000000000208 .L0 
+GAS LISTING /tmp/ccCryeBd.s 			page 28
 
 
-     /tmp/cc44LysP.s:394    .text:00000000000001b8 .L0 
-     /tmp/cc44LysP.s:395    .text:00000000000001b8 .L0 
-     /tmp/cc44LysP.s:398    .text:00000000000001c0 .L0 
-     /tmp/cc44LysP.s:402    .text:00000000000001c4 .L0 
-     /tmp/cc44LysP.s:403    .text:00000000000001c4 .L0 
-     /tmp/cc44LysP.s:404    .text:00000000000001c4 .L0 
-     /tmp/cc44LysP.s:410    .text:00000000000001d0 .L0 
-     /tmp/cc44LysP.s:411    .text:00000000000001d0 .L0 
-     /tmp/cc44LysP.s:415    .text:00000000000001d4 .L0 
-     /tmp/cc44LysP.s:418    .text:00000000000001d8 .L0 
-     /tmp/cc44LysP.s:422    .text:00000000000001dc .L0 
-src/exceptionHandler.cpp:81     .text:00000000000001dc .L0 
-     /tmp/cc44LysP.s:428    .text:00000000000001e0 .L0 
-     /tmp/cc44LysP.s:430    .text:00000000000001e0 .L0 
-src/exceptionHandler.cpp:82     .text:00000000000001e4 .L0 
-     /tmp/cc44LysP.s:438    .text:00000000000001e8 .L0 
-src/exceptionHandler.cpp:83     .text:00000000000001e8 .L0 
-     /tmp/cc44LysP.s:443    .text:00000000000001ec .L0 
-src/exceptionHandler.cpp:84     .text:00000000000001ec .L0 
-     /tmp/cc44LysP.s:451    .text:00000000000001f0 .L0 
-     /tmp/cc44LysP.s:452    .text:00000000000001f4 .L0 
-     /tmp/cc44LysP.s:462    .text:00000000000001f4 .L0 
-     /tmp/cc44LysP.s:140    .rodata:0000000000000000 .L5
-     /tmp/cc44LysP.s:132    .text:0000000000000080 .L0 
-     /tmp/cc44LysP.s:220    .text:000000000000009c .L0 
-     /tmp/cc44LysP.s:237    .text:00000000000000b8 .L0 
-     /tmp/cc44LysP.s:254    .text:00000000000000d4 .L0 
-     /tmp/cc44LysP.s:300    .text:0000000000000130 .L0 
-     /tmp/cc44LysP.s:96     .text:0000000000000064 .L20
-     /tmp/cc44LysP.s:416    .text:00000000000001d8 .L18
-     /tmp/cc44LysP.s:420    .text:00000000000001dc .L3
-     /tmp/cc44LysP.s:72     .text:0000000000000040 .L1
-     /tmp/cc44LysP.s:209    .text:0000000000000098 .L17
-     /tmp/cc44LysP.s:227    .text:00000000000000b4 .L16
-     /tmp/cc44LysP.s:244    .text:00000000000000d0 .L15
-     /tmp/cc44LysP.s:271    .text:0000000000000110 .L14
-     /tmp/cc44LysP.s:280    .text:000000000000011c .L13
-     /tmp/cc44LysP.s:295    .text:000000000000012c .L12
-     /tmp/cc44LysP.s:313    .text:000000000000014c .L11
-     /tmp/cc44LysP.s:330    .text:0000000000000164 .L10
-     /tmp/cc44LysP.s:346    .text:0000000000000178 .L9
-     /tmp/cc44LysP.s:362    .text:000000000000018c .L8
-     /tmp/cc44LysP.s:378    .text:00000000000001a0 .L7
-     /tmp/cc44LysP.s:391    .text:00000000000001b8 .L6
-     /tmp/cc44LysP.s:400    .text:00000000000001c4 .L4
-     /tmp/cc44LysP.s:1731   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/cc44LysP.s:2809   .debug_str:000000000000056d .LASF114
-     /tmp/cc44LysP.s:2635   .debug_str:00000000000000d9 .LASF115
-     /tmp/cc44LysP.s:2623   .debug_str:0000000000000078 .LASF116
-     /tmp/cc44LysP.s:5      .text:0000000000000000 .Ltext0
-     /tmp/cc44LysP.s:455    .text:00000000000001f4 .Letext0
-     /tmp/cc44LysP.s:2607   .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/cc44LysP.s:2745   .debug_str:00000000000003c0 .LASF0
-     /tmp/cc44LysP.s:2759   .debug_str:0000000000000439 .LASF1
-     /tmp/cc44LysP.s:2729   .debug_str:000000000000032d .LASF2
-     /tmp/cc44LysP.s:2789   .debug_str:00000000000004f5 .LASF3
-     /tmp/cc44LysP.s:2697   .debug_str:000000000000024d .LASF4
-GAS LISTING /tmp/cc44LysP.s 			page 17
+src/exceptionHandler.cpp:84     .text:000000000000020c .L0 
+     /tmp/ccCryeBd.s:405    .text:0000000000000210 .L0 
+src/exceptionHandler.cpp:85     .text:0000000000000210 .L0 
+     /tmp/ccCryeBd.s:410    .text:0000000000000214 .L0 
+src/exceptionHandler.cpp:86     .text:0000000000000214 .L0 
+     /tmp/ccCryeBd.s:419    .text:0000000000000218 .L0 
+     /tmp/ccCryeBd.s:420    .text:000000000000021c .L0 
+     /tmp/ccCryeBd.s:421    .text:000000000000021c .L0 
+     /tmp/ccCryeBd.s:423    .text:0000000000000220 .L0 
+     /tmp/ccCryeBd.s:424    .text:0000000000000220 .L0 
+     /tmp/ccCryeBd.s:426    .text:0000000000000224 .L0 
+     /tmp/ccCryeBd.s:428    .text:0000000000000228 .L0 
+     /tmp/ccCryeBd.s:430    .text:000000000000022c .L0 
+     /tmp/ccCryeBd.s:433    .text:0000000000000230 .L0 
+     /tmp/ccCryeBd.s:436    .text:0000000000000234 .L0 
+     /tmp/ccCryeBd.s:439    .text:0000000000000238 .L0 
+     /tmp/ccCryeBd.s:443    .text:000000000000023c .L0 
+     /tmp/ccCryeBd.s:446    .text:000000000000023c .L0 
+     /tmp/ccCryeBd.s:449    .text:000000000000023c .L0 
+     /tmp/ccCryeBd.s:452    .text:000000000000023c .L0 
+     /tmp/ccCryeBd.s:453    .text:000000000000023c .L0 
+     /tmp/ccCryeBd.s:459    .text:0000000000000254 .L0 
+     /tmp/ccCryeBd.s:463    .text:0000000000000258 .L0 
+     /tmp/ccCryeBd.s:466    .text:0000000000000258 .L0 
+     /tmp/ccCryeBd.s:469    .text:0000000000000258 .L0 
+     /tmp/ccCryeBd.s:470    .text:0000000000000258 .L0 
+     /tmp/ccCryeBd.s:476    .text:0000000000000270 .L0 
+     /tmp/ccCryeBd.s:486    .text:0000000000000294 .L0 
+     /tmp/ccCryeBd.s:490    .text:0000000000000298 .L0 
+     /tmp/ccCryeBd.s:491    .text:0000000000000298 .L0 
+     /tmp/ccCryeBd.s:492    .text:0000000000000298 .L0 
+     /tmp/ccCryeBd.s:495    .text:00000000000002a0 .L0 
+     /tmp/ccCryeBd.s:499    .text:00000000000002a4 .L0 
+     /tmp/ccCryeBd.s:500    .text:00000000000002a4 .L0 
+     /tmp/ccCryeBd.s:501    .text:00000000000002a4 .L0 
+     /tmp/ccCryeBd.s:505    .text:00000000000002ac .L0 
+     /tmp/ccCryeBd.s:506    .text:00000000000002ac .L0 
+     /tmp/ccCryeBd.s:509    .text:00000000000002b0 .L0 
+     /tmp/ccCryeBd.s:513    .text:00000000000002b4 .L0 
+     /tmp/ccCryeBd.s:514    .text:00000000000002b4 .L0 
+     /tmp/ccCryeBd.s:515    .text:00000000000002b4 .L0 
+     /tmp/ccCryeBd.s:522    .text:00000000000002cc .L0 
+     /tmp/ccCryeBd.s:523    .text:00000000000002cc .L0 
+     /tmp/ccCryeBd.s:526    .text:00000000000002d0 .L0 
+     /tmp/ccCryeBd.s:530    .text:00000000000002d4 .L0 
+     /tmp/ccCryeBd.s:531    .text:00000000000002d4 .L0 
+     /tmp/ccCryeBd.s:532    .text:00000000000002d4 .L0 
+     /tmp/ccCryeBd.s:538    .text:00000000000002e4 .L0 
+     /tmp/ccCryeBd.s:539    .text:00000000000002e4 .L0 
+     /tmp/ccCryeBd.s:542    .text:00000000000002e8 .L0 
+     /tmp/ccCryeBd.s:546    .text:00000000000002ec .L0 
+     /tmp/ccCryeBd.s:547    .text:00000000000002ec .L0 
+     /tmp/ccCryeBd.s:548    .text:00000000000002ec .L0 
+     /tmp/ccCryeBd.s:553    .text:00000000000002f8 .L0 
+     /tmp/ccCryeBd.s:554    .text:00000000000002f8 .L0 
+     /tmp/ccCryeBd.s:557    .text:00000000000002fc .L0 
+     /tmp/ccCryeBd.s:561    .text:0000000000000300 .L0 
+GAS LISTING /tmp/ccCryeBd.s 			page 29
 
 
-     /tmp/cc44LysP.s:2791   .debug_str:00000000000004fc .LASF5
-     /tmp/cc44LysP.s:2639   .debug_str:00000000000000fc .LASF6
-     /tmp/cc44LysP.s:2661   .debug_str:0000000000000194 .LASF7
-     /tmp/cc44LysP.s:2761   .debug_str:000000000000044c .LASF8
-     /tmp/cc44LysP.s:2743   .debug_str:00000000000003ad .LASF9
-     /tmp/cc44LysP.s:2821   .debug_str:000000000000067b .LASF10
-     /tmp/cc44LysP.s:2683   .debug_str:000000000000020e .LASF11
-     /tmp/cc44LysP.s:2771   .debug_str:000000000000047e .LASF12
-     /tmp/cc44LysP.s:2813   .debug_str:000000000000063d .LASF13
-     /tmp/cc44LysP.s:2641   .debug_str:0000000000000103 .LASF14
-     /tmp/cc44LysP.s:2617   .debug_str:000000000000003c .LASF15
-     /tmp/cc44LysP.s:2649   .debug_str:0000000000000137 .LASF16
-     /tmp/cc44LysP.s:2787   .debug_str:00000000000004df .LASF17
-     /tmp/cc44LysP.s:2655   .debug_str:0000000000000158 .LASF18
-     /tmp/cc44LysP.s:2667   .debug_str:00000000000001bd .LASF19
-     /tmp/cc44LysP.s:2747   .debug_str:00000000000003cd .LASF24
-     /tmp/cc44LysP.s:2725   .debug_str:0000000000000310 .LASF39
-     /tmp/cc44LysP.s:2685   .debug_str:000000000000021c .LASF20
-     /tmp/cc44LysP.s:2675   .debug_str:00000000000001e6 .LASF21
-     /tmp/cc44LysP.s:2843   .debug_str:0000000000000713 .LASF22
-     /tmp/cc44LysP.s:2817   .debug_str:000000000000066d .LASF23
-     /tmp/cc44LysP.s:2681   .debug_str:00000000000001f9 .LASF26
-     /tmp/cc44LysP.s:2609   .debug_str:0000000000000000 .LASF25
-     /tmp/cc44LysP.s:2755   .debug_str:00000000000003f0 .LASF27
-     /tmp/cc44LysP.s:2765   .debug_str:0000000000000466 .LASF28
-     /tmp/cc44LysP.s:2717   .debug_str:00000000000002d5 .LASF29
-     /tmp/cc44LysP.s:2733   .debug_str:0000000000000361 .LASF30
-     /tmp/cc44LysP.s:2731   .debug_str:000000000000033b .LASF32
-     /tmp/cc44LysP.s:2673   .debug_str:00000000000001d9 .LASF31
-     /tmp/cc44LysP.s:2815   .debug_str:000000000000064c .LASF33
-     /tmp/cc44LysP.s:2647   .debug_str:000000000000012e .LASF34
-     /tmp/cc44LysP.s:2631   .debug_str:00000000000000a4 .LASF35
-     /tmp/cc44LysP.s:2811   .debug_str:0000000000000631 .LASF48
-     /tmp/cc44LysP.s:2659   .debug_str:0000000000000174 .LASF50
-     /tmp/cc44LysP.s:2625   .debug_str:0000000000000085 .LASF36
-     /tmp/cc44LysP.s:2799   .debug_str:0000000000000536 .LASF37
-     /tmp/cc44LysP.s:2751   .debug_str:00000000000003e2 .LASF60
-     /tmp/cc44LysP.s:2693   .debug_str:0000000000000240 .LASF38
-     /tmp/cc44LysP.s:2845   .debug_str:0000000000000719 .LASF40
-     /tmp/cc44LysP.s:2783   .debug_str:00000000000004cc .LASF41
-     /tmp/cc44LysP.s:2735   .debug_str:0000000000000373 .LASF42
-     /tmp/cc44LysP.s:2763   .debug_str:000000000000045f .LASF43
-     /tmp/cc44LysP.s:2849   .debug_str:000000000000072f .LASF44
-     /tmp/cc44LysP.s:2847   .debug_str:0000000000000728 .LASF45
-     /tmp/cc44LysP.s:2621   .debug_str:0000000000000053 .LASF46
-     /tmp/cc44LysP.s:2679   .debug_str:00000000000001f4 .LASF47
-     /tmp/cc44LysP.s:2719   .debug_str:00000000000002ee .LASF49
-     /tmp/cc44LysP.s:2829   .debug_str:00000000000006c3 .LASF51
-     /tmp/cc44LysP.s:2749   .debug_str:00000000000003d9 .LASF117
-     /tmp/cc44LysP.s:2805   .debug_str:000000000000054d .LASF118
-     /tmp/cc44LysP.s:2793   .debug_str:000000000000050e .LASF52
-     /tmp/cc44LysP.s:2709   .debug_str:0000000000000291 .LASF53
-     /tmp/cc44LysP.s:2663   .debug_str:000000000000019b .LASF119
-     /tmp/cc44LysP.s:2701   .debug_str:000000000000025d .LASF54
-     /tmp/cc44LysP.s:2855   .debug_str:000000000000073f .LASF55
-     /tmp/cc44LysP.s:2643   .debug_str:0000000000000113 .LASF56
-     /tmp/cc44LysP.s:2633   .debug_str:00000000000000c1 .LASF57
-GAS LISTING /tmp/cc44LysP.s 			page 18
+     /tmp/ccCryeBd.s:562    .text:0000000000000300 .L0 
+     /tmp/ccCryeBd.s:563    .text:0000000000000300 .L0 
+     /tmp/ccCryeBd.s:568    .text:000000000000030c .L0 
+     /tmp/ccCryeBd.s:569    .text:000000000000030c .L0 
+     /tmp/ccCryeBd.s:572    .text:0000000000000310 .L0 
+     /tmp/ccCryeBd.s:576    .text:0000000000000314 .L0 
+     /tmp/ccCryeBd.s:577    .text:0000000000000314 .L0 
+     /tmp/ccCryeBd.s:578    .text:0000000000000314 .L0 
+     /tmp/ccCryeBd.s:583    .text:0000000000000320 .L0 
+     /tmp/ccCryeBd.s:584    .text:0000000000000320 .L0 
+     /tmp/ccCryeBd.s:587    .text:0000000000000324 .L0 
+     /tmp/ccCryeBd.s:591    .text:0000000000000328 .L0 
+     /tmp/ccCryeBd.s:592    .text:0000000000000328 .L0 
+     /tmp/ccCryeBd.s:593    .text:0000000000000328 .L0 
+     /tmp/ccCryeBd.s:596    .text:0000000000000330 .L0 
+     /tmp/ccCryeBd.s:600    .text:000000000000033c .L0 
+     /tmp/ccCryeBd.s:604    .text:0000000000000340 .L0 
+     /tmp/ccCryeBd.s:605    .text:0000000000000340 .L0 
+     /tmp/ccCryeBd.s:606    .text:0000000000000340 .L0 
+     /tmp/ccCryeBd.s:609    .text:0000000000000348 .L0 
+     /tmp/ccCryeBd.s:613    .text:000000000000034c .L0 
+     /tmp/ccCryeBd.s:614    .text:000000000000034c .L0 
+     /tmp/ccCryeBd.s:615    .text:000000000000034c .L0 
+     /tmp/ccCryeBd.s:620    .text:0000000000000358 .L0 
+     /tmp/ccCryeBd.s:621    .text:0000000000000358 .L0 
+     /tmp/ccCryeBd.s:624    .text:000000000000035c .L0 
+     /tmp/ccCryeBd.s:628    .text:0000000000000360 .L0 
+     /tmp/ccCryeBd.s:635    .text:0000000000000368 .L0 
+     /tmp/ccCryeBd.s:636    .text:0000000000000368 .L0 
+     /tmp/ccCryeBd.s:640    .text:0000000000000374 .L0 
+     /tmp/ccCryeBd.s:641    .text:0000000000000374 .L0 
+     /tmp/ccCryeBd.s:645    .text:0000000000000380 .L0 
+     /tmp/ccCryeBd.s:646    .text:0000000000000380 .L0 
+     /tmp/ccCryeBd.s:650    .text:000000000000038c .L0 
+     /tmp/ccCryeBd.s:651    .text:000000000000038c .L0 
+     /tmp/ccCryeBd.s:655    .text:0000000000000398 .L0 
+     /tmp/ccCryeBd.s:656    .text:0000000000000398 .L0 
+     /tmp/ccCryeBd.s:660    .text:00000000000003a4 .L0 
+     /tmp/ccCryeBd.s:661    .text:00000000000003a4 .L0 
+     /tmp/ccCryeBd.s:665    .text:00000000000003b0 .L0 
+     /tmp/ccCryeBd.s:666    .text:00000000000003b0 .L0 
+     /tmp/ccCryeBd.s:670    .text:00000000000003bc .L0 
+     /tmp/ccCryeBd.s:671    .text:00000000000003bc .L0 
+     /tmp/ccCryeBd.s:675    .text:00000000000003c8 .L0 
+     /tmp/ccCryeBd.s:676    .text:00000000000003c8 .L0 
+     /tmp/ccCryeBd.s:680    .text:00000000000003d4 .L0 
+     /tmp/ccCryeBd.s:681    .text:00000000000003d4 .L0 
+     /tmp/ccCryeBd.s:685    .text:00000000000003e0 .L0 
+     /tmp/ccCryeBd.s:686    .text:00000000000003e0 .L0 
+     /tmp/ccCryeBd.s:690    .text:00000000000003ec .L0 
+     /tmp/ccCryeBd.s:691    .text:00000000000003ec .L0 
+     /tmp/ccCryeBd.s:695    .text:00000000000003f8 .L0 
+     /tmp/ccCryeBd.s:696    .text:00000000000003f8 .L0 
+     /tmp/ccCryeBd.s:700    .text:0000000000000404 .L0 
+     /tmp/ccCryeBd.s:701    .text:0000000000000404 .L0 
+     /tmp/ccCryeBd.s:705    .text:0000000000000410 .L0 
+     /tmp/ccCryeBd.s:706    .text:0000000000000410 .L0 
+GAS LISTING /tmp/ccCryeBd.s 			page 30
 
 
-     /tmp/cc44LysP.s:2669   .debug_str:00000000000001c7 .LASF58
-     /tmp/cc44LysP.s:2827   .debug_str:00000000000006a8 .LASF59
-     /tmp/cc44LysP.s:2823   .debug_str:000000000000068b .LASF62
-     /tmp/cc44LysP.s:2801   .debug_str:000000000000053e .LASF120
-     /tmp/cc44LysP.s:2779   .debug_str:00000000000004ad .LASF121
-     /tmp/cc44LysP.s:2707   .debug_str:000000000000028a .LASF61
-     /tmp/cc44LysP.s:2703   .debug_str:0000000000000268 .LASF63
-     /tmp/cc44LysP.s:2833   .debug_str:00000000000006dc .LASF64
-     /tmp/cc44LysP.s:2807   .debug_str:0000000000000564 .LASF65
-     /tmp/cc44LysP.s:2777   .debug_str:00000000000004a4 .LASF66
-     /tmp/cc44LysP.s:2699   .debug_str:0000000000000254 .LASF67
-     /tmp/cc44LysP.s:2723   .debug_str:0000000000000305 .LASF68
-     /tmp/cc44LysP.s:2727   .debug_str:0000000000000326 .LASF69
-     /tmp/cc44LysP.s:2611   .debug_str:000000000000000d .LASF70
-     /tmp/cc44LysP.s:2773   .debug_str:000000000000048d .LASF71
-     /tmp/cc44LysP.s:2781   .debug_str:00000000000004c3 .LASF72
-     /tmp/cc44LysP.s:2691   .debug_str:0000000000000237 .LASF73
-     /tmp/cc44LysP.s:2767   .debug_str:000000000000046b .LASF74
-     /tmp/cc44LysP.s:2715   .debug_str:00000000000002ce .LASF75
-     /tmp/cc44LysP.s:2651   .debug_str:0000000000000143 .LASF122
-     /tmp/cc44LysP.s:2757   .debug_str:0000000000000405 .LASF123
-     /tmp/cc44LysP.s:2627   .debug_str:000000000000008d .LASF76
-     /tmp/cc44LysP.s:2713   .debug_str:00000000000002c5 .LASF77
-     /tmp/cc44LysP.s:2695   .debug_str:0000000000000248 .LASF78
-     /tmp/cc44LysP.s:2721   .debug_str:00000000000002f3 .LASF79
-     /tmp/cc44LysP.s:2677   .debug_str:00000000000001ec .LASF80
-     /tmp/cc44LysP.s:2819   .debug_str:0000000000000676 .LASF81
-     /tmp/cc44LysP.s:2615   .debug_str:0000000000000028 .LASF82
-     /tmp/cc44LysP.s:2831   .debug_str:00000000000006d6 .LASF83
-     /tmp/cc44LysP.s:2739   .debug_str:0000000000000388 .LASF84
-     /tmp/cc44LysP.s:2851   .debug_str:0000000000000734 .LASF85
-     /tmp/cc44LysP.s:2741   .debug_str:000000000000039b .LASF86
-     /tmp/cc44LysP.s:2653   .debug_str:0000000000000151 .LASF87
-     /tmp/cc44LysP.s:2665   .debug_str:00000000000001a9 .LASF88
-     /tmp/cc44LysP.s:2637   .debug_str:00000000000000f2 .LASF89
-     /tmp/cc44LysP.s:2769   .debug_str:0000000000000474 .LASF90
-     /tmp/cc44LysP.s:2657   .debug_str:000000000000016e .LASF91
-     /tmp/cc44LysP.s:2671   .debug_str:00000000000001d3 .LASF92
-     /tmp/cc44LysP.s:2613   .debug_str:0000000000000015 .LASF93
-     /tmp/cc44LysP.s:2785   .debug_str:00000000000004d4 .LASF94
-     /tmp/cc44LysP.s:2737   .debug_str:0000000000000382 .LASF95
-     /tmp/cc44LysP.s:2839   .debug_str:00000000000006f5 .LASF96
-     /tmp/cc44LysP.s:2853   .debug_str:0000000000000739 .LASF97
-     /tmp/cc44LysP.s:2629   .debug_str:0000000000000092 .LASF98
-     /tmp/cc44LysP.s:2841   .debug_str:000000000000070e .LASF99
-     /tmp/cc44LysP.s:2645   .debug_str:000000000000011d .LASF100
-     /tmp/cc44LysP.s:2795   .debug_str:0000000000000513 .LASF101
-     /tmp/cc44LysP.s:2711   .debug_str:00000000000002a6 .LASF102
-     /tmp/cc44LysP.s:2775   .debug_str:0000000000000496 .LASF103
-     /tmp/cc44LysP.s:2837   .debug_str:00000000000006ee .LASF104
-     /tmp/cc44LysP.s:2687   .debug_str:0000000000000222 .LASF105
-     /tmp/cc44LysP.s:2705   .debug_str:000000000000027d .LASF106
-     /tmp/cc44LysP.s:2825   .debug_str:00000000000006a3 .LASF107
-     /tmp/cc44LysP.s:2797   .debug_str:0000000000000525 .LASF108
-     /tmp/cc44LysP.s:10     .text:0000000000000000 .LFB1
-     /tmp/cc44LysP.s:453    .text:00000000000001f4 .LFE1
-     /tmp/cc44LysP.s:2619   .debug_str:000000000000004c .LASF109
-GAS LISTING /tmp/cc44LysP.s 			page 19
+     /tmp/ccCryeBd.s:710    .text:000000000000041c .L0 
+     /tmp/ccCryeBd.s:711    .text:000000000000041c .L0 
+     /tmp/ccCryeBd.s:715    .text:0000000000000428 .L0 
+     /tmp/ccCryeBd.s:716    .text:0000000000000428 .L0 
+     /tmp/ccCryeBd.s:720    .text:0000000000000434 .L0 
+     /tmp/ccCryeBd.s:721    .text:0000000000000434 .L0 
+     /tmp/ccCryeBd.s:725    .text:0000000000000440 .L0 
+     /tmp/ccCryeBd.s:726    .text:0000000000000440 .L0 
+     /tmp/ccCryeBd.s:730    .text:000000000000044c .L0 
+     /tmp/ccCryeBd.s:731    .text:000000000000044c .L0 
+     /tmp/ccCryeBd.s:735    .text:0000000000000458 .L0 
+     /tmp/ccCryeBd.s:736    .text:0000000000000458 .L0 
+     /tmp/ccCryeBd.s:740    .text:0000000000000464 .L0 
+     /tmp/ccCryeBd.s:741    .text:0000000000000464 .L0 
+src/exceptionHandler.cpp:111    .text:0000000000000464 .L0 
+     /tmp/ccCryeBd.s:748    .text:0000000000000468 .L0 
+     /tmp/ccCryeBd.s:750    .text:0000000000000468 .L0 
+     /tmp/ccCryeBd.s:754    .text:0000000000000474 .L0 
+     /tmp/ccCryeBd.s:755    .text:0000000000000474 .L0 
+     /tmp/ccCryeBd.s:759    .text:0000000000000480 .L0 
+     /tmp/ccCryeBd.s:760    .text:0000000000000480 .L0 
+     /tmp/ccCryeBd.s:764    .text:000000000000048c .L0 
+     /tmp/ccCryeBd.s:765    .text:000000000000048c .L0 
+     /tmp/ccCryeBd.s:769    .text:0000000000000498 .L0 
+     /tmp/ccCryeBd.s:770    .text:0000000000000498 .L0 
+     /tmp/ccCryeBd.s:774    .text:00000000000004a4 .L0 
+     /tmp/ccCryeBd.s:775    .text:00000000000004a4 .L0 
+     /tmp/ccCryeBd.s:779    .text:00000000000004b0 .L0 
+     /tmp/ccCryeBd.s:780    .text:00000000000004b0 .L0 
+     /tmp/ccCryeBd.s:785    .text:00000000000004bc .L0 
+     /tmp/ccCryeBd.s:786    .text:00000000000004bc .L0 
+     /tmp/ccCryeBd.s:793    .text:00000000000004c4 .L0 
+     /tmp/ccCryeBd.s:794    .text:00000000000004c4 .L0 
+     /tmp/ccCryeBd.s:801    .text:00000000000004d0 .L0 
+     /tmp/ccCryeBd.s:805    .text:00000000000004d4 .L0 
+     /tmp/ccCryeBd.s:808    .text:00000000000004d8 .L0 
+     /tmp/ccCryeBd.s:809    .text:00000000000004d8 .L0 
+     /tmp/ccCryeBd.s:811    .text:00000000000004dc .L0 
+     /tmp/ccCryeBd.s:813    .text:00000000000004e0 .L0 
+     /tmp/ccCryeBd.s:816    .text:00000000000004e4 .L0 
+     /tmp/ccCryeBd.s:819    .text:00000000000004ec .L0 
+     /tmp/ccCryeBd.s:820    .text:00000000000004ec .L0 
+     /tmp/ccCryeBd.s:830    .text:00000000000004fc .L0 
+     /tmp/ccCryeBd.s:831    .text:00000000000004fc .L0 
+     /tmp/ccCryeBd.s:839    .text:0000000000000520 .L0 
+     /tmp/ccCryeBd.s:847    .text:0000000000000524 .L0 
+     /tmp/ccCryeBd.s:848    .text:0000000000000524 .L0 
+     /tmp/ccCryeBd.s:855    .text:0000000000000530 .L0 
+     /tmp/ccCryeBd.s:859    .text:0000000000000534 .L0 
+     /tmp/ccCryeBd.s:862    .text:0000000000000538 .L0 
+     /tmp/ccCryeBd.s:863    .text:0000000000000538 .L0 
+     /tmp/ccCryeBd.s:865    .text:000000000000053c .L0 
+     /tmp/ccCryeBd.s:867    .text:0000000000000540 .L0 
+     /tmp/ccCryeBd.s:870    .text:0000000000000544 .L0 
+     /tmp/ccCryeBd.s:873    .text:000000000000054c .L0 
+     /tmp/ccCryeBd.s:874    .text:000000000000054c .L0 
+     /tmp/ccCryeBd.s:884    .text:000000000000055c .L0 
+GAS LISTING /tmp/ccCryeBd.s 			page 31
 
 
-     /tmp/cc44LysP.s:2440   .debug_loc:0000000000000000 .LLST0
-     /tmp/cc44LysP.s:2459   .debug_loc:000000000000004d .LLST1
-     /tmp/cc44LysP.s:2753   .debug_str:00000000000003eb .LASF110
-     /tmp/cc44LysP.s:2470   .debug_loc:0000000000000083 .LLST2
-     /tmp/cc44LysP.s:2487   .debug_loc:00000000000000ce .LLST3
-     /tmp/cc44LysP.s:2835   .debug_str:00000000000006e4 .LASF111
-     /tmp/cc44LysP.s:2503   .debug_loc:0000000000000118 .LLST4
-     /tmp/cc44LysP.s:2587   .debug_ranges:0000000000000000 .Ldebug_ranges0
-     /tmp/cc44LysP.s:212    .text:0000000000000098 .LBB12
-     /tmp/cc44LysP.s:217    .text:0000000000000098 .LBE12
-     /tmp/cc44LysP.s:230    .text:00000000000000b4 .LBB14
-     /tmp/cc44LysP.s:234    .text:00000000000000b4 .LBE14
-     /tmp/cc44LysP.s:247    .text:00000000000000d0 .LBB16
-     /tmp/cc44LysP.s:251    .text:00000000000000d0 .LBE16
-     /tmp/cc44LysP.s:223    .text:00000000000000b0 .LVL13
-     /tmp/cc44LysP.s:240    .text:00000000000000cc .LVL15
-     /tmp/cc44LysP.s:257    .text:00000000000000e8 .LVL17
-     /tmp/cc44LysP.s:267    .text:000000000000010c .LVL18
-     /tmp/cc44LysP.s:276    .text:0000000000000118 .LVL20
-     /tmp/cc44LysP.s:285    .text:0000000000000124 .LVL22
-     /tmp/cc44LysP.s:303    .text:0000000000000144 .LVL23
-     /tmp/cc44LysP.s:320    .text:000000000000015c .LVL24
-     /tmp/cc44LysP.s:336    .text:0000000000000170 .LVL25
-     /tmp/cc44LysP.s:352    .text:0000000000000184 .LVL26
-     /tmp/cc44LysP.s:368    .text:0000000000000198 .LVL27
-     /tmp/cc44LysP.s:383    .text:00000000000001a8 .LVL28
-     /tmp/cc44LysP.s:387    .text:00000000000001b4 .LVL29
-     /tmp/cc44LysP.s:396    .text:00000000000001c0 .LVL31
-     /tmp/cc44LysP.s:406    .text:00000000000001d0 .LVL33
-     /tmp/cc44LysP.s:2689   .debug_str:0000000000000230 .LASF112
-     /tmp/cc44LysP.s:2803   .debug_str:0000000000000546 .LASF113
-     /tmp/cc44LysP.s:39     .text:0000000000000028 .LVL0
-     /tmp/cc44LysP.s:67     .text:0000000000000038 .LVL4
-     /tmp/cc44LysP.s:71     .text:0000000000000040 .LVL5
-     /tmp/cc44LysP.s:95     .text:0000000000000064 .LVL7
-     /tmp/cc44LysP.s:125    .text:0000000000000074 .LVL11
-     /tmp/cc44LysP.s:46     .text:000000000000002c .LVL1
-     /tmp/cc44LysP.s:85     .text:0000000000000050 .LVL6
-     /tmp/cc44LysP.s:53     .text:0000000000000030 .LVL2
-     /tmp/cc44LysP.s:431    .text:00000000000001e4 .LVL35
-     /tmp/cc44LysP.s:60     .text:0000000000000034 .LVL3
-     /tmp/cc44LysP.s:131    .text:0000000000000080 .LVL12
-     /tmp/cc44LysP.s:226    .text:00000000000000b4 .LVL14
-     /tmp/cc44LysP.s:243    .text:00000000000000d0 .LVL16
-     /tmp/cc44LysP.s:270    .text:0000000000000110 .LVL19
-     /tmp/cc44LysP.s:279    .text:000000000000011c .LVL21
-     /tmp/cc44LysP.s:390    .text:00000000000001b8 .LVL30
-     /tmp/cc44LysP.s:399    .text:00000000000001c4 .LVL32
-     /tmp/cc44LysP.s:419    .text:00000000000001dc .LVL34
-     /tmp/cc44LysP.s:463    .debug_info:0000000000000000 .Ldebug_info0
-     /tmp/cc44LysP.s:99     .text:0000000000000064 .LBB11
-     /tmp/cc44LysP.s:287    .text:0000000000000124 .LBE11
-     /tmp/cc44LysP.s:292    .text:0000000000000128 .LBB18
-     /tmp/cc44LysP.s:305    .text:0000000000000144 .LBE18
-     /tmp/cc44LysP.s:310    .text:0000000000000148 .LBB19
-     /tmp/cc44LysP.s:322    .text:000000000000015c .LBE19
-     /tmp/cc44LysP.s:327    .text:0000000000000160 .LBB20
-GAS LISTING /tmp/cc44LysP.s 			page 20
+     /tmp/ccCryeBd.s:885    .text:000000000000055c .L0 
+     /tmp/ccCryeBd.s:896    .text:0000000000000580 .L0 
+     /tmp/ccCryeBd.s:897    .text:0000000000000580 .L0 
+     /tmp/ccCryeBd.s:898    .text:0000000000000584 .L0 
+     /tmp/ccCryeBd.s:909    .text:0000000000000584 .L0 
+     /tmp/ccCryeBd.s:302    .rodata:0000000000000000 .L5
+     /tmp/ccCryeBd.s:294    .text:00000000000001d4 .L0 
+     /tmp/ccCryeBd.s:382    .text:00000000000001f0 .L0 
+     /tmp/ccCryeBd.s:454    .text:0000000000000240 .L0 
+     /tmp/ccCryeBd.s:471    .text:000000000000025c .L0 
+     /tmp/ccCryeBd.s:516    .text:00000000000002b8 .L0 
+     /tmp/ccCryeBd.s:8      .rodata.str1.8:0000000000000000 .LC0
+     /tmp/ccCryeBd.s:831    .text:00000000000004fc .L0 
+     /tmp/ccCryeBd.s:11     .rodata.str1.8:0000000000000018 .LC1
+     /tmp/ccCryeBd.s:833    .text:0000000000000508 .L0 
+     /tmp/ccCryeBd.s:14     .rodata.str1.8:0000000000000038 .LC2
+     /tmp/ccCryeBd.s:834    .text:0000000000000510 .L0 
+     /tmp/ccCryeBd.s:885    .text:000000000000055c .L0 
+     /tmp/ccCryeBd.s:887    .text:0000000000000568 .L0 
+     /tmp/ccCryeBd.s:888    .text:0000000000000570 .L0 
+     /tmp/ccCryeBd.s:283    .text:00000000000001c8 .L30
+     /tmp/ccCryeBd.s:631    .text:0000000000000368 .L31
+     /tmp/ccCryeBd.s:416    .text:0000000000000218 .L1
+     /tmp/ccCryeBd.s:857    .text:0000000000000534 .L27
+     /tmp/ccCryeBd.s:626    .text:0000000000000360 .L28
+     /tmp/ccCryeBd.s:387    .text:0000000000000204 .L3
+     /tmp/ccCryeBd.s:803    .text:00000000000004d4 .L23
+     /tmp/ccCryeBd.s:826    .text:00000000000004fc .L20
+     /tmp/ccCryeBd.s:790    .text:00000000000004c4 .L21
+     /tmp/ccCryeBd.s:798    .text:00000000000004d0 .L22
+     /tmp/ccCryeBd.s:880    .text:000000000000055c .L24
+     /tmp/ccCryeBd.s:841    .text:0000000000000524 .L25
+     /tmp/ccCryeBd.s:852    .text:0000000000000530 .L26
+     /tmp/ccCryeBd.s:371    .text:00000000000001ec .L17
+     /tmp/ccCryeBd.s:442    .text:000000000000023c .L16
+     /tmp/ccCryeBd.s:461    .text:0000000000000258 .L15
+     /tmp/ccCryeBd.s:488    .text:0000000000000298 .L14
+     /tmp/ccCryeBd.s:497    .text:00000000000002a4 .L13
+     /tmp/ccCryeBd.s:511    .text:00000000000002b4 .L12
+     /tmp/ccCryeBd.s:528    .text:00000000000002d4 .L11
+     /tmp/ccCryeBd.s:544    .text:00000000000002ec .L10
+     /tmp/ccCryeBd.s:559    .text:0000000000000300 .L9
+     /tmp/ccCryeBd.s:574    .text:0000000000000314 .L8
+     /tmp/ccCryeBd.s:589    .text:0000000000000328 .L7
+     /tmp/ccCryeBd.s:602    .text:0000000000000340 .L6
+     /tmp/ccCryeBd.s:611    .text:000000000000034c .L4
+     /tmp/ccCryeBd.s:3037   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccCryeBd.s:4427   .debug_str:00000000000005aa .LASF118
+     /tmp/ccCryeBd.s:4247   .debug_str:00000000000000e2 .LASF119
+     /tmp/ccCryeBd.s:4371   .debug_str:000000000000041b .LASF120
+     /tmp/ccCryeBd.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccCryeBd.s:901    .text:0000000000000584 .Letext0
+     /tmp/ccCryeBd.s:4219   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccCryeBd.s:4359   .debug_str:00000000000003d4 .LASF0
+     /tmp/ccCryeBd.s:4375   .debug_str:000000000000046b .LASF1
+     /tmp/ccCryeBd.s:4343   .debug_str:0000000000000341 .LASF2
+     /tmp/ccCryeBd.s:4407   .debug_str:000000000000052e .LASF3
+GAS LISTING /tmp/ccCryeBd.s 			page 32
 
 
-     /tmp/cc44LysP.s:338    .text:0000000000000170 .LBE20
-     /tmp/cc44LysP.s:343    .text:0000000000000174 .LBB21
-     /tmp/cc44LysP.s:354    .text:0000000000000184 .LBE21
-     /tmp/cc44LysP.s:359    .text:0000000000000188 .LBB22
-     /tmp/cc44LysP.s:370    .text:0000000000000198 .LBE22
-     /tmp/cc44LysP.s:375    .text:000000000000019c .LBB23
-     /tmp/cc44LysP.s:408    .text:00000000000001d0 .LBE23
-     /tmp/cc44LysP.s:413    .text:00000000000001d4 .LBB24
-     /tmp/cc44LysP.s:448    .text:00000000000001f0 .LBE24
+     /tmp/ccCryeBd.s:4311   .debug_str:000000000000026a .LASF4
+     /tmp/ccCryeBd.s:4409   .debug_str:0000000000000535 .LASF5
+     /tmp/ccCryeBd.s:4251   .debug_str:0000000000000105 .LASF6
+     /tmp/ccCryeBd.s:4273   .debug_str:000000000000019d .LASF7
+     /tmp/ccCryeBd.s:4377   .debug_str:000000000000047e .LASF8
+     /tmp/ccCryeBd.s:4357   .debug_str:00000000000003c1 .LASF9
+     /tmp/ccCryeBd.s:4439   .debug_str:00000000000006b8 .LASF10
+     /tmp/ccCryeBd.s:4295   .debug_str:0000000000000226 .LASF11
+     /tmp/ccCryeBd.s:4387   .debug_str:00000000000004b0 .LASF12
+     /tmp/ccCryeBd.s:4431   .debug_str:000000000000067a .LASF13
+     /tmp/ccCryeBd.s:4253   .debug_str:000000000000010c .LASF14
+     /tmp/ccCryeBd.s:4229   .debug_str:000000000000003c .LASF15
+     /tmp/ccCryeBd.s:4261   .debug_str:0000000000000140 .LASF16
+     /tmp/ccCryeBd.s:4405   .debug_str:0000000000000518 .LASF17
+     /tmp/ccCryeBd.s:4267   .debug_str:0000000000000161 .LASF18
+     /tmp/ccCryeBd.s:4279   .debug_str:00000000000001c6 .LASF19
+     /tmp/ccCryeBd.s:4361   .debug_str:00000000000003e1 .LASF24
+     /tmp/ccCryeBd.s:4235   .debug_str:0000000000000078 .LASF38
+     /tmp/ccCryeBd.s:4297   .debug_str:0000000000000234 .LASF20
+     /tmp/ccCryeBd.s:4287   .debug_str:00000000000001fe .LASF21
+     /tmp/ccCryeBd.s:4459   .debug_str:0000000000000735 .LASF22
+     /tmp/ccCryeBd.s:4435   .debug_str:00000000000006aa .LASF23
+     /tmp/ccCryeBd.s:4293   .debug_str:0000000000000211 .LASF26
+     /tmp/ccCryeBd.s:4221   .debug_str:0000000000000000 .LASF25
+     /tmp/ccCryeBd.s:4369   .debug_str:0000000000000406 .LASF27
+     /tmp/ccCryeBd.s:4381   .debug_str:0000000000000498 .LASF28
+     /tmp/ccCryeBd.s:4331   .debug_str:00000000000002f2 .LASF29
+     /tmp/ccCryeBd.s:4347   .debug_str:0000000000000375 .LASF30
+     /tmp/ccCryeBd.s:4345   .debug_str:000000000000034f .LASF32
+     /tmp/ccCryeBd.s:4339   .debug_str:000000000000032d .LASF31
+     /tmp/ccCryeBd.s:4433   .debug_str:0000000000000689 .LASF33
+     /tmp/ccCryeBd.s:4259   .debug_str:0000000000000137 .LASF34
+     /tmp/ccCryeBd.s:4243   .debug_str:00000000000000ad .LASF35
+     /tmp/ccCryeBd.s:4429   .debug_str:000000000000066e .LASF47
+     /tmp/ccCryeBd.s:4271   .debug_str:000000000000017d .LASF49
+     /tmp/ccCryeBd.s:4237   .debug_str:000000000000008e .LASF36
+     /tmp/ccCryeBd.s:4365   .debug_str:00000000000003f6 .LASF59
+     /tmp/ccCryeBd.s:4307   .debug_str:000000000000025d .LASF37
+     /tmp/ccCryeBd.s:4461   .debug_str:000000000000073b .LASF39
+     /tmp/ccCryeBd.s:4399   .debug_str:00000000000004fe .LASF40
+     /tmp/ccCryeBd.s:4349   .debug_str:0000000000000387 .LASF41
+     /tmp/ccCryeBd.s:4379   .debug_str:0000000000000491 .LASF42
+     /tmp/ccCryeBd.s:4467   .debug_str:000000000000076c .LASF43
+     /tmp/ccCryeBd.s:4465   .debug_str:0000000000000765 .LASF44
+     /tmp/ccCryeBd.s:4233   .debug_str:0000000000000053 .LASF45
+     /tmp/ccCryeBd.s:4291   .debug_str:000000000000020c .LASF46
+     /tmp/ccCryeBd.s:4333   .debug_str:000000000000030b .LASF48
+     /tmp/ccCryeBd.s:4445   .debug_str:00000000000006e5 .LASF50
+     /tmp/ccCryeBd.s:4363   .debug_str:00000000000003ed .LASF121
+     /tmp/ccCryeBd.s:4421   .debug_str:000000000000057c .LASF122
+     /tmp/ccCryeBd.s:4411   .debug_str:0000000000000547 .LASF51
+     /tmp/ccCryeBd.s:4323   .debug_str:00000000000002ae .LASF52
+     /tmp/ccCryeBd.s:4275   .debug_str:00000000000001a4 .LASF123
+     /tmp/ccCryeBd.s:4315   .debug_str:000000000000027a .LASF53
+     /tmp/ccCryeBd.s:4475   .debug_str:0000000000000790 .LASF54
+     /tmp/ccCryeBd.s:4255   .debug_str:000000000000011c .LASF55
+     /tmp/ccCryeBd.s:4245   .debug_str:00000000000000ca .LASF56
+GAS LISTING /tmp/ccCryeBd.s 			page 33
+
+
+     /tmp/ccCryeBd.s:4281   .debug_str:00000000000001d0 .LASF57
+     /tmp/ccCryeBd.s:4463   .debug_str:000000000000074a .LASF58
+     /tmp/ccCryeBd.s:4441   .debug_str:00000000000006c8 .LASF61
+     /tmp/ccCryeBd.s:4417   .debug_str:000000000000056f .LASF124
+     /tmp/ccCryeBd.s:4395   .debug_str:00000000000004df .LASF125
+     /tmp/ccCryeBd.s:4321   .debug_str:00000000000002a7 .LASF60
+     /tmp/ccCryeBd.s:4317   .debug_str:0000000000000285 .LASF62
+     /tmp/ccCryeBd.s:4449   .debug_str:00000000000006fe .LASF63
+     /tmp/ccCryeBd.s:4425   .debug_str:00000000000005a1 .LASF64
+     /tmp/ccCryeBd.s:4393   .debug_str:00000000000004d6 .LASF65
+     /tmp/ccCryeBd.s:4313   .debug_str:0000000000000271 .LASF66
+     /tmp/ccCryeBd.s:4337   .debug_str:0000000000000322 .LASF67
+     /tmp/ccCryeBd.s:4341   .debug_str:000000000000033a .LASF68
+     /tmp/ccCryeBd.s:4223   .debug_str:000000000000000d .LASF69
+     /tmp/ccCryeBd.s:4389   .debug_str:00000000000004bf .LASF70
+     /tmp/ccCryeBd.s:4397   .debug_str:00000000000004f5 .LASF71
+     /tmp/ccCryeBd.s:4367   .debug_str:00000000000003ff .LASF72
+     /tmp/ccCryeBd.s:4305   .debug_str:0000000000000254 .LASF73
+     /tmp/ccCryeBd.s:4383   .debug_str:000000000000049d .LASF74
+     /tmp/ccCryeBd.s:4329   .debug_str:00000000000002eb .LASF75
+     /tmp/ccCryeBd.s:4263   .debug_str:000000000000014c .LASF126
+     /tmp/ccCryeBd.s:4373   .debug_str:0000000000000437 .LASF127
+     /tmp/ccCryeBd.s:4239   .debug_str:0000000000000096 .LASF76
+     /tmp/ccCryeBd.s:4327   .debug_str:00000000000002e2 .LASF77
+     /tmp/ccCryeBd.s:4309   .debug_str:0000000000000265 .LASF78
+     /tmp/ccCryeBd.s:4335   .debug_str:0000000000000310 .LASF79
+     /tmp/ccCryeBd.s:4289   .debug_str:0000000000000204 .LASF80
+     /tmp/ccCryeBd.s:4437   .debug_str:00000000000006b3 .LASF81
+     /tmp/ccCryeBd.s:4227   .debug_str:0000000000000028 .LASF82
+     /tmp/ccCryeBd.s:4447   .debug_str:00000000000006f8 .LASF83
+     /tmp/ccCryeBd.s:4353   .debug_str:000000000000039c .LASF84
+     /tmp/ccCryeBd.s:4471   .debug_str:0000000000000785 .LASF85
+     /tmp/ccCryeBd.s:4355   .debug_str:00000000000003af .LASF86
+     /tmp/ccCryeBd.s:4265   .debug_str:000000000000015a .LASF87
+     /tmp/ccCryeBd.s:4277   .debug_str:00000000000001b2 .LASF88
+     /tmp/ccCryeBd.s:4249   .debug_str:00000000000000fb .LASF89
+     /tmp/ccCryeBd.s:4385   .debug_str:00000000000004a6 .LASF90
+     /tmp/ccCryeBd.s:4269   .debug_str:0000000000000177 .LASF91
+     /tmp/ccCryeBd.s:4283   .debug_str:00000000000001dc .LASF92
+     /tmp/ccCryeBd.s:4225   .debug_str:0000000000000015 .LASF93
+     /tmp/ccCryeBd.s:4401   .debug_str:0000000000000506 .LASF94
+     /tmp/ccCryeBd.s:4351   .debug_str:0000000000000396 .LASF95
+     /tmp/ccCryeBd.s:4455   .debug_str:0000000000000717 .LASF96
+     /tmp/ccCryeBd.s:4473   .debug_str:000000000000078a .LASF97
+     /tmp/ccCryeBd.s:4241   .debug_str:000000000000009b .LASF98
+     /tmp/ccCryeBd.s:4457   .debug_str:0000000000000730 .LASF99
+     /tmp/ccCryeBd.s:4257   .debug_str:0000000000000126 .LASF100
+     /tmp/ccCryeBd.s:4413   .debug_str:000000000000054c .LASF101
+     /tmp/ccCryeBd.s:4325   .debug_str:00000000000002c3 .LASF102
+     /tmp/ccCryeBd.s:4391   .debug_str:00000000000004c8 .LASF103
+     /tmp/ccCryeBd.s:4453   .debug_str:0000000000000710 .LASF104
+     /tmp/ccCryeBd.s:4299   .debug_str:000000000000023a .LASF105
+     /tmp/ccCryeBd.s:4319   .debug_str:000000000000029a .LASF106
+     /tmp/ccCryeBd.s:4443   .debug_str:00000000000006e0 .LASF107
+     /tmp/ccCryeBd.s:4415   .debug_str:000000000000055e .LASF108
+     /tmp/ccCryeBd.s:21     .text:0000000000000000 .LFB1
+     /tmp/ccCryeBd.s:899    .text:0000000000000584 .LFE1
+GAS LISTING /tmp/ccCryeBd.s 			page 34
+
+
+     /tmp/ccCryeBd.s:4231   .debug_str:000000000000004c .LASF109
+     /tmp/ccCryeBd.s:3782   .debug_loc:0000000000000000 .LLST0
+     /tmp/ccCryeBd.s:3881   .debug_loc:000000000000016f .LLST1
+     /tmp/ccCryeBd.s:4419   .debug_str:0000000000000577 .LASF110
+     /tmp/ccCryeBd.s:3896   .debug_loc:00000000000001b8 .LLST2
+     /tmp/ccCryeBd.s:3917   .debug_loc:0000000000000216 .LLST3
+     /tmp/ccCryeBd.s:3933   .debug_loc:0000000000000260 .LLST4
+     /tmp/ccCryeBd.s:3944   .debug_loc:0000000000000296 .LLST5
+     /tmp/ccCryeBd.s:3955   .debug_loc:00000000000002cc .LLST6
+     /tmp/ccCryeBd.s:4451   .debug_str:0000000000000706 .LASF111
+     /tmp/ccCryeBd.s:3966   .debug_loc:0000000000000302 .LLST7
+     /tmp/ccCryeBd.s:4469   .debug_str:0000000000000771 .LASF112
+     /tmp/ccCryeBd.s:633    .text:0000000000000368 .LBB26
+     /tmp/ccCryeBd.s:838    .text:0000000000000520 .LBE26
+     /tmp/ccCryeBd.s:4028   .debug_loc:0000000000000410 .LLST11
+     /tmp/ccCryeBd.s:784    .text:00000000000004bc .LBB27
+     /tmp/ccCryeBd.s:828    .text:00000000000004fc .LBE27
+     /tmp/ccCryeBd.s:4035   .debug_loc:0000000000000433 .LLST12
+     /tmp/ccCryeBd.s:4193   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/ccCryeBd.s:4047   .debug_loc:000000000000046a .LLST13
+     /tmp/ccCryeBd.s:797    .text:00000000000004d0 .LVL109
+     /tmp/ccCryeBd.s:823    .text:00000000000004f8 .LVL113
+     /tmp/ccCryeBd.s:638    .text:0000000000000374 .LVL77
+     /tmp/ccCryeBd.s:643    .text:0000000000000380 .LVL78
+     /tmp/ccCryeBd.s:648    .text:000000000000038c .LVL79
+     /tmp/ccCryeBd.s:653    .text:0000000000000398 .LVL80
+     /tmp/ccCryeBd.s:658    .text:00000000000003a4 .LVL81
+     /tmp/ccCryeBd.s:663    .text:00000000000003b0 .LVL82
+     /tmp/ccCryeBd.s:668    .text:00000000000003bc .LVL83
+     /tmp/ccCryeBd.s:673    .text:00000000000003c8 .LVL84
+     /tmp/ccCryeBd.s:678    .text:00000000000003d4 .LVL85
+     /tmp/ccCryeBd.s:683    .text:00000000000003e0 .LVL86
+     /tmp/ccCryeBd.s:688    .text:00000000000003ec .LVL87
+     /tmp/ccCryeBd.s:693    .text:00000000000003f8 .LVL88
+     /tmp/ccCryeBd.s:698    .text:0000000000000404 .LVL89
+     /tmp/ccCryeBd.s:703    .text:0000000000000410 .LVL90
+     /tmp/ccCryeBd.s:708    .text:000000000000041c .LVL91
+     /tmp/ccCryeBd.s:713    .text:0000000000000428 .LVL92
+     /tmp/ccCryeBd.s:718    .text:0000000000000434 .LVL93
+     /tmp/ccCryeBd.s:723    .text:0000000000000440 .LVL94
+     /tmp/ccCryeBd.s:728    .text:000000000000044c .LVL95
+     /tmp/ccCryeBd.s:733    .text:0000000000000458 .LVL96
+     /tmp/ccCryeBd.s:738    .text:0000000000000464 .LVL97
+     /tmp/ccCryeBd.s:752    .text:0000000000000474 .LVL99
+     /tmp/ccCryeBd.s:757    .text:0000000000000480 .LVL100
+     /tmp/ccCryeBd.s:762    .text:000000000000048c .LVL101
+     /tmp/ccCryeBd.s:767    .text:0000000000000498 .LVL102
+     /tmp/ccCryeBd.s:772    .text:00000000000004a4 .LVL103
+     /tmp/ccCryeBd.s:777    .text:00000000000004b0 .LVL104
+     /tmp/ccCryeBd.s:782    .text:00000000000004bc .LVL105
+     /tmp/ccCryeBd.s:836    .text:0000000000000520 .LVL115
+     /tmp/ccCryeBd.s:4102   .debug_loc:0000000000000508 .LLST8
+     /tmp/ccCryeBd.s:4113   .debug_loc:000000000000053e .LLST9
+     /tmp/ccCryeBd.s:4125   .debug_loc:0000000000000575 .LLST10
+     /tmp/ccCryeBd.s:851    .text:0000000000000530 .LVL118
+     /tmp/ccCryeBd.s:877    .text:0000000000000558 .LVL122
+     /tmp/ccCryeBd.s:126    .text:000000000000006c .LVL9
+GAS LISTING /tmp/ccCryeBd.s 			page 35
+
+
+     /tmp/ccCryeBd.s:131    .text:0000000000000078 .LVL10
+     /tmp/ccCryeBd.s:136    .text:0000000000000084 .LVL11
+     /tmp/ccCryeBd.s:141    .text:0000000000000090 .LVL12
+     /tmp/ccCryeBd.s:146    .text:000000000000009c .LVL13
+     /tmp/ccCryeBd.s:151    .text:00000000000000a8 .LVL14
+     /tmp/ccCryeBd.s:156    .text:00000000000000b4 .LVL15
+     /tmp/ccCryeBd.s:161    .text:00000000000000c0 .LVL16
+     /tmp/ccCryeBd.s:166    .text:00000000000000cc .LVL17
+     /tmp/ccCryeBd.s:171    .text:00000000000000d8 .LVL18
+     /tmp/ccCryeBd.s:176    .text:00000000000000e4 .LVL19
+     /tmp/ccCryeBd.s:181    .text:00000000000000f0 .LVL20
+     /tmp/ccCryeBd.s:186    .text:00000000000000fc .LVL21
+     /tmp/ccCryeBd.s:191    .text:0000000000000108 .LVL22
+     /tmp/ccCryeBd.s:196    .text:0000000000000114 .LVL23
+     /tmp/ccCryeBd.s:201    .text:0000000000000120 .LVL24
+     /tmp/ccCryeBd.s:206    .text:000000000000012c .LVL25
+     /tmp/ccCryeBd.s:211    .text:0000000000000138 .LVL26
+     /tmp/ccCryeBd.s:216    .text:0000000000000144 .LVL27
+     /tmp/ccCryeBd.s:221    .text:0000000000000150 .LVL28
+     /tmp/ccCryeBd.s:226    .text:000000000000015c .LVL29
+     /tmp/ccCryeBd.s:231    .text:0000000000000168 .LVL30
+     /tmp/ccCryeBd.s:245    .text:0000000000000178 .LVL32
+     /tmp/ccCryeBd.s:250    .text:0000000000000184 .LVL33
+     /tmp/ccCryeBd.s:255    .text:0000000000000190 .LVL34
+     /tmp/ccCryeBd.s:260    .text:000000000000019c .LVL35
+     /tmp/ccCryeBd.s:265    .text:00000000000001a8 .LVL36
+     /tmp/ccCryeBd.s:270    .text:00000000000001b4 .LVL37
+     /tmp/ccCryeBd.s:275    .text:00000000000001c0 .LVL38
+     /tmp/ccCryeBd.s:890    .text:0000000000000580 .LVL124
+     /tmp/ccCryeBd.s:374    .text:00000000000001ec .LBB32
+     /tmp/ccCryeBd.s:379    .text:00000000000001ec .LBE32
+     /tmp/ccCryeBd.s:447    .text:000000000000023c .LBB34
+     /tmp/ccCryeBd.s:451    .text:000000000000023c .LBE34
+     /tmp/ccCryeBd.s:464    .text:0000000000000258 .LBB36
+     /tmp/ccCryeBd.s:468    .text:0000000000000258 .LBE36
+     /tmp/ccCryeBd.s:385    .text:0000000000000204 .LVL43
+     /tmp/ccCryeBd.s:457    .text:0000000000000254 .LVL50
+     /tmp/ccCryeBd.s:474    .text:0000000000000270 .LVL52
+     /tmp/ccCryeBd.s:484    .text:0000000000000294 .LVL53
+     /tmp/ccCryeBd.s:493    .text:00000000000002a0 .LVL55
+     /tmp/ccCryeBd.s:502    .text:00000000000002ac .LVL57
+     /tmp/ccCryeBd.s:519    .text:00000000000002cc .LVL59
+     /tmp/ccCryeBd.s:535    .text:00000000000002e4 .LVL61
+     /tmp/ccCryeBd.s:550    .text:00000000000002f8 .LVL63
+     /tmp/ccCryeBd.s:565    .text:000000000000030c .LVL65
+     /tmp/ccCryeBd.s:580    .text:0000000000000320 .LVL67
+     /tmp/ccCryeBd.s:594    .text:0000000000000330 .LVL69
+     /tmp/ccCryeBd.s:598    .text:000000000000033c .LVL70
+     /tmp/ccCryeBd.s:607    .text:0000000000000348 .LVL72
+     /tmp/ccCryeBd.s:617    .text:0000000000000358 .LVL74
+     /tmp/ccCryeBd.s:4303   .debug_str:000000000000024f .LASF113
+     /tmp/ccCryeBd.s:4403   .debug_str:0000000000000511 .LASF114
+     /tmp/ccCryeBd.s:4285   .debug_str:00000000000001e2 .LASF115
+     /tmp/ccCryeBd.s:4423   .debug_str:0000000000000593 .LASF116
+     /tmp/ccCryeBd.s:4301   .debug_str:0000000000000248 .LASF117
+     /tmp/ccCryeBd.s:50     .text:0000000000000028 .LVL0
+     /tmp/ccCryeBd.s:282    .text:00000000000001c8 .LVL40
+GAS LISTING /tmp/ccCryeBd.s 			page 36
+
+
+     /tmp/ccCryeBd.s:290    .text:00000000000001cc .LVL41
+     /tmp/ccCryeBd.s:441    .text:000000000000023c .LVL49
+     /tmp/ccCryeBd.s:460    .text:0000000000000258 .LVL51
+     /tmp/ccCryeBd.s:487    .text:0000000000000298 .LVL54
+     /tmp/ccCryeBd.s:496    .text:00000000000002a4 .LVL56
+     /tmp/ccCryeBd.s:510    .text:00000000000002b4 .LVL58
+     /tmp/ccCryeBd.s:527    .text:00000000000002d4 .LVL60
+     /tmp/ccCryeBd.s:543    .text:00000000000002ec .LVL62
+     /tmp/ccCryeBd.s:558    .text:0000000000000300 .LVL64
+     /tmp/ccCryeBd.s:573    .text:0000000000000314 .LVL66
+     /tmp/ccCryeBd.s:588    .text:0000000000000328 .LVL68
+     /tmp/ccCryeBd.s:601    .text:0000000000000340 .LVL71
+     /tmp/ccCryeBd.s:610    .text:000000000000034c .LVL73
+     /tmp/ccCryeBd.s:625    .text:0000000000000360 .LVL75
+     /tmp/ccCryeBd.s:630    .text:0000000000000368 .LVL76
+     /tmp/ccCryeBd.s:57     .text:000000000000002c .LVL1
+     /tmp/ccCryeBd.s:239    .text:000000000000016c .LVL31
+     /tmp/ccCryeBd.s:414    .text:0000000000000218 .LVL45
+     /tmp/ccCryeBd.s:746    .text:0000000000000468 .LVL98
+     /tmp/ccCryeBd.s:64     .text:0000000000000030 .LVL2
+     /tmp/ccCryeBd.s:280    .text:00000000000001c4 .LVL39
+     /tmp/ccCryeBd.s:398    .text:000000000000020c .LVL44
+     /tmp/ccCryeBd.s:787    .text:00000000000004c0 .LVL106
+     /tmp/ccCryeBd.s:71     .text:0000000000000034 .LVL3
+     /tmp/ccCryeBd.s:111    .text:0000000000000054 .LVL8
+     /tmp/ccCryeBd.s:293    .text:00000000000001d4 .LVL42
+     /tmp/ccCryeBd.s:78     .text:0000000000000038 .LVL4
+     /tmp/ccCryeBd.s:431    .text:000000000000022c .LVL46
+     /tmp/ccCryeBd.s:84     .text:000000000000003c .LVL5
+     /tmp/ccCryeBd.s:434    .text:0000000000000230 .LVL47
+     /tmp/ccCryeBd.s:90     .text:0000000000000040 .LVL6
+     /tmp/ccCryeBd.s:437    .text:0000000000000234 .LVL48
+     /tmp/ccCryeBd.s:96     .text:0000000000000044 .LVL7
+     /tmp/ccCryeBd.s:840    .text:0000000000000524 .LVL116
+     /tmp/ccCryeBd.s:789    .text:00000000000004c4 .LVL107
+     /tmp/ccCryeBd.s:795    .text:00000000000004c8 .LVL108
+     /tmp/ccCryeBd.s:802    .text:00000000000004d4 .LVL110
+     /tmp/ccCryeBd.s:814    .text:00000000000004e4 .LVL111
+     /tmp/ccCryeBd.s:821    .text:00000000000004f0 .LVL112
+     /tmp/ccCryeBd.s:825    .text:00000000000004fc .LVL114
+     /tmp/ccCryeBd.s:849    .text:0000000000000528 .LVL117
+     /tmp/ccCryeBd.s:856    .text:0000000000000534 .LVL119
+     /tmp/ccCryeBd.s:868    .text:0000000000000544 .LVL120
+     /tmp/ccCryeBd.s:875    .text:0000000000000550 .LVL121
+     /tmp/ccCryeBd.s:879    .text:000000000000055c .LVL123
+     /tmp/ccCryeBd.s:910    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccCryeBd.s:121    .text:0000000000000060 .LBB20
+     /tmp/ccCryeBd.s:285    .text:00000000000001c8 .LBE20
+     /tmp/ccCryeBd.s:843    .text:0000000000000524 .LBB25
+     /tmp/ccCryeBd.s:892    .text:0000000000000580 .LBE25
+     /tmp/ccCryeBd.s:277    .text:00000000000001c0 .LBB21
+     /tmp/ccCryeBd.s:284    .text:00000000000001c8 .LBE21
+     /tmp/ccCryeBd.s:844    .text:0000000000000524 .LBB24
+     /tmp/ccCryeBd.s:882    .text:000000000000055c .LBE24
+     /tmp/ccCryeBd.s:845    .text:0000000000000524 .LBB22
+     /tmp/ccCryeBd.s:853    .text:0000000000000530 .LBE22
+     /tmp/ccCryeBd.s:860    .text:0000000000000538 .LBB23
+GAS LISTING /tmp/ccCryeBd.s 			page 37
+
+
+     /tmp/ccCryeBd.s:881    .text:000000000000055c .LBE23
+     /tmp/ccCryeBd.s:791    .text:00000000000004c4 .LBB28
+     /tmp/ccCryeBd.s:799    .text:00000000000004d0 .LBE28
+     /tmp/ccCryeBd.s:806    .text:00000000000004d8 .LBB29
+     /tmp/ccCryeBd.s:827    .text:00000000000004fc .LBE29
 
 UNDEFINED SYMBOLS
+__putc
 _ZN11HeapManager8instanceE
 _ZN11HeapManager12heapAllocateEm
 _ZN11HeapManager8heapFreeEPv
@@ -1131,4 +2154,4 @@ _ZN4_sem6signalEPS_
 _ZN5Timer11getInstanceEv
 _ZN5Timer5sleepEm
 __getc
-__putc
+_Z13assert_failedPKcS0_jS0_

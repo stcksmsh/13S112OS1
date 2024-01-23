@@ -15,13 +15,14 @@
 #include "sched.h"
 
 void _sem::open(_sem** handle, unsigned init){
-    (*handle)->blockHead = nullptr;
-    (*handle)->blockTail = nullptr;
+    (*handle) = (sem_t)mem_alloc(sizeof(_sem));
+    (*handle)->blockHead = 0;
+    (*handle)->blockTail = 0;
     (*handle)->value = init;
 }
 
 void _sem::close(sem_t id){
-    while(id->blockHead != nullptr){
+    while(id->blockHead != 0){
         id->blockHead->pThread->setClosed(true);
         mem_free(id->blockHead);
         id->blockHead = id->blockHead->pNext;
@@ -33,8 +34,8 @@ void _sem::wait(sem_t id){
     if(id->value < 0){
         blockedThreadList* pNewBlock = (blockedThreadList*)mem_alloc(sizeof(blockedThreadList));
         pNewBlock->pThread = _thread::currentThread;
-        pNewBlock->pNext = nullptr;
-        if(id->blockHead == nullptr){
+        pNewBlock->pNext = 0;
+        if(id->blockHead == 0){
             id->blockHead = pNewBlock;
             id->blockTail = pNewBlock;
         }else{
@@ -51,11 +52,12 @@ void _sem::signal(sem_t id){
     if(id->value <= 0){
         blockedThreadList* pUnblock = id->blockHead;
         id->blockHead = id->blockHead->pNext;
-        if(id->blockHead == nullptr){
-            id->blockTail = nullptr;
+        if(id->blockHead == 0){
+            id->blockTail = 0;
         }
         pUnblock->pThread->setBlocked(false);
-        Scheduler::put(pUnblock->pThread);
         mem_free(pUnblock);
+        thread_t t = pUnblock->pThread;
+        Scheduler::put(t);
     }
 }

@@ -35,8 +35,6 @@ void thread_join ( thread_t );
 
 int time_sleep( time_t );
 
-// void testUser();
-
 class _sem;
 typedef _sem* sem_t;
 
