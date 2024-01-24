@@ -24,22 +24,10 @@ extern "C" void trap();
 
 Kernel::Kernel(): heapManager(), scheduler(), timer(){}
  
-
 void Kernel::initialise(){
     /// set the trap vector
     __asm__ volatile ("csrw stvec, %0" :: "r"(trap));
 
-    /// change to user mode
-
-    uint64 sstatus;
-    /// get the current sstatus
-    __asm__ volatile("csrr %0, sstatus" : "=r"(sstatus));
-    /// set the SPP bit to 0
-    sstatus &= ~(1 << 8);
-    /// write the new sstatus
-    __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-    
-    /// NOW WE ARE IN USER MODE
     
     /// initialise the heap manager
     heapManager.init((uintptr_t)HEAP_START_ADDR, (uintptr_t)HEAP_END_ADDR );
@@ -79,6 +67,20 @@ Kernel::EXIT_CODE Kernel::run(){
     thread_create(&t, 0, 0);
     _thread::currentThread = Scheduler::get();
     
+    /// change to user mode
+    __asm__ volatile ("li a0, 0xff");
+    __asm__ volatile ("ecall");
+    
+    putc('u');
+    putc('s');
+    putc('e');
+    putc('r');
+    putc('\n');
+
+    
+    /// NOW WE ARE IN USER MODE
+    
+    
     thread_create(&test, usermain, 0);
     putc('k');
     putc('e');
@@ -87,12 +89,21 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('e');
     putc('l');
     putc('\n');
-    int loop = 0;
+    int cnt = 0;
+    time_sleep(25);
     do{
         thread_dispatch();
-        loop++;
-    }while(!Scheduler::isEmpty() && loop < 4);
+        if(cnt ++ % 100 == 0){
+            putc('\n');
+            putc('l');
+            putc('o');
+            putc('o');
+            putc('p');
+            putc('\n');
+        }
+    // }while(!Scheduler::isEmpty());
     // }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
+    }while(true);
 
     putc('m');
     putc('a');

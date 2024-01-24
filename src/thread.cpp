@@ -53,14 +53,16 @@ _thread::_thread(func function, void* arg){
     context.pc = (uint64)wrapper;
 }
 
-void popSppSpie(){
+void popSppSpie(bool kernel = false){
     __asm__ volatile ("csrw sepc, ra");
+    // if(kernel){
+    //     __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    // }
     __asm__ volatile ("sret");
 }
 
 void _thread::wrapper(){
-    // popSppSpie();
-
+    popSppSpie(currentThread->kernel);
     currentThread->function(currentThread->arg);
     currentThread->unJoin();
     exit();
@@ -127,6 +129,9 @@ void _thread::join(thread_t thread){
     if(thread->finished || thread->closed){
         return;
     }
+    __putc('j');
+    __putc('0' + thread->ID);
+    __putc('\n');
     ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
     this->blocked = true;
     newJoin->thread = this;
@@ -143,7 +148,6 @@ void _thread::join(thread_t thread){
 }
 
 int _thread::exit(){
-
     if(currentThread->closed){
         return -1;
     }
@@ -188,6 +192,12 @@ void _thread::dispatch(){
     // if(newThread == 0){
     //     return;
     // }
+    __putc('d');
+    if(oldThread != 0){
+        __putc('0' + oldThread->ID);
+    }
+    __putc('0' + currentThread->ID);
+    __putc('\n');
     contextSwitch(oldThread == 0?0:&(oldThread->context), &(currentThread->context));
 }
 

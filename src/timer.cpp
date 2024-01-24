@@ -13,6 +13,7 @@
 #include "syscalls_c.h"
 #include "sched.h"
 #include "assert.h"
+#include "console.h"
 
 Timer* Timer::instance = 0;
 
@@ -38,14 +39,22 @@ Timer& Timer::getInstance(){
 }
 
 void Timer::tick(){
-    if(time % 10 == 0){
-        putc('t');
-    }
     time += 1;
+    if(time % 10 == 0){
+        __putc('\n');
+        __putc('t');
+        __putc('i');
+        __putc('c');
+        __putc('k');
+        __putc('\n');
+    }
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         if(current->wakeUpTime <= time){
-            putc('w');
+            __putc('\n');
+            __putc('t');
+            __putc('0' + current->thread->ID);
+            __putc('\n');
             current->thread->setSleeping(false);
             Scheduler::put(current->thread);
             threadSleepWrapper* next = current->next;
@@ -67,14 +76,6 @@ int Timer::sleep(time_t timeToSleep){
     newSleepingThread->wakeUpTime = time + timeToSleep;
     newSleepingThread->next = 0;
 
-    time_t w = newSleepingThread->wakeUpTime;
-    putc('w');
-    while(w > 0){
-        putc('0' + w % 10);
-        w /= 10;
-    }
-    putc('\n');
-
     if(sleepingHead == 0){
         sleepingHead = newSleepingThread;
     }else{
@@ -86,7 +87,6 @@ int Timer::sleep(time_t timeToSleep){
         current->next = newSleepingThread;
     }
     thread->setSleeping(true);
-    putc('s');
     thread_dispatch();
     return 0;
 }

@@ -87,6 +87,7 @@ private:
     static void contextSwitch(contextWrapper* oldContext, contextWrapper* newContext);
 
     friend class Scheduler;
+    friend class Timer;
 
 };
 

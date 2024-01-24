@@ -1,4 +1,4 @@
-GAS LISTING /tmp/ccq5RgPP.s 			page 1
+GAS LISTING /tmp/cc5BBLNM.s 			page 1
 
 
    1              		.file	"heapManager.cpp"
@@ -58,7 +58,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
   26 0000 130101FE 		addi	sp,sp,-32
   27              		.cfi_def_cfa_offset 32
   28 0004 233C1100 		sd	ra,24(sp)
-GAS LISTING /tmp/ccq5RgPP.s 			page 2
+GAS LISTING /tmp/cc5BBLNM.s 			page 2
 
 
   29 0008 23388100 		sd	s0,16(sp)
@@ -118,7 +118,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
   73              	.LBE3:
   74              		.cfi_endproc
   75              	.LFE2:
-GAS LISTING /tmp/ccq5RgPP.s 			page 3
+GAS LISTING /tmp/cc5BBLNM.s 			page 3
 
 
   77              		.globl	_ZN11HeapManagerC1Ev
@@ -178,7 +178,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  119              		.cfi_startproc
  120              	.LVL6:
  121 0080 130101FD 		addi	sp,sp,-48
-GAS LISTING /tmp/ccq5RgPP.s 			page 4
+GAS LISTING /tmp/cc5BBLNM.s 			page 4
 
 
  122              		.cfi_def_cfa_offset 48
@@ -238,7 +238,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  171 00f8 13576602 		srli	a4,a2,38
  172 00fc 238AE700 		sb	a4,20(a5)
  173 0100 1357E602 		srli	a4,a2,46
-GAS LISTING /tmp/ccq5RgPP.s 			page 5
+GAS LISTING /tmp/cc5BBLNM.s 			page 5
 
 
  174 0104 A38AE700 		sb	a4,21(a5)
@@ -298,7 +298,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  223      93860600 
  224 0184 1306C001 		li	a2,28
  225              	.LVL11:
-GAS LISTING /tmp/ccq5RgPP.s 			page 6
+GAS LISTING /tmp/cc5BBLNM.s 			page 6
 
 
  226 0188 97050000 		lla	a1,.LC1
@@ -358,7 +358,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  267              		.loc 1 39 28 is_stmt 0
  268 01bc 83340500 		ld	s1,0(a0)
  269              	.LVL17:
-GAS LISTING /tmp/ccq5RgPP.s 			page 7
+GAS LISTING /tmp/cc5BBLNM.s 			page 7
 
 
   38:src/heapManager.cpp ****     size_t nFreeMemory = 0;
@@ -418,7 +418,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  318 0258 83C75400 		lbu	a5,5(s1)
  319 025c 93978702 		slli	a5,a5,40
  320 0260 33E7E700 		or	a4,a5,a4
-GAS LISTING /tmp/ccq5RgPP.s 			page 8
+GAS LISTING /tmp/cc5BBLNM.s 			page 8
 
 
  321 0264 83C76400 		lbu	a5,6(s1)
@@ -478,7 +478,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  364 02ec 83348100 		ld	s1,8(sp)
  365              		.cfi_restore 9
  366              	.LVL23:
-GAS LISTING /tmp/ccq5RgPP.s 			page 9
+GAS LISTING /tmp/cc5BBLNM.s 			page 9
 
 
  367 02f0 03390100 		ld	s2,0(sp)
@@ -538,7 +538,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
   53:src/heapManager.cpp ****         if(pCurrent->nSize >= nSize){
  414              		.loc 1 53 9 discriminator 3
  415              	.LBB5:
-GAS LISTING /tmp/ccq5RgPP.s 			page 10
+GAS LISTING /tmp/cc5BBLNM.s 			page 10
 
 
  416              		.loc 1 53 22 is_stmt 0 discriminator 3
@@ -598,7 +598,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  445 0388 83C71400 		lbu	a5,1(s1)
  446 038c 93978700 		slli	a5,a5,8
  447 0390 33E7E700 		or	a4,a5,a4
-GAS LISTING /tmp/ccq5RgPP.s 			page 11
+GAS LISTING /tmp/cc5BBLNM.s 			page 11
 
 
  448 0394 83C72400 		lbu	a5,2(s1)
@@ -658,7 +658,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  494      E7800000 
  495              	.LVL30:
  496 043c 6FF0DFEE 		j	.L18
-GAS LISTING /tmp/ccq5RgPP.s 			page 12
+GAS LISTING /tmp/cc5BBLNM.s 			page 12
 
 
  497              	.L27:
@@ -718,7 +718,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  541 04b0 13170703 		slli	a4,a4,48
  542 04b4 B366D700 		or	a3,a4,a3
  543 04b8 03C77401 		lbu	a4,23(s1)
-GAS LISTING /tmp/ccq5RgPP.s 			page 13
+GAS LISTING /tmp/cc5BBLNM.s 			page 13
 
 
  544 04bc 13178703 		slli	a4,a4,56
@@ -778,7 +778,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  592 0564 93568700 		srli	a3,a4,8
  593 0568 A380D700 		sb	a3,1(a5)
  594 056c 93560701 		srli	a3,a4,16
-GAS LISTING /tmp/ccq5RgPP.s 			page 14
+GAS LISTING /tmp/cc5BBLNM.s 			page 14
 
 
  595 0570 2381D700 		sb	a3,2(a5)
@@ -838,7 +838,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  645 0628 13178703 		slli	a4,a4,56
  646 062c 3367D700 		or	a4,a4,a3
   61:src/heapManager.cpp ****                     pCurrent->pNext->pPrev = pNew;
-GAS LISTING /tmp/ccq5RgPP.s 			page 15
+GAS LISTING /tmp/cc5BBLNM.s 			page 15
 
 
  647              		.loc 1 61 17
@@ -898,7 +898,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  695 06cc 238AF400 		sb	a5,20(s1)
  696 06d0 93578902 		srli	a5,s2,40
  697 06d4 A38AF400 		sb	a5,21(s1)
-GAS LISTING /tmp/ccq5RgPP.s 			page 16
+GAS LISTING /tmp/cc5BBLNM.s 			page 16
 
 
  698 06d8 93570903 		srli	a5,s2,48
@@ -958,7 +958,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  744 0758 33E7E600 		or	a4,a3,a4
  745 075c 83C62400 		lbu	a3,2(s1)
  746 0760 93960601 		slli	a3,a3,16
-GAS LISTING /tmp/ccq5RgPP.s 			page 17
+GAS LISTING /tmp/cc5BBLNM.s 			page 17
 
 
  747 0764 B3E6E600 		or	a3,a3,a4
@@ -1018,7 +1018,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  798 0820 83C76400 		lbu	a5,6(s1)
  799 0824 93970703 		slli	a5,a5,48
  800 0828 33E7E700 		or	a4,a5,a4
-GAS LISTING /tmp/ccq5RgPP.s 			page 18
+GAS LISTING /tmp/cc5BBLNM.s 			page 18
 
 
  801 082c 83C77400 		lbu	a5,7(s1)
@@ -1078,7 +1078,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  849 08d0 93840404 		addi	s1,s1,64
  850              	.LVL35:
  851              	.L16:
-GAS LISTING /tmp/ccq5RgPP.s 			page 19
+GAS LISTING /tmp/cc5BBLNM.s 			page 19
 
 
  852              	.LBE6:
@@ -1138,7 +1138,7 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  901 0944 93978703 		slli	a5,a5,56
  902 0948 B3E7E700 		or	a5,a5,a4
   68:src/heapManager.cpp ****             }
-GAS LISTING /tmp/ccq5RgPP.s 			page 20
+GAS LISTING /tmp/cc5BBLNM.s 			page 20
 
 
  903              		.loc 1 68 25
@@ -1149,1504 +1149,485 @@ GAS LISTING /tmp/ccq5RgPP.s 			page 1
  908              	.LBE13:
  909              		.cfi_endproc
  910              	.LFE9:
- 912              		.section	.rodata.str1.8
- 913              		.align	3
- 914              	.LC8:
- 915 0110 696E7420 		.string	"int HeapManager::heapFree(void*)"
- 915      48656170 
- 915      4D616E61 
- 915      6765723A 
- 915      3A686561 
- 916 0131 00000000 		.align	3
- 916      000000
- 917              	.LC9:
- 918 0138 70467265 		.string	"pFree->u32Magic == HEAP_BLOCK_MAGIC"
- 918      652D3E75 
- 918      33324D61 
- 918      67696320 
- 918      3D3D2048 
- 919 015c 00000000 		.align	3
- 920              	.LC10:
- 921 0160 70496E73 		.string	"pInsert->u32Magic == HEAP_BLOCK_MAGIC"
- 921      6572742D 
- 921      3E753332 
- 921      4D616769 
- 921      63203D3D 
- 922              		.text
- 923              		.align	2
- 924              		.globl	_ZN11HeapManager8heapFreeEPv
- 926              	_ZN11HeapManager8heapFreeEPv:
- 927              	.LFB10:
+ 912              		.align	2
+ 913              		.globl	_ZN11HeapManager8heapFreeEPv
+ 915              	_ZN11HeapManager8heapFreeEPv:
+ 916              	.LFB10:
   82:src/heapManager.cpp **** 
   83:src/heapManager.cpp **** int HeapManager::heapFree(void* pAddress){
- 928              		.loc 1 83 42 is_stmt 1
- 929              		.cfi_startproc
- 930              	.LVL38:
- 931 0954 130101FC 		addi	sp,sp,-64
- 932              		.cfi_def_cfa_offset 64
- 933 0958 233C1102 		sd	ra,56(sp)
- 934 095c 23388102 		sd	s0,48(sp)
- 935 0960 23349102 		sd	s1,40(sp)
- 936 0964 23302103 		sd	s2,32(sp)
- 937 0968 233C3101 		sd	s3,24(sp)
- 938 096c 23384101 		sd	s4,16(sp)
- 939 0970 23345101 		sd	s5,8(sp)
- 940              		.cfi_offset 1, -8
- 941              		.cfi_offset 8, -16
- 942              		.cfi_offset 9, -24
- 943              		.cfi_offset 18, -32
- 944              		.cfi_offset 19, -40
- 945              		.cfi_offset 20, -48
- 946              		.cfi_offset 21, -56
-GAS LISTING /tmp/ccq5RgPP.s 			page 21
-
-
- 947 0974 13040104 		addi	s0,sp,64
- 948              		.cfi_def_cfa 8, 0
- 949 0978 930A0500 		mv	s5,a0
- 950 097c 138A0500 		mv	s4,a1
-  84:src/heapManager.cpp ****     HeapFreeSectionHeader* pFree = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uintpt
- 951              		.loc 1 84 5
- 952              		.loc 1 84 115 is_stmt 0
- 953 0980 138905FC 		addi	s2,a1,-64
- 954              		.loc 1 84 28
- 955 0984 93090900 		mv	s3,s2
- 956              	.LVL39:
+ 917              		.loc 1 83 42 is_stmt 1
+ 918              		.cfi_startproc
+ 919              	.LVL38:
+ 920 0954 130101FF 		addi	sp,sp,-16
+ 921              		.cfi_def_cfa_offset 16
+ 922 0958 23348100 		sd	s0,8(sp)
+ 923              		.cfi_offset 8, -8
+ 924 095c 13040101 		addi	s0,sp,16
+ 925              		.cfi_def_cfa 8, 0
+  84:src/heapManager.cpp ****     // HeapFreeSectionHeader* pFree = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uin
   85:src/heapManager.cpp ****     
-  86:src/heapManager.cpp ****     assert(pFree->u32Magic == HEAP_BLOCK_MAGIC);
- 957              		.loc 1 86 5 is_stmt 1
- 958 0988 83478901 		lbu	a5,24(s2)
- 959 098c 03479901 		lbu	a4,25(s2)
- 960 0990 13178700 		slli	a4,a4,8
- 961 0994 3367F700 		or	a4,a4,a5
- 962 0998 8347A901 		lbu	a5,26(s2)
- 963 099c 93970701 		slli	a5,a5,16
- 964 09a0 33E7E700 		or	a4,a5,a4
- 965 09a4 8347B901 		lbu	a5,27(s2)
- 966 09a8 93978701 		slli	a5,a5,24
- 967 09ac B3E7E700 		or	a5,a5,a4
- 968 09b0 9B870700 		sext.w	a5,a5
- 969 09b4 37C7ADDE 		li	a4,-559038464
- 970 09b8 1307E70D 		addi	a4,a4,222
- 971 09bc 639CE72A 		bne	a5,a4,.L41
- 972              	.LVL40:
- 973              	.L30:
- 974              		.loc 1 86 48 discriminator 3
-  87:src/heapManager.cpp ****     HeapFreeSectionHeader* pInsert = m_pHead;
- 975              		.loc 1 87 5 discriminator 3
- 976              		.loc 1 87 28 is_stmt 0 discriminator 3
- 977 09c0 83B40A00 		ld	s1,0(s5)
- 978              	.LVL41:
+  86:src/heapManager.cpp ****     // assert(pFree->u32Magic == HEAP_BLOCK_MAGIC);
+  87:src/heapManager.cpp ****     // HeapFreeSectionHeader* pInsert = m_pHead;
   88:src/heapManager.cpp **** 
-  89:src/heapManager.cpp ****     if(pInsert == 0 || pInsert->pNext >= pAddress){
- 979              		.loc 1 89 5 is_stmt 1 discriminator 3
- 980 09c4 63800406 		beqz	s1,.L31
- 981              		.loc 1 89 33 is_stmt 0 discriminator 1
- 982 09c8 83C70400 		lbu	a5,0(s1)
- 983 09cc 03C71400 		lbu	a4,1(s1)
- 984 09d0 13178700 		slli	a4,a4,8
- 985 09d4 3367F700 		or	a4,a4,a5
- 986 09d8 83C72400 		lbu	a5,2(s1)
- 987 09dc 93970701 		slli	a5,a5,16
- 988 09e0 33E7E700 		or	a4,a5,a4
- 989 09e4 83C73400 		lbu	a5,3(s1)
- 990 09e8 93978701 		slli	a5,a5,24
- 991 09ec B3E7E700 		or	a5,a5,a4
- 992 09f0 03C74400 		lbu	a4,4(s1)
- 993 09f4 13170702 		slli	a4,a4,32
- 994 09f8 B367F700 		or	a5,a4,a5
- 995 09fc 03C75400 		lbu	a4,5(s1)
- 996 0a00 13178702 		slli	a4,a4,40
- 997 0a04 3367F700 		or	a4,a4,a5
-GAS LISTING /tmp/ccq5RgPP.s 			page 22
-
-
- 998 0a08 83C76400 		lbu	a5,6(s1)
- 999 0a0c 93970703 		slli	a5,a5,48
- 1000 0a10 33E7E700 		or	a4,a5,a4
- 1001 0a14 83C77400 		lbu	a5,7(s1)
- 1002 0a18 93978703 		slli	a5,a5,56
- 1003 0a1c B3E7E700 		or	a5,a5,a4
- 1004              		.loc 1 89 21 discriminator 1
- 1005 0a20 63EA472D 		bltu	a5,s4,.L32
- 1006              	.L31:
-  90:src/heapManager.cpp ****         pFree->pNext = m_pHead;
- 1007              		.loc 1 90 9 is_stmt 1
- 1008              		.loc 1 90 22 is_stmt 0
- 1009 0a24 23009AFC 		sb	s1,-64(s4)
- 1010 0a28 93D78400 		srli	a5,s1,8
- 1011 0a2c A300F900 		sb	a5,1(s2)
- 1012 0a30 93D70401 		srli	a5,s1,16
- 1013 0a34 2301F900 		sb	a5,2(s2)
- 1014 0a38 9BD78401 		srliw	a5,s1,24
- 1015 0a3c A301F900 		sb	a5,3(s2)
- 1016 0a40 93D70402 		srli	a5,s1,32
- 1017 0a44 2302F900 		sb	a5,4(s2)
- 1018 0a48 93D78402 		srli	a5,s1,40
- 1019 0a4c A302F900 		sb	a5,5(s2)
- 1020 0a50 93D70403 		srli	a5,s1,48
- 1021 0a54 2303F900 		sb	a5,6(s2)
- 1022 0a58 93D48403 		srli	s1,s1,56
- 1023              	.LVL42:
- 1024 0a5c A3039900 		sb	s1,7(s2)
-  91:src/heapManager.cpp ****         m_pHead->pPrev = pFree;
- 1025              		.loc 1 91 9 is_stmt 1
- 1026 0a60 83B70A00 		ld	a5,0(s5)
- 1027              		.loc 1 91 24 is_stmt 0
- 1028 0a64 23842701 		sb	s2,8(a5)
- 1029 0a68 13578900 		srli	a4,s2,8
- 1030 0a6c A384E700 		sb	a4,9(a5)
- 1031 0a70 13570901 		srli	a4,s2,16
- 1032 0a74 2385E700 		sb	a4,10(a5)
- 1033 0a78 1B578901 		srliw	a4,s2,24
- 1034 0a7c A385E700 		sb	a4,11(a5)
- 1035 0a80 13570902 		srli	a4,s2,32
- 1036 0a84 2386E700 		sb	a4,12(a5)
- 1037 0a88 13578902 		srli	a4,s2,40
- 1038 0a8c A386E700 		sb	a4,13(a5)
- 1039 0a90 13570903 		srli	a4,s2,48
- 1040 0a94 2387E700 		sb	a4,14(a5)
- 1041 0a98 13578903 		srli	a4,s2,56
- 1042 0a9c A387E700 		sb	a4,15(a5)
-  92:src/heapManager.cpp ****         m_pHead = pFree;
- 1043              		.loc 1 92 9 is_stmt 1
- 1044              		.loc 1 92 17 is_stmt 0
- 1045 0aa0 23B02A01 		sd	s2,0(s5)
-  93:src/heapManager.cpp ****         pFree->pNext = 0;
- 1046              		.loc 1 93 9 is_stmt 1
- 1047              		.loc 1 93 22 is_stmt 0
- 1048 0aa4 23000AFC 		sb	zero,-64(s4)
- 1049 0aa8 A3000900 		sb	zero,1(s2)
- 1050 0aac 23010900 		sb	zero,2(s2)
-GAS LISTING /tmp/ccq5RgPP.s 			page 23
-
-
- 1051 0ab0 A3010900 		sb	zero,3(s2)
- 1052 0ab4 23020900 		sb	zero,4(s2)
- 1053 0ab8 A3020900 		sb	zero,5(s2)
- 1054 0abc 23030900 		sb	zero,6(s2)
- 1055 0ac0 A3030900 		sb	zero,7(s2)
- 1056              	.L33:
-  94:src/heapManager.cpp ****     }else{
-  95:src/heapManager.cpp ****         while(pInsert->pNext != 0 && pInsert->pNext < pAddress){
-  96:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
-  97:src/heapManager.cpp ****             pInsert = pInsert->pNext;
-  98:src/heapManager.cpp ****         }
+  89:src/heapManager.cpp ****     // if(pInsert == 0 || pInsert->pNext >= pAddress){
+  90:src/heapManager.cpp ****     //     pFree->pNext = m_pHead;
+  91:src/heapManager.cpp ****     //     m_pHead->pPrev = pFree;
+  92:src/heapManager.cpp ****     //     m_pHead = pFree;
+  93:src/heapManager.cpp ****     //     pFree->pNext = 0;
+  94:src/heapManager.cpp ****     // }else{
+  95:src/heapManager.cpp ****     //     while(pInsert->pNext != 0 && pInsert->pNext < pAddress){
+  96:src/heapManager.cpp ****     //         assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
+  97:src/heapManager.cpp ****     //         pInsert = pInsert->pNext;
+  98:src/heapManager.cpp ****     //     }
   99:src/heapManager.cpp **** 
- 100:src/heapManager.cpp ****         pFree->pNext = pInsert->pNext;
- 101:src/heapManager.cpp ****         pFree->pPrev = pInsert;
- 102:src/heapManager.cpp ****         if(pInsert->pNext != 0){
- 103:src/heapManager.cpp ****             pInsert->pNext->pPrev = pFree;
- 104:src/heapManager.cpp ****         }
- 105:src/heapManager.cpp ****         pInsert->pNext = pFree;
- 106:src/heapManager.cpp ****     }
+ 100:src/heapManager.cpp ****     //     pFree->pNext = pInsert->pNext;
+ 101:src/heapManager.cpp ****     //     pFree->pPrev = pInsert;
+ 102:src/heapManager.cpp ****     //     if(pInsert->pNext != 0){
+ 103:src/heapManager.cpp ****     //         pInsert->pNext->pPrev = pFree;
+ 104:src/heapManager.cpp ****     //     }
+ 105:src/heapManager.cpp ****     //     pInsert->pNext = pFree;
+ 106:src/heapManager.cpp ****     // }
  107:src/heapManager.cpp **** 
  108:src/heapManager.cpp **** 
  109:src/heapManager.cpp **** 
- 110:src/heapManager.cpp ****     /// merge with previous block if possible
- 111:src/heapManager.cpp ****     if(pFree->pPrev != 0 && reinterpret_cast<uintptr_t>(pFree->pPrev) + (pFree->pPrev->nSize + 1) *
- 1057              		.loc 1 111 5 is_stmt 1
- 1058              		.loc 1 111 15 is_stmt 0
- 1059 0ac4 83478900 		lbu	a5,8(s2)
- 1060 0ac8 03479900 		lbu	a4,9(s2)
- 1061 0acc 13178700 		slli	a4,a4,8
- 1062 0ad0 3367F700 		or	a4,a4,a5
- 1063 0ad4 8347A900 		lbu	a5,10(s2)
- 1064 0ad8 93970701 		slli	a5,a5,16
- 1065 0adc 33E7E700 		or	a4,a5,a4
- 1066 0ae0 8347B900 		lbu	a5,11(s2)
- 1067 0ae4 93978701 		slli	a5,a5,24
- 1068 0ae8 B3E7E700 		or	a5,a5,a4
- 1069 0aec 0347C900 		lbu	a4,12(s2)
- 1070 0af0 13170702 		slli	a4,a4,32
- 1071 0af4 B367F700 		or	a5,a4,a5
- 1072 0af8 0347D900 		lbu	a4,13(s2)
- 1073 0afc 13178702 		slli	a4,a4,40
- 1074 0b00 3367F700 		or	a4,a4,a5
- 1075 0b04 8347E900 		lbu	a5,14(s2)
- 1076 0b08 93970703 		slli	a5,a5,48
- 1077 0b0c 33E7E700 		or	a4,a5,a4
- 1078 0b10 8347F900 		lbu	a5,15(s2)
- 1079 0b14 93978703 		slli	a5,a5,56
- 1080 0b18 B3E7E700 		or	a5,a5,a4
- 1081              		.loc 1 111 5
- 1082 0b1c 63860706 		beqz	a5,.L37
- 1083              		.loc 1 111 88 discriminator 1
- 1084 0b20 03C70701 		lbu	a4,16(a5)
- 1085 0b24 83C61701 		lbu	a3,17(a5)
- 1086 0b28 93968600 		slli	a3,a3,8
- 1087 0b2c B3E6E600 		or	a3,a3,a4
- 1088 0b30 03C72701 		lbu	a4,18(a5)
- 1089 0b34 13170701 		slli	a4,a4,16
-GAS LISTING /tmp/ccq5RgPP.s 			page 24
+ 110:src/heapManager.cpp ****     // /// merge with previous block if possible
+ 111:src/heapManager.cpp ****     // if(pFree->pPrev != 0 && reinterpret_cast<uintptr_t>(pFree->pPrev) + (pFree->pPrev->nSize + 1
+ 112:src/heapManager.cpp ****     //     pFree->pPrev->nSize += pFree->nSize + 1;
+ 113:src/heapManager.cpp ****     //     pFree->pPrev->pNext = pFree->pNext;
+ 114:src/heapManager.cpp ****     //     if(pFree->pNext != 0){
+ 115:src/heapManager.cpp ****     //         pFree->pNext->pPrev = pFree->pPrev;
+ 116:src/heapManager.cpp ****     //     }pFree = pFree->pPrev;
+ 117:src/heapManager.cpp ****     // }
+GAS LISTING /tmp/cc5BBLNM.s 			page 21
 
 
- 1090 0b38 B366D700 		or	a3,a4,a3
- 1091 0b3c 03C73701 		lbu	a4,19(a5)
- 1092 0b40 13178701 		slli	a4,a4,24
- 1093 0b44 3367D700 		or	a4,a4,a3
- 1094 0b48 83C64701 		lbu	a3,20(a5)
- 1095 0b4c 93960602 		slli	a3,a3,32
- 1096 0b50 33E7E600 		or	a4,a3,a4
- 1097 0b54 83C65701 		lbu	a3,21(a5)
- 1098 0b58 93968602 		slli	a3,a3,40
- 1099 0b5c B3E6E600 		or	a3,a3,a4
- 1100 0b60 03C76701 		lbu	a4,22(a5)
- 1101 0b64 13170703 		slli	a4,a4,48
- 1102 0b68 B366D700 		or	a3,a4,a3
- 1103 0b6c 03C77701 		lbu	a4,23(a5)
- 1104 0b70 13178703 		slli	a4,a4,56
- 1105 0b74 3367D700 		or	a4,a4,a3
- 1106              		.loc 1 111 94 discriminator 1
- 1107 0b78 93061700 		addi	a3,a4,1
- 1108              		.loc 1 111 99 discriminator 1
- 1109 0b7c 93966600 		slli	a3,a3,6
- 1110              		.loc 1 111 71 discriminator 1
- 1111 0b80 B386D700 		add	a3,a5,a3
- 1112              		.loc 1 111 26 discriminator 1
- 1113 0b84 6300D938 		beq	s2,a3,.L42
- 1114              	.LVL43:
- 1115              	.L37:
- 112:src/heapManager.cpp ****         pFree->pPrev->nSize += pFree->nSize + 1;
- 113:src/heapManager.cpp ****         pFree->pPrev->pNext = pFree->pNext;
- 114:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 115:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree->pPrev;
- 116:src/heapManager.cpp ****         }pFree = pFree->pPrev;
- 117:src/heapManager.cpp ****     }
- 118:src/heapManager.cpp ****     /// merge with next block if possible
- 119:src/heapManager.cpp ****     if(pFree->pNext != 0 && reinterpret_cast<uintptr_t>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_SIZ
- 1116              		.loc 1 119 5 is_stmt 1
- 1117              		.loc 1 119 15 is_stmt 0
- 1118 0b88 83C70900 		lbu	a5,0(s3)
- 1119 0b8c 03C71900 		lbu	a4,1(s3)
- 1120 0b90 13178700 		slli	a4,a4,8
- 1121 0b94 3367F700 		or	a4,a4,a5
- 1122 0b98 83C72900 		lbu	a5,2(s3)
- 1123 0b9c 93970701 		slli	a5,a5,16
- 1124 0ba0 33E7E700 		or	a4,a5,a4
- 1125 0ba4 83C73900 		lbu	a5,3(s3)
- 1126 0ba8 93978701 		slli	a5,a5,24
- 1127 0bac B3E7E700 		or	a5,a5,a4
- 1128 0bb0 03C74900 		lbu	a4,4(s3)
- 1129 0bb4 13170702 		slli	a4,a4,32
- 1130 0bb8 B367F700 		or	a5,a4,a5
- 1131 0bbc 03C75900 		lbu	a4,5(s3)
- 1132 0bc0 13178702 		slli	a4,a4,40
- 1133 0bc4 3367F700 		or	a4,a4,a5
- 1134 0bc8 83C76900 		lbu	a5,6(s3)
- 1135 0bcc 93970703 		slli	a5,a5,48
- 1136 0bd0 33E7E700 		or	a4,a5,a4
- 1137 0bd4 83C77900 		lbu	a5,7(s3)
- 1138 0bd8 93978703 		slli	a5,a5,56
-GAS LISTING /tmp/ccq5RgPP.s 			page 25
-
-
- 1139 0bdc B3E7E700 		or	a5,a5,a4
- 1140              		.loc 1 119 5
- 1141 0be0 63860706 		beqz	a5,.L39
- 1142              		.loc 1 119 74 discriminator 1
- 1143 0be4 03C70901 		lbu	a4,16(s3)
- 1144 0be8 83C61901 		lbu	a3,17(s3)
- 1145 0bec 93968600 		slli	a3,a3,8
- 1146 0bf0 B3E6E600 		or	a3,a3,a4
- 1147 0bf4 03C72901 		lbu	a4,18(s3)
- 1148 0bf8 13170701 		slli	a4,a4,16
- 1149 0bfc B366D700 		or	a3,a4,a3
- 1150 0c00 03C73901 		lbu	a4,19(s3)
- 1151 0c04 13178701 		slli	a4,a4,24
- 1152 0c08 3367D700 		or	a4,a4,a3
- 1153 0c0c 83C64901 		lbu	a3,20(s3)
- 1154 0c10 93960602 		slli	a3,a3,32
- 1155 0c14 33E7E600 		or	a4,a3,a4
- 1156 0c18 83C65901 		lbu	a3,21(s3)
- 1157 0c1c 93968602 		slli	a3,a3,40
- 1158 0c20 B3E6E600 		or	a3,a3,a4
- 1159 0c24 03C76901 		lbu	a4,22(s3)
- 1160 0c28 13170703 		slli	a4,a4,48
- 1161 0c2c B366D700 		or	a3,a4,a3
- 1162 0c30 03C77901 		lbu	a4,23(s3)
- 1163 0c34 13178703 		slli	a4,a4,56
- 1164 0c38 3367D700 		or	a4,a4,a3
- 1165              		.loc 1 119 80 discriminator 1
- 1166 0c3c 93061700 		addi	a3,a4,1
- 1167              		.loc 1 119 85 discriminator 1
- 1168 0c40 93966600 		slli	a3,a3,6
- 1169              		.loc 1 119 64 discriminator 1
- 1170 0c44 B386D900 		add	a3,s3,a3
- 1171              		.loc 1 119 26 discriminator 1
- 1172 0c48 6388F658 		beq	a3,a5,.L43
- 1173              	.LVL44:
- 1174              	.L39:
- 120:src/heapManager.cpp ****         pFree->nSize += pFree->pNext->nSize + 1;
- 121:src/heapManager.cpp ****         pFree->pNext = pFree->pNext->pNext;
- 122:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 123:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree;
- 124:src/heapManager.cpp ****         }
- 125:src/heapManager.cpp ****     }
+ 118:src/heapManager.cpp ****     // /// merge with next block if possible
+ 119:src/heapManager.cpp ****     // if(pFree->pNext != 0 && reinterpret_cast<uintptr_t>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_
+ 120:src/heapManager.cpp ****     //     pFree->nSize += pFree->pNext->nSize + 1;
+ 121:src/heapManager.cpp ****     //     pFree->pNext = pFree->pNext->pNext;
+ 122:src/heapManager.cpp ****     //     if(pFree->pNext != 0){
+ 123:src/heapManager.cpp ****     //         pFree->pNext->pPrev = pFree;
+ 124:src/heapManager.cpp ****     //     }
+ 125:src/heapManager.cpp ****     // }
  126:src/heapManager.cpp ****     return 0;
- 1175              		.loc 1 126 5 is_stmt 1
+ 926              		.loc 1 126 5
  127:src/heapManager.cpp **** }
- 1176              		.loc 1 127 1 is_stmt 0
- 1177 0c4c 13050000 		li	a0,0
- 1178 0c50 83308103 		ld	ra,56(sp)
- 1179              		.cfi_remember_state
- 1180              		.cfi_restore 1
- 1181 0c54 03340103 		ld	s0,48(sp)
- 1182              		.cfi_restore 8
- 1183              		.cfi_def_cfa 2, 64
- 1184 0c58 83348102 		ld	s1,40(sp)
- 1185              		.cfi_restore 9
- 1186 0c5c 03390102 		ld	s2,32(sp)
- 1187              		.cfi_restore 18
-GAS LISTING /tmp/ccq5RgPP.s 			page 26
-
-
- 1188 0c60 83398101 		ld	s3,24(sp)
- 1189              		.cfi_restore 19
- 1190 0c64 033A0101 		ld	s4,16(sp)
- 1191              		.cfi_restore 20
- 1192              	.LVL45:
- 1193 0c68 833A8100 		ld	s5,8(sp)
- 1194              		.cfi_restore 21
- 1195              	.LVL46:
- 1196 0c6c 13010104 		addi	sp,sp,64
- 1197              		.cfi_def_cfa_offset 0
- 1198 0c70 67800000 		jr	ra
- 1199              	.LVL47:
- 1200              	.L41:
- 1201              		.cfi_restore_state
-  86:src/heapManager.cpp ****     HeapFreeSectionHeader* pInsert = m_pHead;
- 1202              		.loc 1 86 5 is_stmt 1 discriminator 1
- 1203 0c74 97060000 		lla	a3,.LC8
- 1203      93860600 
- 1204 0c7c 13066005 		li	a2,86
- 1205 0c80 97050000 		lla	a1,.LC1
- 1205      93850500 
- 1206              	.LVL48:
- 1207 0c88 17050000 		lla	a0,.LC9
- 1207      13050500 
- 1208              	.LVL49:
- 1209 0c90 97000000 		call	_Z13assert_failedPKcS0_jS0_@plt
- 1209      E7800000 
- 1210              	.LVL50:
- 1211 0c98 6FF09FD2 		j	.L30
- 1212              	.LVL51:
- 1213              	.L35:
-  96:src/heapManager.cpp ****             pInsert = pInsert->pNext;
- 1214              		.loc 1 96 58 discriminator 3
-  97:src/heapManager.cpp ****         }
- 1215              		.loc 1 97 13 discriminator 3
-  97:src/heapManager.cpp ****         }
- 1216              		.loc 1 97 21 is_stmt 0 discriminator 3
- 1217 0c9c 03C70400 		lbu	a4,0(s1)
- 1218 0ca0 83C71400 		lbu	a5,1(s1)
- 1219 0ca4 93978700 		slli	a5,a5,8
- 1220 0ca8 33E7E700 		or	a4,a5,a4
- 1221 0cac 83C72400 		lbu	a5,2(s1)
- 1222 0cb0 93970701 		slli	a5,a5,16
- 1223 0cb4 B3E7E700 		or	a5,a5,a4
- 1224 0cb8 03C73400 		lbu	a4,3(s1)
- 1225 0cbc 13178701 		slli	a4,a4,24
- 1226 0cc0 B367F700 		or	a5,a4,a5
- 1227 0cc4 03C74400 		lbu	a4,4(s1)
- 1228 0cc8 13170702 		slli	a4,a4,32
- 1229 0ccc 3367F700 		or	a4,a4,a5
- 1230 0cd0 83C75400 		lbu	a5,5(s1)
- 1231 0cd4 93978702 		slli	a5,a5,40
- 1232 0cd8 33E7E700 		or	a4,a5,a4
- 1233 0cdc 83C76400 		lbu	a5,6(s1)
- 1234 0ce0 93970703 		slli	a5,a5,48
- 1235 0ce4 B3E7E700 		or	a5,a5,a4
- 1236 0ce8 83C47400 		lbu	s1,7(s1)
-GAS LISTING /tmp/ccq5RgPP.s 			page 27
-
-
- 1237              	.LVL52:
- 1238 0cec 93948403 		slli	s1,s1,56
- 1239 0cf0 B3E4F400 		or	s1,s1,a5
- 1240              	.LVL53:
- 1241              	.L32:
-  95:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
- 1242              		.loc 1 95 9 is_stmt 1
-  95:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
- 1243              		.loc 1 95 35
-  95:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
- 1244              		.loc 1 95 24 is_stmt 0
- 1245 0cf4 83C70400 		lbu	a5,0(s1)
- 1246 0cf8 03C71400 		lbu	a4,1(s1)
- 1247 0cfc 13178700 		slli	a4,a4,8
- 1248 0d00 3367F700 		or	a4,a4,a5
- 1249 0d04 83C72400 		lbu	a5,2(s1)
- 1250 0d08 93970701 		slli	a5,a5,16
- 1251 0d0c 33E7E700 		or	a4,a5,a4
- 1252 0d10 83C73400 		lbu	a5,3(s1)
- 1253 0d14 93978701 		slli	a5,a5,24
- 1254 0d18 B3E7E700 		or	a5,a5,a4
- 1255 0d1c 03C74400 		lbu	a4,4(s1)
- 1256 0d20 13170702 		slli	a4,a4,32
- 1257 0d24 B367F700 		or	a5,a4,a5
- 1258 0d28 03C75400 		lbu	a4,5(s1)
- 1259 0d2c 13178702 		slli	a4,a4,40
- 1260 0d30 3367F700 		or	a4,a4,a5
- 1261 0d34 83C76400 		lbu	a5,6(s1)
- 1262 0d38 93970703 		slli	a5,a5,48
- 1263 0d3c 33E7E700 		or	a4,a5,a4
- 1264 0d40 83C77400 		lbu	a5,7(s1)
- 1265 0d44 93978703 		slli	a5,a5,56
- 1266 0d48 B3E7E700 		or	a5,a5,a4
-  95:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
- 1267              		.loc 1 95 35
- 1268 0d4c 63840706 		beqz	a5,.L34
-  95:src/heapManager.cpp ****             assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
- 1269              		.loc 1 95 35 discriminator 1
- 1270 0d50 63F24707 		bgeu	a5,s4,.L34
-  96:src/heapManager.cpp ****             pInsert = pInsert->pNext;
- 1271              		.loc 1 96 13 is_stmt 1
- 1272 0d54 83C78401 		lbu	a5,24(s1)
- 1273 0d58 03C79401 		lbu	a4,25(s1)
- 1274 0d5c 13178700 		slli	a4,a4,8
- 1275 0d60 3367F700 		or	a4,a4,a5
- 1276 0d64 83C7A401 		lbu	a5,26(s1)
- 1277 0d68 93970701 		slli	a5,a5,16
- 1278 0d6c 33E7E700 		or	a4,a5,a4
- 1279 0d70 83C7B401 		lbu	a5,27(s1)
- 1280 0d74 93978701 		slli	a5,a5,24
- 1281 0d78 B3E7E700 		or	a5,a5,a4
- 1282 0d7c 9B870700 		sext.w	a5,a5
- 1283 0d80 37C7ADDE 		li	a4,-559038464
- 1284 0d84 1307E70D 		addi	a4,a4,222
- 1285 0d88 E38AE7F0 		beq	a5,a4,.L35
-  96:src/heapManager.cpp ****             pInsert = pInsert->pNext;
- 1286              		.loc 1 96 13 discriminator 1
-GAS LISTING /tmp/ccq5RgPP.s 			page 28
-
-
- 1287 0d8c 97060000 		lla	a3,.LC8
- 1287      93860600 
- 1288 0d94 13060006 		li	a2,96
- 1289 0d98 97050000 		lla	a1,.LC1
- 1289      93850500 
- 1290 0da0 17050000 		lla	a0,.LC10
- 1290      13050500 
- 1291 0da8 97000000 		call	_Z13assert_failedPKcS0_jS0_@plt
- 1291      E7800000 
- 1292              	.LVL54:
- 1293 0db0 6FF0DFEE 		j	.L35
- 1294              	.L34:
- 100:src/heapManager.cpp ****         pFree->pPrev = pInsert;
- 1295              		.loc 1 100 9
- 100:src/heapManager.cpp ****         pFree->pPrev = pInsert;
- 1296              		.loc 1 100 22 is_stmt 0
- 1297 0db4 2300FAFC 		sb	a5,-64(s4)
- 1298 0db8 13D78700 		srli	a4,a5,8
- 1299 0dbc A300E900 		sb	a4,1(s2)
- 1300 0dc0 13D70701 		srli	a4,a5,16
- 1301 0dc4 2301E900 		sb	a4,2(s2)
- 1302 0dc8 1BD78701 		srliw	a4,a5,24
- 1303 0dcc A301E900 		sb	a4,3(s2)
- 1304 0dd0 13D70702 		srli	a4,a5,32
- 1305 0dd4 2302E900 		sb	a4,4(s2)
- 1306 0dd8 13D78702 		srli	a4,a5,40
- 1307 0ddc A302E900 		sb	a4,5(s2)
- 1308 0de0 13D70703 		srli	a4,a5,48
- 1309 0de4 2303E900 		sb	a4,6(s2)
- 1310 0de8 93D78703 		srli	a5,a5,56
- 1311 0dec A303F900 		sb	a5,7(s2)
- 101:src/heapManager.cpp ****         if(pInsert->pNext != 0){
- 1312              		.loc 1 101 9 is_stmt 1
- 101:src/heapManager.cpp ****         if(pInsert->pNext != 0){
- 1313              		.loc 1 101 22 is_stmt 0
- 1314 0df0 23049900 		sb	s1,8(s2)
- 1315 0df4 93D78400 		srli	a5,s1,8
- 1316 0df8 A304F900 		sb	a5,9(s2)
- 1317 0dfc 93D70401 		srli	a5,s1,16
- 1318 0e00 2305F900 		sb	a5,10(s2)
- 1319 0e04 9BD78401 		srliw	a5,s1,24
- 1320 0e08 A305F900 		sb	a5,11(s2)
- 1321 0e0c 93D70402 		srli	a5,s1,32
- 1322 0e10 2306F900 		sb	a5,12(s2)
- 1323 0e14 93D78402 		srli	a5,s1,40
- 1324 0e18 A306F900 		sb	a5,13(s2)
- 1325 0e1c 93D70403 		srli	a5,s1,48
- 1326 0e20 2307F900 		sb	a5,14(s2)
- 1327 0e24 93D78403 		srli	a5,s1,56
- 1328 0e28 A307F900 		sb	a5,15(s2)
- 102:src/heapManager.cpp ****             pInsert->pNext->pPrev = pFree;
- 1329              		.loc 1 102 9 is_stmt 1
- 102:src/heapManager.cpp ****             pInsert->pNext->pPrev = pFree;
- 1330              		.loc 1 102 21 is_stmt 0
- 1331 0e2c 83C70400 		lbu	a5,0(s1)
- 1332 0e30 03C71400 		lbu	a4,1(s1)
- 1333 0e34 13178700 		slli	a4,a4,8
-GAS LISTING /tmp/ccq5RgPP.s 			page 29
-
-
- 1334 0e38 3367F700 		or	a4,a4,a5
- 1335 0e3c 83C72400 		lbu	a5,2(s1)
- 1336 0e40 93970701 		slli	a5,a5,16
- 1337 0e44 33E7E700 		or	a4,a5,a4
- 1338 0e48 83C73400 		lbu	a5,3(s1)
- 1339 0e4c 93978701 		slli	a5,a5,24
- 1340 0e50 B3E7E700 		or	a5,a5,a4
- 1341 0e54 03C74400 		lbu	a4,4(s1)
- 1342 0e58 13170702 		slli	a4,a4,32
- 1343 0e5c B367F700 		or	a5,a4,a5
- 1344 0e60 03C75400 		lbu	a4,5(s1)
- 1345 0e64 13178702 		slli	a4,a4,40
- 1346 0e68 3367F700 		or	a4,a4,a5
- 1347 0e6c 83C76400 		lbu	a5,6(s1)
- 1348 0e70 93970703 		slli	a5,a5,48
- 1349 0e74 33E7E700 		or	a4,a5,a4
- 1350 0e78 83C77400 		lbu	a5,7(s1)
- 1351 0e7c 93978703 		slli	a5,a5,56
- 1352 0e80 B3E7E700 		or	a5,a5,a4
- 102:src/heapManager.cpp ****             pInsert->pNext->pPrev = pFree;
- 1353              		.loc 1 102 9
- 1354 0e84 63800704 		beqz	a5,.L36
- 103:src/heapManager.cpp ****         }
- 1355              		.loc 1 103 13 is_stmt 1
- 103:src/heapManager.cpp ****         }
- 1356              		.loc 1 103 35 is_stmt 0
- 1357 0e88 23842701 		sb	s2,8(a5)
- 1358 0e8c 13578900 		srli	a4,s2,8
- 1359 0e90 A384E700 		sb	a4,9(a5)
- 1360 0e94 13570901 		srli	a4,s2,16
- 1361 0e98 2385E700 		sb	a4,10(a5)
- 1362 0e9c 1B578901 		srliw	a4,s2,24
- 1363 0ea0 A385E700 		sb	a4,11(a5)
- 1364 0ea4 13570902 		srli	a4,s2,32
- 1365 0ea8 2386E700 		sb	a4,12(a5)
- 1366 0eac 13578902 		srli	a4,s2,40
- 1367 0eb0 A386E700 		sb	a4,13(a5)
- 1368 0eb4 13570903 		srli	a4,s2,48
- 1369 0eb8 2387E700 		sb	a4,14(a5)
- 1370 0ebc 13578903 		srli	a4,s2,56
- 1371 0ec0 A387E700 		sb	a4,15(a5)
- 1372              	.L36:
- 105:src/heapManager.cpp ****     }
- 1373              		.loc 1 105 9 is_stmt 1
- 105:src/heapManager.cpp ****     }
- 1374              		.loc 1 105 24 is_stmt 0
- 1375 0ec4 23802401 		sb	s2,0(s1)
- 1376 0ec8 93578900 		srli	a5,s2,8
- 1377 0ecc A380F400 		sb	a5,1(s1)
- 1378 0ed0 93570901 		srli	a5,s2,16
- 1379 0ed4 2381F400 		sb	a5,2(s1)
- 1380 0ed8 9B578901 		srliw	a5,s2,24
- 1381 0edc A381F400 		sb	a5,3(s1)
- 1382 0ee0 93570902 		srli	a5,s2,32
- 1383 0ee4 2382F400 		sb	a5,4(s1)
- 1384 0ee8 93578902 		srli	a5,s2,40
- 1385 0eec A382F400 		sb	a5,5(s1)
-GAS LISTING /tmp/ccq5RgPP.s 			page 30
-
-
- 1386 0ef0 93570903 		srli	a5,s2,48
- 1387 0ef4 2383F400 		sb	a5,6(s1)
- 1388 0ef8 93578903 		srli	a5,s2,56
- 1389 0efc A383F400 		sb	a5,7(s1)
- 1390 0f00 6FF05FBC 		j	.L33
- 1391              	.LVL55:
- 1392              	.L42:
- 112:src/heapManager.cpp ****         pFree->pPrev->pNext = pFree->pNext;
- 1393              		.loc 1 112 9 is_stmt 1
- 112:src/heapManager.cpp ****         pFree->pPrev->pNext = pFree->pNext;
- 1394              		.loc 1 112 39 is_stmt 0
- 1395 0f04 83460901 		lbu	a3,16(s2)
- 1396 0f08 03461901 		lbu	a2,17(s2)
- 1397 0f0c 13168600 		slli	a2,a2,8
- 1398 0f10 3366D600 		or	a2,a2,a3
- 1399 0f14 83462901 		lbu	a3,18(s2)
- 1400 0f18 93960601 		slli	a3,a3,16
- 1401 0f1c 33E6C600 		or	a2,a3,a2
- 1402 0f20 83463901 		lbu	a3,19(s2)
- 1403 0f24 93968601 		slli	a3,a3,24
- 1404 0f28 B3E6C600 		or	a3,a3,a2
- 1405 0f2c 03464901 		lbu	a2,20(s2)
- 1406 0f30 13160602 		slli	a2,a2,32
- 1407 0f34 B366D600 		or	a3,a2,a3
- 1408 0f38 03465901 		lbu	a2,21(s2)
- 1409 0f3c 13168602 		slli	a2,a2,40
- 1410 0f40 3366D600 		or	a2,a2,a3
- 1411 0f44 83466901 		lbu	a3,22(s2)
- 1412 0f48 93960603 		slli	a3,a3,48
- 1413 0f4c 33E6C600 		or	a2,a3,a2
- 1414 0f50 83467901 		lbu	a3,23(s2)
- 1415 0f54 93968603 		slli	a3,a3,56
- 1416 0f58 B3E6C600 		or	a3,a3,a2
- 112:src/heapManager.cpp ****         pFree->pPrev->pNext = pFree->pNext;
- 1417              		.loc 1 112 29
- 1418 0f5c 3307D700 		add	a4,a4,a3
- 1419 0f60 13071700 		addi	a4,a4,1
- 1420 0f64 2388E700 		sb	a4,16(a5)
- 1421 0f68 93568700 		srli	a3,a4,8
- 1422 0f6c A388D700 		sb	a3,17(a5)
- 1423 0f70 93560701 		srli	a3,a4,16
- 1424 0f74 2389D700 		sb	a3,18(a5)
- 1425 0f78 9B568701 		srliw	a3,a4,24
- 1426 0f7c A389D700 		sb	a3,19(a5)
- 1427 0f80 93560702 		srli	a3,a4,32
- 1428 0f84 238AD700 		sb	a3,20(a5)
- 1429 0f88 93568702 		srli	a3,a4,40
- 1430 0f8c A38AD700 		sb	a3,21(a5)
- 1431 0f90 93560703 		srli	a3,a4,48
- 1432 0f94 238BD700 		sb	a3,22(a5)
- 1433 0f98 13578703 		srli	a4,a4,56
- 1434 0f9c A38BE700 		sb	a4,23(a5)
- 113:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1435              		.loc 1 113 9 is_stmt 1
- 113:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1436              		.loc 1 113 16 is_stmt 0
- 1437 0fa0 03478900 		lbu	a4,8(s2)
-GAS LISTING /tmp/ccq5RgPP.s 			page 31
-
-
- 1438 0fa4 83479900 		lbu	a5,9(s2)
- 1439 0fa8 93978700 		slli	a5,a5,8
- 1440 0fac B3E7E700 		or	a5,a5,a4
- 1441 0fb0 0347A900 		lbu	a4,10(s2)
- 1442 0fb4 13170701 		slli	a4,a4,16
- 1443 0fb8 B367F700 		or	a5,a4,a5
- 1444 0fbc 0347B900 		lbu	a4,11(s2)
- 1445 0fc0 13178701 		slli	a4,a4,24
- 1446 0fc4 3367F700 		or	a4,a4,a5
- 1447 0fc8 8347C900 		lbu	a5,12(s2)
- 1448 0fcc 93970702 		slli	a5,a5,32
- 1449 0fd0 33E7E700 		or	a4,a5,a4
- 1450 0fd4 8347D900 		lbu	a5,13(s2)
- 1451 0fd8 93978702 		slli	a5,a5,40
- 1452 0fdc B3E7E700 		or	a5,a5,a4
- 1453 0fe0 0347E900 		lbu	a4,14(s2)
- 1454 0fe4 13170703 		slli	a4,a4,48
- 1455 0fe8 B367F700 		or	a5,a4,a5
- 1456 0fec 0347F900 		lbu	a4,15(s2)
- 1457 0ff0 13178703 		slli	a4,a4,56
- 1458 0ff4 3367F700 		or	a4,a4,a5
- 113:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1459              		.loc 1 113 38
- 1460 0ff8 83470AFC 		lbu	a5,-64(s4)
- 1461 0ffc 83461900 		lbu	a3,1(s2)
- 1462 1000 93968600 		slli	a3,a3,8
- 1463 1004 B3E7F600 		or	a5,a3,a5
- 1464 1008 83462900 		lbu	a3,2(s2)
- 1465 100c 93960601 		slli	a3,a3,16
- 1466 1010 B3E6F600 		or	a3,a3,a5
- 1467 1014 83473900 		lbu	a5,3(s2)
- 1468 1018 93978701 		slli	a5,a5,24
- 1469 101c B3E6D700 		or	a3,a5,a3
- 1470 1020 83474900 		lbu	a5,4(s2)
- 1471 1024 93970702 		slli	a5,a5,32
- 1472 1028 B3E7D700 		or	a5,a5,a3
- 1473 102c 83465900 		lbu	a3,5(s2)
- 1474 1030 93968602 		slli	a3,a3,40
- 1475 1034 B3E7F600 		or	a5,a3,a5
- 1476 1038 83466900 		lbu	a3,6(s2)
- 1477 103c 93960603 		slli	a3,a3,48
- 1478 1040 B3E6F600 		or	a3,a3,a5
- 1479 1044 83477900 		lbu	a5,7(s2)
- 1480 1048 93978703 		slli	a5,a5,56
- 1481 104c B3E7D700 		or	a5,a5,a3
- 113:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1482              		.loc 1 113 29
- 1483 1050 2300D700 		sb	a3,0(a4)
- 1484 1054 93D68700 		srli	a3,a5,8
- 1485 1058 A300D700 		sb	a3,1(a4)
- 1486 105c 93D60701 		srli	a3,a5,16
- 1487 1060 2301D700 		sb	a3,2(a4)
- 1488 1064 9BD68701 		srliw	a3,a5,24
- 1489 1068 A301D700 		sb	a3,3(a4)
- 1490 106c 93D60702 		srli	a3,a5,32
- 1491 1070 2302D700 		sb	a3,4(a4)
- 1492 1074 93D68702 		srli	a3,a5,40
-GAS LISTING /tmp/ccq5RgPP.s 			page 32
-
-
- 1493 1078 A302D700 		sb	a3,5(a4)
- 1494 107c 93D60703 		srli	a3,a5,48
- 1495 1080 2303D700 		sb	a3,6(a4)
- 1496 1084 93D78703 		srli	a5,a5,56
- 1497 1088 A303F700 		sb	a5,7(a4)
- 114:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree->pPrev;
- 1498              		.loc 1 114 9 is_stmt 1
- 114:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree->pPrev;
- 1499              		.loc 1 114 19 is_stmt 0
- 1500 108c 83470AFC 		lbu	a5,-64(s4)
- 1501 1090 03471900 		lbu	a4,1(s2)
- 1502 1094 13178700 		slli	a4,a4,8
- 1503 1098 3367F700 		or	a4,a4,a5
- 1504 109c 83472900 		lbu	a5,2(s2)
- 1505 10a0 93970701 		slli	a5,a5,16
- 1506 10a4 33E7E700 		or	a4,a5,a4
- 1507 10a8 83473900 		lbu	a5,3(s2)
- 1508 10ac 93978701 		slli	a5,a5,24
- 1509 10b0 B3E7E700 		or	a5,a5,a4
- 1510 10b4 03474900 		lbu	a4,4(s2)
- 1511 10b8 13170702 		slli	a4,a4,32
- 1512 10bc B367F700 		or	a5,a4,a5
- 1513 10c0 03475900 		lbu	a4,5(s2)
- 1514 10c4 13178702 		slli	a4,a4,40
- 1515 10c8 3367F700 		or	a4,a4,a5
- 1516 10cc 83476900 		lbu	a5,6(s2)
- 1517 10d0 93970703 		slli	a5,a5,48
- 1518 10d4 33E7E700 		or	a4,a5,a4
- 1519 10d8 83477900 		lbu	a5,7(s2)
- 1520 10dc 93978703 		slli	a5,a5,56
- 1521 10e0 B3E7E700 		or	a5,a5,a4
- 114:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree->pPrev;
- 1522              		.loc 1 114 9
- 1523 10e4 638C0708 		beqz	a5,.L38
- 115:src/heapManager.cpp ****         }pFree = pFree->pPrev;
- 1524              		.loc 1 115 13 is_stmt 1
- 115:src/heapManager.cpp ****         }pFree = pFree->pPrev;
- 1525              		.loc 1 115 42 is_stmt 0
- 1526 10e8 03478900 		lbu	a4,8(s2)
- 1527 10ec 83469900 		lbu	a3,9(s2)
- 1528 10f0 93968600 		slli	a3,a3,8
- 1529 10f4 33E7E600 		or	a4,a3,a4
- 1530 10f8 8346A900 		lbu	a3,10(s2)
- 1531 10fc 93960601 		slli	a3,a3,16
- 1532 1100 B3E6E600 		or	a3,a3,a4
- 1533 1104 0347B900 		lbu	a4,11(s2)
- 1534 1108 13178701 		slli	a4,a4,24
- 1535 110c B366D700 		or	a3,a4,a3
- 1536 1110 0347C900 		lbu	a4,12(s2)
- 1537 1114 13170702 		slli	a4,a4,32
- 1538 1118 3367D700 		or	a4,a4,a3
- 1539 111c 8346D900 		lbu	a3,13(s2)
- 1540 1120 93968602 		slli	a3,a3,40
- 1541 1124 33E7E600 		or	a4,a3,a4
- 1542 1128 8346E900 		lbu	a3,14(s2)
- 1543 112c 93960603 		slli	a3,a3,48
- 1544 1130 B3E6E600 		or	a3,a3,a4
-GAS LISTING /tmp/ccq5RgPP.s 			page 33
-
-
- 1545 1134 0347F900 		lbu	a4,15(s2)
- 1546 1138 13178703 		slli	a4,a4,56
- 1547 113c 3367D700 		or	a4,a4,a3
- 115:src/heapManager.cpp ****         }pFree = pFree->pPrev;
- 1548              		.loc 1 115 33
- 1549 1140 2384D700 		sb	a3,8(a5)
- 1550 1144 93568700 		srli	a3,a4,8
- 1551 1148 A384D700 		sb	a3,9(a5)
- 1552 114c 93560701 		srli	a3,a4,16
- 1553 1150 2385D700 		sb	a3,10(a5)
- 1554 1154 9B568701 		srliw	a3,a4,24
- 1555 1158 A385D700 		sb	a3,11(a5)
- 1556 115c 93560702 		srli	a3,a4,32
- 1557 1160 2386D700 		sb	a3,12(a5)
- 1558 1164 93568702 		srli	a3,a4,40
- 1559 1168 A386D700 		sb	a3,13(a5)
- 1560 116c 93560703 		srli	a3,a4,48
- 1561 1170 2387D700 		sb	a3,14(a5)
- 1562 1174 13578703 		srli	a4,a4,56
- 1563 1178 A387E700 		sb	a4,15(a5)
- 1564              	.L38:
- 116:src/heapManager.cpp ****     }
- 1565              		.loc 1 116 10 is_stmt 1
- 116:src/heapManager.cpp ****     }
- 1566              		.loc 1 116 16 is_stmt 0
- 1567 117c 83498900 		lbu	s3,8(s2)
- 1568 1180 83479900 		lbu	a5,9(s2)
- 1569 1184 93978700 		slli	a5,a5,8
- 1570 1188 B3E73701 		or	a5,a5,s3
- 1571 118c 8349A900 		lbu	s3,10(s2)
- 1572 1190 93990901 		slli	s3,s3,16
- 1573 1194 B3E7F900 		or	a5,s3,a5
- 1574 1198 8349B900 		lbu	s3,11(s2)
- 1575 119c 93998901 		slli	s3,s3,24
- 1576 11a0 B3E9F900 		or	s3,s3,a5
- 1577 11a4 8347C900 		lbu	a5,12(s2)
- 1578 11a8 93970702 		slli	a5,a5,32
- 1579 11ac B3E93701 		or	s3,a5,s3
- 1580 11b0 8347D900 		lbu	a5,13(s2)
- 1581 11b4 93978702 		slli	a5,a5,40
- 1582 11b8 B3E73701 		or	a5,a5,s3
- 1583 11bc 8349E900 		lbu	s3,14(s2)
- 1584 11c0 93990903 		slli	s3,s3,48
- 1585 11c4 B3E7F900 		or	a5,s3,a5
- 1586 11c8 8349F900 		lbu	s3,15(s2)
- 1587 11cc 93998903 		slli	s3,s3,56
- 1588 11d0 B3E9F900 		or	s3,s3,a5
- 1589              	.LVL56:
- 1590 11d4 6FF05F9B 		j	.L37
- 1591              	.L43:
- 120:src/heapManager.cpp ****         pFree->pNext = pFree->pNext->pNext;
- 1592              		.loc 1 120 9 is_stmt 1
- 120:src/heapManager.cpp ****         pFree->pNext = pFree->pNext->pNext;
- 1593              		.loc 1 120 39 is_stmt 0
- 1594 11d8 83C60701 		lbu	a3,16(a5)
- 1595 11dc 03C61701 		lbu	a2,17(a5)
- 1596 11e0 13168600 		slli	a2,a2,8
-GAS LISTING /tmp/ccq5RgPP.s 			page 34
-
-
- 1597 11e4 3366D600 		or	a2,a2,a3
- 1598 11e8 83C62701 		lbu	a3,18(a5)
- 1599 11ec 93960601 		slli	a3,a3,16
- 1600 11f0 33E6C600 		or	a2,a3,a2
- 1601 11f4 83C63701 		lbu	a3,19(a5)
- 1602 11f8 93968601 		slli	a3,a3,24
- 1603 11fc B3E6C600 		or	a3,a3,a2
- 1604 1200 03C64701 		lbu	a2,20(a5)
- 1605 1204 13160602 		slli	a2,a2,32
- 1606 1208 B366D600 		or	a3,a2,a3
- 1607 120c 03C65701 		lbu	a2,21(a5)
- 1608 1210 13168602 		slli	a2,a2,40
- 1609 1214 3366D600 		or	a2,a2,a3
- 1610 1218 83C66701 		lbu	a3,22(a5)
- 1611 121c 93960603 		slli	a3,a3,48
- 1612 1220 33E6C600 		or	a2,a3,a2
- 1613 1224 83C67701 		lbu	a3,23(a5)
- 1614 1228 93968603 		slli	a3,a3,56
- 1615 122c B3E6C600 		or	a3,a3,a2
- 120:src/heapManager.cpp ****         pFree->pNext = pFree->pNext->pNext;
- 1616              		.loc 1 120 22
- 1617 1230 3307D700 		add	a4,a4,a3
- 1618 1234 13071700 		addi	a4,a4,1
- 1619 1238 2388E900 		sb	a4,16(s3)
- 1620 123c 93568700 		srli	a3,a4,8
- 1621 1240 A388D900 		sb	a3,17(s3)
- 1622 1244 93560701 		srli	a3,a4,16
- 1623 1248 2389D900 		sb	a3,18(s3)
- 1624 124c 9B568701 		srliw	a3,a4,24
- 1625 1250 A389D900 		sb	a3,19(s3)
- 1626 1254 93560702 		srli	a3,a4,32
- 1627 1258 238AD900 		sb	a3,20(s3)
- 1628 125c 93568702 		srli	a3,a4,40
- 1629 1260 A38AD900 		sb	a3,21(s3)
- 1630 1264 93560703 		srli	a3,a4,48
- 1631 1268 238BD900 		sb	a3,22(s3)
- 1632 126c 13578703 		srli	a4,a4,56
- 1633 1270 A38BE900 		sb	a4,23(s3)
- 121:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1634              		.loc 1 121 9 is_stmt 1
- 121:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1635              		.loc 1 121 38 is_stmt 0
- 1636 1274 83C60700 		lbu	a3,0(a5)
- 1637 1278 03C71700 		lbu	a4,1(a5)
- 1638 127c 13178700 		slli	a4,a4,8
- 1639 1280 B366D700 		or	a3,a4,a3
- 1640 1284 03C72700 		lbu	a4,2(a5)
- 1641 1288 13170701 		slli	a4,a4,16
- 1642 128c 3367D700 		or	a4,a4,a3
- 1643 1290 83C63700 		lbu	a3,3(a5)
- 1644 1294 93968601 		slli	a3,a3,24
- 1645 1298 33E7E600 		or	a4,a3,a4
- 1646 129c 83C64700 		lbu	a3,4(a5)
- 1647 12a0 93960602 		slli	a3,a3,32
- 1648 12a4 B3E6E600 		or	a3,a3,a4
- 1649 12a8 03C75700 		lbu	a4,5(a5)
- 1650 12ac 13178702 		slli	a4,a4,40
-GAS LISTING /tmp/ccq5RgPP.s 			page 35
-
-
- 1651 12b0 B366D700 		or	a3,a4,a3
- 1652 12b4 03C76700 		lbu	a4,6(a5)
- 1653 12b8 13170703 		slli	a4,a4,48
- 1654 12bc 3367D700 		or	a4,a4,a3
- 1655 12c0 83C77700 		lbu	a5,7(a5)
- 1656 12c4 93978703 		slli	a5,a5,56
- 1657 12c8 B3E7E700 		or	a5,a5,a4
- 121:src/heapManager.cpp ****         if(pFree->pNext != 0){
- 1658              		.loc 1 121 22
- 1659 12cc 2380E900 		sb	a4,0(s3)
- 1660 12d0 13D78700 		srli	a4,a5,8
- 1661 12d4 A380E900 		sb	a4,1(s3)
- 1662 12d8 13D70701 		srli	a4,a5,16
- 1663 12dc 2381E900 		sb	a4,2(s3)
- 1664 12e0 1BD78701 		srliw	a4,a5,24
- 1665 12e4 A381E900 		sb	a4,3(s3)
- 1666 12e8 13D70702 		srli	a4,a5,32
- 1667 12ec 2382E900 		sb	a4,4(s3)
- 1668 12f0 13D78702 		srli	a4,a5,40
- 1669 12f4 A382E900 		sb	a4,5(s3)
- 1670 12f8 13D70703 		srli	a4,a5,48
- 1671 12fc 2383E900 		sb	a4,6(s3)
- 1672 1300 13D78703 		srli	a4,a5,56
- 1673 1304 A383E900 		sb	a4,7(s3)
- 122:src/heapManager.cpp ****             pFree->pNext->pPrev = pFree;
- 1674              		.loc 1 122 9 is_stmt 1
- 1675 1308 E3820794 		beqz	a5,.L39
- 123:src/heapManager.cpp ****         }
- 1676              		.loc 1 123 13
- 123:src/heapManager.cpp ****         }
- 1677              		.loc 1 123 33 is_stmt 0
- 1678 130c 23843701 		sb	s3,8(a5)
- 1679 1310 13D78900 		srli	a4,s3,8
- 1680 1314 A384E700 		sb	a4,9(a5)
- 1681 1318 13D70901 		srli	a4,s3,16
- 1682 131c 2385E700 		sb	a4,10(a5)
- 1683 1320 1BD78901 		srliw	a4,s3,24
- 1684 1324 A385E700 		sb	a4,11(a5)
- 1685 1328 13D70902 		srli	a4,s3,32
- 1686 132c 2386E700 		sb	a4,12(a5)
- 1687 1330 13D78902 		srli	a4,s3,40
- 1688 1334 A386E700 		sb	a4,13(a5)
- 1689 1338 13D70903 		srli	a4,s3,48
- 1690 133c 2387E700 		sb	a4,14(a5)
- 1691 1340 93D98903 		srli	s3,s3,56
- 1692              	.LVL57:
- 1693 1344 A3873701 		sb	s3,15(a5)
- 1694 1348 6FF05F90 		j	.L39
- 1695              		.cfi_endproc
- 1696              	.LFE10:
- 1698              		.globl	_ZN11HeapManager8instanceE
- 1699              		.bss
- 1700              		.align	3
- 1701              		.set	.LANCHOR0,. + 0
- 1704              	_ZN11HeapManager8instanceE:
- 1705 0000 00000000 		.zero	8
- 1705      00000000 
-GAS LISTING /tmp/ccq5RgPP.s 			page 36
-
-
- 1706              		.text
- 1707              	.Letext0:
- 1708              		.file 2 "./lib/hw.h"
- 1709              		.file 3 "./h/types.h"
- 1710              		.file 4 "./h/heapManager.h"
- 1711              		.file 5 "./h/assert.h"
-GAS LISTING /tmp/ccq5RgPP.s 			page 37
+ 927              		.loc 1 127 1 is_stmt 0
+ 928 0960 13050000 		li	a0,0
+ 929              	.LVL39:
+ 930 0964 03348100 		ld	s0,8(sp)
+ 931              		.cfi_restore 8
+ 932              		.cfi_def_cfa 2, 16
+ 933 0968 13010101 		addi	sp,sp,16
+ 934              		.cfi_def_cfa_offset 0
+ 935 096c 67800000 		jr	ra
+ 936              		.cfi_endproc
+ 937              	.LFE10:
+ 939              		.globl	_ZN11HeapManager8instanceE
+ 940              		.bss
+ 941              		.align	3
+ 942              		.set	.LANCHOR0,. + 0
+ 945              	_ZN11HeapManager8instanceE:
+ 946 0000 00000000 		.zero	8
+ 946      00000000 
+ 947              		.text
+ 948              	.Letext0:
+ 949              		.file 2 "./lib/hw.h"
+ 950              		.file 3 "./h/types.h"
+ 951              		.file 4 "./h/heapManager.h"
+ 952              		.file 5 "./h/assert.h"
+GAS LISTING /tmp/cc5BBLNM.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 heapManager.cpp
-     /tmp/ccq5RgPP.s:20     .text:0000000000000000 _ZN11HeapManagerC2Ev
-     /tmp/ccq5RgPP.s:24     .text:0000000000000000 .L0 
-     /tmp/ccq5RgPP.s:26     .text:0000000000000000 .L0 
-     /tmp/ccq5RgPP.s:27     .text:0000000000000004 .L0 
-     /tmp/ccq5RgPP.s:31     .text:0000000000000010 .L0 
-     /tmp/ccq5RgPP.s:32     .text:0000000000000010 .L0 
-     /tmp/ccq5RgPP.s:33     .text:0000000000000010 .L0 
-     /tmp/ccq5RgPP.s:35     .text:0000000000000014 .L0 
-     /tmp/ccq5RgPP.s:39     .text:0000000000000018 .L0 
-     /tmp/ccq5RgPP.s:44     .text:0000000000000024 .L0 
-     /tmp/ccq5RgPP.s:45     .text:0000000000000024 .L0 
-     /tmp/ccq5RgPP.s:46     .text:0000000000000024 .L0 
-     /tmp/ccq5RgPP.s:49     .text:000000000000002c .L0 
-     /tmp/ccq5RgPP.s:50     .text:0000000000000030 .L0 
-     /tmp/ccq5RgPP.s:51     .text:0000000000000030 .L0 
-     /tmp/ccq5RgPP.s:53     .text:0000000000000034 .L0 
-     /tmp/ccq5RgPP.s:54     .text:0000000000000034 .L0 
-     /tmp/ccq5RgPP.s:56     .text:0000000000000038 .L0 
-     /tmp/ccq5RgPP.s:59     .text:000000000000003c .L0 
-     /tmp/ccq5RgPP.s:63     .text:0000000000000040 .L0 
-     /tmp/ccq5RgPP.s:66     .text:0000000000000040 .L0 
-     /tmp/ccq5RgPP.s:74     .text:0000000000000068 .L0 
-     /tmp/ccq5RgPP.s:20     .text:0000000000000000 _ZN11HeapManagerC1Ev
-     /tmp/ccq5RgPP.s:82     .text:0000000000000068 _ZN11HeapManagerD2Ev
-     /tmp/ccq5RgPP.s:85     .text:0000000000000068 .L0 
-     /tmp/ccq5RgPP.s:87     .text:0000000000000068 .L0 
-     /tmp/ccq5RgPP.s:88     .text:000000000000006c .L0 
-     /tmp/ccq5RgPP.s:90     .text:0000000000000070 .L0 
-     /tmp/ccq5RgPP.s:92     .text:0000000000000074 .L0 
-     /tmp/ccq5RgPP.s:94     .text:0000000000000074 .L0 
-     /tmp/ccq5RgPP.s:95     .text:0000000000000078 .L0 
-     /tmp/ccq5RgPP.s:96     .text:0000000000000078 .L0 
-     /tmp/ccq5RgPP.s:98     .text:000000000000007c .L0 
-     /tmp/ccq5RgPP.s:100    .text:0000000000000080 .L0 
-     /tmp/ccq5RgPP.s:82     .text:0000000000000068 _ZN11HeapManagerD1Ev
-     /tmp/ccq5RgPP.s:116    .text:0000000000000080 _ZN11HeapManager4initEmm
-     /tmp/ccq5RgPP.s:119    .text:0000000000000080 .L0 
-     /tmp/ccq5RgPP.s:121    .text:0000000000000080 .L0 
-     /tmp/ccq5RgPP.s:122    .text:0000000000000084 .L0 
-     /tmp/ccq5RgPP.s:128    .text:0000000000000098 .L0 
-     /tmp/ccq5RgPP.s:129    .text:0000000000000098 .L0 
-     /tmp/ccq5RgPP.s:130    .text:0000000000000098 .L0 
-     /tmp/ccq5RgPP.s:131    .text:0000000000000098 .L0 
-     /tmp/ccq5RgPP.s:132    .text:0000000000000098 .L0 
-     /tmp/ccq5RgPP.s:134    .text:000000000000009c .L0 
-     /tmp/ccq5RgPP.s:138    .text:00000000000000a4 .L0 
-     /tmp/ccq5RgPP.s:144    .text:00000000000000b0 .L0 
-     /tmp/ccq5RgPP.s:145    .text:00000000000000b0 .L0 
-     /tmp/ccq5RgPP.s:146    .text:00000000000000b0 .L0 
-     /tmp/ccq5RgPP.s:148    .text:00000000000000b4 .L0 
-     /tmp/ccq5RgPP.s:149    .text:00000000000000b4 .L0 
-     /tmp/ccq5RgPP.s:157    .text:00000000000000d0 .L0 
-     /tmp/ccq5RgPP.s:158    .text:00000000000000d0 .L0 
-     /tmp/ccq5RgPP.s:160    .text:00000000000000d4 .L0 
-     /tmp/ccq5RgPP.s:162    .text:00000000000000d8 .L0 
-GAS LISTING /tmp/ccq5RgPP.s 			page 38
+     /tmp/cc5BBLNM.s:20     .text:0000000000000000 _ZN11HeapManagerC2Ev
+     /tmp/cc5BBLNM.s:24     .text:0000000000000000 .L0 
+     /tmp/cc5BBLNM.s:26     .text:0000000000000000 .L0 
+     /tmp/cc5BBLNM.s:27     .text:0000000000000004 .L0 
+     /tmp/cc5BBLNM.s:31     .text:0000000000000010 .L0 
+     /tmp/cc5BBLNM.s:32     .text:0000000000000010 .L0 
+     /tmp/cc5BBLNM.s:33     .text:0000000000000010 .L0 
+     /tmp/cc5BBLNM.s:35     .text:0000000000000014 .L0 
+     /tmp/cc5BBLNM.s:39     .text:0000000000000018 .L0 
+     /tmp/cc5BBLNM.s:44     .text:0000000000000024 .L0 
+     /tmp/cc5BBLNM.s:45     .text:0000000000000024 .L0 
+     /tmp/cc5BBLNM.s:46     .text:0000000000000024 .L0 
+     /tmp/cc5BBLNM.s:49     .text:000000000000002c .L0 
+     /tmp/cc5BBLNM.s:50     .text:0000000000000030 .L0 
+     /tmp/cc5BBLNM.s:51     .text:0000000000000030 .L0 
+     /tmp/cc5BBLNM.s:53     .text:0000000000000034 .L0 
+     /tmp/cc5BBLNM.s:54     .text:0000000000000034 .L0 
+     /tmp/cc5BBLNM.s:56     .text:0000000000000038 .L0 
+     /tmp/cc5BBLNM.s:59     .text:000000000000003c .L0 
+     /tmp/cc5BBLNM.s:63     .text:0000000000000040 .L0 
+     /tmp/cc5BBLNM.s:66     .text:0000000000000040 .L0 
+     /tmp/cc5BBLNM.s:74     .text:0000000000000068 .L0 
+     /tmp/cc5BBLNM.s:20     .text:0000000000000000 _ZN11HeapManagerC1Ev
+     /tmp/cc5BBLNM.s:82     .text:0000000000000068 _ZN11HeapManagerD2Ev
+     /tmp/cc5BBLNM.s:85     .text:0000000000000068 .L0 
+     /tmp/cc5BBLNM.s:87     .text:0000000000000068 .L0 
+     /tmp/cc5BBLNM.s:88     .text:000000000000006c .L0 
+     /tmp/cc5BBLNM.s:90     .text:0000000000000070 .L0 
+     /tmp/cc5BBLNM.s:92     .text:0000000000000074 .L0 
+     /tmp/cc5BBLNM.s:94     .text:0000000000000074 .L0 
+     /tmp/cc5BBLNM.s:95     .text:0000000000000078 .L0 
+     /tmp/cc5BBLNM.s:96     .text:0000000000000078 .L0 
+     /tmp/cc5BBLNM.s:98     .text:000000000000007c .L0 
+     /tmp/cc5BBLNM.s:100    .text:0000000000000080 .L0 
+     /tmp/cc5BBLNM.s:82     .text:0000000000000068 _ZN11HeapManagerD1Ev
+     /tmp/cc5BBLNM.s:116    .text:0000000000000080 _ZN11HeapManager4initEmm
+     /tmp/cc5BBLNM.s:119    .text:0000000000000080 .L0 
+     /tmp/cc5BBLNM.s:121    .text:0000000000000080 .L0 
+     /tmp/cc5BBLNM.s:122    .text:0000000000000084 .L0 
+     /tmp/cc5BBLNM.s:128    .text:0000000000000098 .L0 
+     /tmp/cc5BBLNM.s:129    .text:0000000000000098 .L0 
+     /tmp/cc5BBLNM.s:130    .text:0000000000000098 .L0 
+     /tmp/cc5BBLNM.s:131    .text:0000000000000098 .L0 
+     /tmp/cc5BBLNM.s:132    .text:0000000000000098 .L0 
+     /tmp/cc5BBLNM.s:134    .text:000000000000009c .L0 
+     /tmp/cc5BBLNM.s:138    .text:00000000000000a4 .L0 
+     /tmp/cc5BBLNM.s:144    .text:00000000000000b0 .L0 
+     /tmp/cc5BBLNM.s:145    .text:00000000000000b0 .L0 
+     /tmp/cc5BBLNM.s:146    .text:00000000000000b0 .L0 
+     /tmp/cc5BBLNM.s:148    .text:00000000000000b4 .L0 
+     /tmp/cc5BBLNM.s:149    .text:00000000000000b4 .L0 
+     /tmp/cc5BBLNM.s:157    .text:00000000000000d0 .L0 
+     /tmp/cc5BBLNM.s:158    .text:00000000000000d0 .L0 
+     /tmp/cc5BBLNM.s:160    .text:00000000000000d4 .L0 
+     /tmp/cc5BBLNM.s:162    .text:00000000000000d8 .L0 
+GAS LISTING /tmp/cc5BBLNM.s 			page 23
 
 
-     /tmp/ccq5RgPP.s:164    .text:00000000000000dc .L0 
-     /tmp/ccq5RgPP.s:180    .text:0000000000000118 .L0 
-     /tmp/ccq5RgPP.s:182    .text:000000000000011c .L0 
-     /tmp/ccq5RgPP.s:191    .text:000000000000013c .L0 
-     /tmp/ccq5RgPP.s:193    .text:0000000000000140 .L0 
-     /tmp/ccq5RgPP.s:202    .text:0000000000000160 .L0 
-     /tmp/ccq5RgPP.s:203    .text:0000000000000164 .L0 
-     /tmp/ccq5RgPP.s:204    .text:0000000000000164 .L0 
-     /tmp/ccq5RgPP.s:206    .text:0000000000000168 .L0 
-     /tmp/ccq5RgPP.s:207    .text:0000000000000168 .L0 
-     /tmp/ccq5RgPP.s:209    .text:000000000000016c .L0 
-     /tmp/ccq5RgPP.s:211    .text:0000000000000170 .L0 
-     /tmp/ccq5RgPP.s:214    .text:0000000000000174 .L0 
-     /tmp/ccq5RgPP.s:217    .text:0000000000000178 .L0 
-     /tmp/ccq5RgPP.s:221    .text:000000000000017c .L0 
-     /tmp/ccq5RgPP.s:223    .text:000000000000017c .L0 
-     /tmp/ccq5RgPP.s:233    .text:00000000000001a4 .L0 
-     /tmp/ccq5RgPP.s:247    .text:00000000000001a4 _ZN11HeapManager17getHeapFreeMemoryEv
-     /tmp/ccq5RgPP.s:250    .text:00000000000001a4 .L0 
-     /tmp/ccq5RgPP.s:252    .text:00000000000001a4 .L0 
-     /tmp/ccq5RgPP.s:253    .text:00000000000001a8 .L0 
-     /tmp/ccq5RgPP.s:258    .text:00000000000001b8 .L0 
-     /tmp/ccq5RgPP.s:259    .text:00000000000001b8 .L0 
-     /tmp/ccq5RgPP.s:260    .text:00000000000001b8 .L0 
-     /tmp/ccq5RgPP.s:261    .text:00000000000001b8 .L0 
-     /tmp/ccq5RgPP.s:263    .text:00000000000001bc .L0 
-     /tmp/ccq5RgPP.s:266    .text:00000000000001bc .L0 
-     /tmp/ccq5RgPP.s:267    .text:00000000000001bc .L0 
-     /tmp/ccq5RgPP.s:268    .text:00000000000001bc .L0 
-     /tmp/ccq5RgPP.s:271    .text:00000000000001c0 .L0 
-     /tmp/ccq5RgPP.s:276    .text:00000000000001c8 .L0 
-     /tmp/ccq5RgPP.s:277    .text:00000000000001c8 .L0 
-     /tmp/ccq5RgPP.s:278    .text:00000000000001c8 .L0 
-     /tmp/ccq5RgPP.s:301    .text:0000000000000220 .L0 
-     /tmp/ccq5RgPP.s:304    .text:0000000000000224 .L0 
-     /tmp/ccq5RgPP.s:305    .text:0000000000000224 .L0 
-     /tmp/ccq5RgPP.s:331    .text:000000000000027c .L0 
-     /tmp/ccq5RgPP.s:332    .text:000000000000027c .L0 
-     /tmp/ccq5RgPP.s:334    .text:0000000000000280 .L0 
-     /tmp/ccq5RgPP.s:349    .text:00000000000002b8 .L0 
-     /tmp/ccq5RgPP.s:358    .text:00000000000002e0 .L0 
-     /tmp/ccq5RgPP.s:360    .text:00000000000002e8 .L0 
-     /tmp/ccq5RgPP.s:362    .text:00000000000002ec .L0 
-     /tmp/ccq5RgPP.s:363    .text:00000000000002ec .L0 
-     /tmp/ccq5RgPP.s:365    .text:00000000000002f0 .L0 
-     /tmp/ccq5RgPP.s:368    .text:00000000000002f4 .L0 
-     /tmp/ccq5RgPP.s:371    .text:00000000000002f8 .L0 
-     /tmp/ccq5RgPP.s:373    .text:00000000000002fc .L0 
-     /tmp/ccq5RgPP.s:384    .text:00000000000002fc _ZN11HeapManager12heapAllocateEm
-     /tmp/ccq5RgPP.s:387    .text:00000000000002fc .L0 
-     /tmp/ccq5RgPP.s:389    .text:00000000000002fc .L0 
-     /tmp/ccq5RgPP.s:390    .text:0000000000000300 .L0 
-     /tmp/ccq5RgPP.s:396    .text:0000000000000314 .L0 
-     /tmp/ccq5RgPP.s:397    .text:0000000000000314 .L0 
-     /tmp/ccq5RgPP.s:398    .text:0000000000000314 .L0 
-     /tmp/ccq5RgPP.s:399    .text:0000000000000314 .L0 
-     /tmp/ccq5RgPP.s:400    .text:0000000000000314 .L0 
-GAS LISTING /tmp/ccq5RgPP.s 			page 39
+     /tmp/cc5BBLNM.s:164    .text:00000000000000dc .L0 
+     /tmp/cc5BBLNM.s:180    .text:0000000000000118 .L0 
+     /tmp/cc5BBLNM.s:182    .text:000000000000011c .L0 
+     /tmp/cc5BBLNM.s:191    .text:000000000000013c .L0 
+     /tmp/cc5BBLNM.s:193    .text:0000000000000140 .L0 
+     /tmp/cc5BBLNM.s:202    .text:0000000000000160 .L0 
+     /tmp/cc5BBLNM.s:203    .text:0000000000000164 .L0 
+     /tmp/cc5BBLNM.s:204    .text:0000000000000164 .L0 
+     /tmp/cc5BBLNM.s:206    .text:0000000000000168 .L0 
+     /tmp/cc5BBLNM.s:207    .text:0000000000000168 .L0 
+     /tmp/cc5BBLNM.s:209    .text:000000000000016c .L0 
+     /tmp/cc5BBLNM.s:211    .text:0000000000000170 .L0 
+     /tmp/cc5BBLNM.s:214    .text:0000000000000174 .L0 
+     /tmp/cc5BBLNM.s:217    .text:0000000000000178 .L0 
+     /tmp/cc5BBLNM.s:221    .text:000000000000017c .L0 
+     /tmp/cc5BBLNM.s:223    .text:000000000000017c .L0 
+     /tmp/cc5BBLNM.s:233    .text:00000000000001a4 .L0 
+     /tmp/cc5BBLNM.s:247    .text:00000000000001a4 _ZN11HeapManager17getHeapFreeMemoryEv
+     /tmp/cc5BBLNM.s:250    .text:00000000000001a4 .L0 
+     /tmp/cc5BBLNM.s:252    .text:00000000000001a4 .L0 
+     /tmp/cc5BBLNM.s:253    .text:00000000000001a8 .L0 
+     /tmp/cc5BBLNM.s:258    .text:00000000000001b8 .L0 
+     /tmp/cc5BBLNM.s:259    .text:00000000000001b8 .L0 
+     /tmp/cc5BBLNM.s:260    .text:00000000000001b8 .L0 
+     /tmp/cc5BBLNM.s:261    .text:00000000000001b8 .L0 
+     /tmp/cc5BBLNM.s:263    .text:00000000000001bc .L0 
+     /tmp/cc5BBLNM.s:266    .text:00000000000001bc .L0 
+     /tmp/cc5BBLNM.s:267    .text:00000000000001bc .L0 
+     /tmp/cc5BBLNM.s:268    .text:00000000000001bc .L0 
+     /tmp/cc5BBLNM.s:271    .text:00000000000001c0 .L0 
+     /tmp/cc5BBLNM.s:276    .text:00000000000001c8 .L0 
+     /tmp/cc5BBLNM.s:277    .text:00000000000001c8 .L0 
+     /tmp/cc5BBLNM.s:278    .text:00000000000001c8 .L0 
+     /tmp/cc5BBLNM.s:301    .text:0000000000000220 .L0 
+     /tmp/cc5BBLNM.s:304    .text:0000000000000224 .L0 
+     /tmp/cc5BBLNM.s:305    .text:0000000000000224 .L0 
+     /tmp/cc5BBLNM.s:331    .text:000000000000027c .L0 
+     /tmp/cc5BBLNM.s:332    .text:000000000000027c .L0 
+     /tmp/cc5BBLNM.s:334    .text:0000000000000280 .L0 
+     /tmp/cc5BBLNM.s:349    .text:00000000000002b8 .L0 
+     /tmp/cc5BBLNM.s:358    .text:00000000000002e0 .L0 
+     /tmp/cc5BBLNM.s:360    .text:00000000000002e8 .L0 
+     /tmp/cc5BBLNM.s:362    .text:00000000000002ec .L0 
+     /tmp/cc5BBLNM.s:363    .text:00000000000002ec .L0 
+     /tmp/cc5BBLNM.s:365    .text:00000000000002f0 .L0 
+     /tmp/cc5BBLNM.s:368    .text:00000000000002f4 .L0 
+     /tmp/cc5BBLNM.s:371    .text:00000000000002f8 .L0 
+     /tmp/cc5BBLNM.s:373    .text:00000000000002fc .L0 
+     /tmp/cc5BBLNM.s:384    .text:00000000000002fc _ZN11HeapManager12heapAllocateEm
+     /tmp/cc5BBLNM.s:387    .text:00000000000002fc .L0 
+     /tmp/cc5BBLNM.s:389    .text:00000000000002fc .L0 
+     /tmp/cc5BBLNM.s:390    .text:0000000000000300 .L0 
+     /tmp/cc5BBLNM.s:396    .text:0000000000000314 .L0 
+     /tmp/cc5BBLNM.s:397    .text:0000000000000314 .L0 
+     /tmp/cc5BBLNM.s:398    .text:0000000000000314 .L0 
+     /tmp/cc5BBLNM.s:399    .text:0000000000000314 .L0 
+     /tmp/cc5BBLNM.s:400    .text:0000000000000314 .L0 
+GAS LISTING /tmp/cc5BBLNM.s 			page 24
 
 
-     /tmp/ccq5RgPP.s:402    .text:0000000000000318 .L0 
-     /tmp/ccq5RgPP.s:406    .text:0000000000000320 .L0 
-     /tmp/ccq5RgPP.s:407    .text:0000000000000320 .L0 
-     /tmp/ccq5RgPP.s:414    .text:0000000000000328 .L0 
-     /tmp/ccq5RgPP.s:416    .text:0000000000000328 .L0 
-     /tmp/ccq5RgPP.s:417    .text:0000000000000328 .L0 
-     /tmp/ccq5RgPP.s:440    .text:0000000000000380 .L0 
-     /tmp/ccq5RgPP.s:443    .text:0000000000000384 .L0 
-     /tmp/ccq5RgPP.s:444    .text:0000000000000384 .L0 
-     /tmp/ccq5RgPP.s:471    .text:00000000000003dc .L0 
-     /tmp/ccq5RgPP.s:472    .text:00000000000003dc .L0 
-     /tmp/ccq5RgPP.s:475    .text:00000000000003e0 .L0 
-     /tmp/ccq5RgPP.s:490    .text:0000000000000418 .L0 
-     /tmp/ccq5RgPP.s:502    .text:0000000000000440 .L0 
-     /tmp/ccq5RgPP.s:503    .text:0000000000000440 .L0 
-     /tmp/ccq5RgPP.s:505    .text:0000000000000444 .L0 
-     /tmp/ccq5RgPP.s:508    .text:0000000000000448 .L0 
-     /tmp/ccq5RgPP.s:509    .text:0000000000000448 .L0 
-     /tmp/ccq5RgPP.s:511    .text:000000000000044c .L0 
-     /tmp/ccq5RgPP.s:514    .text:0000000000000450 .L0 
-     /tmp/ccq5RgPP.s:515    .text:0000000000000450 .L0 
-     /tmp/ccq5RgPP.s:523    .text:000000000000046c .L0 
-     /tmp/ccq5RgPP.s:524    .text:000000000000046c .L0 
-     /tmp/ccq5RgPP.s:547    .text:00000000000004c4 .L0 
-     /tmp/ccq5RgPP.s:549    .text:00000000000004c8 .L0 
-     /tmp/ccq5RgPP.s:551    .text:00000000000004cc .L0 
-     /tmp/ccq5RgPP.s:567    .text:0000000000000508 .L0 
-     /tmp/ccq5RgPP.s:568    .text:0000000000000508 .L0 
-     /tmp/ccq5RgPP.s:591    .text:0000000000000560 .L0 
-     /tmp/ccq5RgPP.s:607    .text:000000000000059c .L0 
-     /tmp/ccq5RgPP.s:608    .text:000000000000059c .L0 
-     /tmp/ccq5RgPP.s:624    .text:00000000000005d8 .L0 
-     /tmp/ccq5RgPP.s:625    .text:00000000000005d8 .L0 
-     /tmp/ccq5RgPP.s:648    .text:0000000000000630 .L0 
-     /tmp/ccq5RgPP.s:650    .text:0000000000000634 .L0 
-     /tmp/ccq5RgPP.s:651    .text:0000000000000634 .L0 
-     /tmp/ccq5RgPP.s:668    .text:0000000000000670 .L0 
-     /tmp/ccq5RgPP.s:669    .text:0000000000000670 .L0 
-     /tmp/ccq5RgPP.s:686    .text:00000000000006ac .L0 
-     /tmp/ccq5RgPP.s:687    .text:00000000000006ac .L0 
-     /tmp/ccq5RgPP.s:708    .text:00000000000006e8 .L0 
-     /tmp/ccq5RgPP.s:709    .text:00000000000006e8 .L0 
-     /tmp/ccq5RgPP.s:711    .text:00000000000006ec .L0 
-     /tmp/ccq5RgPP.s:714    .text:00000000000006f0 .L0 
-     /tmp/ccq5RgPP.s:715    .text:00000000000006f0 .L0 
-     /tmp/ccq5RgPP.s:738    .text:0000000000000748 .L0 
-     /tmp/ccq5RgPP.s:740    .text:000000000000074c .L0 
-     /tmp/ccq5RgPP.s:741    .text:000000000000074c .L0 
-     /tmp/ccq5RgPP.s:764    .text:00000000000007a4 .L0 
-     /tmp/ccq5RgPP.s:781    .text:00000000000007e0 .L0 
-     /tmp/ccq5RgPP.s:782    .text:00000000000007e0 .L0 
-     /tmp/ccq5RgPP.s:805    .text:0000000000000838 .L0 
-     /tmp/ccq5RgPP.s:807    .text:000000000000083c .L0 
-     /tmp/ccq5RgPP.s:808    .text:000000000000083c .L0 
-     /tmp/ccq5RgPP.s:831    .text:0000000000000894 .L0 
-     /tmp/ccq5RgPP.s:848    .text:00000000000008d0 .L0 
-     /tmp/ccq5RgPP.s:849    .text:00000000000008d0 .L0 
-GAS LISTING /tmp/ccq5RgPP.s 			page 40
+     /tmp/cc5BBLNM.s:402    .text:0000000000000318 .L0 
+     /tmp/cc5BBLNM.s:406    .text:0000000000000320 .L0 
+     /tmp/cc5BBLNM.s:407    .text:0000000000000320 .L0 
+     /tmp/cc5BBLNM.s:414    .text:0000000000000328 .L0 
+     /tmp/cc5BBLNM.s:416    .text:0000000000000328 .L0 
+     /tmp/cc5BBLNM.s:417    .text:0000000000000328 .L0 
+     /tmp/cc5BBLNM.s:440    .text:0000000000000380 .L0 
+     /tmp/cc5BBLNM.s:443    .text:0000000000000384 .L0 
+     /tmp/cc5BBLNM.s:444    .text:0000000000000384 .L0 
+     /tmp/cc5BBLNM.s:471    .text:00000000000003dc .L0 
+     /tmp/cc5BBLNM.s:472    .text:00000000000003dc .L0 
+     /tmp/cc5BBLNM.s:475    .text:00000000000003e0 .L0 
+     /tmp/cc5BBLNM.s:490    .text:0000000000000418 .L0 
+     /tmp/cc5BBLNM.s:502    .text:0000000000000440 .L0 
+     /tmp/cc5BBLNM.s:503    .text:0000000000000440 .L0 
+     /tmp/cc5BBLNM.s:505    .text:0000000000000444 .L0 
+     /tmp/cc5BBLNM.s:508    .text:0000000000000448 .L0 
+     /tmp/cc5BBLNM.s:509    .text:0000000000000448 .L0 
+     /tmp/cc5BBLNM.s:511    .text:000000000000044c .L0 
+     /tmp/cc5BBLNM.s:514    .text:0000000000000450 .L0 
+     /tmp/cc5BBLNM.s:515    .text:0000000000000450 .L0 
+     /tmp/cc5BBLNM.s:523    .text:000000000000046c .L0 
+     /tmp/cc5BBLNM.s:524    .text:000000000000046c .L0 
+     /tmp/cc5BBLNM.s:547    .text:00000000000004c4 .L0 
+     /tmp/cc5BBLNM.s:549    .text:00000000000004c8 .L0 
+     /tmp/cc5BBLNM.s:551    .text:00000000000004cc .L0 
+     /tmp/cc5BBLNM.s:567    .text:0000000000000508 .L0 
+     /tmp/cc5BBLNM.s:568    .text:0000000000000508 .L0 
+     /tmp/cc5BBLNM.s:591    .text:0000000000000560 .L0 
+     /tmp/cc5BBLNM.s:607    .text:000000000000059c .L0 
+     /tmp/cc5BBLNM.s:608    .text:000000000000059c .L0 
+     /tmp/cc5BBLNM.s:624    .text:00000000000005d8 .L0 
+     /tmp/cc5BBLNM.s:625    .text:00000000000005d8 .L0 
+     /tmp/cc5BBLNM.s:648    .text:0000000000000630 .L0 
+     /tmp/cc5BBLNM.s:650    .text:0000000000000634 .L0 
+     /tmp/cc5BBLNM.s:651    .text:0000000000000634 .L0 
+     /tmp/cc5BBLNM.s:668    .text:0000000000000670 .L0 
+     /tmp/cc5BBLNM.s:669    .text:0000000000000670 .L0 
+     /tmp/cc5BBLNM.s:686    .text:00000000000006ac .L0 
+     /tmp/cc5BBLNM.s:687    .text:00000000000006ac .L0 
+     /tmp/cc5BBLNM.s:708    .text:00000000000006e8 .L0 
+     /tmp/cc5BBLNM.s:709    .text:00000000000006e8 .L0 
+     /tmp/cc5BBLNM.s:711    .text:00000000000006ec .L0 
+     /tmp/cc5BBLNM.s:714    .text:00000000000006f0 .L0 
+     /tmp/cc5BBLNM.s:715    .text:00000000000006f0 .L0 
+     /tmp/cc5BBLNM.s:738    .text:0000000000000748 .L0 
+     /tmp/cc5BBLNM.s:740    .text:000000000000074c .L0 
+     /tmp/cc5BBLNM.s:741    .text:000000000000074c .L0 
+     /tmp/cc5BBLNM.s:764    .text:00000000000007a4 .L0 
+     /tmp/cc5BBLNM.s:781    .text:00000000000007e0 .L0 
+     /tmp/cc5BBLNM.s:782    .text:00000000000007e0 .L0 
+     /tmp/cc5BBLNM.s:805    .text:0000000000000838 .L0 
+     /tmp/cc5BBLNM.s:807    .text:000000000000083c .L0 
+     /tmp/cc5BBLNM.s:808    .text:000000000000083c .L0 
+     /tmp/cc5BBLNM.s:831    .text:0000000000000894 .L0 
+     /tmp/cc5BBLNM.s:848    .text:00000000000008d0 .L0 
+     /tmp/cc5BBLNM.s:849    .text:00000000000008d0 .L0 
+GAS LISTING /tmp/cc5BBLNM.s 			page 25
 
 
-     /tmp/ccq5RgPP.s:856    .text:00000000000008d4 .L0 
-     /tmp/ccq5RgPP.s:858    .text:00000000000008dc .L0 
-     /tmp/ccq5RgPP.s:859    .text:00000000000008dc .L0 
-     /tmp/ccq5RgPP.s:861    .text:00000000000008e0 .L0 
-     /tmp/ccq5RgPP.s:862    .text:00000000000008e0 .L0 
-     /tmp/ccq5RgPP.s:864    .text:00000000000008e4 .L0 
-     /tmp/ccq5RgPP.s:866    .text:00000000000008e8 .L0 
-     /tmp/ccq5RgPP.s:868    .text:00000000000008ec .L0 
-     /tmp/ccq5RgPP.s:871    .text:00000000000008f0 .L0 
-     /tmp/ccq5RgPP.s:875    .text:00000000000008f4 .L0 
-     /tmp/ccq5RgPP.s:880    .text:00000000000008f4 .L0 
-     /tmp/ccq5RgPP.s:881    .text:00000000000008f4 .L0 
-     /tmp/ccq5RgPP.s:904    .text:000000000000094c .L0 
-     /tmp/ccq5RgPP.s:909    .text:0000000000000954 .L0 
-     /tmp/ccq5RgPP.s:926    .text:0000000000000954 _ZN11HeapManager8heapFreeEPv
-     /tmp/ccq5RgPP.s:929    .text:0000000000000954 .L0 
-     /tmp/ccq5RgPP.s:931    .text:0000000000000954 .L0 
-     /tmp/ccq5RgPP.s:932    .text:0000000000000958 .L0 
-     /tmp/ccq5RgPP.s:940    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:941    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:942    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:943    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:944    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:945    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:946    .text:0000000000000974 .L0 
-     /tmp/ccq5RgPP.s:948    .text:0000000000000978 .L0 
-     /tmp/ccq5RgPP.s:952    .text:0000000000000980 .L0 
-     /tmp/ccq5RgPP.s:953    .text:0000000000000980 .L0 
-     /tmp/ccq5RgPP.s:955    .text:0000000000000984 .L0 
-     /tmp/ccq5RgPP.s:958    .text:0000000000000988 .L0 
-     /tmp/ccq5RgPP.s:975    .text:00000000000009c0 .L0 
-     /tmp/ccq5RgPP.s:976    .text:00000000000009c0 .L0 
-     /tmp/ccq5RgPP.s:977    .text:00000000000009c0 .L0 
-     /tmp/ccq5RgPP.s:980    .text:00000000000009c4 .L0 
-     /tmp/ccq5RgPP.s:982    .text:00000000000009c8 .L0 
-     /tmp/ccq5RgPP.s:1005   .text:0000000000000a20 .L0 
-     /tmp/ccq5RgPP.s:1008   .text:0000000000000a24 .L0 
-     /tmp/ccq5RgPP.s:1009   .text:0000000000000a24 .L0 
-     /tmp/ccq5RgPP.s:1026   .text:0000000000000a60 .L0 
-     /tmp/ccq5RgPP.s:1028   .text:0000000000000a64 .L0 
-     /tmp/ccq5RgPP.s:1044   .text:0000000000000aa0 .L0 
-     /tmp/ccq5RgPP.s:1045   .text:0000000000000aa0 .L0 
-     /tmp/ccq5RgPP.s:1047   .text:0000000000000aa4 .L0 
-     /tmp/ccq5RgPP.s:1048   .text:0000000000000aa4 .L0 
-     /tmp/ccq5RgPP.s:1058   .text:0000000000000ac4 .L0 
-     /tmp/ccq5RgPP.s:1059   .text:0000000000000ac4 .L0 
-     /tmp/ccq5RgPP.s:1082   .text:0000000000000b1c .L0 
-     /tmp/ccq5RgPP.s:1084   .text:0000000000000b20 .L0 
-     /tmp/ccq5RgPP.s:1107   .text:0000000000000b78 .L0 
-     /tmp/ccq5RgPP.s:1109   .text:0000000000000b7c .L0 
-     /tmp/ccq5RgPP.s:1111   .text:0000000000000b80 .L0 
-     /tmp/ccq5RgPP.s:1113   .text:0000000000000b84 .L0 
-     /tmp/ccq5RgPP.s:1117   .text:0000000000000b88 .L0 
-     /tmp/ccq5RgPP.s:1118   .text:0000000000000b88 .L0 
-     /tmp/ccq5RgPP.s:1141   .text:0000000000000be0 .L0 
-     /tmp/ccq5RgPP.s:1143   .text:0000000000000be4 .L0 
-     /tmp/ccq5RgPP.s:1166   .text:0000000000000c3c .L0 
-GAS LISTING /tmp/ccq5RgPP.s 			page 41
+     /tmp/cc5BBLNM.s:856    .text:00000000000008d4 .L0 
+     /tmp/cc5BBLNM.s:858    .text:00000000000008dc .L0 
+     /tmp/cc5BBLNM.s:859    .text:00000000000008dc .L0 
+     /tmp/cc5BBLNM.s:861    .text:00000000000008e0 .L0 
+     /tmp/cc5BBLNM.s:862    .text:00000000000008e0 .L0 
+     /tmp/cc5BBLNM.s:864    .text:00000000000008e4 .L0 
+     /tmp/cc5BBLNM.s:866    .text:00000000000008e8 .L0 
+     /tmp/cc5BBLNM.s:868    .text:00000000000008ec .L0 
+     /tmp/cc5BBLNM.s:871    .text:00000000000008f0 .L0 
+     /tmp/cc5BBLNM.s:875    .text:00000000000008f4 .L0 
+     /tmp/cc5BBLNM.s:880    .text:00000000000008f4 .L0 
+     /tmp/cc5BBLNM.s:881    .text:00000000000008f4 .L0 
+     /tmp/cc5BBLNM.s:904    .text:000000000000094c .L0 
+     /tmp/cc5BBLNM.s:909    .text:0000000000000954 .L0 
+     /tmp/cc5BBLNM.s:915    .text:0000000000000954 _ZN11HeapManager8heapFreeEPv
+     /tmp/cc5BBLNM.s:918    .text:0000000000000954 .L0 
+     /tmp/cc5BBLNM.s:920    .text:0000000000000954 .L0 
+     /tmp/cc5BBLNM.s:921    .text:0000000000000958 .L0 
+     /tmp/cc5BBLNM.s:923    .text:000000000000095c .L0 
+     /tmp/cc5BBLNM.s:925    .text:0000000000000960 .L0 
+     /tmp/cc5BBLNM.s:927    .text:0000000000000960 .L0 
+     /tmp/cc5BBLNM.s:928    .text:0000000000000960 .L0 
+     /tmp/cc5BBLNM.s:931    .text:0000000000000968 .L0 
+     /tmp/cc5BBLNM.s:932    .text:0000000000000968 .L0 
+     /tmp/cc5BBLNM.s:934    .text:000000000000096c .L0 
+     /tmp/cc5BBLNM.s:936    .text:0000000000000970 .L0 
+     /tmp/cc5BBLNM.s:945    .bss:0000000000000000 _ZN11HeapManager8instanceE
+     /tmp/cc5BBLNM.s:942    .bss:0000000000000000 .LANCHOR0
+     /tmp/cc5BBLNM.s:953    .text:0000000000000970 .L0 
+     /tmp/cc5BBLNM.s:39     .text:0000000000000018 .L0 
+     /tmp/cc5BBLNM.s:46     .text:0000000000000024 .L0 
+     /tmp/cc5BBLNM.s:8      .rodata.str1.8:0000000000000000 .LC0
+     /tmp/cc5BBLNM.s:66     .text:0000000000000040 .L0 
+     /tmp/cc5BBLNM.s:11     .rodata.str1.8:0000000000000020 .LC1
+     /tmp/cc5BBLNM.s:68     .text:000000000000004c .L0 
+     /tmp/cc5BBLNM.s:14     .rodata.str1.8:0000000000000038 .LC2
+     /tmp/cc5BBLNM.s:69     .text:0000000000000054 .L0 
+     /tmp/cc5BBLNM.s:107    .rodata.str1.8:0000000000000048 .LC3
+     /tmp/cc5BBLNM.s:223    .text:000000000000017c .L0 
+     /tmp/cc5BBLNM.s:226    .text:0000000000000188 .L0 
+     /tmp/cc5BBLNM.s:110    .rodata.str1.8:0000000000000078 .LC4
+     /tmp/cc5BBLNM.s:228    .text:0000000000000190 .L0 
+     /tmp/cc5BBLNM.s:238    .rodata.str1.8:0000000000000098 .LC5
+     /tmp/cc5BBLNM.s:349    .text:00000000000002b8 .L0 
+     /tmp/cc5BBLNM.s:351    .text:00000000000002c4 .L0 
+     /tmp/cc5BBLNM.s:241    .rodata.str1.8:00000000000000c0 .LC6
+     /tmp/cc5BBLNM.s:352    .text:00000000000002cc .L0 
+     /tmp/cc5BBLNM.s:378    .rodata.str1.8:00000000000000e8 .LC7
+     /tmp/cc5BBLNM.s:490    .text:0000000000000418 .L0 
+     /tmp/cc5BBLNM.s:492    .text:0000000000000424 .L0 
+     /tmp/cc5BBLNM.s:493    .text:000000000000042c .L0 
+     /tmp/cc5BBLNM.s:62     .text:0000000000000040 .L4
+     /tmp/cc5BBLNM.s:42     .text:0000000000000024 .L2
+     /tmp/cc5BBLNM.s:220    .text:000000000000017c .L10
+     /tmp/cc5BBLNM.s:142    .text:00000000000000b0 .L8
+     /tmp/cc5BBLNM.s:329    .text:000000000000027c .L14
+     /tmp/cc5BBLNM.s:356    .text:00000000000002e0 .L11
+GAS LISTING /tmp/cc5BBLNM.s 			page 26
 
 
-     /tmp/ccq5RgPP.s:1168   .text:0000000000000c40 .L0 
-     /tmp/ccq5RgPP.s:1170   .text:0000000000000c44 .L0 
-     /tmp/ccq5RgPP.s:1172   .text:0000000000000c48 .L0 
-     /tmp/ccq5RgPP.s:1176   .text:0000000000000c4c .L0 
-     /tmp/ccq5RgPP.s:1177   .text:0000000000000c4c .L0 
-     /tmp/ccq5RgPP.s:1179   .text:0000000000000c54 .L0 
-     /tmp/ccq5RgPP.s:1180   .text:0000000000000c54 .L0 
-     /tmp/ccq5RgPP.s:1182   .text:0000000000000c58 .L0 
-     /tmp/ccq5RgPP.s:1183   .text:0000000000000c58 .L0 
-     /tmp/ccq5RgPP.s:1185   .text:0000000000000c5c .L0 
-     /tmp/ccq5RgPP.s:1187   .text:0000000000000c60 .L0 
-     /tmp/ccq5RgPP.s:1189   .text:0000000000000c64 .L0 
-     /tmp/ccq5RgPP.s:1191   .text:0000000000000c68 .L0 
-     /tmp/ccq5RgPP.s:1194   .text:0000000000000c6c .L0 
-     /tmp/ccq5RgPP.s:1197   .text:0000000000000c70 .L0 
-     /tmp/ccq5RgPP.s:1201   .text:0000000000000c74 .L0 
-     /tmp/ccq5RgPP.s:1203   .text:0000000000000c74 .L0 
-     /tmp/ccq5RgPP.s:1215   .text:0000000000000c9c .L0 
-     /tmp/ccq5RgPP.s:1216   .text:0000000000000c9c .L0 
-     /tmp/ccq5RgPP.s:1217   .text:0000000000000c9c .L0 
-     /tmp/ccq5RgPP.s:1243   .text:0000000000000cf4 .L0 
-     /tmp/ccq5RgPP.s:1244   .text:0000000000000cf4 .L0 
-     /tmp/ccq5RgPP.s:1245   .text:0000000000000cf4 .L0 
-     /tmp/ccq5RgPP.s:1268   .text:0000000000000d4c .L0 
-     /tmp/ccq5RgPP.s:1270   .text:0000000000000d50 .L0 
-     /tmp/ccq5RgPP.s:1272   .text:0000000000000d54 .L0 
-     /tmp/ccq5RgPP.s:1287   .text:0000000000000d8c .L0 
-     /tmp/ccq5RgPP.s:1296   .text:0000000000000db4 .L0 
-     /tmp/ccq5RgPP.s:1297   .text:0000000000000db4 .L0 
-     /tmp/ccq5RgPP.s:1313   .text:0000000000000df0 .L0 
-     /tmp/ccq5RgPP.s:1314   .text:0000000000000df0 .L0 
-     /tmp/ccq5RgPP.s:1330   .text:0000000000000e2c .L0 
-     /tmp/ccq5RgPP.s:1331   .text:0000000000000e2c .L0 
-     /tmp/ccq5RgPP.s:1354   .text:0000000000000e84 .L0 
-     /tmp/ccq5RgPP.s:1356   .text:0000000000000e88 .L0 
-     /tmp/ccq5RgPP.s:1357   .text:0000000000000e88 .L0 
-     /tmp/ccq5RgPP.s:1374   .text:0000000000000ec4 .L0 
-     /tmp/ccq5RgPP.s:1375   .text:0000000000000ec4 .L0 
-     /tmp/ccq5RgPP.s:1394   .text:0000000000000f04 .L0 
-     /tmp/ccq5RgPP.s:1395   .text:0000000000000f04 .L0 
-     /tmp/ccq5RgPP.s:1418   .text:0000000000000f5c .L0 
-     /tmp/ccq5RgPP.s:1436   .text:0000000000000fa0 .L0 
-     /tmp/ccq5RgPP.s:1437   .text:0000000000000fa0 .L0 
-     /tmp/ccq5RgPP.s:1460   .text:0000000000000ff8 .L0 
-     /tmp/ccq5RgPP.s:1483   .text:0000000000001050 .L0 
-     /tmp/ccq5RgPP.s:1499   .text:000000000000108c .L0 
-     /tmp/ccq5RgPP.s:1500   .text:000000000000108c .L0 
-     /tmp/ccq5RgPP.s:1523   .text:00000000000010e4 .L0 
-     /tmp/ccq5RgPP.s:1525   .text:00000000000010e8 .L0 
-     /tmp/ccq5RgPP.s:1526   .text:00000000000010e8 .L0 
-     /tmp/ccq5RgPP.s:1549   .text:0000000000001140 .L0 
-     /tmp/ccq5RgPP.s:1566   .text:000000000000117c .L0 
-     /tmp/ccq5RgPP.s:1567   .text:000000000000117c .L0 
-     /tmp/ccq5RgPP.s:1593   .text:00000000000011d8 .L0 
-     /tmp/ccq5RgPP.s:1594   .text:00000000000011d8 .L0 
-     /tmp/ccq5RgPP.s:1617   .text:0000000000001230 .L0 
-     /tmp/ccq5RgPP.s:1635   .text:0000000000001274 .L0 
-GAS LISTING /tmp/ccq5RgPP.s 			page 42
+     /tmp/cc5BBLNM.s:274    .text:00000000000001c8 .L13
+     /tmp/cc5BBLNM.s:468    .text:00000000000003dc .L25
+     /tmp/cc5BBLNM.s:497    .text:0000000000000440 .L27
+     /tmp/cc5BBLNM.s:851    .text:00000000000008d4 .L16
+     /tmp/cc5BBLNM.s:411    .text:0000000000000328 .L18
+     /tmp/cc5BBLNM.s:704    .text:00000000000006e8 .L20
+     /tmp/cc5BBLNM.s:666    .text:0000000000000670 .L21
+     /tmp/cc5BBLNM.s:874    .text:00000000000008f4 .L28
+     /tmp/cc5BBLNM.s:779    .text:00000000000007e0 .L23
+     /tmp/cc5BBLNM.s:846    .text:00000000000008d0 .L24
+     /tmp/cc5BBLNM.s:712    .text:00000000000006f0 .L22
+     /tmp/cc5BBLNM.s:1622   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/cc5BBLNM.s:2592   .debug_str:0000000000000204 .LASF48
+     /tmp/cc5BBLNM.s:2562   .debug_str:00000000000000e5 .LASF49
+     /tmp/cc5BBLNM.s:2622   .debug_str:0000000000000385 .LASF50
+     /tmp/cc5BBLNM.s:5      .text:0000000000000000 .Ltext0
+     /tmp/cc5BBLNM.s:948    .text:0000000000000970 .Letext0
+     /tmp/cc5BBLNM.s:2526   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/cc5BBLNM.s:2606   .debug_str:0000000000000307 .LASF0
+     /tmp/cc5BBLNM.s:2584   .debug_str:00000000000001c0 .LASF1
+     /tmp/cc5BBLNM.s:2574   .debug_str:000000000000015c .LASF2
+     /tmp/cc5BBLNM.s:2600   .debug_str:00000000000002e9 .LASF3
+     /tmp/cc5BBLNM.s:2544   .debug_str:0000000000000071 .LASF4
+     /tmp/cc5BBLNM.s:2582   .debug_str:00000000000001ae .LASF5
+     /tmp/cc5BBLNM.s:2534   .debug_str:0000000000000034 .LASF6
+     /tmp/cc5BBLNM.s:2532   .debug_str:0000000000000021 .LASF7
+     /tmp/cc5BBLNM.s:2566   .debug_str:000000000000011a .LASF8
+     /tmp/cc5BBLNM.s:2610   .debug_str:0000000000000319 .LASF9
+     /tmp/cc5BBLNM.s:2542   .debug_str:0000000000000063 .LASF10
+     /tmp/cc5BBLNM.s:2642   .debug_str:000000000000041f .LASF11
+     /tmp/cc5BBLNM.s:2570   .debug_str:0000000000000141 .LASF12
+     /tmp/cc5BBLNM.s:2632   .debug_str:00000000000003d6 .LASF13
+     /tmp/cc5BBLNM.s:2620   .debug_str:0000000000000375 .LASF14
+     /tmp/cc5BBLNM.s:2590   .debug_str:00000000000001f8 .LASF15
+     /tmp/cc5BBLNM.s:2556   .debug_str:00000000000000a1 .LASF16
+     /tmp/cc5BBLNM.s:2614   .debug_str:000000000000033e .LASF17
+     /tmp/cc5BBLNM.s:2540   .debug_str:0000000000000059 .LASF18
+     /tmp/cc5BBLNM.s:2572   .debug_str:0000000000000150 .LASF23
+     /tmp/cc5BBLNM.s:2576   .debug_str:000000000000016a .LASF51
+     /tmp/cc5BBLNM.s:2528   .debug_str:0000000000000000 .LASF19
+     /tmp/cc5BBLNM.s:2638   .debug_str:000000000000040c .LASF20
+     /tmp/cc5BBLNM.s:2634   .debug_str:00000000000003e6 .LASF21
+     /tmp/cc5BBLNM.s:2550   .debug_str:000000000000008a .LASF22
+     /tmp/cc5BBLNM.s:2618   .debug_str:0000000000000360 .LASF25
+     /tmp/cc5BBLNM.s:2640   .debug_str:0000000000000412 .LASF24
+     /tmp/cc5BBLNM.s:2594   .debug_str:00000000000002c8 .LASF26
+     /tmp/cc5BBLNM.s:2554   .debug_str:000000000000009c .LASF27
+     /tmp/cc5BBLNM.s:2560   .debug_str:00000000000000cc .LASF28
+     /tmp/cc5BBLNM.s:2538   .debug_str:0000000000000047 .LASF29
+     /tmp/cc5BBLNM.s:2580   .debug_str:0000000000000188 .LASF31
+     /tmp/cc5BBLNM.s:2548   .debug_str:000000000000007d .LASF30
+     /tmp/cc5BBLNM.s:2564   .debug_str:00000000000000f9 .LASF32
+     /tmp/cc5BBLNM.s:2552   .debug_str:0000000000000093 .LASF33
+     /tmp/cc5BBLNM.s:2630   .debug_str:00000000000003b9 .LASF34
+     /tmp/cc5BBLNM.s:2616   .debug_str:0000000000000354 .LASF52
+     /tmp/cc5BBLNM.s:2636   .debug_str:00000000000003ec .LASF53
+     /tmp/cc5BBLNM.s:2578   .debug_str:0000000000000180 .LASF35
+GAS LISTING /tmp/cc5BBLNM.s 			page 27
 
 
-     /tmp/ccq5RgPP.s:1636   .text:0000000000001274 .L0 
-     /tmp/ccq5RgPP.s:1659   .text:00000000000012cc .L0 
-     /tmp/ccq5RgPP.s:1675   .text:0000000000001308 .L0 
-     /tmp/ccq5RgPP.s:1677   .text:000000000000130c .L0 
-     /tmp/ccq5RgPP.s:1678   .text:000000000000130c .L0 
-     /tmp/ccq5RgPP.s:1695   .text:000000000000134c .L0 
-     /tmp/ccq5RgPP.s:1704   .bss:0000000000000000 _ZN11HeapManager8instanceE
-     /tmp/ccq5RgPP.s:1701   .bss:0000000000000000 .LANCHOR0
-     /tmp/ccq5RgPP.s:1712   .text:000000000000134c .L0 
-     /tmp/ccq5RgPP.s:39     .text:0000000000000018 .L0 
-     /tmp/ccq5RgPP.s:46     .text:0000000000000024 .L0 
-     /tmp/ccq5RgPP.s:8      .rodata.str1.8:0000000000000000 .LC0
-     /tmp/ccq5RgPP.s:66     .text:0000000000000040 .L0 
-     /tmp/ccq5RgPP.s:11     .rodata.str1.8:0000000000000020 .LC1
-     /tmp/ccq5RgPP.s:68     .text:000000000000004c .L0 
-     /tmp/ccq5RgPP.s:14     .rodata.str1.8:0000000000000038 .LC2
-     /tmp/ccq5RgPP.s:69     .text:0000000000000054 .L0 
-     /tmp/ccq5RgPP.s:107    .rodata.str1.8:0000000000000048 .LC3
-     /tmp/ccq5RgPP.s:223    .text:000000000000017c .L0 
-     /tmp/ccq5RgPP.s:226    .text:0000000000000188 .L0 
-     /tmp/ccq5RgPP.s:110    .rodata.str1.8:0000000000000078 .LC4
-     /tmp/ccq5RgPP.s:228    .text:0000000000000190 .L0 
-     /tmp/ccq5RgPP.s:238    .rodata.str1.8:0000000000000098 .LC5
-     /tmp/ccq5RgPP.s:349    .text:00000000000002b8 .L0 
-     /tmp/ccq5RgPP.s:351    .text:00000000000002c4 .L0 
-     /tmp/ccq5RgPP.s:241    .rodata.str1.8:00000000000000c0 .LC6
-     /tmp/ccq5RgPP.s:352    .text:00000000000002cc .L0 
-     /tmp/ccq5RgPP.s:378    .rodata.str1.8:00000000000000e8 .LC7
-     /tmp/ccq5RgPP.s:490    .text:0000000000000418 .L0 
-     /tmp/ccq5RgPP.s:492    .text:0000000000000424 .L0 
-     /tmp/ccq5RgPP.s:493    .text:000000000000042c .L0 
-     /tmp/ccq5RgPP.s:914    .rodata.str1.8:0000000000000110 .LC8
-     /tmp/ccq5RgPP.s:1203   .text:0000000000000c74 .L0 
-     /tmp/ccq5RgPP.s:1205   .text:0000000000000c80 .L0 
-     /tmp/ccq5RgPP.s:917    .rodata.str1.8:0000000000000138 .LC9
-     /tmp/ccq5RgPP.s:1207   .text:0000000000000c88 .L0 
-     /tmp/ccq5RgPP.s:1287   .text:0000000000000d8c .L0 
-     /tmp/ccq5RgPP.s:1289   .text:0000000000000d98 .L0 
-     /tmp/ccq5RgPP.s:920    .rodata.str1.8:0000000000000160 .LC10
-     /tmp/ccq5RgPP.s:1290   .text:0000000000000da0 .L0 
-     /tmp/ccq5RgPP.s:62     .text:0000000000000040 .L4
-     /tmp/ccq5RgPP.s:42     .text:0000000000000024 .L2
-     /tmp/ccq5RgPP.s:220    .text:000000000000017c .L10
-     /tmp/ccq5RgPP.s:142    .text:00000000000000b0 .L8
-     /tmp/ccq5RgPP.s:329    .text:000000000000027c .L14
-     /tmp/ccq5RgPP.s:356    .text:00000000000002e0 .L11
-     /tmp/ccq5RgPP.s:274    .text:00000000000001c8 .L13
-     /tmp/ccq5RgPP.s:468    .text:00000000000003dc .L25
-     /tmp/ccq5RgPP.s:497    .text:0000000000000440 .L27
-     /tmp/ccq5RgPP.s:851    .text:00000000000008d4 .L16
-     /tmp/ccq5RgPP.s:411    .text:0000000000000328 .L18
-     /tmp/ccq5RgPP.s:704    .text:00000000000006e8 .L20
-     /tmp/ccq5RgPP.s:666    .text:0000000000000670 .L21
-     /tmp/ccq5RgPP.s:874    .text:00000000000008f4 .L28
-     /tmp/ccq5RgPP.s:779    .text:00000000000007e0 .L23
-     /tmp/ccq5RgPP.s:846    .text:00000000000008d0 .L24
-     /tmp/ccq5RgPP.s:712    .text:00000000000006f0 .L22
-GAS LISTING /tmp/ccq5RgPP.s 			page 43
+     /tmp/cc5BBLNM.s:2624   .debug_str:00000000000003a1 .LASF54
+     /tmp/cc5BBLNM.s:2530   .debug_str:0000000000000006 .LASF55
+     /tmp/cc5BBLNM.s:916    .text:0000000000000954 .LFB10
+     /tmp/cc5BBLNM.s:937    .text:0000000000000970 .LFE10
+     /tmp/cc5BBLNM.s:2546   .debug_str:0000000000000078 .LASF36
+     /tmp/cc5BBLNM.s:2266   .debug_loc:0000000000000000 .LLST11
+     /tmp/cc5BBLNM.s:2588   .debug_str:00000000000001ef .LASF37
+     /tmp/cc5BBLNM.s:385    .text:00000000000002fc .LFB9
+     /tmp/cc5BBLNM.s:910    .text:0000000000000954 .LFE9
+     /tmp/cc5BBLNM.s:2280   .debug_loc:0000000000000039 .LLST7
+     /tmp/cc5BBLNM.s:2302   .debug_loc:0000000000000098 .LLST8
+     /tmp/cc5BBLNM.s:2604   .debug_str:00000000000002fe .LASF38
+     /tmp/cc5BBLNM.s:2320   .debug_loc:00000000000000e4 .LLST9
+     /tmp/cc5BBLNM.s:2568   .debug_str:000000000000012d .LASF42
+     /tmp/cc5BBLNM.s:506    .text:0000000000000448 .LBB8
+     /tmp/cc5BBLNM.s:705    .text:00000000000006e8 .LBE8
+     /tmp/cc5BBLNM.s:2596   .debug_str:00000000000002dd .LASF39
+     /tmp/cc5BBLNM.s:2335   .debug_loc:000000000000012d .LLST10
+     /tmp/cc5BBLNM.s:495    .text:000000000000043c .LVL30
+     /tmp/cc5BBLNM.s:2608   .debug_str:0000000000000314 .LASF40
+     /tmp/cc5BBLNM.s:248    .text:00000000000001a4 .LFB8
+     /tmp/cc5BBLNM.s:374    .text:00000000000002fc .LFE8
+     /tmp/cc5BBLNM.s:2367   .debug_loc:0000000000000187 .LLST4
+     /tmp/cc5BBLNM.s:2536   .debug_str:000000000000003b .LASF41
+     /tmp/cc5BBLNM.s:2381   .debug_loc:00000000000001c0 .LLST5
+     /tmp/cc5BBLNM.s:2397   .debug_loc:000000000000020a .LLST6
+     /tmp/cc5BBLNM.s:354    .text:00000000000002dc .LVL22
+     /tmp/cc5BBLNM.s:117    .text:0000000000000080 .LFB7
+     /tmp/cc5BBLNM.s:234    .text:00000000000001a4 .LFE7
+     /tmp/cc5BBLNM.s:2408   .debug_loc:0000000000000240 .LLST1
+     /tmp/cc5BBLNM.s:2598   .debug_str:00000000000002e2 .LASF43
+     /tmp/cc5BBLNM.s:2434   .debug_loc:00000000000002b2 .LLST2
+     /tmp/cc5BBLNM.s:2626   .debug_str:00000000000003aa .LASF44
+     /tmp/cc5BBLNM.s:2460   .debug_loc:0000000000000324 .LLST3
+     /tmp/cc5BBLNM.s:231    .text:00000000000001a0 .LVL14
+     /tmp/cc5BBLNM.s:2628   .debug_str:00000000000003af .LASF45
+     /tmp/cc5BBLNM.s:2558   .debug_str:00000000000000b7 .LASF46
+     /tmp/cc5BBLNM.s:83     .text:0000000000000068 .LFB5
+     /tmp/cc5BBLNM.s:101    .text:0000000000000080 .LFE5
+     /tmp/cc5BBLNM.s:2612   .debug_str:0000000000000329 .LASF47
+     /tmp/cc5BBLNM.s:21     .text:0000000000000000 .LFB2
+     /tmp/cc5BBLNM.s:75     .text:0000000000000068 .LFE2
+     /tmp/cc5BBLNM.s:2485   .debug_loc:0000000000000386 .LLST0
+     /tmp/cc5BBLNM.s:71     .text:0000000000000064 .LVL4
+     /tmp/cc5BBLNM.s:2518   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/cc5BBLNM.s:2586   .debug_str:00000000000001d3 .LASF56
+     /tmp/cc5BBLNM.s:2602   .debug_str:00000000000002f0 .LASF57
+     /tmp/cc5BBLNM.s:919    .text:0000000000000954 .LVL38
+     /tmp/cc5BBLNM.s:929    .text:0000000000000964 .LVL39
+     /tmp/cc5BBLNM.s:388    .text:00000000000002fc .LVL25
+     /tmp/cc5BBLNM.s:410    .text:0000000000000328 .LVL27
+     /tmp/cc5BBLNM.s:869    .text:00000000000008ec .LVL36
+     /tmp/cc5BBLNM.s:873    .text:00000000000008f4 .LVL37
+     /tmp/cc5BBLNM.s:701    .text:00000000000006e4 .LVL33
+     /tmp/cc5BBLNM.s:408    .text:0000000000000324 .LVL26
+     /tmp/cc5BBLNM.s:464    .text:00000000000003d4 .LVL28
+     /tmp/cc5BBLNM.s:467    .text:00000000000003dc .LVL29
+GAS LISTING /tmp/cc5BBLNM.s 			page 28
 
 
-     /tmp/ccq5RgPP.s:1200   .text:0000000000000c74 .L41
-     /tmp/ccq5RgPP.s:1006   .text:0000000000000a24 .L31
-     /tmp/ccq5RgPP.s:1241   .text:0000000000000cf4 .L32
-     /tmp/ccq5RgPP.s:1115   .text:0000000000000b88 .L37
-     /tmp/ccq5RgPP.s:1392   .text:0000000000000f04 .L42
-     /tmp/ccq5RgPP.s:1174   .text:0000000000000c4c .L39
-     /tmp/ccq5RgPP.s:1591   .text:00000000000011d8 .L43
-     /tmp/ccq5RgPP.s:973    .text:00000000000009c0 .L30
-     /tmp/ccq5RgPP.s:1294   .text:0000000000000db4 .L34
-     /tmp/ccq5RgPP.s:1213   .text:0000000000000c9c .L35
-     /tmp/ccq5RgPP.s:1372   .text:0000000000000ec4 .L36
-     /tmp/ccq5RgPP.s:1056   .text:0000000000000ac4 .L33
-     /tmp/ccq5RgPP.s:1564   .text:000000000000117c .L38
-     /tmp/ccq5RgPP.s:2466   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/ccq5RgPP.s:3506   .debug_str:0000000000000221 .LASF50
-     /tmp/ccq5RgPP.s:3472   .debug_str:00000000000000e5 .LASF51
-     /tmp/ccq5RgPP.s:3536   .debug_str:0000000000000393 .LASF52
-     /tmp/ccq5RgPP.s:5      .text:0000000000000000 .Ltext0
-     /tmp/ccq5RgPP.s:1707   .text:000000000000134c .Letext0
-     /tmp/ccq5RgPP.s:3436   .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/ccq5RgPP.s:3520   .debug_str:0000000000000324 .LASF0
-     /tmp/ccq5RgPP.s:3496   .debug_str:00000000000001d5 .LASF1
-     /tmp/ccq5RgPP.s:3484   .debug_str:000000000000015c .LASF2
-     /tmp/ccq5RgPP.s:3514   .debug_str:0000000000000306 .LASF3
-     /tmp/ccq5RgPP.s:3454   .debug_str:0000000000000071 .LASF4
-     /tmp/ccq5RgPP.s:3494   .debug_str:00000000000001c3 .LASF5
-     /tmp/ccq5RgPP.s:3444   .debug_str:0000000000000034 .LASF6
-     /tmp/ccq5RgPP.s:3442   .debug_str:0000000000000021 .LASF7
-     /tmp/ccq5RgPP.s:3476   .debug_str:000000000000011a .LASF8
-     /tmp/ccq5RgPP.s:3524   .debug_str:0000000000000336 .LASF9
-     /tmp/ccq5RgPP.s:3452   .debug_str:0000000000000063 .LASF10
-     /tmp/ccq5RgPP.s:3556   .debug_str:000000000000042d .LASF11
-     /tmp/ccq5RgPP.s:3480   .debug_str:0000000000000141 .LASF12
-     /tmp/ccq5RgPP.s:3546   .debug_str:00000000000003e4 .LASF13
-     /tmp/ccq5RgPP.s:3534   .debug_str:0000000000000383 .LASF14
-     /tmp/ccq5RgPP.s:3502   .debug_str:000000000000020d .LASF15
-     /tmp/ccq5RgPP.s:3466   .debug_str:00000000000000a1 .LASF16
-     /tmp/ccq5RgPP.s:3528   .debug_str:000000000000034c .LASF17
-     /tmp/ccq5RgPP.s:3450   .debug_str:0000000000000059 .LASF18
-     /tmp/ccq5RgPP.s:3482   .debug_str:0000000000000150 .LASF23
-     /tmp/ccq5RgPP.s:3486   .debug_str:000000000000016a .LASF53
-     /tmp/ccq5RgPP.s:3438   .debug_str:0000000000000000 .LASF19
-     /tmp/ccq5RgPP.s:3552   .debug_str:000000000000041a .LASF20
-     /tmp/ccq5RgPP.s:3548   .debug_str:00000000000003f4 .LASF21
-     /tmp/ccq5RgPP.s:3460   .debug_str:000000000000008a .LASF22
-     /tmp/ccq5RgPP.s:3532   .debug_str:000000000000036e .LASF25
-     /tmp/ccq5RgPP.s:3554   .debug_str:0000000000000420 .LASF24
-     /tmp/ccq5RgPP.s:3508   .debug_str:00000000000002e5 .LASF26
-     /tmp/ccq5RgPP.s:3464   .debug_str:000000000000009c .LASF27
-     /tmp/ccq5RgPP.s:3470   .debug_str:00000000000000cc .LASF28
-     /tmp/ccq5RgPP.s:3448   .debug_str:0000000000000047 .LASF29
-     /tmp/ccq5RgPP.s:3492   .debug_str:000000000000019d .LASF31
-     /tmp/ccq5RgPP.s:3458   .debug_str:000000000000007d .LASF30
-     /tmp/ccq5RgPP.s:3474   .debug_str:00000000000000f9 .LASF32
-     /tmp/ccq5RgPP.s:3462   .debug_str:0000000000000093 .LASF33
-     /tmp/ccq5RgPP.s:3544   .debug_str:00000000000003c7 .LASF34
-     /tmp/ccq5RgPP.s:3530   .debug_str:0000000000000362 .LASF54
-GAS LISTING /tmp/ccq5RgPP.s 			page 44
-
-
-     /tmp/ccq5RgPP.s:3550   .debug_str:00000000000003fa .LASF55
-     /tmp/ccq5RgPP.s:3490   .debug_str:0000000000000195 .LASF35
-     /tmp/ccq5RgPP.s:3538   .debug_str:00000000000003af .LASF56
-     /tmp/ccq5RgPP.s:3440   .debug_str:0000000000000006 .LASF57
-     /tmp/ccq5RgPP.s:927    .text:0000000000000954 .LFB10
-     /tmp/ccq5RgPP.s:1696   .text:000000000000134c .LFE10
-     /tmp/ccq5RgPP.s:3456   .debug_str:0000000000000078 .LASF39
-     /tmp/ccq5RgPP.s:3104   .debug_loc:0000000000000000 .LLST11
-     /tmp/ccq5RgPP.s:3500   .debug_str:0000000000000204 .LASF40
-     /tmp/ccq5RgPP.s:3130   .debug_loc:0000000000000072 .LLST12
-     /tmp/ccq5RgPP.s:3526   .debug_str:0000000000000346 .LASF36
-     /tmp/ccq5RgPP.s:3156   .debug_loc:00000000000000e4 .LLST13
-     /tmp/ccq5RgPP.s:3478   .debug_str:000000000000012d .LASF42
-     /tmp/ccq5RgPP.s:3504   .debug_str:0000000000000219 .LASF37
-     /tmp/ccq5RgPP.s:3175   .debug_loc:0000000000000140 .LLST14
-     /tmp/ccq5RgPP.s:1210   .text:0000000000000c98 .LVL50
-     /tmp/ccq5RgPP.s:1292   .text:0000000000000db0 .LVL54
-     /tmp/ccq5RgPP.s:3522   .debug_str:0000000000000331 .LASF38
-     /tmp/ccq5RgPP.s:385    .text:00000000000002fc .LFB9
-     /tmp/ccq5RgPP.s:910    .text:0000000000000954 .LFE9
-     /tmp/ccq5RgPP.s:3190   .debug_loc:0000000000000189 .LLST7
-     /tmp/ccq5RgPP.s:3212   .debug_loc:00000000000001e8 .LLST8
-     /tmp/ccq5RgPP.s:3518   .debug_str:000000000000031b .LASF41
-     /tmp/ccq5RgPP.s:3230   .debug_loc:0000000000000234 .LLST9
-     /tmp/ccq5RgPP.s:506    .text:0000000000000448 .LBB8
-     /tmp/ccq5RgPP.s:705    .text:00000000000006e8 .LBE8
-     /tmp/ccq5RgPP.s:3510   .debug_str:00000000000002fa .LASF43
-     /tmp/ccq5RgPP.s:3245   .debug_loc:000000000000027d .LLST10
-     /tmp/ccq5RgPP.s:495    .text:000000000000043c .LVL30
-     /tmp/ccq5RgPP.s:248    .text:00000000000001a4 .LFB8
-     /tmp/ccq5RgPP.s:374    .text:00000000000002fc .LFE8
-     /tmp/ccq5RgPP.s:3277   .debug_loc:00000000000002d7 .LLST4
-     /tmp/ccq5RgPP.s:3446   .debug_str:000000000000003b .LASF44
-     /tmp/ccq5RgPP.s:3291   .debug_loc:0000000000000310 .LLST5
-     /tmp/ccq5RgPP.s:3307   .debug_loc:000000000000035a .LLST6
-     /tmp/ccq5RgPP.s:354    .text:00000000000002dc .LVL22
-     /tmp/ccq5RgPP.s:117    .text:0000000000000080 .LFB7
-     /tmp/ccq5RgPP.s:234    .text:00000000000001a4 .LFE7
-     /tmp/ccq5RgPP.s:3318   .debug_loc:0000000000000390 .LLST1
-     /tmp/ccq5RgPP.s:3512   .debug_str:00000000000002ff .LASF45
-     /tmp/ccq5RgPP.s:3344   .debug_loc:0000000000000402 .LLST2
-     /tmp/ccq5RgPP.s:3540   .debug_str:00000000000003b8 .LASF46
-     /tmp/ccq5RgPP.s:3370   .debug_loc:0000000000000474 .LLST3
-     /tmp/ccq5RgPP.s:231    .text:00000000000001a0 .LVL14
-     /tmp/ccq5RgPP.s:3542   .debug_str:00000000000003bd .LASF47
-     /tmp/ccq5RgPP.s:3468   .debug_str:00000000000000b7 .LASF48
-     /tmp/ccq5RgPP.s:83     .text:0000000000000068 .LFB5
-     /tmp/ccq5RgPP.s:101    .text:0000000000000080 .LFE5
-     /tmp/ccq5RgPP.s:3488   .debug_str:0000000000000180 .LASF49
-     /tmp/ccq5RgPP.s:21     .text:0000000000000000 .LFB2
-     /tmp/ccq5RgPP.s:75     .text:0000000000000068 .LFE2
-     /tmp/ccq5RgPP.s:3395   .debug_loc:00000000000004d6 .LLST0
-     /tmp/ccq5RgPP.s:71     .text:0000000000000064 .LVL4
-     /tmp/ccq5RgPP.s:3428   .debug_ranges:0000000000000000 .Ldebug_ranges0
-     /tmp/ccq5RgPP.s:3498   .debug_str:00000000000001e8 .LASF58
-     /tmp/ccq5RgPP.s:3516   .debug_str:000000000000030d .LASF59
-     /tmp/ccq5RgPP.s:930    .text:0000000000000954 .LVL38
-GAS LISTING /tmp/ccq5RgPP.s 			page 45
-
-
-     /tmp/ccq5RgPP.s:972    .text:00000000000009c0 .LVL40
-     /tmp/ccq5RgPP.s:1195   .text:0000000000000c6c .LVL46
-     /tmp/ccq5RgPP.s:1199   .text:0000000000000c74 .LVL47
-     /tmp/ccq5RgPP.s:1208   .text:0000000000000c90 .LVL49
-     /tmp/ccq5RgPP.s:1192   .text:0000000000000c68 .LVL45
-     /tmp/ccq5RgPP.s:1206   .text:0000000000000c88 .LVL48
-     /tmp/ccq5RgPP.s:956    .text:0000000000000988 .LVL39
-     /tmp/ccq5RgPP.s:1114   .text:0000000000000b88 .LVL43
-     /tmp/ccq5RgPP.s:1173   .text:0000000000000c4c .LVL44
-     /tmp/ccq5RgPP.s:1589   .text:00000000000011d4 .LVL56
-     /tmp/ccq5RgPP.s:1692   .text:0000000000001344 .LVL57
-     /tmp/ccq5RgPP.s:978    .text:00000000000009c4 .LVL41
-     /tmp/ccq5RgPP.s:1023   .text:0000000000000a5c .LVL42
-     /tmp/ccq5RgPP.s:1212   .text:0000000000000c9c .LVL51
-     /tmp/ccq5RgPP.s:1237   .text:0000000000000cec .LVL52
-     /tmp/ccq5RgPP.s:1240   .text:0000000000000cf4 .LVL53
-     /tmp/ccq5RgPP.s:1391   .text:0000000000000f04 .LVL55
-     /tmp/ccq5RgPP.s:388    .text:00000000000002fc .LVL25
-     /tmp/ccq5RgPP.s:410    .text:0000000000000328 .LVL27
-     /tmp/ccq5RgPP.s:869    .text:00000000000008ec .LVL36
-     /tmp/ccq5RgPP.s:873    .text:00000000000008f4 .LVL37
-     /tmp/ccq5RgPP.s:701    .text:00000000000006e4 .LVL33
-     /tmp/ccq5RgPP.s:408    .text:0000000000000324 .LVL26
-     /tmp/ccq5RgPP.s:464    .text:00000000000003d4 .LVL28
-     /tmp/ccq5RgPP.s:467    .text:00000000000003dc .LVL29
-     /tmp/ccq5RgPP.s:850    .text:00000000000008d4 .LVL35
-     /tmp/ccq5RgPP.s:512    .text:0000000000000450 .LVL31
-     /tmp/ccq5RgPP.s:683    .text:00000000000006a8 .LVL32
-     /tmp/ccq5RgPP.s:703    .text:00000000000006e8 .LVL34
-     /tmp/ccq5RgPP.s:251    .text:00000000000001a4 .LVL15
-     /tmp/ccq5RgPP.s:273    .text:00000000000001c8 .LVL18
-     /tmp/ccq5RgPP.s:265    .text:00000000000001bc .LVL16
-     /tmp/ccq5RgPP.s:369    .text:00000000000002f4 .LVL24
-     /tmp/ccq5RgPP.s:269    .text:00000000000001c0 .LVL17
-     /tmp/ccq5RgPP.s:325    .text:0000000000000274 .LVL20
-     /tmp/ccq5RgPP.s:328    .text:000000000000027c .LVL21
-     /tmp/ccq5RgPP.s:366    .text:00000000000002f0 .LVL23
-     /tmp/ccq5RgPP.s:120    .text:0000000000000080 .LVL6
-     /tmp/ccq5RgPP.s:141    .text:00000000000000b0 .LVL7
-     /tmp/ccq5RgPP.s:215    .text:0000000000000174 .LVL9
-     /tmp/ccq5RgPP.s:219    .text:000000000000017c .LVL10
-     /tmp/ccq5RgPP.s:229    .text:0000000000000198 .LVL13
-     /tmp/ccq5RgPP.s:212    .text:0000000000000170 .LVL8
-     /tmp/ccq5RgPP.s:227    .text:0000000000000190 .LVL12
-     /tmp/ccq5RgPP.s:225    .text:0000000000000188 .LVL11
-     /tmp/ccq5RgPP.s:25     .text:0000000000000000 .LVL0
-     /tmp/ccq5RgPP.s:41     .text:0000000000000024 .LVL1
-     /tmp/ccq5RgPP.s:57     .text:0000000000000038 .LVL2
-     /tmp/ccq5RgPP.s:61     .text:0000000000000040 .LVL3
-     /tmp/ccq5RgPP.s:1713   .debug_info:0000000000000000 .Ldebug_info0
-     /tmp/ccq5RgPP.s:37     .text:0000000000000018 .LBB2
-     /tmp/ccq5RgPP.s:47     .text:000000000000002c .LBE2
-     /tmp/ccq5RgPP.s:64     .text:0000000000000040 .LBB3
-     /tmp/ccq5RgPP.s:73     .text:0000000000000068 .LBE3
+     /tmp/cc5BBLNM.s:850    .text:00000000000008d4 .LVL35
+     /tmp/cc5BBLNM.s:512    .text:0000000000000450 .LVL31
+     /tmp/cc5BBLNM.s:683    .text:00000000000006a8 .LVL32
+     /tmp/cc5BBLNM.s:703    .text:00000000000006e8 .LVL34
+     /tmp/cc5BBLNM.s:251    .text:00000000000001a4 .LVL15
+     /tmp/cc5BBLNM.s:273    .text:00000000000001c8 .LVL18
+     /tmp/cc5BBLNM.s:265    .text:00000000000001bc .LVL16
+     /tmp/cc5BBLNM.s:369    .text:00000000000002f4 .LVL24
+     /tmp/cc5BBLNM.s:269    .text:00000000000001c0 .LVL17
+     /tmp/cc5BBLNM.s:325    .text:0000000000000274 .LVL20
+     /tmp/cc5BBLNM.s:328    .text:000000000000027c .LVL21
+     /tmp/cc5BBLNM.s:366    .text:00000000000002f0 .LVL23
+     /tmp/cc5BBLNM.s:120    .text:0000000000000080 .LVL6
+     /tmp/cc5BBLNM.s:141    .text:00000000000000b0 .LVL7
+     /tmp/cc5BBLNM.s:215    .text:0000000000000174 .LVL9
+     /tmp/cc5BBLNM.s:219    .text:000000000000017c .LVL10
+     /tmp/cc5BBLNM.s:229    .text:0000000000000198 .LVL13
+     /tmp/cc5BBLNM.s:212    .text:0000000000000170 .LVL8
+     /tmp/cc5BBLNM.s:227    .text:0000000000000190 .LVL12
+     /tmp/cc5BBLNM.s:225    .text:0000000000000188 .LVL11
+     /tmp/cc5BBLNM.s:25     .text:0000000000000000 .LVL0
+     /tmp/cc5BBLNM.s:41     .text:0000000000000024 .LVL1
+     /tmp/cc5BBLNM.s:57     .text:0000000000000038 .LVL2
+     /tmp/cc5BBLNM.s:61     .text:0000000000000040 .LVL3
+     /tmp/cc5BBLNM.s:954    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/cc5BBLNM.s:37     .text:0000000000000018 .LBB2
+     /tmp/cc5BBLNM.s:47     .text:000000000000002c .LBE2
+     /tmp/cc5BBLNM.s:64     .text:0000000000000040 .LBB3
+     /tmp/cc5BBLNM.s:73     .text:0000000000000068 .LBE3
 
 UNDEFINED SYMBOLS
 _Z13assert_failedPKcS0_jS0_
-GAS LISTING /tmp/ccq5RgPP.s 			page 46
-
-
