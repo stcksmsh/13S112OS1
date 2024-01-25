@@ -91,15 +91,13 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('\n');
     do{
         thread_dispatch();
-    // }while(!Scheduler::isEmpty());
-    // }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
-    }while(true);
+    }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
+    // }while(true);
 
     putc('m');
     putc('a');
     putc('i');
     putc('n');
     putc('\n');
-    // while(1){}
     return EXIT_SUCCESS;
 }

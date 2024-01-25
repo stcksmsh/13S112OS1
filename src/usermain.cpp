@@ -25,7 +25,9 @@ void thread_test_2(void* args){
     putc('2');
     putc('S');
     sem_signal(sem2);
-    while(1);
+    for(int i = 0; i < 1 << 20; i++){
+        __asm__ volatile("nop");
+    }
 }
 
 void memTest(){
