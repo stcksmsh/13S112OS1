@@ -20,11 +20,11 @@ void thread_test_1(void* args){
 void thread_test_2(void* args){
     putc('2');
     putc('s');
-    time_sleep(100);
+    time_sleep(60);
     putc('2');
     putc('S');
-    // while(1);
     sem_signal(sem2);
+    while(1);
 }
 
 void usermain(void* arg){
@@ -39,9 +39,11 @@ void usermain(void* arg){
     // thread_join(t2);
     // if(getc() == 'a')putc('x');
     putc('4');
-    // thread_join(t1);
+    thread_join(t1);
     // thread_dispatch();
     // thread_dispatch();
     sem_wait(sem2);
     putc('5');
+    sem_close(sem1);
+    sem_close(sem2);
 }

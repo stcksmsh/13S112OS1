@@ -76,7 +76,7 @@ void _thread::unJoin(){
         thread->blocked = false;
         Scheduler::put(thread);
         ThreadJoinList* next = current->next;
-        mem_free(current);
+        // mem_free(current);
         current = next;
     }
 }
@@ -127,13 +127,17 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
 
 void _thread::join(thread_t thread){
     /// cannot join to a finished or closed thread
+    __putc('j');
     if(thread->finished || thread->closed){
         return;
     }
+    // __putc('j');
     ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
+    // __putc('j');
     this->blocked = true;
     newJoin->thread = this;
     newJoin->next = 0;
+    // __putc('j');
     if(thread->joinHead == 0){
         thread->joinHead = newJoin;
         thread->joinTail = newJoin;

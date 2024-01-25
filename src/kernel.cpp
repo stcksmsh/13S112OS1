@@ -92,8 +92,8 @@ Kernel::EXIT_CODE Kernel::run(){
     do{
         thread_dispatch();
     // }while(!Scheduler::isEmpty());
-    // }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
-    }while(true);
+    }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
+    // }while(true);
 
     putc('m');
     putc('a');
