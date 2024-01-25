@@ -54,7 +54,7 @@ thread_t Scheduler::get(){
     if(singleton->head == 0){
         singleton->tail = 0;
     }
-    // mem_free(tmp);
+    // mem_free(tmp); THIS ONE BREAKS CAUSES ILLEGAL READS???
     return thread;
 }
 

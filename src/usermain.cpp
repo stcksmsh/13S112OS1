@@ -1,4 +1,5 @@
 #include "syscalls_c.h"
+#include "heapManager.h"
 #include "usermain.h"
 #include "thread.h"
 #include "sem.h"
@@ -27,7 +28,94 @@ void thread_test_2(void* args){
     while(1);
 }
 
+void memTest(){
+    uint64 freeMemory = HeapManager::getInstance().getHeapFreeMemory();
+    putc('F');
+    putc('r');
+    putc('e');
+    putc('e');
+    putc(' ');
+    putc('m');
+    putc('e');
+    putc('m');
+    putc('o');
+    putc('r');
+    putc('y');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (freeMemory >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+    putc('\n');
+    int n = 100;
+    int k = 100;
+    int** matrix = (int**)mem_alloc(sizeof(int*) * n);
+    for(int i = 0; i < n; i++){
+        matrix[i] = (int*)mem_alloc(sizeof(int) * k);
+        for(int j = 0; j < k; j++){
+            matrix[i][j] = i * k + j;
+        }
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < k; j++){
+            assert(matrix[i][j] == i * k + j);
+        }
+        mem_free(matrix[i]);
+    }
+    mem_free(matrix);
+    uint64 newFreeMemory = HeapManager::getInstance().getHeapFreeMemory();
+    putc('F');
+    putc('r');
+    putc('e');
+    putc('e');
+    putc(' ');
+    putc('m');
+    putc('e');
+    putc('m');
+    putc('o');
+    putc('r');
+    putc('y');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (newFreeMemory >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+    putc('\n');
+    uint64 difference = freeMemory - newFreeMemory;
+    putc('D');
+    putc('i');
+    putc('f');
+    putc('f');
+    putc('e');
+    putc('r');
+    putc('e');
+    putc('n');
+    putc('c');
+    putc('e');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (difference >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+    putc('\n');
+    putc('\n');
+    putc('\n');
+}
+
 void usermain(void* arg){
+    memTest();    
     putc('0');
     thread_t t1, t2;
     sem_open(&sem1, 0);
@@ -46,4 +134,7 @@ void usermain(void* arg){
     putc('5');
     sem_close(sem1);
     sem_close(sem2);
+
+
+    putc('\n');
 }
