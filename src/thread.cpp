@@ -175,10 +175,10 @@ void _thread::setSleeping(bool sleeping){
 }
 
 void _thread::dispatch(){
-    _thread* oldThread = currentThread;
+    thread_t oldThread = currentThread;
 
     currentThread =  Scheduler::get();
-    if(currentThread == 0){
+    if(currentThread == nullptr){
         currentThread = oldThread;
         return;
     }
@@ -199,6 +199,7 @@ void _thread::dispatch(){
     __putc('0' + currentThread->ID);
     __putc('\n');
     contextSwitch(oldThread == 0?0:&(oldThread->context), &(currentThread->context));
+    __putc('.');
 }
 
 void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){
@@ -225,6 +226,19 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
         __asm__ volatile("csrr s0, sstatus");
         __asm__ volatile ("sd s0, 14 * 8(a0)");
     }
+    
+    // uint64 ra = newContext->pc;
+    // __putc('\n');
+    // for(int i = 15; i >= 0 ; i --){
+    //     int digit = (ra >> (i * 4)) & 0xf;
+    //     if(digit < 10){
+    //         __putc('0' + digit);
+    //     }else{
+    //         __putc('a' + digit - 10);
+    //     }
+    // }
+    // __putc('\n');
+    
     if(newContext->sp != 0){
         __asm__ volatile ("ld sp, 8(a1)");
     }

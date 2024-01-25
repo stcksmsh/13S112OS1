@@ -1,4 +1,4 @@
-GAS LISTING /tmp/ccp57yVD.s 			page 1
+GAS LISTING /tmp/ccHwop0z.s 			page 1
 
 
    1              		.file	"sem.cpp"
@@ -58,7 +58,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
   36 002c 23B0A400 		sd	a0,0(s1)
   20:src/sem.cpp   ****     (*handle)->blockHead = 0;
   37              		.loc 1 20 5 is_stmt 1
-GAS LISTING /tmp/ccp57yVD.s 			page 2
+GAS LISTING /tmp/ccHwop0z.s 			page 2
 
 
   38              		.loc 1 20 26 is_stmt 0
@@ -118,7 +118,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
   88              		.loc 1 26 5
   89              		.loc 1 26 25
   90              		.loc 1 26 15 is_stmt 0
-GAS LISTING /tmp/ccp57yVD.s 			page 3
+GAS LISTING /tmp/ccHwop0z.s 			page 3
 
 
   91 0074 83B70400 		ld	a5,0(s1)
@@ -178,7 +178,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
  137              	.LVL9:
   34:src/sem.cpp   ****     id->value--;
  138              		.loc 1 34 5
-GAS LISTING /tmp/ccp57yVD.s 			page 4
+GAS LISTING /tmp/ccHwop0z.s 			page 4
 
 
  139              		.loc 1 34 9 is_stmt 0
@@ -238,7 +238,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
   41:src/sem.cpp   ****             id->blockTail = pNewBlock;
   42:src/sem.cpp   ****         }else{
   43:src/sem.cpp   ****             id->blockTail->pNext = pNewBlock;
-GAS LISTING /tmp/ccp57yVD.s 			page 5
+GAS LISTING /tmp/ccHwop0z.s 			page 5
 
 
  184              		.loc 1 43 13 is_stmt 1
@@ -298,7 +298,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
  227              		.cfi_restore_state
  228              	.LBB6:
  229              	.LBB4:
-GAS LISTING /tmp/ccp57yVD.s 			page 6
+GAS LISTING /tmp/ccHwop0z.s 			page 6
 
 
   40:src/sem.cpp   ****             id->blockTail = pNewBlock;
@@ -358,7 +358,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
  276              		.loc 1 55 9 is_stmt 1
  277              		.loc 1 55 28 is_stmt 0
  278 0198 83340500 		ld	s1,0(a0)
-GAS LISTING /tmp/ccp57yVD.s 			page 7
+GAS LISTING /tmp/ccHwop0z.s 			page 7
 
 
  279              	.LVL19:
@@ -418,7 +418,7 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
  318              		.loc 1 65 9 is_stmt 1
  319              		.loc 1 65 15 is_stmt 0
  320 01ec 1305D003 		li	a0,61
-GAS LISTING /tmp/ccp57yVD.s 			page 8
+GAS LISTING /tmp/ccHwop0z.s 			page 8
 
 
  321 01f0 97000000 		call	__putc@plt
@@ -478,360 +478,360 @@ GAS LISTING /tmp/ccp57yVD.s 			page 1
  366              	.Letext0:
  367              		.file 2 "./lib/hw.h"
  368              		.file 3 "./h/thread.h"
-GAS LISTING /tmp/ccp57yVD.s 			page 9
+GAS LISTING /tmp/ccHwop0z.s 			page 9
 
 
  369              		.file 4 "./h/sem.h"
  370              		.file 5 "./h/sched.h"
  371              		.file 6 "./h/syscalls_c.h"
  372              		.file 7 "./lib/console.h"
-GAS LISTING /tmp/ccp57yVD.s 			page 10
+GAS LISTING /tmp/ccHwop0z.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 sem.cpp
-     /tmp/ccp57yVD.s:9      .text:0000000000000000 _ZN4_sem4openEPPS_j
-     /tmp/ccp57yVD.s:13     .text:0000000000000000 .L0 
-     /tmp/ccp57yVD.s:15     .text:0000000000000000 .L0 
-     /tmp/ccp57yVD.s:16     .text:0000000000000004 .L0 
-     /tmp/ccp57yVD.s:21     .text:0000000000000014 .L0 
-     /tmp/ccp57yVD.s:22     .text:0000000000000014 .L0 
-     /tmp/ccp57yVD.s:23     .text:0000000000000014 .L0 
-     /tmp/ccp57yVD.s:24     .text:0000000000000014 .L0 
-     /tmp/ccp57yVD.s:26     .text:0000000000000018 .L0 
-     /tmp/ccp57yVD.s:30     .text:0000000000000020 .L0 
-     /tmp/ccp57yVD.s:31     .text:0000000000000020 .L0 
-     /tmp/ccp57yVD.s:36     .text:000000000000002c .L0 
-     /tmp/ccp57yVD.s:38     .text:0000000000000030 .L0 
-     /tmp/ccp57yVD.s:39     .text:0000000000000030 .L0 
-     /tmp/ccp57yVD.s:41     .text:0000000000000034 .L0 
-     /tmp/ccp57yVD.s:42     .text:0000000000000034 .L0 
-     /tmp/ccp57yVD.s:44     .text:0000000000000038 .L0 
-     /tmp/ccp57yVD.s:46     .text:000000000000003c .L0 
-     /tmp/ccp57yVD.s:47     .text:000000000000003c .L0 
-     /tmp/ccp57yVD.s:49     .text:0000000000000040 .L0 
-     /tmp/ccp57yVD.s:51     .text:0000000000000044 .L0 
-     /tmp/ccp57yVD.s:52     .text:0000000000000048 .L0 
-     /tmp/ccp57yVD.s:54     .text:000000000000004c .L0 
-     /tmp/ccp57yVD.s:55     .text:000000000000004c .L0 
-     /tmp/ccp57yVD.s:57     .text:0000000000000050 .L0 
-     /tmp/ccp57yVD.s:60     .text:0000000000000054 .L0 
-     /tmp/ccp57yVD.s:62     .text:0000000000000058 .L0 
-     /tmp/ccp57yVD.s:64     .text:000000000000005c .L0 
-     /tmp/ccp57yVD.s:70     .text:000000000000005c _ZN4_sem5closeEPS_
-     /tmp/ccp57yVD.s:73     .text:000000000000005c .L0 
-     /tmp/ccp57yVD.s:75     .text:000000000000005c .L0 
-     /tmp/ccp57yVD.s:76     .text:0000000000000060 .L0 
-     /tmp/ccp57yVD.s:80     .text:000000000000006c .L0 
-     /tmp/ccp57yVD.s:81     .text:000000000000006c .L0 
-     /tmp/ccp57yVD.s:82     .text:000000000000006c .L0 
-     /tmp/ccp57yVD.s:84     .text:0000000000000070 .L0 
-     /tmp/ccp57yVD.s:89     .text:0000000000000074 .L0 
-     /tmp/ccp57yVD.s:90     .text:0000000000000074 .L0 
-     /tmp/ccp57yVD.s:91     .text:0000000000000074 .L0 
-     /tmp/ccp57yVD.s:93     .text:0000000000000078 .L0 
-     /tmp/ccp57yVD.s:95     .text:000000000000007c .L0 
-     /tmp/ccp57yVD.s:96     .text:000000000000007c .L0 
-     /tmp/ccp57yVD.s:101    .text:000000000000008c .L0 
-     /tmp/ccp57yVD.s:102    .text:000000000000008c .L0 
-     /tmp/ccp57yVD.s:106    .text:0000000000000098 .L0 
-     /tmp/ccp57yVD.s:107    .text:0000000000000098 .L0 
-     /tmp/ccp57yVD.s:109    .text:000000000000009c .L0 
-     /tmp/ccp57yVD.s:111    .text:00000000000000a0 .L0 
-     /tmp/ccp57yVD.s:113    .text:00000000000000a4 .L0 
-     /tmp/ccp57yVD.s:116    .text:00000000000000a8 .L0 
-     /tmp/ccp57yVD.s:117    .text:00000000000000ac .L0 
-     /tmp/ccp57yVD.s:119    .text:00000000000000b0 .L0 
-     /tmp/ccp57yVD.s:120    .text:00000000000000b0 .L0 
-     /tmp/ccp57yVD.s:122    .text:00000000000000b4 .L0 
-     /tmp/ccp57yVD.s:125    .text:00000000000000b8 .L0 
-GAS LISTING /tmp/ccp57yVD.s 			page 11
+     /tmp/ccHwop0z.s:9      .text:0000000000000000 _ZN4_sem4openEPPS_j
+     /tmp/ccHwop0z.s:13     .text:0000000000000000 .L0 
+     /tmp/ccHwop0z.s:15     .text:0000000000000000 .L0 
+     /tmp/ccHwop0z.s:16     .text:0000000000000004 .L0 
+     /tmp/ccHwop0z.s:21     .text:0000000000000014 .L0 
+     /tmp/ccHwop0z.s:22     .text:0000000000000014 .L0 
+     /tmp/ccHwop0z.s:23     .text:0000000000000014 .L0 
+     /tmp/ccHwop0z.s:24     .text:0000000000000014 .L0 
+     /tmp/ccHwop0z.s:26     .text:0000000000000018 .L0 
+     /tmp/ccHwop0z.s:30     .text:0000000000000020 .L0 
+     /tmp/ccHwop0z.s:31     .text:0000000000000020 .L0 
+     /tmp/ccHwop0z.s:36     .text:000000000000002c .L0 
+     /tmp/ccHwop0z.s:38     .text:0000000000000030 .L0 
+     /tmp/ccHwop0z.s:39     .text:0000000000000030 .L0 
+     /tmp/ccHwop0z.s:41     .text:0000000000000034 .L0 
+     /tmp/ccHwop0z.s:42     .text:0000000000000034 .L0 
+     /tmp/ccHwop0z.s:44     .text:0000000000000038 .L0 
+     /tmp/ccHwop0z.s:46     .text:000000000000003c .L0 
+     /tmp/ccHwop0z.s:47     .text:000000000000003c .L0 
+     /tmp/ccHwop0z.s:49     .text:0000000000000040 .L0 
+     /tmp/ccHwop0z.s:51     .text:0000000000000044 .L0 
+     /tmp/ccHwop0z.s:52     .text:0000000000000048 .L0 
+     /tmp/ccHwop0z.s:54     .text:000000000000004c .L0 
+     /tmp/ccHwop0z.s:55     .text:000000000000004c .L0 
+     /tmp/ccHwop0z.s:57     .text:0000000000000050 .L0 
+     /tmp/ccHwop0z.s:60     .text:0000000000000054 .L0 
+     /tmp/ccHwop0z.s:62     .text:0000000000000058 .L0 
+     /tmp/ccHwop0z.s:64     .text:000000000000005c .L0 
+     /tmp/ccHwop0z.s:70     .text:000000000000005c _ZN4_sem5closeEPS_
+     /tmp/ccHwop0z.s:73     .text:000000000000005c .L0 
+     /tmp/ccHwop0z.s:75     .text:000000000000005c .L0 
+     /tmp/ccHwop0z.s:76     .text:0000000000000060 .L0 
+     /tmp/ccHwop0z.s:80     .text:000000000000006c .L0 
+     /tmp/ccHwop0z.s:81     .text:000000000000006c .L0 
+     /tmp/ccHwop0z.s:82     .text:000000000000006c .L0 
+     /tmp/ccHwop0z.s:84     .text:0000000000000070 .L0 
+     /tmp/ccHwop0z.s:89     .text:0000000000000074 .L0 
+     /tmp/ccHwop0z.s:90     .text:0000000000000074 .L0 
+     /tmp/ccHwop0z.s:91     .text:0000000000000074 .L0 
+     /tmp/ccHwop0z.s:93     .text:0000000000000078 .L0 
+     /tmp/ccHwop0z.s:95     .text:000000000000007c .L0 
+     /tmp/ccHwop0z.s:96     .text:000000000000007c .L0 
+     /tmp/ccHwop0z.s:101    .text:000000000000008c .L0 
+     /tmp/ccHwop0z.s:102    .text:000000000000008c .L0 
+     /tmp/ccHwop0z.s:106    .text:0000000000000098 .L0 
+     /tmp/ccHwop0z.s:107    .text:0000000000000098 .L0 
+     /tmp/ccHwop0z.s:109    .text:000000000000009c .L0 
+     /tmp/ccHwop0z.s:111    .text:00000000000000a0 .L0 
+     /tmp/ccHwop0z.s:113    .text:00000000000000a4 .L0 
+     /tmp/ccHwop0z.s:116    .text:00000000000000a8 .L0 
+     /tmp/ccHwop0z.s:117    .text:00000000000000ac .L0 
+     /tmp/ccHwop0z.s:119    .text:00000000000000b0 .L0 
+     /tmp/ccHwop0z.s:120    .text:00000000000000b0 .L0 
+     /tmp/ccHwop0z.s:122    .text:00000000000000b4 .L0 
+     /tmp/ccHwop0z.s:125    .text:00000000000000b8 .L0 
+GAS LISTING /tmp/ccHwop0z.s 			page 11
 
 
-     /tmp/ccp57yVD.s:127    .text:00000000000000bc .L0 
-     /tmp/ccp57yVD.s:133    .text:00000000000000bc _ZN4_sem4waitEPS_
-     /tmp/ccp57yVD.s:136    .text:00000000000000bc .L0 
-     /tmp/ccp57yVD.s:138    .text:00000000000000bc .L0 
-     /tmp/ccp57yVD.s:139    .text:00000000000000bc .L0 
-     /tmp/ccp57yVD.s:140    .text:00000000000000bc .L0 
-     /tmp/ccp57yVD.s:142    .text:00000000000000c0 .L0 
-     /tmp/ccp57yVD.s:146    .text:00000000000000c8 .L0 
-     /tmp/ccp57yVD.s:152    .text:00000000000000d4 .L0 
-     /tmp/ccp57yVD.s:153    .text:00000000000000d8 .L0 
-     /tmp/ccp57yVD.s:157    .text:00000000000000e4 .L0 
-     /tmp/ccp57yVD.s:158    .text:00000000000000e4 .L0 
-     /tmp/ccp57yVD.s:159    .text:00000000000000e4 .L0 
-     /tmp/ccp57yVD.s:161    .text:00000000000000e8 .L0 
-     /tmp/ccp57yVD.s:166    .text:00000000000000ec .L0 
-     /tmp/ccp57yVD.s:167    .text:00000000000000ec .L0 
-     /tmp/ccp57yVD.s:172    .text:00000000000000f8 .L0 
-     /tmp/ccp57yVD.s:173    .text:00000000000000f8 .L0 
-     /tmp/ccp57yVD.s:177    .text:0000000000000108 .L0 
-     /tmp/ccp57yVD.s:178    .text:0000000000000108 .L0 
-     /tmp/ccp57yVD.s:180    .text:000000000000010c .L0 
-     /tmp/ccp57yVD.s:181    .text:000000000000010c .L0 
-     /tmp/ccp57yVD.s:183    .text:0000000000000110 .L0 
-     /tmp/ccp57yVD.s:185    .text:0000000000000114 .L0 
-     /tmp/ccp57yVD.s:186    .text:0000000000000114 .L0 
-     /tmp/ccp57yVD.s:188    .text:0000000000000118 .L0 
-     /tmp/ccp57yVD.s:190    .text:000000000000011c .L0 
-     /tmp/ccp57yVD.s:191    .text:000000000000011c .L0 
-     /tmp/ccp57yVD.s:194    .text:0000000000000120 .L0 
-     /tmp/ccp57yVD.s:195    .text:0000000000000120 .L0 
-     /tmp/ccp57yVD.s:202    .text:0000000000000138 .L0 
-     /tmp/ccp57yVD.s:203    .text:0000000000000138 .L0 
-     /tmp/ccp57yVD.s:206    .text:0000000000000140 .L0 
-     /tmp/ccp57yVD.s:207    .text:0000000000000140 .L0 
-     /tmp/ccp57yVD.s:213    .text:000000000000014c .L0 
-     /tmp/ccp57yVD.s:214    .text:0000000000000150 .L0 
-     /tmp/ccp57yVD.s:215    .text:0000000000000150 .L0 
-     /tmp/ccp57yVD.s:217    .text:0000000000000154 .L0 
-     /tmp/ccp57yVD.s:218    .text:0000000000000154 .L0 
-     /tmp/ccp57yVD.s:220    .text:0000000000000158 .L0 
-     /tmp/ccp57yVD.s:223    .text:000000000000015c .L0 
-     /tmp/ccp57yVD.s:227    .text:0000000000000160 .L0 
-     /tmp/ccp57yVD.s:231    .text:0000000000000160 .L0 
-     /tmp/ccp57yVD.s:232    .text:0000000000000160 .L0 
-     /tmp/ccp57yVD.s:234    .text:0000000000000164 .L0 
-     /tmp/ccp57yVD.s:235    .text:0000000000000164 .L0 
-     /tmp/ccp57yVD.s:239    .text:000000000000016c .L0 
-     /tmp/ccp57yVD.s:245    .text:000000000000016c _ZN4_sem6signalEPS_
-     /tmp/ccp57yVD.s:248    .text:000000000000016c .L0 
-     /tmp/ccp57yVD.s:250    .text:000000000000016c .L0 
-     /tmp/ccp57yVD.s:251    .text:000000000000016c .L0 
-     /tmp/ccp57yVD.s:252    .text:000000000000016c .L0 
-     /tmp/ccp57yVD.s:254    .text:0000000000000170 .L0 
-     /tmp/ccp57yVD.s:259    .text:000000000000017c .L0 
-     /tmp/ccp57yVD.s:264    .text:0000000000000184 .L0 
-     /tmp/ccp57yVD.s:265    .text:0000000000000188 .L0 
-     /tmp/ccp57yVD.s:269    .text:0000000000000194 .L0 
-GAS LISTING /tmp/ccp57yVD.s 			page 12
+     /tmp/ccHwop0z.s:127    .text:00000000000000bc .L0 
+     /tmp/ccHwop0z.s:133    .text:00000000000000bc _ZN4_sem4waitEPS_
+     /tmp/ccHwop0z.s:136    .text:00000000000000bc .L0 
+     /tmp/ccHwop0z.s:138    .text:00000000000000bc .L0 
+     /tmp/ccHwop0z.s:139    .text:00000000000000bc .L0 
+     /tmp/ccHwop0z.s:140    .text:00000000000000bc .L0 
+     /tmp/ccHwop0z.s:142    .text:00000000000000c0 .L0 
+     /tmp/ccHwop0z.s:146    .text:00000000000000c8 .L0 
+     /tmp/ccHwop0z.s:152    .text:00000000000000d4 .L0 
+     /tmp/ccHwop0z.s:153    .text:00000000000000d8 .L0 
+     /tmp/ccHwop0z.s:157    .text:00000000000000e4 .L0 
+     /tmp/ccHwop0z.s:158    .text:00000000000000e4 .L0 
+     /tmp/ccHwop0z.s:159    .text:00000000000000e4 .L0 
+     /tmp/ccHwop0z.s:161    .text:00000000000000e8 .L0 
+     /tmp/ccHwop0z.s:166    .text:00000000000000ec .L0 
+     /tmp/ccHwop0z.s:167    .text:00000000000000ec .L0 
+     /tmp/ccHwop0z.s:172    .text:00000000000000f8 .L0 
+     /tmp/ccHwop0z.s:173    .text:00000000000000f8 .L0 
+     /tmp/ccHwop0z.s:177    .text:0000000000000108 .L0 
+     /tmp/ccHwop0z.s:178    .text:0000000000000108 .L0 
+     /tmp/ccHwop0z.s:180    .text:000000000000010c .L0 
+     /tmp/ccHwop0z.s:181    .text:000000000000010c .L0 
+     /tmp/ccHwop0z.s:183    .text:0000000000000110 .L0 
+     /tmp/ccHwop0z.s:185    .text:0000000000000114 .L0 
+     /tmp/ccHwop0z.s:186    .text:0000000000000114 .L0 
+     /tmp/ccHwop0z.s:188    .text:0000000000000118 .L0 
+     /tmp/ccHwop0z.s:190    .text:000000000000011c .L0 
+     /tmp/ccHwop0z.s:191    .text:000000000000011c .L0 
+     /tmp/ccHwop0z.s:194    .text:0000000000000120 .L0 
+     /tmp/ccHwop0z.s:195    .text:0000000000000120 .L0 
+     /tmp/ccHwop0z.s:202    .text:0000000000000138 .L0 
+     /tmp/ccHwop0z.s:203    .text:0000000000000138 .L0 
+     /tmp/ccHwop0z.s:206    .text:0000000000000140 .L0 
+     /tmp/ccHwop0z.s:207    .text:0000000000000140 .L0 
+     /tmp/ccHwop0z.s:213    .text:000000000000014c .L0 
+     /tmp/ccHwop0z.s:214    .text:0000000000000150 .L0 
+     /tmp/ccHwop0z.s:215    .text:0000000000000150 .L0 
+     /tmp/ccHwop0z.s:217    .text:0000000000000154 .L0 
+     /tmp/ccHwop0z.s:218    .text:0000000000000154 .L0 
+     /tmp/ccHwop0z.s:220    .text:0000000000000158 .L0 
+     /tmp/ccHwop0z.s:223    .text:000000000000015c .L0 
+     /tmp/ccHwop0z.s:227    .text:0000000000000160 .L0 
+     /tmp/ccHwop0z.s:231    .text:0000000000000160 .L0 
+     /tmp/ccHwop0z.s:232    .text:0000000000000160 .L0 
+     /tmp/ccHwop0z.s:234    .text:0000000000000164 .L0 
+     /tmp/ccHwop0z.s:235    .text:0000000000000164 .L0 
+     /tmp/ccHwop0z.s:239    .text:000000000000016c .L0 
+     /tmp/ccHwop0z.s:245    .text:000000000000016c _ZN4_sem6signalEPS_
+     /tmp/ccHwop0z.s:248    .text:000000000000016c .L0 
+     /tmp/ccHwop0z.s:250    .text:000000000000016c .L0 
+     /tmp/ccHwop0z.s:251    .text:000000000000016c .L0 
+     /tmp/ccHwop0z.s:252    .text:000000000000016c .L0 
+     /tmp/ccHwop0z.s:254    .text:0000000000000170 .L0 
+     /tmp/ccHwop0z.s:259    .text:000000000000017c .L0 
+     /tmp/ccHwop0z.s:264    .text:0000000000000184 .L0 
+     /tmp/ccHwop0z.s:265    .text:0000000000000188 .L0 
+     /tmp/ccHwop0z.s:269    .text:0000000000000194 .L0 
+GAS LISTING /tmp/ccHwop0z.s 			page 12
 
 
-     /tmp/ccp57yVD.s:270    .text:0000000000000194 .L0 
-     /tmp/ccp57yVD.s:271    .text:0000000000000194 .L0 
-     /tmp/ccp57yVD.s:273    .text:0000000000000198 .L0 
-     /tmp/ccp57yVD.s:277    .text:0000000000000198 .L0 
-     /tmp/ccp57yVD.s:278    .text:0000000000000198 .L0 
-     /tmp/ccp57yVD.s:281    .text:000000000000019c .L0 
-     /tmp/ccp57yVD.s:282    .text:000000000000019c .L0 
-     /tmp/ccp57yVD.s:284    .text:00000000000001a0 .L0 
-     /tmp/ccp57yVD.s:286    .text:00000000000001a4 .L0 
-     /tmp/ccp57yVD.s:289    .text:00000000000001a8 .L0 
-     /tmp/ccp57yVD.s:290    .text:00000000000001a8 .L0 
-     /tmp/ccp57yVD.s:296    .text:00000000000001b8 .L0 
-     /tmp/ccp57yVD.s:297    .text:00000000000001b8 .L0 
-     /tmp/ccp57yVD.s:301    .text:00000000000001c4 .L0 
-     /tmp/ccp57yVD.s:302    .text:00000000000001c4 .L0 
-     /tmp/ccp57yVD.s:305    .text:00000000000001c8 .L0 
-     /tmp/ccp57yVD.s:306    .text:00000000000001c8 .L0 
-     /tmp/ccp57yVD.s:309    .text:00000000000001d0 .L0 
-     /tmp/ccp57yVD.s:314    .text:00000000000001e0 .L0 
-     /tmp/ccp57yVD.s:315    .text:00000000000001e0 .L0 
-     /tmp/ccp57yVD.s:319    .text:00000000000001ec .L0 
-     /tmp/ccp57yVD.s:320    .text:00000000000001ec .L0 
-     /tmp/ccp57yVD.s:324    .text:00000000000001f8 .L0 
-     /tmp/ccp57yVD.s:325    .text:00000000000001f8 .L0 
-     /tmp/ccp57yVD.s:328    .text:0000000000000200 .L0 
-     /tmp/ccp57yVD.s:333    .text:0000000000000210 .L0 
-     /tmp/ccp57yVD.s:334    .text:0000000000000210 .L0 
-     /tmp/ccp57yVD.s:340    .text:000000000000021c .L0 
-     /tmp/ccp57yVD.s:341    .text:0000000000000220 .L0 
-     /tmp/ccp57yVD.s:342    .text:0000000000000220 .L0 
-     /tmp/ccp57yVD.s:344    .text:0000000000000224 .L0 
-     /tmp/ccp57yVD.s:345    .text:0000000000000224 .L0 
-     /tmp/ccp57yVD.s:347    .text:0000000000000228 .L0 
-     /tmp/ccp57yVD.s:350    .text:000000000000022c .L0 
-     /tmp/ccp57yVD.s:354    .text:0000000000000230 .L0 
-     /tmp/ccp57yVD.s:358    .text:0000000000000230 .L0 
-     /tmp/ccp57yVD.s:359    .text:0000000000000230 .L0 
-     /tmp/ccp57yVD.s:363    .text:0000000000000238 .L0 
-     /tmp/ccp57yVD.s:373    .text:0000000000000238 .L0 
-     /tmp/ccp57yVD.s:173    .text:00000000000000f8 .L0 
-     /tmp/ccp57yVD.s:196    .text:0000000000000124 .L0 
-     /tmp/ccp57yVD.s:114    .text:00000000000000a8 .L3
-     /tmp/ccp57yVD.s:87     .text:0000000000000074 .L5
-     /tmp/ccp57yVD.s:149    .text:00000000000000d4 .L15
-     /tmp/ccp57yVD.s:226    .text:0000000000000160 .L16
-     /tmp/ccp57yVD.s:192    .text:0000000000000120 .L10
-     /tmp/ccp57yVD.s:261    .text:0000000000000184 .L24
-     /tmp/ccp57yVD.s:353    .text:0000000000000230 .L25
-     /tmp/ccp57yVD.s:287    .text:00000000000001a8 .L19
-     /tmp/ccp57yVD.s:1415   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/ccp57yVD.s:2447   .debug_str:000000000000043c .LASF91
-     /tmp/ccp57yVD.s:2341   .debug_str:000000000000019b .LASF92
-     /tmp/ccp57yVD.s:2401   .debug_str:00000000000002f3 .LASF93
-     /tmp/ccp57yVD.s:5      .text:0000000000000000 .Ltext0
-     /tmp/ccp57yVD.s:366    .text:0000000000000238 .Letext0
-     /tmp/ccp57yVD.s:2275   .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/ccp57yVD.s:2393   .debug_str:00000000000002ca .LASF0
-GAS LISTING /tmp/ccp57yVD.s 			page 13
+     /tmp/ccHwop0z.s:270    .text:0000000000000194 .L0 
+     /tmp/ccHwop0z.s:271    .text:0000000000000194 .L0 
+     /tmp/ccHwop0z.s:273    .text:0000000000000198 .L0 
+     /tmp/ccHwop0z.s:277    .text:0000000000000198 .L0 
+     /tmp/ccHwop0z.s:278    .text:0000000000000198 .L0 
+     /tmp/ccHwop0z.s:281    .text:000000000000019c .L0 
+     /tmp/ccHwop0z.s:282    .text:000000000000019c .L0 
+     /tmp/ccHwop0z.s:284    .text:00000000000001a0 .L0 
+     /tmp/ccHwop0z.s:286    .text:00000000000001a4 .L0 
+     /tmp/ccHwop0z.s:289    .text:00000000000001a8 .L0 
+     /tmp/ccHwop0z.s:290    .text:00000000000001a8 .L0 
+     /tmp/ccHwop0z.s:296    .text:00000000000001b8 .L0 
+     /tmp/ccHwop0z.s:297    .text:00000000000001b8 .L0 
+     /tmp/ccHwop0z.s:301    .text:00000000000001c4 .L0 
+     /tmp/ccHwop0z.s:302    .text:00000000000001c4 .L0 
+     /tmp/ccHwop0z.s:305    .text:00000000000001c8 .L0 
+     /tmp/ccHwop0z.s:306    .text:00000000000001c8 .L0 
+     /tmp/ccHwop0z.s:309    .text:00000000000001d0 .L0 
+     /tmp/ccHwop0z.s:314    .text:00000000000001e0 .L0 
+     /tmp/ccHwop0z.s:315    .text:00000000000001e0 .L0 
+     /tmp/ccHwop0z.s:319    .text:00000000000001ec .L0 
+     /tmp/ccHwop0z.s:320    .text:00000000000001ec .L0 
+     /tmp/ccHwop0z.s:324    .text:00000000000001f8 .L0 
+     /tmp/ccHwop0z.s:325    .text:00000000000001f8 .L0 
+     /tmp/ccHwop0z.s:328    .text:0000000000000200 .L0 
+     /tmp/ccHwop0z.s:333    .text:0000000000000210 .L0 
+     /tmp/ccHwop0z.s:334    .text:0000000000000210 .L0 
+     /tmp/ccHwop0z.s:340    .text:000000000000021c .L0 
+     /tmp/ccHwop0z.s:341    .text:0000000000000220 .L0 
+     /tmp/ccHwop0z.s:342    .text:0000000000000220 .L0 
+     /tmp/ccHwop0z.s:344    .text:0000000000000224 .L0 
+     /tmp/ccHwop0z.s:345    .text:0000000000000224 .L0 
+     /tmp/ccHwop0z.s:347    .text:0000000000000228 .L0 
+     /tmp/ccHwop0z.s:350    .text:000000000000022c .L0 
+     /tmp/ccHwop0z.s:354    .text:0000000000000230 .L0 
+     /tmp/ccHwop0z.s:358    .text:0000000000000230 .L0 
+     /tmp/ccHwop0z.s:359    .text:0000000000000230 .L0 
+     /tmp/ccHwop0z.s:363    .text:0000000000000238 .L0 
+     /tmp/ccHwop0z.s:373    .text:0000000000000238 .L0 
+     /tmp/ccHwop0z.s:173    .text:00000000000000f8 .L0 
+     /tmp/ccHwop0z.s:196    .text:0000000000000124 .L0 
+     /tmp/ccHwop0z.s:114    .text:00000000000000a8 .L3
+     /tmp/ccHwop0z.s:87     .text:0000000000000074 .L5
+     /tmp/ccHwop0z.s:149    .text:00000000000000d4 .L15
+     /tmp/ccHwop0z.s:226    .text:0000000000000160 .L16
+     /tmp/ccHwop0z.s:192    .text:0000000000000120 .L10
+     /tmp/ccHwop0z.s:261    .text:0000000000000184 .L24
+     /tmp/ccHwop0z.s:353    .text:0000000000000230 .L25
+     /tmp/ccHwop0z.s:287    .text:00000000000001a8 .L19
+     /tmp/ccHwop0z.s:1415   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccHwop0z.s:2447   .debug_str:000000000000043c .LASF91
+     /tmp/ccHwop0z.s:2341   .debug_str:000000000000019b .LASF92
+     /tmp/ccHwop0z.s:2401   .debug_str:00000000000002f3 .LASF93
+     /tmp/ccHwop0z.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccHwop0z.s:366    .text:0000000000000238 .Letext0
+     /tmp/ccHwop0z.s:2275   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccHwop0z.s:2393   .debug_str:00000000000002ca .LASF0
+GAS LISTING /tmp/ccHwop0z.s 			page 13
 
 
-     /tmp/ccp57yVD.s:2405   .debug_str:0000000000000343 .LASF1
-     /tmp/ccp57yVD.s:2379   .debug_str:0000000000000261 .LASF2
-     /tmp/ccp57yVD.s:2433   .debug_str:00000000000003f1 .LASF3
-     /tmp/ccp57yVD.s:2357   .debug_str:00000000000001e9 .LASF4
-     /tmp/ccp57yVD.s:2435   .debug_str:00000000000003f8 .LASF5
-     /tmp/ccp57yVD.s:2305   .debug_str:00000000000000d4 .LASF6
-     /tmp/ccp57yVD.s:2331   .debug_str:0000000000000160 .LASF7
-     /tmp/ccp57yVD.s:2407   .debug_str:0000000000000356 .LASF8
-     /tmp/ccp57yVD.s:2391   .debug_str:00000000000002b7 .LASF9
-     /tmp/ccp57yVD.s:2457   .debug_str:000000000000053a .LASF10
-     /tmp/ccp57yVD.s:2347   .debug_str:00000000000001b4 .LASF11
-     /tmp/ccp57yVD.s:2417   .debug_str:000000000000038a .LASF12
-     /tmp/ccp57yVD.s:2451   .debug_str:000000000000050a .LASF13
-     /tmp/ccp57yVD.s:2307   .debug_str:00000000000000db .LASF14
-     /tmp/ccp57yVD.s:2285   .debug_str:000000000000002f .LASF15
-     /tmp/ccp57yVD.s:2313   .debug_str:00000000000000ff .LASF16
-     /tmp/ccp57yVD.s:2431   .debug_str:00000000000003db .LASF17
-     /tmp/ccp57yVD.s:2325   .debug_str:000000000000013d .LASF18
-     /tmp/ccp57yVD.s:2353   .debug_str:00000000000001dc .LASF35
-     /tmp/ccp57yVD.s:2383   .debug_str:0000000000000274 .LASF20
-     /tmp/ccp57yVD.s:2429   .debug_str:00000000000003d3 .LASF19
-     /tmp/ccp57yVD.s:2385   .debug_str:0000000000000283 .LASF21
-     /tmp/ccp57yVD.s:2409   .debug_str:0000000000000369 .LASF22
-     /tmp/ccp57yVD.s:2475   .debug_str:00000000000005ce .LASF23
-     /tmp/ccp57yVD.s:2369   .debug_str:0000000000000231 .LASF25
-     /tmp/ccp57yVD.s:2287   .debug_str:000000000000003f .LASF27
-     /tmp/ccp57yVD.s:2345   .debug_str:00000000000001af .LASF24
-     /tmp/ccp57yVD.s:2371   .debug_str:0000000000000238 .LASF73
-     /tmp/ccp57yVD.s:2463   .debug_str:000000000000057d .LASF75
-     /tmp/ccp57yVD.s:2395   .debug_str:00000000000002d7 .LASF94
-     /tmp/ccp57yVD.s:2445   .debug_str:0000000000000425 .LASF95
-     /tmp/ccp57yVD.s:2437   .debug_str:000000000000040a .LASF26
-     /tmp/ccp57yVD.s:2365   .debug_str:0000000000000215 .LASF28
-     /tmp/ccp57yVD.s:2333   .debug_str:0000000000000167 .LASF96
-     /tmp/ccp57yVD.s:2289   .debug_str:0000000000000064 .LASF29
-     /tmp/ccp57yVD.s:2481   .debug_str:00000000000005dd .LASF30
-     /tmp/ccp57yVD.s:2309   .debug_str:00000000000000eb .LASF31
-     /tmp/ccp57yVD.s:2297   .debug_str:0000000000000090 .LASF32
-     /tmp/ccp57yVD.s:2337   .debug_str:0000000000000189 .LASF33
-     /tmp/ccp57yVD.s:2461   .debug_str:0000000000000562 .LASF34
-     /tmp/ccp57yVD.s:2459   .debug_str:000000000000054a .LASF37
-     /tmp/ccp57yVD.s:2439   .debug_str:000000000000040f .LASF97
-     /tmp/ccp57yVD.s:2425   .debug_str:00000000000003b4 .LASF98
-     /tmp/ccp57yVD.s:2363   .debug_str:000000000000020e .LASF36
-     /tmp/ccp57yVD.s:2361   .debug_str:00000000000001f9 .LASF38
-     /tmp/ccp57yVD.s:2399   .debug_str:00000000000002eb .LASF39
-     /tmp/ccp57yVD.s:2473   .debug_str:00000000000005c5 .LASF40
-     /tmp/ccp57yVD.s:2423   .debug_str:00000000000003ab .LASF41
-     /tmp/ccp57yVD.s:2359   .debug_str:00000000000001f0 .LASF42
-     /tmp/ccp57yVD.s:2375   .debug_str:000000000000024f .LASF43
-     /tmp/ccp57yVD.s:2377   .debug_str:000000000000025a .LASF44
-     /tmp/ccp57yVD.s:2279   .debug_str:0000000000000009 .LASF45
-     /tmp/ccp57yVD.s:2419   .debug_str:0000000000000399 .LASF46
-     /tmp/ccp57yVD.s:2427   .debug_str:00000000000003ca .LASF47
-     /tmp/ccp57yVD.s:2329   .debug_str:0000000000000159 .LASF48
-     /tmp/ccp57yVD.s:2471   .debug_str:00000000000005bc .LASF49
-     /tmp/ccp57yVD.s:2413   .debug_str:0000000000000377 .LASF50
-GAS LISTING /tmp/ccp57yVD.s 			page 14
+     /tmp/ccHwop0z.s:2405   .debug_str:0000000000000343 .LASF1
+     /tmp/ccHwop0z.s:2379   .debug_str:0000000000000261 .LASF2
+     /tmp/ccHwop0z.s:2433   .debug_str:00000000000003f1 .LASF3
+     /tmp/ccHwop0z.s:2357   .debug_str:00000000000001e9 .LASF4
+     /tmp/ccHwop0z.s:2435   .debug_str:00000000000003f8 .LASF5
+     /tmp/ccHwop0z.s:2305   .debug_str:00000000000000d4 .LASF6
+     /tmp/ccHwop0z.s:2331   .debug_str:0000000000000160 .LASF7
+     /tmp/ccHwop0z.s:2407   .debug_str:0000000000000356 .LASF8
+     /tmp/ccHwop0z.s:2391   .debug_str:00000000000002b7 .LASF9
+     /tmp/ccHwop0z.s:2457   .debug_str:000000000000053a .LASF10
+     /tmp/ccHwop0z.s:2347   .debug_str:00000000000001b4 .LASF11
+     /tmp/ccHwop0z.s:2417   .debug_str:000000000000038a .LASF12
+     /tmp/ccHwop0z.s:2451   .debug_str:000000000000050a .LASF13
+     /tmp/ccHwop0z.s:2307   .debug_str:00000000000000db .LASF14
+     /tmp/ccHwop0z.s:2285   .debug_str:000000000000002f .LASF15
+     /tmp/ccHwop0z.s:2313   .debug_str:00000000000000ff .LASF16
+     /tmp/ccHwop0z.s:2431   .debug_str:00000000000003db .LASF17
+     /tmp/ccHwop0z.s:2325   .debug_str:000000000000013d .LASF18
+     /tmp/ccHwop0z.s:2353   .debug_str:00000000000001dc .LASF35
+     /tmp/ccHwop0z.s:2383   .debug_str:0000000000000274 .LASF20
+     /tmp/ccHwop0z.s:2429   .debug_str:00000000000003d3 .LASF19
+     /tmp/ccHwop0z.s:2385   .debug_str:0000000000000283 .LASF21
+     /tmp/ccHwop0z.s:2409   .debug_str:0000000000000369 .LASF22
+     /tmp/ccHwop0z.s:2475   .debug_str:00000000000005ce .LASF23
+     /tmp/ccHwop0z.s:2369   .debug_str:0000000000000231 .LASF25
+     /tmp/ccHwop0z.s:2287   .debug_str:000000000000003f .LASF27
+     /tmp/ccHwop0z.s:2345   .debug_str:00000000000001af .LASF24
+     /tmp/ccHwop0z.s:2371   .debug_str:0000000000000238 .LASF73
+     /tmp/ccHwop0z.s:2463   .debug_str:000000000000057d .LASF75
+     /tmp/ccHwop0z.s:2395   .debug_str:00000000000002d7 .LASF94
+     /tmp/ccHwop0z.s:2445   .debug_str:0000000000000425 .LASF95
+     /tmp/ccHwop0z.s:2437   .debug_str:000000000000040a .LASF26
+     /tmp/ccHwop0z.s:2365   .debug_str:0000000000000215 .LASF28
+     /tmp/ccHwop0z.s:2333   .debug_str:0000000000000167 .LASF96
+     /tmp/ccHwop0z.s:2289   .debug_str:0000000000000064 .LASF29
+     /tmp/ccHwop0z.s:2481   .debug_str:00000000000005dd .LASF30
+     /tmp/ccHwop0z.s:2309   .debug_str:00000000000000eb .LASF31
+     /tmp/ccHwop0z.s:2297   .debug_str:0000000000000090 .LASF32
+     /tmp/ccHwop0z.s:2337   .debug_str:0000000000000189 .LASF33
+     /tmp/ccHwop0z.s:2461   .debug_str:0000000000000562 .LASF34
+     /tmp/ccHwop0z.s:2459   .debug_str:000000000000054a .LASF37
+     /tmp/ccHwop0z.s:2439   .debug_str:000000000000040f .LASF97
+     /tmp/ccHwop0z.s:2425   .debug_str:00000000000003b4 .LASF98
+     /tmp/ccHwop0z.s:2363   .debug_str:000000000000020e .LASF36
+     /tmp/ccHwop0z.s:2361   .debug_str:00000000000001f9 .LASF38
+     /tmp/ccHwop0z.s:2399   .debug_str:00000000000002eb .LASF39
+     /tmp/ccHwop0z.s:2473   .debug_str:00000000000005c5 .LASF40
+     /tmp/ccHwop0z.s:2423   .debug_str:00000000000003ab .LASF41
+     /tmp/ccHwop0z.s:2359   .debug_str:00000000000001f0 .LASF42
+     /tmp/ccHwop0z.s:2375   .debug_str:000000000000024f .LASF43
+     /tmp/ccHwop0z.s:2377   .debug_str:000000000000025a .LASF44
+     /tmp/ccHwop0z.s:2279   .debug_str:0000000000000009 .LASF45
+     /tmp/ccHwop0z.s:2419   .debug_str:0000000000000399 .LASF46
+     /tmp/ccHwop0z.s:2427   .debug_str:00000000000003ca .LASF47
+     /tmp/ccHwop0z.s:2329   .debug_str:0000000000000159 .LASF48
+     /tmp/ccHwop0z.s:2471   .debug_str:00000000000005bc .LASF49
+     /tmp/ccHwop0z.s:2413   .debug_str:0000000000000377 .LASF50
+GAS LISTING /tmp/ccHwop0z.s 			page 14
 
 
-     /tmp/ccp57yVD.s:2367   .debug_str:000000000000022a .LASF51
-     /tmp/ccp57yVD.s:2467   .debug_str:0000000000000596 .LASF99
-     /tmp/ccp57yVD.s:2403   .debug_str:000000000000030f .LASF100
-     /tmp/ccp57yVD.s:2293   .debug_str:0000000000000081 .LASF52
-     /tmp/ccp57yVD.s:2277   .debug_str:0000000000000000 .LASF53
-     /tmp/ccp57yVD.s:2355   .debug_str:00000000000001e4 .LASF54
-     /tmp/ccp57yVD.s:2373   .debug_str:000000000000023d .LASF55
-     /tmp/ccp57yVD.s:2343   .debug_str:00000000000001a7 .LASF56
-     /tmp/ccp57yVD.s:2349   .debug_str:00000000000001c2 .LASF57
-     /tmp/ccp57yVD.s:2455   .debug_str:0000000000000535 .LASF58
-     /tmp/ccp57yVD.s:2283   .debug_str:000000000000001b .LASF59
-     /tmp/ccp57yVD.s:2465   .debug_str:0000000000000590 .LASF60
-     /tmp/ccp57yVD.s:2387   .debug_str:0000000000000292 .LASF61
-     /tmp/ccp57yVD.s:2477   .debug_str:00000000000005d3 .LASF62
-     /tmp/ccp57yVD.s:2389   .debug_str:00000000000002a5 .LASF63
-     /tmp/ccp57yVD.s:2411   .debug_str:0000000000000370 .LASF64
-     /tmp/ccp57yVD.s:2335   .debug_str:0000000000000175 .LASF65
-     /tmp/ccp57yVD.s:2301   .debug_str:00000000000000c1 .LASF66
-     /tmp/ccp57yVD.s:2449   .debug_str:0000000000000500 .LASF67
-     /tmp/ccp57yVD.s:2327   .debug_str:0000000000000153 .LASF68
-     /tmp/ccp57yVD.s:2339   .debug_str:0000000000000195 .LASF69
-     /tmp/ccp57yVD.s:2415   .debug_str:0000000000000380 .LASF70
-     /tmp/ccp57yVD.s:2397   .debug_str:00000000000002e0 .LASF71
-     /tmp/ccp57yVD.s:2291   .debug_str:000000000000006f .LASF72
-     /tmp/ccp57yVD.s:2453   .debug_str:0000000000000519 .LASF101
-     /tmp/ccp57yVD.s:2351   .debug_str:00000000000001c8 .LASF102
-     /tmp/ccp57yVD.s:2317   .debug_str:0000000000000119 .LASF74
-     /tmp/ccp57yVD.s:2469   .debug_str:00000000000005a4 .LASF76
-     /tmp/ccp57yVD.s:2303   .debug_str:00000000000000cb .LASF77
-     /tmp/ccp57yVD.s:2299   .debug_str:00000000000000a8 .LASF78
-     /tmp/ccp57yVD.s:2323   .debug_str:0000000000000138 .LASF79
-     /tmp/ccp57yVD.s:2381   .debug_str:000000000000026f .LASF80
-     /tmp/ccp57yVD.s:2311   .debug_str:00000000000000f5 .LASF81
-     /tmp/ccp57yVD.s:246    .text:000000000000016c .LFB3
-     /tmp/ccp57yVD.s:364    .text:0000000000000238 .LFE3
-     /tmp/ccp57yVD.s:2129   .debug_loc:0000000000000000 .LLST5
-     /tmp/ccp57yVD.s:2261   .debug_ranges:0000000000000000 .Ldebug_ranges0
-     /tmp/ccp57yVD.s:2321   .debug_str:000000000000012f .LASF82
-     /tmp/ccp57yVD.s:2147   .debug_loc:000000000000004c .LLST6
-     /tmp/ccp57yVD.s:2158   .debug_loc:0000000000000082 .LLST7
-     /tmp/ccp57yVD.s:294    .text:00000000000001b8 .LVL21
-     /tmp/ccp57yVD.s:299    .text:00000000000001c4 .LVL22
-     /tmp/ccp57yVD.s:307    .text:00000000000001d0 .LVL24
-     /tmp/ccp57yVD.s:312    .text:00000000000001e0 .LVL25
-     /tmp/ccp57yVD.s:317    .text:00000000000001ec .LVL26
-     /tmp/ccp57yVD.s:322    .text:00000000000001f8 .LVL27
-     /tmp/ccp57yVD.s:326    .text:0000000000000200 .LVL28
-     /tmp/ccp57yVD.s:331    .text:0000000000000210 .LVL29
-     /tmp/ccp57yVD.s:336    .text:000000000000021c .LVL30
-     /tmp/ccp57yVD.s:134    .text:00000000000000bc .LFB2
-     /tmp/ccp57yVD.s:240    .text:000000000000016c .LFE2
-     /tmp/ccp57yVD.s:2165   .debug_loc:00000000000000a5 .LLST3
-     /tmp/ccp57yVD.s:2295   .debug_str:0000000000000086 .LASF83
-     /tmp/ccp57yVD.s:2187   .debug_loc:0000000000000104 .LLST4
-     /tmp/ccp57yVD.s:170    .text:00000000000000f8 .LVL11
-     /tmp/ccp57yVD.s:200    .text:0000000000000138 .LVL13
-     /tmp/ccp57yVD.s:204    .text:0000000000000140 .LVL14
-GAS LISTING /tmp/ccp57yVD.s 			page 15
+     /tmp/ccHwop0z.s:2367   .debug_str:000000000000022a .LASF51
+     /tmp/ccHwop0z.s:2467   .debug_str:0000000000000596 .LASF99
+     /tmp/ccHwop0z.s:2403   .debug_str:000000000000030f .LASF100
+     /tmp/ccHwop0z.s:2293   .debug_str:0000000000000081 .LASF52
+     /tmp/ccHwop0z.s:2277   .debug_str:0000000000000000 .LASF53
+     /tmp/ccHwop0z.s:2355   .debug_str:00000000000001e4 .LASF54
+     /tmp/ccHwop0z.s:2373   .debug_str:000000000000023d .LASF55
+     /tmp/ccHwop0z.s:2343   .debug_str:00000000000001a7 .LASF56
+     /tmp/ccHwop0z.s:2349   .debug_str:00000000000001c2 .LASF57
+     /tmp/ccHwop0z.s:2455   .debug_str:0000000000000535 .LASF58
+     /tmp/ccHwop0z.s:2283   .debug_str:000000000000001b .LASF59
+     /tmp/ccHwop0z.s:2465   .debug_str:0000000000000590 .LASF60
+     /tmp/ccHwop0z.s:2387   .debug_str:0000000000000292 .LASF61
+     /tmp/ccHwop0z.s:2477   .debug_str:00000000000005d3 .LASF62
+     /tmp/ccHwop0z.s:2389   .debug_str:00000000000002a5 .LASF63
+     /tmp/ccHwop0z.s:2411   .debug_str:0000000000000370 .LASF64
+     /tmp/ccHwop0z.s:2335   .debug_str:0000000000000175 .LASF65
+     /tmp/ccHwop0z.s:2301   .debug_str:00000000000000c1 .LASF66
+     /tmp/ccHwop0z.s:2449   .debug_str:0000000000000500 .LASF67
+     /tmp/ccHwop0z.s:2327   .debug_str:0000000000000153 .LASF68
+     /tmp/ccHwop0z.s:2339   .debug_str:0000000000000195 .LASF69
+     /tmp/ccHwop0z.s:2415   .debug_str:0000000000000380 .LASF70
+     /tmp/ccHwop0z.s:2397   .debug_str:00000000000002e0 .LASF71
+     /tmp/ccHwop0z.s:2291   .debug_str:000000000000006f .LASF72
+     /tmp/ccHwop0z.s:2453   .debug_str:0000000000000519 .LASF101
+     /tmp/ccHwop0z.s:2351   .debug_str:00000000000001c8 .LASF102
+     /tmp/ccHwop0z.s:2317   .debug_str:0000000000000119 .LASF74
+     /tmp/ccHwop0z.s:2469   .debug_str:00000000000005a4 .LASF76
+     /tmp/ccHwop0z.s:2303   .debug_str:00000000000000cb .LASF77
+     /tmp/ccHwop0z.s:2299   .debug_str:00000000000000a8 .LASF78
+     /tmp/ccHwop0z.s:2323   .debug_str:0000000000000138 .LASF79
+     /tmp/ccHwop0z.s:2381   .debug_str:000000000000026f .LASF80
+     /tmp/ccHwop0z.s:2311   .debug_str:00000000000000f5 .LASF81
+     /tmp/ccHwop0z.s:246    .text:000000000000016c .LFB3
+     /tmp/ccHwop0z.s:364    .text:0000000000000238 .LFE3
+     /tmp/ccHwop0z.s:2129   .debug_loc:0000000000000000 .LLST5
+     /tmp/ccHwop0z.s:2261   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/ccHwop0z.s:2321   .debug_str:000000000000012f .LASF82
+     /tmp/ccHwop0z.s:2147   .debug_loc:000000000000004c .LLST6
+     /tmp/ccHwop0z.s:2158   .debug_loc:0000000000000082 .LLST7
+     /tmp/ccHwop0z.s:294    .text:00000000000001b8 .LVL21
+     /tmp/ccHwop0z.s:299    .text:00000000000001c4 .LVL22
+     /tmp/ccHwop0z.s:307    .text:00000000000001d0 .LVL24
+     /tmp/ccHwop0z.s:312    .text:00000000000001e0 .LVL25
+     /tmp/ccHwop0z.s:317    .text:00000000000001ec .LVL26
+     /tmp/ccHwop0z.s:322    .text:00000000000001f8 .LVL27
+     /tmp/ccHwop0z.s:326    .text:0000000000000200 .LVL28
+     /tmp/ccHwop0z.s:331    .text:0000000000000210 .LVL29
+     /tmp/ccHwop0z.s:336    .text:000000000000021c .LVL30
+     /tmp/ccHwop0z.s:134    .text:00000000000000bc .LFB2
+     /tmp/ccHwop0z.s:240    .text:000000000000016c .LFE2
+     /tmp/ccHwop0z.s:2165   .debug_loc:00000000000000a5 .LLST3
+     /tmp/ccHwop0z.s:2295   .debug_str:0000000000000086 .LASF83
+     /tmp/ccHwop0z.s:2187   .debug_loc:0000000000000104 .LLST4
+     /tmp/ccHwop0z.s:170    .text:00000000000000f8 .LVL11
+     /tmp/ccHwop0z.s:200    .text:0000000000000138 .LVL13
+     /tmp/ccHwop0z.s:204    .text:0000000000000140 .LVL14
+GAS LISTING /tmp/ccHwop0z.s 			page 15
 
 
-     /tmp/ccp57yVD.s:209    .text:000000000000014c .LVL15
-     /tmp/ccp57yVD.s:71     .text:000000000000005c .LFB1
-     /tmp/ccp57yVD.s:128    .text:00000000000000bc .LFE1
-     /tmp/ccp57yVD.s:2198   .debug_loc:000000000000013a .LLST2
-     /tmp/ccp57yVD.s:99     .text:000000000000008c .LVL6
-     /tmp/ccp57yVD.s:104    .text:0000000000000098 .LVL7
-     /tmp/ccp57yVD.s:10     .text:0000000000000000 .LFB0
-     /tmp/ccp57yVD.s:65     .text:000000000000005c .LFE0
-     /tmp/ccp57yVD.s:2441   .debug_str:0000000000000417 .LASF84
-     /tmp/ccp57yVD.s:2216   .debug_loc:0000000000000186 .LLST0
-     /tmp/ccp57yVD.s:2479   .debug_str:00000000000005d8 .LASF85
-     /tmp/ccp57yVD.s:2234   .debug_loc:00000000000001d2 .LLST1
-     /tmp/ccp57yVD.s:34     .text:000000000000002c .LVL2
-     /tmp/ccp57yVD.s:2315   .debug_str:000000000000010b .LASF86
-     /tmp/ccp57yVD.s:2421   .debug_str:00000000000003a2 .LASF88
-     /tmp/ccp57yVD.s:2443   .debug_str:000000000000041e .LASF87
-     /tmp/ccp57yVD.s:2319   .debug_str:0000000000000121 .LASF89
-     /tmp/ccp57yVD.s:2281   .debug_str:0000000000000011 .LASF90
-     /tmp/ccp57yVD.s:249    .text:000000000000016c .LVL18
-     /tmp/ccp57yVD.s:292    .text:00000000000001b0 .LVL20
-     /tmp/ccp57yVD.s:352    .text:0000000000000230 .LVL32
-     /tmp/ccp57yVD.s:279    .text:000000000000019c .LVL19
-     /tmp/ccp57yVD.s:303    .text:00000000000001c8 .LVL23
-     /tmp/ccp57yVD.s:348    .text:0000000000000228 .LVL31
-     /tmp/ccp57yVD.s:137    .text:00000000000000bc .LVL9
-     /tmp/ccp57yVD.s:168    .text:00000000000000f0 .LVL10
-     /tmp/ccp57yVD.s:221    .text:0000000000000158 .LVL16
-     /tmp/ccp57yVD.s:225    .text:0000000000000160 .LVL17
-     /tmp/ccp57yVD.s:198    .text:0000000000000130 .LVL12
-     /tmp/ccp57yVD.s:74     .text:000000000000005c .LVL4
-     /tmp/ccp57yVD.s:86     .text:0000000000000074 .LVL5
-     /tmp/ccp57yVD.s:123    .text:00000000000000b4 .LVL8
-     /tmp/ccp57yVD.s:14     .text:0000000000000000 .LVL0
-     /tmp/ccp57yVD.s:32     .text:0000000000000024 .LVL1
-     /tmp/ccp57yVD.s:58     .text:0000000000000050 .LVL3
-     /tmp/ccp57yVD.s:374    .debug_info:0000000000000000 .Ldebug_info0
-     /tmp/ccp57yVD.s:164    .text:00000000000000ec .LBB3
-     /tmp/ccp57yVD.s:210    .text:000000000000014c .LBE3
-     /tmp/ccp57yVD.s:229    .text:0000000000000160 .LBB4
-     /tmp/ccp57yVD.s:237    .text:000000000000016c .LBE4
-     /tmp/ccp57yVD.s:275    .text:0000000000000198 .LBB8
-     /tmp/ccp57yVD.s:337    .text:000000000000021c .LBE8
-     /tmp/ccp57yVD.s:356    .text:0000000000000230 .LBB9
-     /tmp/ccp57yVD.s:361    .text:0000000000000238 .LBE9
+     /tmp/ccHwop0z.s:209    .text:000000000000014c .LVL15
+     /tmp/ccHwop0z.s:71     .text:000000000000005c .LFB1
+     /tmp/ccHwop0z.s:128    .text:00000000000000bc .LFE1
+     /tmp/ccHwop0z.s:2198   .debug_loc:000000000000013a .LLST2
+     /tmp/ccHwop0z.s:99     .text:000000000000008c .LVL6
+     /tmp/ccHwop0z.s:104    .text:0000000000000098 .LVL7
+     /tmp/ccHwop0z.s:10     .text:0000000000000000 .LFB0
+     /tmp/ccHwop0z.s:65     .text:000000000000005c .LFE0
+     /tmp/ccHwop0z.s:2441   .debug_str:0000000000000417 .LASF84
+     /tmp/ccHwop0z.s:2216   .debug_loc:0000000000000186 .LLST0
+     /tmp/ccHwop0z.s:2479   .debug_str:00000000000005d8 .LASF85
+     /tmp/ccHwop0z.s:2234   .debug_loc:00000000000001d2 .LLST1
+     /tmp/ccHwop0z.s:34     .text:000000000000002c .LVL2
+     /tmp/ccHwop0z.s:2315   .debug_str:000000000000010b .LASF86
+     /tmp/ccHwop0z.s:2421   .debug_str:00000000000003a2 .LASF88
+     /tmp/ccHwop0z.s:2443   .debug_str:000000000000041e .LASF87
+     /tmp/ccHwop0z.s:2319   .debug_str:0000000000000121 .LASF89
+     /tmp/ccHwop0z.s:2281   .debug_str:0000000000000011 .LASF90
+     /tmp/ccHwop0z.s:249    .text:000000000000016c .LVL18
+     /tmp/ccHwop0z.s:292    .text:00000000000001b0 .LVL20
+     /tmp/ccHwop0z.s:352    .text:0000000000000230 .LVL32
+     /tmp/ccHwop0z.s:279    .text:000000000000019c .LVL19
+     /tmp/ccHwop0z.s:303    .text:00000000000001c8 .LVL23
+     /tmp/ccHwop0z.s:348    .text:0000000000000228 .LVL31
+     /tmp/ccHwop0z.s:137    .text:00000000000000bc .LVL9
+     /tmp/ccHwop0z.s:168    .text:00000000000000f0 .LVL10
+     /tmp/ccHwop0z.s:221    .text:0000000000000158 .LVL16
+     /tmp/ccHwop0z.s:225    .text:0000000000000160 .LVL17
+     /tmp/ccHwop0z.s:198    .text:0000000000000130 .LVL12
+     /tmp/ccHwop0z.s:74     .text:000000000000005c .LVL4
+     /tmp/ccHwop0z.s:86     .text:0000000000000074 .LVL5
+     /tmp/ccHwop0z.s:123    .text:00000000000000b4 .LVL8
+     /tmp/ccHwop0z.s:14     .text:0000000000000000 .LVL0
+     /tmp/ccHwop0z.s:32     .text:0000000000000024 .LVL1
+     /tmp/ccHwop0z.s:58     .text:0000000000000050 .LVL3
+     /tmp/ccHwop0z.s:374    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccHwop0z.s:164    .text:00000000000000ec .LBB3
+     /tmp/ccHwop0z.s:210    .text:000000000000014c .LBE3
+     /tmp/ccHwop0z.s:229    .text:0000000000000160 .LBB4
+     /tmp/ccHwop0z.s:237    .text:000000000000016c .LBE4
+     /tmp/ccHwop0z.s:275    .text:0000000000000198 .LBB8
+     /tmp/ccHwop0z.s:337    .text:000000000000021c .LBE8
+     /tmp/ccHwop0z.s:356    .text:0000000000000230 .LBB9
+     /tmp/ccHwop0z.s:361    .text:0000000000000238 .LBE9
 
 UNDEFINED SYMBOLS
 _Z9mem_allocm

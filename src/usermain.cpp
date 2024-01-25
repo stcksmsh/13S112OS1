@@ -49,10 +49,8 @@ void thread_test_1(void* args){
     putc(' ');
     putc('0' + cnt);
     putc('\n');
-    Scheduler::put(t2);
-    putc('x');
     Scheduler::put(t1);
-    putc('x');
+    Scheduler::put(t2);
     cnt = Scheduler::getCount();
     putc('\n');
     putc('c');

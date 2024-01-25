@@ -61,7 +61,7 @@ void Timer::tick(){
             if(current == sleepingHead){
                 sleepingHead = next;
             }
-            mem_free(current);
+            // mem_free(current);
             current = next;
         }else{
             break;

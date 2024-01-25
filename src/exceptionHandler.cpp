@@ -16,7 +16,6 @@
 #include "timer.h"
 #include "assert.h"
 
-
 extern "C" void exceptionHandler(){
     uint64 a0, a1, a2, a3, a4;
     __asm__ volatile("mv %0, a4" : "=r"(a4));

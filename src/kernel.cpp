@@ -89,18 +89,8 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('e');
     putc('l');
     putc('\n');
-    int cnt = 0;
-    time_sleep(25);
     do{
         thread_dispatch();
-        if(cnt ++ % 100 == 0){
-            putc('\n');
-            putc('l');
-            putc('o');
-            putc('o');
-            putc('p');
-            putc('\n');
-        }
     // }while(!Scheduler::isEmpty());
     // }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
     }while(true);
