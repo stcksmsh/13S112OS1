@@ -13,6 +13,7 @@
 
 #include "types.h"
 #include "attributes.h"
+
 class _thread;
 typedef _thread* thread_t;
 

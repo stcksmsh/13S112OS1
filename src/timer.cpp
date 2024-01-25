@@ -40,28 +40,24 @@ Timer& Timer::getInstance(){
 
 void Timer::tick(){
     time += 1;
-    if(time % 10 == 0){
-        __putc('\n');
-        __putc('t');
-        __putc('i');
-        __putc('c');
-        __putc('k');
-        __putc('\n');
-    }
+    // if(time % 10 == 0){
+    //     __putc('\n');
+    //     __putc('t');
+    //     __putc('i');
+    //     __putc('c');
+    //     __putc('k');
+    //     __putc('\n');
+    // }
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         if(current->wakeUpTime <= time){
-            __putc('\n');
-            __putc('t');
-            __putc('0' + current->thread->ID);
-            __putc('\n');
             current->thread->setSleeping(false);
             Scheduler::put(current->thread);
             threadSleepWrapper* next = current->next;
             if(current == sleepingHead){
                 sleepingHead = next;
             }
-            // mem_free(current);
+            mem_free(current);
             current = next;
         }else{
             break;

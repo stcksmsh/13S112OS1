@@ -177,6 +177,7 @@ extern "C" void exceptionHandler(){
     }
     else if(scause == 0x8000000000000001UL){    /// timer
         Timer::getInstance().tick();
+        assert(_thread::currentThread->tick() == 0);
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
         __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));

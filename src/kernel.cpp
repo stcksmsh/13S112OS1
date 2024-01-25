@@ -100,6 +100,6 @@ Kernel::EXIT_CODE Kernel::run(){
     putc('i');
     putc('n');
     putc('\n');
-    while(1){}
+    // while(1){}
     return EXIT_SUCCESS;
 }

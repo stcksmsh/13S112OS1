@@ -44,8 +44,8 @@ void _sem::wait(sem_t id){
             id->blockTail = pNewBlock;
         }
         _thread::currentThread->setBlocked(true);
-        _thread::dispatch();
-        __putc('w');
+        // _thread::dispatch();
+        thread_dispatch();
     }
 }
 
@@ -60,10 +60,6 @@ void _sem::signal(sem_t id){
         pUnblock->pThread->setBlocked(false);
         mem_free(pUnblock);
         thread_t t = pUnblock->pThread;
-        __putc('0' + Scheduler::getCount());
         Scheduler::put(t);
-        __putc('=');
-        __putc('0' + Scheduler::getCount());
-        __putc('\n');
     }
 }

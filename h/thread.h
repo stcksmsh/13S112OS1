@@ -14,6 +14,8 @@
 #include "types.h"
 #include "attributes.h"
 
+
+
 /// @brief the thread class
 class _thread{
     using func = void (*)(void*);
@@ -47,7 +49,9 @@ public:
     /// @param sleeping new state
     void setSleeping(bool sleeping);
     
-    uint32 ID;
+    /// @brief reduce time left to run, and if it reaches 0, dispatch
+    /// @return 0 if successful, -1 if thread is blocked, -2 if thread is closed, -3 if thread is sleeping, -4 if thread is finished
+    int tick();
 
 private:
     _thread(func function, void* arg);
@@ -71,6 +75,7 @@ private:
     /// @brief start of the stack
     void* stackStart;
     /// @brief the thread ID
+    uint32 ID;
     /// @brief flags
     uint32  closed: 1,
             blocked: 1,

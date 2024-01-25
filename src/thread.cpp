@@ -18,7 +18,6 @@
 
 thread_t _thread::currentThread = 0;
 uint32 _thread::nextID = 0;
-
 _thread::_thread(func function, void* arg){
     function = function;
     arg = arg;
@@ -30,7 +29,7 @@ _thread::_thread(func function, void* arg){
     kernel = (function == 0);
     reserved = 0;
     joinHead = 0;
-    timeLeft = 0;
+    timeLeft = DEFAULT_TIME_SLICE;
     stackStart = 0;
     
     context.s0 = 0;
@@ -55,9 +54,11 @@ _thread::_thread(func function, void* arg){
 
 void popSppSpie(bool kernel = false){
     __asm__ volatile ("csrw sepc, ra");
-    // if(kernel){
-    //     __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
-    // }
+    if(kernel){
+        __asm__ volatile ("csrs sstatus, %0" :: "r" (1 << 8));
+    }else{
+        __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    }
     __asm__ volatile ("sret");
 }
 
@@ -97,7 +98,7 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     (*thread)->reserved = 0;
     (*thread)->joinHead = 0;
     (*thread)->joinTail = 0;
-    (*thread)->timeLeft = 0;
+    (*thread)->timeLeft = DEFAULT_TIME_SLICE;
     (*thread)->stackStart = 0;
 
     (*thread)->context.s0 = 0;
@@ -129,9 +130,6 @@ void _thread::join(thread_t thread){
     if(thread->finished || thread->closed){
         return;
     }
-    __putc('j');
-    __putc('0' + thread->ID);
-    __putc('\n');
     ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
     this->blocked = true;
     newJoin->thread = this;
@@ -144,7 +142,32 @@ void _thread::join(thread_t thread){
         thread->joinTail = newJoin;
     }
     // Scheduler::remove(this);
-    dispatch();
+    thread_dispatch();
+}
+
+int _thread::tick(){
+    if(currentThread->blocked){
+        return -1;
+    }
+    if(currentThread->closed){
+        return -2;
+    }
+    if(currentThread->sleeping){
+        return -3;
+    }
+    if(currentThread->finished){
+        return -4;
+    }
+    timeLeft --;
+    if(timeLeft == 0){
+        // __putc('e');
+        // __putc('n');
+        // __putc('d');
+        // __putc('0' + currentThread->ID);
+        // __putc('\n');
+        thread_dispatch();
+    }
+    return 0;
 }
 
 int _thread::exit(){
@@ -158,7 +181,7 @@ int _thread::exit(){
         return -3;
     }
     currentThread->finished = 1;
-    dispatch();
+    thread_dispatch();
     return 0;
 }
 
@@ -176,15 +199,15 @@ void _thread::setSleeping(bool sleeping){
 
 void _thread::dispatch(){
     thread_t oldThread = currentThread;
-
     currentThread =  Scheduler::get();
+    oldThread->timeLeft = DEFAULT_TIME_SLICE;
     if(currentThread == nullptr){
         currentThread = oldThread;
         return;
     }
     
     if(oldThread != 0 && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
-            Scheduler::put(oldThread);
+        Scheduler::put(oldThread);
     }
     // while(newThread != 0 && (newThread->closed || newThread->blocked || newThread->sleeping || newThread->finished)){
     //     newThread = Scheduler::get();
@@ -192,14 +215,14 @@ void _thread::dispatch(){
     // if(newThread == 0){
     //     return;
     // }
-    __putc('d');
-    if(oldThread != 0){
-        __putc('0' + oldThread->ID);
-    }
-    __putc('0' + currentThread->ID);
-    __putc('\n');
+    // __putc('d');
+    // if(oldThread != 0){
+    //     __putc('0' + oldThread->ID);
+    // }
+    // __putc('0' + currentThread->ID);
+    // __putc('\n');
     contextSwitch(oldThread == 0?0:&(oldThread->context), &(currentThread->context));
-    __putc('.');
+    // __putc('.');
 }
 
 void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){

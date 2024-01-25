@@ -17,6 +17,9 @@
 
 Scheduler* Scheduler::singleton = 0;
 
+
+
+
 Scheduler::Scheduler(){
     assert(singleton == 0);
     singleton = this;
