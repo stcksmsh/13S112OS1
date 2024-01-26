@@ -19,6 +19,7 @@
 #include "usermain.h"
 
 #include "console.h"
+#include "userConsole.h"
 
 extern "C" void trap();
 
@@ -31,7 +32,7 @@ void Kernel::initialise(){
     
     /// initialise the heap manager
     heapManager.init((uintptr_t)HEAP_START_ADDR, (uintptr_t)HEAP_END_ADDR );
-
+    console.getInstance().init();
     return;
 }
 
@@ -70,26 +71,12 @@ Kernel::EXIT_CODE Kernel::run(){
     /// change to user mode
     __asm__ volatile ("li a0, 0xff");
     __asm__ volatile ("ecall");
-    
-    putc('u');
-    putc('s');
-    putc('e');
-    putc('r');
-    putc('\n');
-
-    
     /// NOW WE ARE IN USER MODE
     
     
     thread_create(&test, usermain, 0);
-    putc('k');
-    putc('e');
-    putc('r');
-    putc('n');
-    putc('e');
-    putc('l');
-    putc('\n');
     do{
+        Console::outputHandler();
         thread_dispatch();
     }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
     // }while(true);

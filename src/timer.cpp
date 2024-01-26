@@ -13,7 +13,6 @@
 #include "syscalls_c.h"
 #include "sched.h"
 #include "assert.h"
-#include "console.h"
 
 Timer* Timer::instance = 0;
 
@@ -28,7 +27,7 @@ Timer::~Timer(){
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         threadSleepWrapper* next = current->next;
-        // mem_free(current);
+        mem_free(current);
         current = next;
     }
 }
@@ -40,14 +39,9 @@ Timer& Timer::getInstance(){
 
 void Timer::tick(){
     time += 1;
-    if(time % 10 == 0){
-        __putc('\n');
-        __putc('t');
-        __putc('i');
-        __putc('c');
-        __putc('k');
-        __putc('\n');
-    }
+    // if(time % 10 == 0){
+    //     putc('t');
+    // }
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         if(current->wakeUpTime <= time){
@@ -57,7 +51,7 @@ void Timer::tick(){
             if(current == sleepingHead){
                 sleepingHead = next;
             }
-            // mem_free(current);
+            mem_free(current);
             current = next;
         }else{
             break;

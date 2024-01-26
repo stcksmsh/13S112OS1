@@ -15,6 +15,7 @@
 #include "sem.h"
 #include "timer.h"
 #include "assert.h"
+#include "userConsole.h"
 
 extern "C" void exceptionHandler(){
     uint64 a0, a1, a2, a3, a4;
@@ -45,8 +46,8 @@ extern "C" void exceptionHandler(){
                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
                 break;
             case 0x11: /// thread_create
-                __putc('\0'); /// removing this line causes everything to break
-                /// some __putc is needed, i don't know why, please help
+                /// some putc is needed, i don't know why, please help
+                putc('\0'); /// removing this line causes everything to break
                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4);
                 break;
             case 0x12: /// thread_exit
@@ -74,10 +75,12 @@ extern "C" void exceptionHandler(){
                 returnVal = Timer::getInstance().sleep(a1);
                 break;
             case 0x41:
-                returnVal = __getc();
+                // returnVal = __getc();
+                returnVal = Console::getc();
                 break;
             case 0x42:
-                __putc(a1);
+                // __putc(a1);
+                Console::putc(a1);
                 break;
             case 0xff:
                 __asm__ volatile("mv a0, %0" : : "r"(returnVal));
@@ -93,84 +96,84 @@ extern "C" void exceptionHandler(){
         __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));
     }
     else if (scause == 0x0000000000000005UL){   // illegal read operation
-        __putc('\n');
-        __putc('E');
-        __putc('r');
-        __putc('r');
-        __putc('o');
-        __putc('r');
-        __putc(':');
-        __putc(' ');
-        __putc('i');
-        __putc('l');
-        __putc('l');
-        __putc('e');
-        __putc('g');
-        __putc('a');
-        __putc('l');
-        __putc(' ');
-        __putc('r');
-        __putc('e');
-        __putc('a');
-        __putc('d');
-        __putc('!');
+        putc('\n');
+        putc('E');
+        putc('r');
+        putc('r');
+        putc('o');
+        putc('r');
+        putc(':');
+        putc(' ');
+        putc('i');
+        putc('l');
+        putc('l');
+        putc('e');
+        putc('g');
+        putc('a');
+        putc('l');
+        putc(' ');
+        putc('r');
+        putc('e');
+        putc('a');
+        putc('d');
+        putc('!');
         uint64 pc;
         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
-        __putc('\n');
-        __putc('P');
-        __putc('C');
-        __putc(':');
-        __putc(' ');
-        __putc('0');
-        __putc('x');
+        putc('\n');
+        putc('P');
+        putc('C');
+        putc(':');
+        putc(' ');
+        putc('0');
+        putc('x');
         for(int i = 15; i >= 0; i--){
             uint64 tmp = (pc >> (i * 4)) & 0xF;
             if(tmp < 10){
-                __putc('0' + tmp);
+                putc('0' + tmp);
             }else{
-                __putc('A' + tmp - 10);
+                putc('A' + tmp - 10);
             }
         }
         assert(false);
     }
     else if (scause == 0x0000000000000007UL){   // illegal write operation
-        __putc('\n');
-        __putc('E');
-        __putc('r');
-        __putc('r');
-        __putc('o');
-        __putc('r');
-        __putc(':');
-        __putc(' ');
-        __putc('i');
-        __putc('l');
-        __putc('l');
-        __putc('e');
-        __putc('g');
-        __putc('a');
-        __putc('l');
-        __putc(' ');
-        __putc('w');
-        __putc('r');
-        __putc('i');
-        __putc('t');
-        __putc('e');
-        __putc('!');
+        putc('\n');
+        putc('E');
+        putc('r');
+        putc('r');
+        putc('o');
+        putc('r');
+        putc(':');
+        putc(' ');
+        putc('i');
+        putc('l');
+        putc('l');
+        putc('e');
+        putc('g');
+        putc('a');
+        putc('l');
+        putc(' ');
+        putc('w');
+        putc('r');
+        putc('i');
+        putc('t');
+        putc('e');
+        putc('!');
         uint64 pc;
         __asm__ volatile("csrr %0, sepc" : "=r"(pc));
-        __putc('\n');
-        __putc('P');
-        __putc('C');
-        __putc(':');
-        __putc(' ');
-        __putc('0');
-        __putc('x');
+        putc('\n');
+        putc('P');
+        putc('C');
+        putc(':');
+        putc(' ');
+        putc('0');
+        putc('x');
         for(int i = 15; i >= 0; i--){
             uint64 tmp = (pc >> (i * 4)) & 0xF;
             if(tmp < 10){
-                __putc('0' + tmp);
+                putc('0' + tmp);
             }else{
-                __putc('A' + tmp - 10);
+                putc('A' + tmp - 10);
             }
         }        
         assert(false);
@@ -184,7 +187,7 @@ extern "C" void exceptionHandler(){
     }else if (scause== 0x8000000000000009UL)
     {   
         int irq = plic_claim();
-        // if(irq == CONSOLE_IRQ)Console::console_handler();
+        if(irq == CONSOLE_IRQ)Console::inputHandler();
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
     }

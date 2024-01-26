@@ -25,7 +25,7 @@ void _sem::open(_sem** handle, unsigned init){
 void _sem::close(sem_t id){
     while(id->blockHead != 0){
         id->blockHead->pThread->setClosed(true);
-        // mem_free(id->blockHead);
+        mem_free(id->blockHead);
         id->blockHead = id->blockHead->pNext;
     }
 }
@@ -57,7 +57,7 @@ void _sem::signal(sem_t id){
             id->blockTail = 0;
         }
         pUnblock->pThread->setBlocked(false);
-        // mem_free(pUnblock);
+        mem_free(pUnblock);
         thread_t t = pUnblock->pThread;
         Scheduler::put(t);
     }
