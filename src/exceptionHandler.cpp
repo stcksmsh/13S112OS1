@@ -15,7 +15,6 @@
 #include "sem.h"
 #include "timer.h"
 #include "assert.h"
-#include "userConsole.h"
 
 extern "C" void exceptionHandler(){
     uint64 a0, a1, a2, a3, a4;

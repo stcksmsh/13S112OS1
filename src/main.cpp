@@ -12,7 +12,7 @@
 #include "kernel.h"
 #include "assert.h"
 #include "syscalls_c.h"
-#include "userConsole.h"
+#include "console.h"
 
 /// @brief first function to be called
 void main(){
@@ -20,27 +20,27 @@ void main(){
     kernel.initialise();
     Kernel::EXIT_CODE exitCode = kernel.run();
     putc('\n');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
+    putc('-');
     putc('\n');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
-    putc('-');
     putc('\n');
     putc('K');
     putc('e');

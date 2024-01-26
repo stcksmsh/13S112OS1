@@ -27,6 +27,7 @@ public:
     bool noSleepingThreads();
     Timer();
     ~Timer();
+    time_t getTime();
 private:
     static Timer* instance;
     threadSleepWrapper* sleepingHead;

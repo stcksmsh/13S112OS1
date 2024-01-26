@@ -24,7 +24,7 @@ public:
     /// @brief initialize the heap
     /// @param nStart start address of the heap
     /// @param nEnd end address of the heap
-    void init(uintptr_t nStart, size_t nEnd);
+    void init(uint64 nStart, size_t nEnd);
 
     /// @brief get the amount of free memory in the heap
     /// @return number of free blocks in the heap

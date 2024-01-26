@@ -84,3 +84,7 @@ int Timer::sleep(time_t timeToSleep){
 bool Timer::noSleepingThreads(){
     return sleepingHead == 0;
 }
+
+time_t Timer::getTime(){
+    return time;
+}

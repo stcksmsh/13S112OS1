@@ -16,7 +16,7 @@
 #include "heapManager.h"
 #include "sched.h"
 #include "timer.h"
-#include "userConsole.h"
+#include "console.h"
 
 class Kernel{
     public:

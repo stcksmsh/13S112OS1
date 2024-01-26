@@ -17,9 +17,8 @@
 #include "sem.h"
 #include "sched.h"
 #include "usermain.h"
-
 #include "console.h"
-#include "userConsole.h"
+
 
 extern "C" void trap();
 
@@ -31,7 +30,7 @@ void Kernel::initialise(){
 
     
     /// initialise the heap manager
-    heapManager.init((uintptr_t)HEAP_START_ADDR, (uintptr_t)HEAP_END_ADDR );
+    heapManager.init((uint64)HEAP_START_ADDR, (uint64)HEAP_END_ADDR );
     console.getInstance().init();
     return;
 }
@@ -79,12 +78,6 @@ Kernel::EXIT_CODE Kernel::run(){
         Console::outputHandler();
         thread_dispatch();
     }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
-    // }while(true);
 
-    putc('m');
-    putc('a');
-    putc('i');
-    putc('n');
-    putc('\n');
     return EXIT_SUCCESS;
 }
