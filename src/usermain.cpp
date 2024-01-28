@@ -5,27 +5,27 @@
 #include "sem.h"
 #include "sched.h"
 #include "assert.h"
-#include "console.h"
 
-sem_t sem1;
-sem_t sem2;
+sem_t sem1, sem2;
+
+char c;
 
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    // time_sleep(30);
+    if(c != 's')time_sleep(30);
     putc('1');
-    sem_signal(sem1);
+    if(c == 's')sem_signal(sem1);
     putc('S');
 }
 
 void thread_test_2(void* args){
     putc('2');
     putc('s');
-    // time_sleep(60);
+    if(c != 's')time_sleep(60);
     putc('2');
     putc('S');
-    sem_signal(sem2);
+    if(c == 's')sem_signal(sem2);
 }
 
 void memTest(){
@@ -50,6 +50,7 @@ void memTest(){
             putc('a' + digit - 10);
         }
     }
+
     putc('\n');
     int n = 100;
     int k = 100;
@@ -116,23 +117,34 @@ void memTest(){
 
 void usermain(void* arg){
     memTest();    
-    putc('0');
+    char line[100];
+    int i = 0;
+    while(c = getc(), c != '\n'){
+        line[i++] = c;
+    }
+    line[i] = '\0';
+
+    i = 0;
+    while(line[i] != '\0'){
+        putc(line[i++]);
+    }
+    c = getc();
     thread_t t1, t2;
-    sem_open(&sem1, 0);
-    sem_open(&sem2, 0);
+    if(c == 's'){
+        sem_open(&sem1, 0);
+        sem_open(&sem2, 0);
+    }
     thread_create(&t1, thread_test_1, 0);
     thread_create(&t2, thread_test_2, 0);
-    sem_wait(sem1);
+    if(c == 's')sem_wait(sem1);
     putc('3');
-    // thread_join(t2);
-    // if(getc() == 'a')putc('x');
+    if(c != 's')thread_join(t2);
     putc('4');
-    // thread_join(t1);
-    sem_wait(sem2);
+    if(c != 's')thread_join(t1);
+    if(c == 's')sem_wait(sem2);
     putc('5');
-    // sem_close(sem1);
-    // sem_close(sem2);
-
+    if(c == 's')sem_close(sem1);
+    if(c == 's')sem_close(sem2);
 
     putc('\n');
 }

@@ -10,7 +10,6 @@
  */
 #include "assert.h"
 #include "heapManager.h"
-#include "console.h"
 
 HeapManager* HeapManager::instance = 0;
 

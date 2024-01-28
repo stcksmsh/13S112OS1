@@ -12,7 +12,7 @@
 #include "kernel.h"
 #include "assert.h"
 #include "syscall_c.h"
-#include "console.h"
+#include "consoleManager.h"
 
 /// @brief first function to be called
 void main(){
@@ -78,6 +78,6 @@ void main(){
             break;
     }
     putc('\n');
-    Console::outputHandler();
+    ConsoleManager::outputHandler();
     assert(exitCode == Kernel::EXIT_SUCCESS);
 }

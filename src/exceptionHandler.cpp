@@ -10,7 +10,7 @@
  */
 
 #include "heapManager.h"
-#include "console.h"
+#include "consoleManager.h"
 #include "thread.h"
 #include "sem.h"
 #include "timer.h"
@@ -32,7 +32,6 @@ extern "C" void exceptionHandler(){
 
     uint64 sepc;
     __asm__ volatile("csrr %0, sepc" : "=r"(sepc));
-
 
 
     uint64 returnVal = 0;
@@ -74,12 +73,11 @@ extern "C" void exceptionHandler(){
                 returnVal = Timer::getInstance().sleep(a1);
                 break;
             case 0x41:
-                // returnVal = __getc();
-                returnVal = Console::getc();
+                returnVal = ConsoleManager::getc();
+                ConsoleManager::putc(returnVal);
                 break;
             case 0x42:
-                // __putc(a1);
-                Console::putc(a1);
+                ConsoleManager::putc(a1);
                 break;
             case 0xff:
                 __asm__ volatile("mv a0, %0" : : "r"(returnVal));
@@ -174,8 +172,6 @@ extern "C" void exceptionHandler(){
         assert(false);
     }
     else if(scause == 0x8000000000000001UL){    /// timer
-        putc('t');
-        Console::outputHandler();
         Timer::getInstance().tick();
         assert(_thread::currentThread->tick() == 0);
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
@@ -184,7 +180,7 @@ extern "C" void exceptionHandler(){
     }else if (scause== 0x8000000000000009UL)
     {   
         int irq = plic_claim();
-        if(irq == CONSOLE_IRQ)Console::inputHandler();
+        if(irq == CONSOLE_IRQ)ConsoleManager::inputHandler();
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
     }

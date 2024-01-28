@@ -10,7 +10,7 @@
  */
 
 #include "syscall_c.h"
-#include "console.h"
+#include "consoleManager.h"
 
 void* mem_alloc ( size_t nSize ){
     /// round nSize to the next multiple of MEM_BLOCK_SIZE and then divide by MEM_BLOCK_SIZE
@@ -120,7 +120,7 @@ char getc() {
     return chr;
 }
 
-#include "console.h"
+#include "consoleManager.h"
 
 void putc(char chr ) {
     __asm__ volatile("mv a1,%0"::"r"(chr));

@@ -12,7 +12,6 @@
 #include "sched.h"
 #include "assert.h"
 #include "syscall_c.h"
-#include "console.h"
 #include "thread.h"
 
 Scheduler* Scheduler::singleton = 0;

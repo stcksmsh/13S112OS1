@@ -11,7 +11,7 @@
 #ifndef _syscall_cpp
 #define _syscall_cpp
 
-#include "console.h"
+#include "syscall_c.h"
 
 void* operator new (size_t);
 
@@ -58,10 +58,9 @@ private:
     bool active;
 };
 
-/// this is done in Console.h
-// class Console {
-// public:
-//     static char getc ();
-//     static void putc (char);
-// };
+class Console {
+public:
+    static char getc ();
+    static void putc (char);
+};
 #endif

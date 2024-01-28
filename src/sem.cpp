@@ -13,7 +13,6 @@
 #include "syscall_c.h"
 #include "assert.h"
 #include "sched.h"
-#include "console.h"
 
 void _sem::open(_sem** handle, unsigned init){
     (*handle) = (sem_t)mem_alloc(sizeof(_sem));

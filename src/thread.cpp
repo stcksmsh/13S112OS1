@@ -14,7 +14,6 @@
 #include "assert.h"
 #include "sched.h"
 #include "syscall_c.h"
-#include "console.h"
 
 thread_t _thread::currentThread = 0;
 uint32 _thread::nextID = 0;
@@ -52,18 +51,14 @@ _thread::_thread(func function, void* arg){
     context.pc = (uint64)wrapper;
 }
 
-void popSppSpie(bool kernel = false){
+void popSppSpie(){
     __asm__ volatile ("csrw sepc, ra");
-    if(kernel){
-        __asm__ volatile ("csrs sstatus, %0" :: "r" (1 << 8));
-    }else{
     __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
-    }
     __asm__ volatile ("sret");
 }
 
 void _thread::wrapper(){
-    popSppSpie(currentThread->kernel);
+    popSppSpie();
     currentThread->function(currentThread->arg);
     currentThread->unJoin();
     exit();
@@ -145,7 +140,7 @@ void _thread::join(thread_t thread){
 }
 
 int _thread::tick(){
-    putc('T');
+    // putc('T');
     if(currentThread->blocked){
         return -1;
     }
@@ -160,7 +155,7 @@ int _thread::tick(){
     }
     timeLeft --;
     if(timeLeft == 0){
-        putc('D');
+        // putc('D');
         thread_dispatch();
     }
     return 0;
@@ -234,9 +229,7 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
     }
     
     
-    if(newContext->sp != 0){
-        __asm__ volatile ("ld sp, 8(a1)");
-    }
+    __asm__ volatile ("ld sp, 8(a1)");
     __asm__ volatile ("ld ra, 0(a1)");
 
     __asm__ volatile ("ld s0, 14 * 8(a0)");

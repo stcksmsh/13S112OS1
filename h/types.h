@@ -12,7 +12,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include "../lib/hw.h"
+#include "hw.h"
 
 typedef uint64 uintptr_t;
 typedef unsigned long time_t;

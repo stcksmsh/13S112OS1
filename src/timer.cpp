@@ -39,8 +39,8 @@ Timer& Timer::getInstance(){
 
 void Timer::tick(){
     time += 1;
-    // if(time % 10 == 0){
-    //     putc('t');
+    // if(time % 5 == 0){
+    //     putc('T');
     // }
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){

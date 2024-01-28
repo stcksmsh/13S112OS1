@@ -1,5 +1,5 @@
 /**
- * @file console.h
+ * @file consoleManager.h
  * @author stcksmsh (vukicevickosta@gmail.com)
  * @brief implementation of the console class used for I/O
  * @version 0.1
@@ -9,69 +9,76 @@
  * 
  */
 
-#include "console.h"
+#include "consoleManager.h"
 #include "syscall_c.h"
 #include "assert.h"
 
-Console* Console::instance = 0;
+ConsoleManager* ConsoleManager::instance = 0;
 
-Console::Console(){
+ConsoleManager::ConsoleManager(){
     assert(instance == 0);
     instance = this;
 }
 
-Console::~Console(){
+ConsoleManager::~ConsoleManager(){
     sem_close(inSem);
 }
 
-void Console::init(){
+void ConsoleManager::init(){
     sem_open(&inSem, 0);
+    waitingThreads = 0;
 }
 
-Console& Console::getInstance(){
+ConsoleManager& ConsoleManager::getInstance(){
     assert(instance != 0);
     return *instance;
 }
 
-void Console::consoleBuffer::put(char c){
+void ConsoleManager::consoleBuffer::put(char c){
     buffer[tail] = c;
     tail = (tail + 1) % BUFFER_SIZE;
     size++;
 }
 
-char Console::consoleBuffer::get(){
+char ConsoleManager::consoleBuffer::get(){
     char c = buffer[head];
     head = (head + 1) % BUFFER_SIZE;
     size--;
     return c;
 }
 
-bool Console::consoleBuffer::isEmpty(){
+bool ConsoleManager::consoleBuffer::isEmpty(){
     return size == 0;
 }
 
-bool Console::consoleBuffer::isFull(){
+bool ConsoleManager::consoleBuffer::isFull(){
     return size == BUFFER_SIZE;
 }
 
-void Console::putc(char c){
+void ConsoleManager::putc(char c){
     instance->outBuffer.put(c);
 }
 
-char Console::getc(){
+char ConsoleManager::getc(){
+    instance->waitingThreads++;
     sem_wait(instance->inSem);
+    instance->waitingThreads--;
     return instance->inBuffer.get();
 }
 
-void Console::outputHandler(){
-    while(!instance->outBuffer.isEmpty()){
+bool ConsoleManager::finished(){
+    return instance->outBuffer.isEmpty() && instance->waitingThreads == 0;
+}
+
+void ConsoleManager::outputHandler(){
+    // while(!instance->outBuffer.isEmpty()){
         while((*((char*)(CONSOLE_STATUS)) & CONSOLE_TX_STATUS_BIT) && !instance->outBuffer.isEmpty()){
             (*(char*)CONSOLE_TX_DATA) = instance->outBuffer.get();
         }
-    }
+    // }
 }
 
-void Console::inputHandler(){
+void ConsoleManager::inputHandler(){
     while((*((char*)(CONSOLE_STATUS)) & CONSOLE_RX_STATUS_BIT )){
         char ch =(*(char*)CONSOLE_RX_DATA);
         instance->inBuffer.put(ch);

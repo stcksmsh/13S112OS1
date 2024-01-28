@@ -16,7 +16,7 @@
 #include "heapManager.h"
 #include "sched.h"
 #include "timer.h"
-#include "console.h"
+#include "consoleManager.h"
 
 class Kernel{
     public:
@@ -41,7 +41,7 @@ class Kernel{
         /// @brief the timer
         Timer timer;
         /// @brief the console
-        Console console;
+        ConsoleManager console;
 };
 
 #endif // KERNEL_H

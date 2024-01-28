@@ -17,7 +17,7 @@
 #include "sem.h"
 #include "sched.h"
 #include "usermain.h"
-#include "console.h"
+#include "consoleManager.h"
 
 #include "../test_h/userMain.h"
 
@@ -33,6 +33,8 @@ void Kernel::initialise(){
     
     /// initialise the heap manager
     heapManager.init((uint64)HEAP_START_ADDR, (uint64)HEAP_END_ADDR );
+
+    /// initialise the console
     console.getInstance().init();
     return;
 }
@@ -47,27 +49,24 @@ Kernel::EXIT_CODE Kernel::run(){
     
     thread_create(&kernelThread, 0, 0);
     _thread::currentThread = Scheduler::get();
-    
-    /// change to user mode
-    __asm__ volatile ("li a0, 0xff");
-    __asm__ volatile ("ecall");
 
-    /// NOW WE ARE IN USER MODE
+    /// enable software interrupts    
+    __asm__ volatile ("csrs sie, %0" :: "r"(1<<1));
+    /// enable external hardware interrupts
+    __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
+
+    /// enable software interrupts
+    __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
 
 
     thread_t userThread;
-    // thread_create(&userThread, test, 0);
-    thread_create(&userThread, usermain, 0);
-    // while(1){
-    //     Console::outputHandler();
-    // }
+    thread_create(&userThread, test, 0);
+    // thread_create(&userThread, usermain, 0);
     do{
-        // putc('K');
-        // putc('K');
-        Console::outputHandler();
+        ConsoleManager::outputHandler();
         thread_dispatch();
-        // putc('K');
-    }while(!(Scheduler::isEmpty() && Timer::getInstance().noSleepingThreads()));
+    }while(!(Scheduler::isEmpty() && Timer::getInstance().noSleepingThreads() && ConsoleManager::finished()));
+    // }while(true);
 
     return EXIT_SUCCESS;
 }

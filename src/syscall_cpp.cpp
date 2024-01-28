@@ -91,3 +91,13 @@ void PeriodicThread::run (){
         sleep(period);
     }
 }
+
+
+
+void Console::putc (char c){
+    putc(c);
+}
+
+char Console::getc (){
+    return getc();
+}
