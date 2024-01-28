@@ -54,11 +54,11 @@ _thread::_thread(func function, void* arg){
 
 void popSppSpie(bool kernel = false){
     __asm__ volatile ("csrw sepc, ra");
-    if(kernel){
-        __asm__ volatile ("csrs sstatus, %0" :: "r" (1 << 8));
-    }else{
-        __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
-    }
+    // if(kernel){
+    //     __asm__ volatile ("csrs sstatus, %0" :: "r" (1 << 8));
+    // }else{
+    // __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    // }
     __asm__ volatile ("sret");
 }
 

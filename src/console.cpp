@@ -59,7 +59,6 @@ void Console::putc(char c){
 }
 
 char Console::getc(){
-    assert(false);
     sem_wait(instance->inSem);
     return instance->inBuffer.get();
 }

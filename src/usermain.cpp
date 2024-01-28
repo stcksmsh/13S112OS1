@@ -5,6 +5,7 @@
 #include "sem.h"
 #include "sched.h"
 #include "assert.h"
+#include "console.h"
 
 sem_t sem1;
 sem_t sem2;
@@ -114,7 +115,6 @@ void memTest(){
     putc('\n');
     putc('\n');
     putc('\n');
-    while(1){};
 }
 
 void usermain(void* arg){

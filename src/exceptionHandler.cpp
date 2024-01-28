@@ -81,7 +81,6 @@ extern "C" void exceptionHandler(){
                 // __putc(a1);
                 Console::putc(a1);
                 break;
-                // switch user mode
             case 0xff:
                 __asm__ volatile("mv a0, %0" : : "r"(returnVal));
                 __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
@@ -117,8 +116,6 @@ extern "C" void exceptionHandler(){
         putc('a');
         putc('d');
         putc('!');
-        uint64 pc;
-        __asm__ volatile("csrr %0, sepc" : "=r"(pc));
         putc('\n');
         putc('P');
         putc('C');
@@ -127,7 +124,7 @@ extern "C" void exceptionHandler(){
         putc('0');
         putc('x');
         for(int i = 15; i >= 0; i--){
-            uint64 tmp = (pc >> (i * 4)) & 0xF;
+            uint64 tmp = (sepc >> (i * 4)) & 0xF;
             if(tmp < 10){
                 putc('0' + tmp);
             }else{
@@ -159,8 +156,6 @@ extern "C" void exceptionHandler(){
         putc('t');
         putc('e');
         putc('!');
-        uint64 pc;
-        __asm__ volatile("csrr %0, sepc" : "=r"(pc));
         putc('\n');
         putc('P');
         putc('C');
@@ -169,7 +164,7 @@ extern "C" void exceptionHandler(){
         putc('0');
         putc('x');
         for(int i = 15; i >= 0; i--){
-            uint64 tmp = (pc >> (i * 4)) & 0xF;
+            uint64 tmp = (sepc >> (i * 4)) & 0xF;
             if(tmp < 10){
                 putc('0' + tmp);
             }else{
@@ -180,6 +175,7 @@ extern "C" void exceptionHandler(){
     }
     else if(scause == 0x8000000000000001UL){    /// timer
         putc('t');
+        Console::outputHandler();
         Timer::getInstance().tick();
         assert(_thread::currentThread->tick() == 0);
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
