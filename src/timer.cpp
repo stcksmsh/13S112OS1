@@ -10,7 +10,7 @@
  */
 
 #include "timer.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "sched.h"
 #include "assert.h"
 

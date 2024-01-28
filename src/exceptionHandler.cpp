@@ -81,6 +81,7 @@ extern "C" void exceptionHandler(){
                 // __putc(a1);
                 Console::putc(a1);
                 break;
+                // switch user mode
             case 0xff:
                 __asm__ volatile("mv a0, %0" : : "r"(returnVal));
                 __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
@@ -178,6 +179,7 @@ extern "C" void exceptionHandler(){
         assert(false);
     }
     else if(scause == 0x8000000000000001UL){    /// timer
+        putc('t');
         Timer::getInstance().tick();
         assert(_thread::currentThread->tick() == 0);
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc));

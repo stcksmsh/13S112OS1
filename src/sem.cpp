@@ -10,7 +10,7 @@
  */
 
 #include "sem.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "assert.h"
 #include "sched.h"
 #include "console.h"

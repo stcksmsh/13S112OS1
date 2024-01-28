@@ -9,7 +9,7 @@
  * 
  */
 
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "console.h"
 
 void* mem_alloc ( size_t nSize ){
@@ -47,8 +47,6 @@ int thread_create ( thread_t* handle, void(*function)(void*), void* arg ) {
     __asm__ volatile("mv %0, a0" : "=r" (returnValue));
     return (int)returnValue;
 }
-
-// int thread_createCPP ( thread_t*, void(*)(void*), void* );
 
 int thread_exit (){
     __asm__ volatile("li a0,0x12");

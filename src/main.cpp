@@ -11,7 +11,7 @@
 
 #include "kernel.h"
 #include "assert.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "console.h"
 
 /// @brief first function to be called

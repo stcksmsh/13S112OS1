@@ -1,4 +1,4 @@
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "heapManager.h"
 #include "usermain.h"
 #include "thread.h"
@@ -114,6 +114,7 @@ void memTest(){
     putc('\n');
     putc('\n');
     putc('\n');
+    while(1){};
 }
 
 void usermain(void* arg){

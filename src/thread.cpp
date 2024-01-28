@@ -13,7 +13,7 @@
 #include "thread.h"
 #include "assert.h"
 #include "sched.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "console.h"
 
 thread_t _thread::currentThread = 0;
@@ -145,6 +145,7 @@ void _thread::join(thread_t thread){
 }
 
 int _thread::tick(){
+    putc('T');
     if(currentThread->blocked){
         return -1;
     }

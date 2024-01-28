@@ -9,7 +9,7 @@
  * 
  */
 #include "assert.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 
 void assert_failed( const char * __assertion, const char * __file, unsigned int __line, const char * __function ){
     putc('\n');

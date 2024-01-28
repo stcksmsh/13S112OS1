@@ -1,5 +1,5 @@
 /**
- * @file syscalls_c.h
+ * @file syscall_c.h
  * @author stcksmsh (vukicevickosta@gmail.com)
  * @brief function declarations for the syscalls
  * @version 0.1
@@ -24,8 +24,6 @@ class _thread;
 typedef _thread* thread_t;
 
 int thread_create ( thread_t*, void(*)(void*), void* );
-
-// int thread_createCPP ( thread_t*, void(*)(void*), void* );
 
 int thread_exit ();
 

@@ -12,12 +12,14 @@
 #include "kernel.h"
 #include "types.h"
 #include "assert.h"
-#include "syscalls_c.h"
+#include "syscall_c.h"
 #include "thread.h"
 #include "sem.h"
 #include "sched.h"
 #include "usermain.h"
 #include "console.h"
+
+#include "../test_h/userMain.h"
 
 
 extern "C" void trap();
@@ -35,36 +37,16 @@ void Kernel::initialise(){
     return;
 }
 
-// sem_t sem = 0;
-
-void testFunc(void* arg){
-    putc('t');
-    putc('e');
-    putc('s');
-    putc('t');
-
-    // sem_wait(sem);
-    // thread_dispatch();
-    // thread_dispatch();
-    thread_dispatch();
-
-    // time_sleep(10);
-    putc(' ');
-
-    putc('t');
-    putc('h');
-    putc('r');
-    putc('e');
-    putc('a');
-    putc('d');
-    putc('\n');
+void test(void* arg){
+    // userMain();
+    usermain(0);
 }
 
 Kernel::EXIT_CODE Kernel::run(){
 
-    thread_t t, test;
+    thread_t kernelThread;
     
-    thread_create(&t, 0, 0);
+    thread_create(&kernelThread, 0, 0);
     _thread::currentThread = Scheduler::get();
     
     /// change to user mode
@@ -72,12 +54,13 @@ Kernel::EXIT_CODE Kernel::run(){
     __asm__ volatile ("ecall");
     /// NOW WE ARE IN USER MODE
     
-    
-    thread_create(&test, usermain, 0);
+    thread_t userThread;
+    // thread_create(&userThread, test, 0);
+    thread_create(&userThread, usermain, 0);
     do{
         Console::outputHandler();
         thread_dispatch();
-    }while(!Scheduler::isEmpty() || !Timer::getInstance().noSleepingThreads());
+    }while(!(Scheduler::isEmpty() && Timer::getInstance().noSleepingThreads()));
 
     return EXIT_SUCCESS;
 }
