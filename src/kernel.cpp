@@ -52,17 +52,19 @@ Kernel::EXIT_CODE Kernel::run(){
     __asm__ volatile ("li a0, 0xff");
     __asm__ volatile ("ecall");
 
-    uint64 sstatus;
-    __asm__ volatile("csrr %0, sstatus" : "=r"(sstatus));
     /// NOW WE ARE IN USER MODE
+
 
     thread_t userThread;
     // thread_create(&userThread, test, 0);
     thread_create(&userThread, usermain, 0);
+    // while(1){
+    //     Console::outputHandler();
+    // }
     do{
         // putc('K');
-        Console::outputHandler();
         // putc('K');
+        Console::outputHandler();
         thread_dispatch();
         // putc('K');
     }while(!(Scheduler::isEmpty() && Timer::getInstance().noSleepingThreads()));

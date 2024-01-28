@@ -13,7 +13,7 @@ sem_t sem2;
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    time_sleep(30);
+    // time_sleep(30);
     putc('1');
     sem_signal(sem1);
     putc('S');
@@ -22,13 +22,10 @@ void thread_test_1(void* args){
 void thread_test_2(void* args){
     putc('2');
     putc('s');
-    time_sleep(60);
+    // time_sleep(60);
     putc('2');
     putc('S');
     sem_signal(sem2);
-    for(int i = 0; i < 1 << 20; i++){
-        __asm__ volatile("nop");
-    }
 }
 
 void memTest(){
@@ -130,13 +127,11 @@ void usermain(void* arg){
     // thread_join(t2);
     // if(getc() == 'a')putc('x');
     putc('4');
-    thread_join(t1);
-    // thread_dispatch();
-    // thread_dispatch();
+    // thread_join(t1);
     sem_wait(sem2);
     putc('5');
-    sem_close(sem1);
-    sem_close(sem2);
+    // sem_close(sem1);
+    // sem_close(sem2);
 
 
     putc('\n');
