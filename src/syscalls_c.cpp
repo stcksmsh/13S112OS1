@@ -35,7 +35,7 @@ int mem_free ( void* pAddress ){
 
 
 int thread_create ( thread_t* handle, void(*function)(void*), void* arg ) {
-    void *stack_space = mem_alloc(DEFAULT_STACK_SIZE);
+    void *stack_space = mem_alloc(DEFAULT_STACK_SIZE * 16);
     /// now we move the pointer up, since SP points to the first free location, and grows down
     __asm__ volatile ("mv a4, %0" : : "r"((uint64)stack_space + DEFAULT_STACK_SIZE));
     __asm__ volatile("mv a3,%0" : : "r" ((uint64)arg));

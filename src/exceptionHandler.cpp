@@ -54,7 +54,6 @@ extern "C" void exceptionHandler(){
                 returnVal = _thread::currentThread->exit();
                 break;
             case 0x13: /// thread_dispatch
-                // ConsoleManager::putc('*');
                 _thread::dispatch();
                 break;
             case 0x14: /// thread_join
@@ -82,18 +81,11 @@ extern "C" void exceptionHandler(){
             case 0x42:
                 ConsoleManager::putc(a1);
                 break;
-            case 0xff:
-                __asm__ volatile("mv a0, %0" : : "r"(returnVal));
-                __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
-                __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-                __asm__ volatile("csrc sstatus, %0" :: "r"(1 << 8));
-                __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));
-                return;
         }
-        __asm__ volatile("mv a0, %0" : : "r"(returnVal));
+        __asm__ volatile("csrw scause, %0" :: "r"(scause));
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-        // __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));
+        __asm__ volatile("mv a0, %0" : : "r"(returnVal));
     }
     else if (scause == 0x0000000000000005UL){   // illegal read operation
         ConsoleManager::putc('\n');

@@ -60,10 +60,6 @@ Kernel::EXIT_CODE Kernel::run(){
     thread_t consoleThread;
     thread_create(&consoleThread, consoleConsumer, 0);
 
-
-    // __asm__ volatile ("li a0, 0xff");
-    // __asm__ volatile ("ecall");
-
     /// enable external hardware interrupts
     __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
 
@@ -75,6 +71,7 @@ Kernel::EXIT_CODE Kernel::run(){
     // thread_create(&userThread, usermain, 0);
     while(!userThread->finished){
         thread_dispatch();
+        // ConsoleManager::putc('K');
     }
 
     return EXIT_SUCCESS;

@@ -115,6 +115,9 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     (*thread)->context.pc = (uint64)wrapper;
 
     (*thread)->stackStart = stack;
+    // ConsoleManager::putc('C');
+    // ConsoleManager::putc((*thread)->ID + '0');
+    // ConsoleManager::putc('\n');
     if(start){
         Scheduler::put(*thread);
     }
@@ -141,7 +144,9 @@ void _thread::join(thread_t thread){
 }
 
 int _thread::tick(){
-    // putc('T');
+    // if(currentThread->kernel){
+    //     return 0;
+    // }
     if(currentThread->blocked){
         return -1;
     }
@@ -173,6 +178,7 @@ int _thread::exit(){
         return -3;
     }
     currentThread->finished = 1;
+    ConsoleManager::putc('x');
     dispatch();
     return 0;
 }
@@ -194,6 +200,7 @@ void _thread::dispatch(){
     currentThread =  Scheduler::get();
     oldThread->timeLeft = DEFAULT_TIME_SLICE;
     if(currentThread == 0){
+        // ConsoleManager::putc('*');
         currentThread = oldThread;
         return;
     }

@@ -135,6 +135,7 @@ void testConsumerProducer() {
 
     for (int i = 0; i <= threadNum; i++) {
         waitForAll->wait();
+        putc('x');
     }
     putc('.');
 

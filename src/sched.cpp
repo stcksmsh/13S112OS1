@@ -12,6 +12,7 @@
 #include "sched.h"
 #include "assert.h"
 #include "heapManager.h"
+#include "consoleManager.h"
 #include "thread.h"
 
 Scheduler* Scheduler::singleton = 0;
@@ -44,15 +45,15 @@ void Scheduler::put(thread_t thread){
 }
 
 thread_t Scheduler::get(){    
-    ThreadList* tmp = singleton->head;
-    if(tmp == 0){
+    if(singleton->head == 0){
         return 0;
     }
-    thread_t thread = tmp->thread;
-    singleton->head = tmp->next;
+    ThreadList* tmp = singleton->head;
+    singleton->head = singleton->head->next;
     if(singleton->head == 0){
         singleton->tail = 0;
     }
+    thread_t thread = tmp->thread;
     HeapManager::getInstance().heapFree(tmp);
     return thread;
 }

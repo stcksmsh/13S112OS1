@@ -14,6 +14,7 @@
 #include "sched.h"
 #include "heapManager.h"
 #include "thread.h"
+#include "consoleManager.h"
 
 void _sem::open(_sem** handle, unsigned init){
     (*handle) = (sem_t)HeapManager::getInstance().heapAllocate((sizeof(_sem) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);

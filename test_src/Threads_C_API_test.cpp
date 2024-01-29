@@ -4,33 +4,59 @@
 
 #include "../test_h/printing.h"
 
+#include "sched.h"
+#include "thread.h"
+
 static volatile bool finishedA = false;
 static volatile bool finishedB = false;
 static volatile bool finishedC = false;
 static volatile bool finishedD = false;
 
 static uint64 fibonacci(uint64 n) {
+    // putc('F');
     if (n == 0 || n == 1) { return n; }
-    if (n % 10 == 0) { thread_dispatch(); }
+    // if (n % 10 == 0) { thread_dispatch(); }
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 static void workerBodyA(void* arg) {
+
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 10000; j++) {
+            // putc('A');
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
     }
     printString("A finished!\n");
     finishedA = true;
+
+    // int count = Scheduler::getCount();
+    // printInt(count);
+    // printString("Threads:\n");
+    // for(int i = 0; i < count ; i ++){
+    //     thread_t handle = Scheduler::get();
+    //     if(handle == 0){
+    //         printString("handle == 0\n");
+    //         break;
+    //     }
+    //     int id = handle->ID;
+    //     putc('0' + id);
+    //     printString("\n");
+    //     Scheduler::put(handle);
+    // }
+    // count = Scheduler::getCount();
+    // printString("count = ");
+    // printInt(count);
+
 }
 
 static void workerBodyB(void* arg) {
     for (uint64 i = 0; i < 16; i++) {
         printString("B: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 10000; j++) {
+            putc('B');
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
@@ -74,7 +100,7 @@ static void workerBodyD(void* arg) {
     }
 
     printString("D: dispatch\n");
-    __asm__ ("li t1, 5");
+    __asm__ volatile("li t1, 5");
     thread_dispatch();
 
     uint64 result = fibonacci(16);
@@ -107,5 +133,4 @@ void Threads_C_API_test() {
     while (!(finishedA && finishedB && finishedC && finishedD)) {
         thread_dispatch();
     }
-
 }
