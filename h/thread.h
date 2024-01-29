@@ -93,6 +93,7 @@ private:
 
     friend class Scheduler;
     friend class Timer;
+    friend class Kernel;
 
 };
 

@@ -10,9 +10,12 @@
  */
 
 #include "timer.h"
-#include "syscall_c.h"
+#include "heapManager.h"
 #include "sched.h"
 #include "assert.h"
+#include "thread.h"
+
+#include "consoleManager.h"
 
 Timer* Timer::instance = 0;
 
@@ -27,7 +30,7 @@ Timer::~Timer(){
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         threadSleepWrapper* next = current->next;
-        mem_free(current);
+        HeapManager::getInstance().heapFree(current);
         current = next;
     }
 }
@@ -39,29 +42,18 @@ Timer& Timer::getInstance(){
 
 void Timer::tick(){
     time += 1;
-    // if(time % 5 == 0){
-    //     putc('T');
-    // }
-    threadSleepWrapper* current = sleepingHead;
-    while(current != 0){
-        if(current->wakeUpTime <= time){
-            current->thread->setSleeping(false);
-            Scheduler::put(current->thread);
-            threadSleepWrapper* next = current->next;
-            if(current == sleepingHead){
-                sleepingHead = next;
-            }
-            mem_free(current);
-            current = next;
-        }else{
-            break;
-        }
+    while(sleepingHead != 0 && sleepingHead->wakeUpTime <= time){
+        sleepingHead->thread->setSleeping(false);
+        Scheduler::put(sleepingHead->thread);
+        threadSleepWrapper* next = sleepingHead->next;
+        HeapManager::getInstance().heapFree(sleepingHead);
+        sleepingHead = next;
     }
 }
 
 int Timer::sleep(time_t timeToSleep){
     thread_t thread = _thread::currentThread;
-    threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)mem_alloc(sizeof(threadSleepWrapper));
+    threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)HeapManager::getInstance().heapAllocate(sizeof(threadSleepWrapper));
     newSleepingThread->thread = thread;
     newSleepingThread->wakeUpTime = time + timeToSleep;
     newSleepingThread->next = 0;
@@ -73,11 +65,16 @@ int Timer::sleep(time_t timeToSleep){
         while(current->next != 0 && current->next->wakeUpTime < newSleepingThread->wakeUpTime){
             current = current->next;
         }
-        newSleepingThread->next = current->next;
-        current->next = newSleepingThread;
+        if(current->wakeUpTime > newSleepingThread->wakeUpTime){
+            sleepingHead = newSleepingThread;
+            newSleepingThread->next = current;
+        }else{
+            newSleepingThread->next = current->next;
+            current->next = newSleepingThread;
+        }
     }
     thread->setSleeping(true);
-    thread_dispatch();
+    _thread::dispatch();
     return 0;
 }
 

@@ -11,7 +11,7 @@
 
 #include "sched.h"
 #include "assert.h"
-#include "syscall_c.h"
+#include "heapManager.h"
 #include "thread.h"
 
 Scheduler* Scheduler::singleton = 0;
@@ -32,11 +32,11 @@ bool Scheduler::isEmpty(){
 
 void Scheduler::put(thread_t thread){
     if(singleton->head == 0){
-        singleton->head = singleton->tail = (ThreadList*)mem_alloc(sizeof(ThreadList));
+        singleton->head = singleton->tail = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
         singleton->head->thread = thread;
         singleton->head->next = 0;
     }else{
-        singleton->tail->next = (ThreadList*)mem_alloc(sizeof(ThreadList));
+        singleton->tail->next = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
         singleton->tail = singleton->tail->next;
         singleton->tail->thread = thread;
         singleton->tail->next = 0;
@@ -53,7 +53,7 @@ thread_t Scheduler::get(){
     if(singleton->head == 0){
         singleton->tail = 0;
     }
-    mem_free(tmp);
+    HeapManager::getInstance().heapFree(tmp);
     return thread;
 }
 

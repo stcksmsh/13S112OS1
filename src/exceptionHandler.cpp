@@ -16,6 +16,8 @@
 #include "timer.h"
 #include "assert.h"
 
+// #include "console.h"
+
 extern "C" void exceptionHandler(){
     uint64 a0, a1, a2, a3, a4;
     __asm__ volatile("mv %0, a4" : "=r"(a4));
@@ -44,14 +46,15 @@ extern "C" void exceptionHandler(){
                 returnVal = HeapManager::getInstance().heapFree((void*)a1);
                 break;
             case 0x11: /// thread_create
-                /// some putc is needed, i don't know why, please help
-                putc('\0'); /// removing this line causes everything to break
+                /// some ConsoleManager::putc is needed, i don't know why, please help
+                ConsoleManager::putc('\0'); /// removing this line causes everything to break
                 returnVal = _thread::create((thread_t*)a1, (void(*)(void*))a2, (void*)a3, (void*)a4);
                 break;
             case 0x12: /// thread_exit
                 returnVal = _thread::currentThread->exit();
                 break;
             case 0x13: /// thread_dispatch
+                // ConsoleManager::putc('*');
                 _thread::dispatch();
                 break;
             case 0x14: /// thread_join
@@ -73,8 +76,8 @@ extern "C" void exceptionHandler(){
                 returnVal = Timer::getInstance().sleep(a1);
                 break;
             case 0x41:
+                // returnVal = __getc
                 returnVal = ConsoleManager::getc();
-                ConsoleManager::putc(returnVal);
                 break;
             case 0x42:
                 ConsoleManager::putc(a1);
@@ -90,83 +93,83 @@ extern "C" void exceptionHandler(){
         __asm__ volatile("mv a0, %0" : : "r"(returnVal));
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc+4));
         __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
-        __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));
+        // __asm__ volatile("csrc sip, %0" :: "r"(1 << 1));
     }
     else if (scause == 0x0000000000000005UL){   // illegal read operation
-        putc('\n');
-        putc('E');
-        putc('r');
-        putc('r');
-        putc('o');
-        putc('r');
-        putc(':');
-        putc(' ');
-        putc('i');
-        putc('l');
-        putc('l');
-        putc('e');
-        putc('g');
-        putc('a');
-        putc('l');
-        putc(' ');
-        putc('r');
-        putc('e');
-        putc('a');
-        putc('d');
-        putc('!');
-        putc('\n');
-        putc('P');
-        putc('C');
-        putc(':');
-        putc(' ');
-        putc('0');
-        putc('x');
+        ConsoleManager::putc('\n');
+        ConsoleManager::putc('E');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('o');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc(':');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('i');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc('e');
+        ConsoleManager::putc('g');
+        ConsoleManager::putc('a');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('e');
+        ConsoleManager::putc('a');
+        ConsoleManager::putc('d');
+        ConsoleManager::putc('!');
+        ConsoleManager::putc('\n');
+        ConsoleManager::putc('P');
+        ConsoleManager::putc('C');
+        ConsoleManager::putc(':');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('0');
+        ConsoleManager::putc('x');
         for(int i = 15; i >= 0; i--){
             uint64 tmp = (sepc >> (i * 4)) & 0xF;
             if(tmp < 10){
-                putc('0' + tmp);
+                ConsoleManager::putc('0' + tmp);
             }else{
-                putc('A' + tmp - 10);
+                ConsoleManager::putc('A' + tmp - 10);
             }
         }
         assert(false);
     }
     else if (scause == 0x0000000000000007UL){   // illegal write operation
-        putc('\n');
-        putc('E');
-        putc('r');
-        putc('r');
-        putc('o');
-        putc('r');
-        putc(':');
-        putc(' ');
-        putc('i');
-        putc('l');
-        putc('l');
-        putc('e');
-        putc('g');
-        putc('a');
-        putc('l');
-        putc(' ');
-        putc('w');
-        putc('r');
-        putc('i');
-        putc('t');
-        putc('e');
-        putc('!');
-        putc('\n');
-        putc('P');
-        putc('C');
-        putc(':');
-        putc(' ');
-        putc('0');
-        putc('x');
+        ConsoleManager::putc('\n');
+        ConsoleManager::putc('E');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('o');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc(':');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('i');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc('e');
+        ConsoleManager::putc('g');
+        ConsoleManager::putc('a');
+        ConsoleManager::putc('l');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('w');
+        ConsoleManager::putc('r');
+        ConsoleManager::putc('i');
+        ConsoleManager::putc('t');
+        ConsoleManager::putc('e');
+        ConsoleManager::putc('!');
+        ConsoleManager::putc('\n');
+        ConsoleManager::putc('P');
+        ConsoleManager::putc('C');
+        ConsoleManager::putc(':');
+        ConsoleManager::putc(' ');
+        ConsoleManager::putc('0');
+        ConsoleManager::putc('x');
         for(int i = 15; i >= 0; i--){
             uint64 tmp = (sepc >> (i * 4)) & 0xF;
             if(tmp < 10){
-                putc('0' + tmp);
+                ConsoleManager::putc('0' + tmp);
             }else{
-                putc('A' + tmp - 10);
+                ConsoleManager::putc('A' + tmp - 10);
             }
         }        
         assert(false);

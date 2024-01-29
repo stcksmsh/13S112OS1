@@ -13,7 +13,7 @@ char c;
 void thread_test_1(void* args){
     putc('1');
     putc('s');
-    if(c != 's')time_sleep(30);
+    if(c != 's')time_sleep(60);
     putc('1');
     if(c == 's')sem_signal(sem1);
     putc('S');
@@ -22,7 +22,7 @@ void thread_test_1(void* args){
 void thread_test_2(void* args){
     putc('2');
     putc('s');
-    if(c != 's')time_sleep(60);
+    if(c != 's')time_sleep(30);
     putc('2');
     putc('S');
     if(c == 's')sem_signal(sem2);
@@ -116,19 +116,10 @@ void memTest(){
 }
 
 void usermain(void* arg){
-    memTest();    
-    char line[100];
-    int i = 0;
-    while(c = getc(), c != '\n'){
-        line[i++] = c;
-    }
-    line[i] = '\0';
-
-    i = 0;
-    while(line[i] != '\0'){
-        putc(line[i++]);
-    }
-    c = getc();
+    putc('0');
+    // memTest();
+    c = '-';
+    // putc(c);
     thread_t t1, t2;
     if(c == 's'){
         sem_open(&sem1, 0);
@@ -145,6 +136,4 @@ void usermain(void* arg){
     putc('5');
     if(c == 's')sem_close(sem1);
     if(c == 's')sem_close(sem2);
-
-    putc('\n');
 }

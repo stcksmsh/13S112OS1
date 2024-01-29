@@ -10,6 +10,7 @@
  */
 #include "assert.h"
 #include "syscall_c.h"
+#include "consoleManager.h"
 
 void assert_failed( const char * __assertion, const char * __file, unsigned int __line, const char * __function ){
     putc('\n');

@@ -13,7 +13,8 @@
 #include "thread.h"
 #include "assert.h"
 #include "sched.h"
-#include "syscall_c.h"
+#include "consoleManager.h"
+#include "heapManager.h"
 
 thread_t _thread::currentThread = 0;
 uint32 _thread::nextID = 0;
@@ -71,14 +72,14 @@ void _thread::unJoin(){
         thread->blocked = false;
         Scheduler::put(thread);
         ThreadJoinList* next = current->next;
-        mem_free(current);
+        HeapManager::getInstance().heapFree(current);
         current = next;
     }
 }
 
 int _thread::create(thread_t* thread, func function, void* arg, void* stack, bool start){
 
-    *thread = (_thread*)mem_alloc(sizeof(_thread));
+    *thread = (_thread*)HeapManager::getInstance().heapAllocate((sizeof(_thread) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     if(*thread == 0){
         return -1;
     }
@@ -125,7 +126,7 @@ void _thread::join(thread_t thread){
     if(thread->finished || thread->closed){
         return;
     }
-    ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
+    ThreadJoinList* newJoin = (ThreadJoinList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadJoinList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
     this->blocked = true;
     newJoin->thread = this;
     newJoin->next = 0;
@@ -136,7 +137,7 @@ void _thread::join(thread_t thread){
         thread->joinTail->next = newJoin;
         thread->joinTail = newJoin;
     }
-    thread_dispatch();
+    dispatch();
 }
 
 int _thread::tick(){
@@ -156,7 +157,7 @@ int _thread::tick(){
     timeLeft --;
     if(timeLeft == 0){
         // putc('D');
-        thread_dispatch();
+        dispatch();
     }
     return 0;
 }
@@ -172,7 +173,7 @@ int _thread::exit(){
         return -3;
     }
     currentThread->finished = 1;
-    thread_dispatch();
+    dispatch();
     return 0;
 }
 
@@ -249,5 +250,4 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
     __asm__ volatile ("ld s11, 13 * 8(a1)");
 
     return;
-
 }
