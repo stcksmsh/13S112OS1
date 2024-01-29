@@ -14,8 +14,12 @@ static volatile bool finishedD = false;
 
 static uint64 fibonacci(uint64 n) {
     // putc('F');
+    // putc('-');
+    // putc('0' + n / 10);
+    // putc('0' + n % 10);
+    // putc('\n');
     if (n == 0 || n == 1) { return n; }
-    // if (n % 10 == 0) { thread_dispatch(); }
+    if (n % 10 == 0) { thread_dispatch(); }
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
@@ -23,8 +27,7 @@ static void workerBodyA(void* arg) {
 
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 10000; j++) {
-            // putc('A');
+        for (uint64 j = 0; j < 1000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
@@ -32,31 +35,12 @@ static void workerBodyA(void* arg) {
     printString("A finished!\n");
     finishedA = true;
 
-    // int count = Scheduler::getCount();
-    // printInt(count);
-    // printString("Threads:\n");
-    // for(int i = 0; i < count ; i ++){
-    //     thread_t handle = Scheduler::get();
-    //     if(handle == 0){
-    //         printString("handle == 0\n");
-    //         break;
-    //     }
-    //     int id = handle->ID;
-    //     putc('0' + id);
-    //     printString("\n");
-    //     Scheduler::put(handle);
-    // }
-    // count = Scheduler::getCount();
-    // printString("count = ");
-    // printInt(count);
-
 }
 
 static void workerBodyB(void* arg) {
     for (uint64 i = 0; i < 16; i++) {
         printString("B: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 10000; j++) {
-            putc('B');
+        for (uint64 j = 0; j < 1000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }

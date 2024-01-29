@@ -33,7 +33,8 @@ bool Scheduler::isEmpty(){
 
 void Scheduler::put(thread_t thread){
     if(singleton->head == 0){
-        singleton->head = singleton->tail = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+        singleton->head = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+        singleton->tail = singleton->head;
         singleton->head->thread = thread;
         singleton->head->next = 0;
     }else{
@@ -57,7 +58,6 @@ thread_t Scheduler::get(){
     HeapManager::getInstance().heapFree(tmp);
     return thread;
 }
-
 
 int Scheduler::getCount(){
     int count = 0;

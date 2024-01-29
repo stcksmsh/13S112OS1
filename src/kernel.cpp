@@ -53,8 +53,8 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_t kernelThread;
     
-    thread_create(&kernelThread, 0, 0);
-    _thread::currentThread = Scheduler::get();
+    _thread::create(&kernelThread, 0, 0, mem_alloc(DEFAULT_STACK_SIZE), false);
+    _thread::currentThread = kernelThread;
 
 
     thread_t consoleThread;

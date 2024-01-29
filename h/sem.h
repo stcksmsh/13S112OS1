@@ -35,7 +35,7 @@ private:
         blockedThreadList* pNext;
     } *blockHead, *blockTail;
 
-    int value;
+    unsigned value;
 
 };
 

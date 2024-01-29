@@ -178,7 +178,6 @@ int _thread::exit(){
         return -3;
     }
     currentThread->finished = 1;
-    ConsoleManager::putc('x');
     dispatch();
     return 0;
 }
@@ -197,24 +196,19 @@ void _thread::setSleeping(bool sleeping){
 
 void _thread::dispatch(){
     thread_t oldThread = currentThread;
-    currentThread =  Scheduler::get();
     oldThread->timeLeft = DEFAULT_TIME_SLICE;
-    if(currentThread == 0){
-        // ConsoleManager::putc('*');
-        currentThread = oldThread;
-        return;
-    }
-    
     if(oldThread != 0 && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
         Scheduler::put(oldThread);
     }
-    contextSwitch(oldThread == 0?0:&(oldThread->context), &(currentThread->context));
+    currentThread =  Scheduler::get();
+    if(currentThread == oldThread)return;
+    contextSwitch(&(oldThread->context), &(currentThread->context));
 }
 
 void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){
 
 
-    if(oldContext != 0){
+    // if(oldContext != 0){
         // oldContext->pc = pc;
         __asm__ volatile ("sd ra, 0 * 8(a0)");
         __asm__ volatile ("sd sp, 1 * 8(a0)");
@@ -234,13 +228,13 @@ void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newConte
         
         __asm__ volatile("csrr s0, sstatus");
         __asm__ volatile ("sd s0, 14 * 8(a0)");
-    }
+    // }
     
     
-    __asm__ volatile ("ld sp, 8(a1)");
-    __asm__ volatile ("ld ra, 0(a1)");
+    __asm__ volatile ("ld ra, 0*8(a1)");
+    __asm__ volatile ("ld sp, 1*8(a1)");
 
-    __asm__ volatile ("ld s0, 14 * 8(a0)");
+    __asm__ volatile ("ld s0, 14 * 8(a1)");
     __asm__ volatile("csrw sstatus, s0");
 
     __asm__ volatile ("ld s0, 2 * 8(a1)");

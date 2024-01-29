@@ -105,21 +105,21 @@ int HeapManager::heapFree(void* pAddress){
 
 
 
-    /// merge with previous block if possible
-    if(pFree->pPrev != 0 && reinterpret_cast<uint64>(pFree->pPrev) + (pFree->pPrev->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree)){
-        pFree->pPrev->nSize += pFree->nSize + 1;
-        pFree->pPrev->pNext = pFree->pNext;
-        if(pFree->pNext != 0){
-            pFree->pNext->pPrev = pFree->pPrev;
-        }pFree = pFree->pPrev;
-    }
-    /// merge with next block if possible
-    if(pFree->pNext != 0 && reinterpret_cast<uint64>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree->pNext)){
-        pFree->nSize += pFree->pNext->nSize + 1;
-        pFree->pNext = pFree->pNext->pNext;
-        if(pFree->pNext != 0){
-            pFree->pNext->pPrev = pFree;
-        }
-    }
+    // /// merge with previous block if possible
+    // if(pFree->pPrev != 0 && reinterpret_cast<uint64>(pFree->pPrev) + (pFree->pPrev->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree)){
+    //     pFree->pPrev->nSize += pFree->nSize + 1;
+    //     pFree->pPrev->pNext = pFree->pNext;
+    //     if(pFree->pNext != 0){
+    //         pFree->pNext->pPrev = pFree->pPrev;
+    //     }pFree = pFree->pPrev;
+    // }
+    // /// merge with next block if possible
+    // if(pFree->pNext != 0 && reinterpret_cast<uint64>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree->pNext)){
+    //     pFree->nSize += pFree->pNext->nSize + 1;
+    //     pFree->pNext = pFree->pNext->pNext;
+    //     if(pFree->pNext != 0){
+    //         pFree->pNext->pPrev = pFree;
+    //     }
+    // }
     return 0;
 }

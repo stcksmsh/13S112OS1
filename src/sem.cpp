@@ -32,8 +32,7 @@ void _sem::close(sem_t id){
 }
 
 void _sem::wait(sem_t id){
-    id->value--;
-    if(id->value < 0){
+    if(id->value == 0){
         blockedThreadList* pNewBlock = (blockedThreadList*)HeapManager::getInstance().heapAllocate((sizeof(blockedThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
         pNewBlock->pThread = _thread::currentThread;
         pNewBlock->pNext = 0;
@@ -46,12 +45,13 @@ void _sem::wait(sem_t id){
         }
         _thread::currentThread->setBlocked(true);
         _thread::dispatch();
+    }else{
+        id->value--;
     }
 }
 
 void _sem::signal(sem_t id){
-    id->value++;
-    if(id->value <= 0){
+    if(id->value == 0){
         blockedThreadList* pUnblock = id->blockHead;
         id->blockHead = id->blockHead->pNext;
         if(id->blockHead == 0){
@@ -61,5 +61,7 @@ void _sem::signal(sem_t id){
         HeapManager::getInstance().heapFree(pUnblock);
         thread_t t = pUnblock->pThread;
         Scheduler::put(t);
+    }else{
+        id->value++;
     }
 }
