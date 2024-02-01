@@ -1,7 +1,7 @@
-#include "../h/syscall_cpp.hpp"
+#include "../h/syscall_cpp.h"
 
-#include "../test_h/buffer_CPP_API.hpp"
-#include "../test_h/printing.hpp"
+#include "../test_h/buffer_CPP_API.h"
+#include "../test_h/printing.h"
 
 static Semaphore *waitForAll;
 
@@ -135,6 +135,7 @@ void testConsumerProducer() {
 
     for (int i = 0; i <= threadNum; i++) {
         waitForAll->wait();
+        putc('x');
     }
     putc('.');
 

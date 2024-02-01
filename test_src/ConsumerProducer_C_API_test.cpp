@@ -1,7 +1,7 @@
 
 #include "../h/syscall_c.h"
 
-#include "../test_h/buffer.hpp"
+#include "../test_h/buffer.h"
 
 static sem_t waitForAll;
 
@@ -87,6 +87,7 @@ void producerConsumer_C_API() {
     printString("Unesite velicinu bafera?\n");
     getString(input, 30);
     n = stringToInt(input);
+
 
     printString("Broj proizvodjaca "); printInt(threadNum);
     printString(" i velicina bafera "); printInt(n);

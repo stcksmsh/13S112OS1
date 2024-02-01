@@ -1,4 +1,4 @@
-#include "../test_h/printing.hpp"
+#include "../test_h/printing.h"
 
 #define LEVEL_1_IMPLEMENTED 1
 #define LEVEL_2_IMPLEMENTED 1
@@ -7,26 +7,26 @@
 
 #if LEVEL_2_IMPLEMENTED == 1
 // TEST 1 (zadatak 2, niti C API i sinhrona promena konteksta)
-#include "../test_h/Threads_C_API_test.hpp"
+#include "../test_h/Threads_C_API_test.h"
 // TEST 2 (zadatak 2., niti CPP API i sinhrona promena konteksta)
-#include "../test_h/Threads_CPP_API_test.hpp"
+#include "../test_h/Threads_CPP_API_test.h"
 // TEST 7 (zadatak 2., testiranje da li se korisnicki kod izvrsava u korisnickom rezimu)
-#include "../test_h/System_Mode_test.hpp"
+#include "../test_h/System_Mode_test.h"
 #endif
 
 #if LEVEL_3_IMPLEMENTED == 1
 // TEST 3 (zadatak 3., kompletan C API sa semaforima, sinhrona promena konteksta)
-#include "../test_h/ConsumerProducer_C_API_test.hpp"
+#include "../test_h/ConsumerProducer_C_API_test.h"
 // TEST 4 (zadatak 3., kompletan CPP API sa semaforima, sinhrona promena konteksta)
-#include "../test_h/ConsumerProducer_CPP_Sync_API_test.hpp"
+#include "../test_h/ConsumerProducer_CPP_Sync_API_test.h"
 #endif
 
 #if LEVEL_4_IMPLEMENTED == 1
-// TEST 5 (zadatak 4., thread_sleep test C API)
-#include "../test_h/ThreadSleep_C_API_test.hpp"
+// TEST 5 (zadatak 4., time_sleep test C API)
+#include "../test_h/ThreadSleep_C_API_test.h"
 // TEST 6 (zadatak 4. CPP API i asinhrona promena konteksta)
-#include "../test_h/ConsumerProducer_CPP_API_test.hpp"
-#include "../test_h/System_Mode_test.hpp"
+#include "../test_h/ConsumerProducer_CPP_API_test.h"
+#include "../test_h/System_Mode_test.h"
 
 #endif
 
@@ -34,7 +34,9 @@ void userMain() {
     printString("Unesite broj testa? [1-7]\n");
     int test = getc() - '0';
     getc(); // Enter posle broja
-    putc(test);
+    // int test = 3;
+    putc('0' + test);
+    putc('\n');
     if ((test >= 1 && test <= 2) || test == 7) {
         if (LEVEL_2_IMPLEMENTED == 0) {
             printString("Nije navedeno da je zadatak 2 implementiran\n");
@@ -84,7 +86,7 @@ void userMain() {
         case 5:
 #if LEVEL_4_IMPLEMENTED == 1
             testSleeping();
-            printString("TEST 5 (zadatak 4., thread_sleep test C API)\n");
+            printString("TEST 5 (zadatak 4., time_sleep test C API)\n");
 #endif
             break;
         case 6:

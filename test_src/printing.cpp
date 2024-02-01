@@ -2,7 +2,7 @@
 // Created by os on 5/18/22.
 //
 
-#include "../test_h/printing.hpp"
+#include "../test_h/printing.h"
 
 uint64 lockPrint = 0;
 

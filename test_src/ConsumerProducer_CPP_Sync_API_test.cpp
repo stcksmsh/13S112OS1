@@ -1,6 +1,6 @@
-#include "../h/syscall_cpp.hpp"
+#include "../h/syscall_cpp.h"
 
-#include "../test_h/buffer_CPP_API.hpp"
+#include "../test_h/buffer_CPP_API.h"
 
 static Semaphore* waitForAll;
 

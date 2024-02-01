@@ -1,95 +1,103 @@
-#include "../h/syscall_cpp.hpp"
-#include "../h/thread.hpp"
-#include "../h/scheduler.hpp"
+/**
+ * @file syscall.cpp.cpp
+ * @author stcksmsh (vukicevickosta@gmail.com)
+ * @brief implementation of the C++ API for the system calls
+ * @version 0.1
+ * @date 2024-01-28
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 
-void *  operator new(size_t size){
-    size = (size + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
-    __asm__ volatile ("mv a1,%0" : : "r" (size)); /// size in blocks
-    __asm__ volatile("li a0, 0x1"); /// syscall code
-    __asm__ volatile ("ecall");
-    uint64 returnValue;
-    __asm__ volatile("mv %0, a0" : "=r" (returnValue)); /// get address
-    return (void*) returnValue;
+#include "syscall_cpp.h"
+#include "syscall_c.h"
+#include "sched.h"
+#include "thread.h"
+#include "sem.h"
+
+void* operator new (size_t nSize){
+    return mem_alloc(nSize);
 }
 
-void operator delete(void* address){
-    __asm__ volatile ("mv a1,%0" : : "r" (address));
-    __asm__ volatile("li a0, 0x2");
-    __asm__ volatile ("ecall");
-    uint64 returnValue;
-    __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+void  operator delete (void* pAddress){
+    mem_free(pAddress);
 }
 
-Thread::Thread(void ( * body)(void * ), void *  arg){
-    handle = nullptr;
-    thread_createCPP(&handle, body, arg);
+Thread::Thread (void (*body)(void*), void* arg): body(body), arg(arg){
+    this->body = body;
+    this->arg = arg;
 }
 
-Thread::~Thread(){
-    handle->setFinished(true);
-    delete handle;
+Thread::~Thread (){
+    mem_free(myHandle);
 }
 
-int Thread::start(){
-    Scheduler::put(handle);
-    return 0;
+int Thread::start (){
+    return thread_create(&myHandle, body, arg);
 }
 
 void Thread::join(){
-    __asm__ volatile("mv a1, %0" : : "r"((uint64)handle));
-    __asm__ volatile("li a0, 0x14");
-    __asm__ volatile("ecall");
+    thread_join(myHandle);
 }
 
-void Thread::dispatch() {
+void Thread::dispatch (){
     thread_dispatch();
 }
 
-int Thread::sleep(time_t duration){
-    return (int)thread_sleep(duration);
+int Thread::sleep (time_t time){
+    return time_sleep(time);
 }
 
-Thread::Thread() {
-    thread_create(&handle, Thread::wrapper, (void*)this);
+void threadRun(void* arg){
+    Thread* thread = (Thread*)arg;
+    thread->run();
 }
 
-void Thread::wrapper(void *thread) {
-    ((Thread*)thread)->run();
+Thread::Thread (){
+    body = &threadRun;
+    arg = this;
 }
 
-Semaphore::Semaphore(unsigned init) {
-    sem_open(&handle, init);
+
+
+Semaphore::Semaphore (unsigned init){
+    sem_open(&myHandle, init);
 }
 
-Semaphore::~Semaphore() {
-    sem_close(handle);
+Semaphore::~Semaphore (){
+    sem_close(myHandle);
 }
 
-int Semaphore::wait() {
-    return sem_wait(handle);
+int Semaphore::wait (){
+    return sem_wait(myHandle);
 }
 
-int Semaphore::signal() {
-    return sem_signal(handle);
+int Semaphore::signal (){
+    return sem_signal(myHandle);
 }
 
-PeriodicThread::PeriodicThread(time_t period) : Thread(){
+void PeriodicThread::terminate (){
+    /// @todo implement this
+}
+
+PeriodicThread::PeriodicThread (time_t period): period(period){
     this->period = period;
+    active = true;
 }
 
-void PeriodicThread::run(){
-    while(true){
+void PeriodicThread::run (){
+    while(1){
         periodicActivation();
         sleep(period);
     }
 }
 
-char Console::getc()
-{
-    return getc();
+
+
+void Console::putc (char c){
+    putc(c);
 }
 
-void Console::putc(char c)
-{
-    putc(c);
+char Console::getc (){
+    return getc();
 }

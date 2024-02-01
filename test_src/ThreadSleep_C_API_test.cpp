@@ -1,6 +1,6 @@
 #include "../h/syscall_c.h"
 
-#include "../test_h/printing.hpp"
+#include "../test_h/printing.h"
 
 static volatile bool finished[2];
 
@@ -12,7 +12,7 @@ static void sleepyRun(void *arg) {
         printString("Hello ");
         printInt(sleep_time);
         printString(" !\n");
-        thread_sleep(sleep_time);
+        time_sleep(sleep_time);
         putc('.');
     }
     finished[sleep_time/100-1] = true;
@@ -21,7 +21,7 @@ static void sleepyRun(void *arg) {
 void testSleeping() {
     printString("Starting...\n");
     const int sleepy_thread_count = 2;
-    time_t sleep_times[sleepy_thread_count] = {100, 200};
+    time_t sleep_times[sleepy_thread_count] = {200, 400};
     thread_t sleepyThread[sleepy_thread_count];
 
     printString("Creating threads: ");

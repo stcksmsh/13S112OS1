@@ -1,4 +1,4 @@
-#include "../test_h/buffer_CPP_API.hpp"
+#include "../test_h/buffer_CPP_API.h"
 
 BufferCPP::BufferCPP(int _cap) : cap(_cap + 1), head(0), tail(0) {
     buffer = (int *)mem_alloc(sizeof(int) * cap);

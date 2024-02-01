@@ -1,7 +1,7 @@
 
 #include "../h/syscall_c.h"
 
-#include "../test_h/printing.hpp"
+#include "../test_h/printing.h"
 
 static volatile bool finishedA = false;
 static volatile bool finishedB = false;
