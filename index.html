@@ -15,29 +15,30 @@
         
             <div class="logo">
                 <img src="logo.png" alt="logo">
-                <h1>A simple RISC-V kernel</h1>
+                <h1>RISC-V operating system projects</h1>
             </div>
 
             <div class="wrapper">
                 <div class="left">
                     <div class="accordion">
                         <div class="contentBx">
-                            <div class="label">What features does it have?</div>
+                            <div class="label">What features does the first project have?</div>
                             <div class="content">
-                                <p>Heap allocation and deallocation, multithreading, semaphores, thread sleep and join, console output and input</p>
+                                <p>Heap allocation and deallocation, multithreading, semaphores, thread sleep and join, console output and input, preemptive scheduling, and time sharing. It is a full operating system that can run a freestanding program linked with it.</p>
                             </div>
                         </div>
                         <div class="contentBx">
-                            <div class="label">What is it lacking?</div>
+                            <div class="label">What features does the second project have?</div>
                             <div class="content">
-                                <p> It does not support multoprocesor systems, nor does it have a file system. It does not have a shell, and is not extremely efficient. It is not a full operating system, but rather a kernel that can be used to run a freestanding program linked with it.
-                                </p>
+                                <p>It is an extension of MIT's xv6 operating system. It has page swapping and thrashing detection and prevention.</p>
                             </div>
                         </div>
                         <div class="contentBx">
                             <div class="label">What's next?</div>
                             <div class="content">
-                                <p>In the year following I have enrolled in Operating Systems 2, and that project can be found <a href="https://stcksmsh.github.io/13S113OS2/"> here</a></p>
+                                <p>
+                                    I am currently working on a full operating system for the ARM8 architecture, made specifically for the Raspberry PI 4B. Currently it is in its infancy, and you can find the source code for it <a href="https://github.com/stcksmsh/StrawberryOS/"> here</a>.
+                                </p>
                             </div>
                         </div>
                         <!-- <div class="contentBx">
@@ -49,11 +50,11 @@
                     </div>
                     <div class="visit">
                         <div class="visit-me">
-                            <h1>Course information</h1>
-                            <p>If you are interested in the course here are some helpfull links</p>
+                            <h1>Source code</h1>
+                            <p>The source codes can be found below:</p>
                             <div class="btn-box">
-                                <a href="https://www.etf.bg.ac.rs/fis/karton_predmeta/13S112OS1-2013">Course description</a>
-                                <a href="http://os.etf.rs/OS1/index.htm">Course webpage</a>
+                                <a href="https://github.com/stcksmsh/13S112OS1">Operating Systems 1</a>
+                                <a href="https://github.com/stcksmsh/13S113OS2">Operating Systems 2</a>
                             </div>
                         </div>
                     </div>
@@ -61,14 +62,15 @@
 
                 <div class="right">
                     <div class="section flex-column">
-                        <h1>Project kernel for the Operating Systems 1 class</h1>
+                        <h1>Projects for the Operating Systems 1 and 2 courses</h1>
                         <br>
                         <br>
                         <p>
                             <img src="logo.png" alt="img">
-                            Kernel realised in RISC-V made as the final project for the 13S112OS1 class during my second year of studies at the School of Electrical Engineering, University of Belgrade.
-                            Works on monoprocessor systems and has full support for memory management, multithreading, semaphores, thread sleep and join functionality. Used to run a freestanding program linked with the kernel.
-
+                                During my 4th and 5th semester, I have enrolled in the Operating Systems 1 and 2 courses. 
+                                Both courses had a project that was to be done for the RISC-V architecture.
+                                The OS1 project was to create a 'simple' single processor microkernel that would support multithreading, memory management, console I/O and time sharing.
+                                The OS2 project was to add page swapping and thrashing detection/prevention functionality for MIT's educational <a href="https://github.com/mit-pdos/xv6-public">xv6</a> operating system. 
                         </p>
                     </div>
                 </div>
