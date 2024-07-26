@@ -76,8 +76,16 @@ int Semaphore::signal (){
     return sem_signal(myHandle);
 }
 
+int Semaphore::trywait (){
+    return sem_trywait(myHandle);
+}
+
+int Semaphore::timedwait (time_t time){
+    return sem_timedwait(myHandle, time);
+}
+
 void PeriodicThread::terminate (){
-    /// @todo implement this
+    myHandle->setClosed(true);
 }
 
 PeriodicThread::PeriodicThread (time_t period): period(period){

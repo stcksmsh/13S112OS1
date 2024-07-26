@@ -20,7 +20,6 @@
 #include "consoleManager.h"
 
 #include "../test_h/userMain.h"
-#include "../test_h/ThreadSleep_C_API_test.h"
 
 
 extern "C" void trap();
@@ -40,9 +39,10 @@ void Kernel::initialise(){
 }
 
 void test(void* arg){
+    // usermain(arg);
     userMain();
-    // testSleeping();
 }
+
 
 void consoleConsumer(void* arg){
     ConsoleManager::outputHandler();
@@ -53,7 +53,8 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_t kernelThread;
     
-    _thread::create(&kernelThread, 0, 0, mem_alloc(DEFAULT_STACK_SIZE), false);
+    void* stack = reinterpret_cast<void*>(reinterpret_cast<uint64>(mem_alloc(DEFAULT_STACK_SIZE)) + DEFAULT_STACK_SIZE - 1);
+    _thread::create(&kernelThread, 0, 0, stack, false);
     _thread::currentThread = kernelThread;
 
 
@@ -66,13 +67,13 @@ Kernel::EXIT_CODE Kernel::run(){
     /// enable software interrupts
     __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
 
+
     thread_t userThread;
     thread_create(&userThread, test, 0);
-    // thread_create(&userThread, usermain, 0);
     while(!userThread->finished){
         thread_dispatch();
-        // ConsoleManager::putc('K');
     }
+
 
     return EXIT_SUCCESS;
 }

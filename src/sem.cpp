@@ -14,7 +14,7 @@
 #include "sched.h"
 #include "heapManager.h"
 #include "thread.h"
-#include "consoleManager.h"
+
 
 void _sem::open(_sem** handle, unsigned init){
     (*handle) = (sem_t)HeapManager::getInstance().heapAllocate((sizeof(_sem) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
@@ -32,7 +32,7 @@ void _sem::close(sem_t id){
 }
 
 void _sem::wait(sem_t id){
-    if(id->value == 0){
+    if(--id->value < 0){
         blockedThreadList* pNewBlock = (blockedThreadList*)HeapManager::getInstance().heapAllocate((sizeof(blockedThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
         pNewBlock->pThread = _thread::currentThread;
         pNewBlock->pNext = 0;
@@ -45,13 +45,12 @@ void _sem::wait(sem_t id){
         }
         _thread::currentThread->setBlocked(true);
         _thread::dispatch();
-    }else{
-        id->value--;
     }
+
 }
 
 void _sem::signal(sem_t id){
-    if(id->value == 0){
+    if(++id->value <= 0){
         blockedThreadList* pUnblock = id->blockHead;
         id->blockHead = id->blockHead->pNext;
         if(id->blockHead == 0){
@@ -61,7 +60,14 @@ void _sem::signal(sem_t id){
         HeapManager::getInstance().heapFree(pUnblock);
         thread_t t = pUnblock->pThread;
         Scheduler::put(t);
+    }
+}
+
+int _sem::trywait(sem_t id){
+    if(id->value <= 0){
+        return 0;
     }else{
-        id->value++;
+        id->value--;
+        return 1;
     }
 }

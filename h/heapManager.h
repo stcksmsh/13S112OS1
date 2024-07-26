@@ -56,7 +56,7 @@ private:
         size_t nSize;
         /// @brief magic number to check if the block is valid
         uint32 u32Magic;
-    #define HEAP_BLOCK_MAGIC	0xDEADC0DE
+    #define HEAP_BLOCK_MAGIC	0x1c0ffee1
     }PACKED;
 
     /// @brief pointer to the first free section in the heap

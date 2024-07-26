@@ -15,7 +15,7 @@ static void sleepyRun(void *arg) {
         time_sleep(sleep_time);
         putc('.');
     }
-    finished[sleep_time/100-1] = true;
+    finished[sleep_time/200-1] = true;
 }
 
 void testSleeping() {

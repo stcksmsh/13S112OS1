@@ -11,7 +11,6 @@
 
 #include "syscall_c.h"
 #include "consoleManager.h"
-
 void* mem_alloc ( size_t nSize ){
     /// round nSize to the next multiple of MEM_BLOCK_SIZE and then divide by MEM_BLOCK_SIZE
     nSize = (nSize + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE;
@@ -106,6 +105,25 @@ int sem_wait ( sem_t handle ) {
 int sem_signal ( sem_t handle ) {
     __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
     __asm__ volatile("li a0,0x24");
+    __asm__ volatile("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+    return (int)returnValue;
+}
+
+int sem_trywait ( sem_t handle ) {
+    __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
+    __asm__ volatile("li a0,0x26");
+    __asm__ volatile("ecall");
+    uint64 returnValue;
+    __asm__ volatile("mv %0, a0" : "=r" (returnValue));
+    return (int)returnValue;
+}
+
+int sem_timedwait ( sem_t handle, time_t duration ) {
+    __asm__ volatile("mv a1,%0"::"r"((uint64)handle));
+    __asm__ volatile("mv a2,%0"::"r"((uint64)duration));
+    __asm__ volatile("li a0,0x25");
     __asm__ volatile("ecall");
     uint64 returnValue;
     __asm__ volatile("mv %0, a0" : "=r" (returnValue));

@@ -24,7 +24,10 @@ HeapManager::~HeapManager(){
 }
 
 void HeapManager::init(uint64 nStart, size_t nEnd){
-    assert(nEnd - nStart > MEM_BLOCK_SIZE);
+    /// Align the start address
+    #ifdef CHECK_CONDITIONS
+        assert(nEnd - nStart > MEM_BLOCK_SIZE);
+    #endif
     m_pHead = reinterpret_cast<HeapFreeSectionHeader*>(nStart);
     m_pHead->u32Magic = HEAP_BLOCK_MAGIC;
     /// -1 because we need to store the header while keeping alignment
@@ -37,7 +40,9 @@ size_t HeapManager::getHeapFreeMemory(){
     size_t nFreeMemory = 0;
     HeapFreeSectionHeader* pCurrent = m_pHead;
     while(pCurrent != 0){
-        assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
+        #ifdef CHECK_CONDITIONS
+            assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
+        #endif
         nFreeMemory += pCurrent->nSize;
         pCurrent = pCurrent->pNext;
     }
@@ -47,29 +52,35 @@ size_t HeapManager::getHeapFreeMemory(){
 void* HeapManager::heapAllocate(size_t nSize){
     HeapFreeSectionHeader* pCurrent = m_pHead;
     while(pCurrent != 0){
-        assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
-        if(pCurrent->nSize >= nSize){
-            /// + 1 because we need to store the header, and we don't want to split the block to keep alignment
-            if(pCurrent->nSize > nSize + 1){
-                HeapFreeSectionHeader* pNew = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uint64>(pCurrent) + (nSize + 1) * MEM_BLOCK_SIZE);
-                pNew->u32Magic = HEAP_BLOCK_MAGIC;
-                pNew->nSize = pCurrent->nSize - nSize - 1;
-                pNew->pNext = pCurrent->pNext;
-                pNew->pPrev = pCurrent;
-                if(pCurrent->pNext != 0){
-                    pCurrent->pNext->pPrev = pNew;
-                }
-                pCurrent->pNext = pNew;
-                pCurrent->nSize = nSize;
+        #ifdef CHECK_CONDITIONS
+            assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
+        #endif
+        if(pCurrent->nSize > nSize + 1){
+            HeapFreeSectionHeader* pNew = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uint64>(pCurrent) + (nSize + 1) * MEM_BLOCK_SIZE);
+            pNew->nSize = pCurrent->nSize - nSize - 1;
+            pNew->pNext = pCurrent->pNext;
+            pNew->pPrev = pCurrent->pPrev;
+            pNew->u32Magic = HEAP_BLOCK_MAGIC;
+            if(pCurrent->pNext != 0){
+                pCurrent->pNext->pPrev = pNew;
+            }
+            if(pCurrent->pPrev != 0){
+                pCurrent->pPrev->pNext = pNew;
             }
             if(pCurrent == m_pHead){
-                m_pHead = pCurrent->pNext;
+                m_pHead = pNew;
             }
+            pCurrent->nSize = nSize;
+            return reinterpret_cast<void*>(reinterpret_cast<uint64>(pCurrent) + MEM_BLOCK_SIZE);
+        }else if(pCurrent->nSize >= nSize){
             if(pCurrent->pPrev != 0){
                 pCurrent->pPrev->pNext = pCurrent->pNext;
             }
             if(pCurrent->pNext != 0){
                 pCurrent->pNext->pPrev = pCurrent->pPrev;
+            }
+            if(pCurrent == m_pHead){
+                m_pHead = pCurrent->pNext;
             }
             return reinterpret_cast<void*>(reinterpret_cast<uint64>(pCurrent) + MEM_BLOCK_SIZE);
         }
@@ -82,16 +93,20 @@ void* HeapManager::heapAllocate(size_t nSize){
 int HeapManager::heapFree(void* pAddress){
     HeapFreeSectionHeader* pFree = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uint64>(pAddress) - MEM_BLOCK_SIZE);
     
-    assert(pFree->u32Magic == HEAP_BLOCK_MAGIC);
+    #ifdef CHECK_CONDITIONS
+        assert(pFree->u32Magic == HEAP_BLOCK_MAGIC);
+    #endif
     HeapFreeSectionHeader* pInsert = m_pHead;
 
-    if(pInsert == 0 || pInsert->pNext >= pAddress){
-        pFree->pNext = m_pHead;
-        m_pHead->pPrev = pFree;
+    if(pInsert == 0 || pInsert >= pAddress){
+        pFree->pNext = pInsert;
+        pInsert->pPrev = pFree;
         m_pHead = pFree;
     }else{
         while(pInsert->pNext != 0 && pInsert->pNext < pAddress){
-            assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
+            #ifdef CHECK_CONDITIONS
+                assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
+            #endif
             pInsert = pInsert->pNext;
         }
 
@@ -103,23 +118,22 @@ int HeapManager::heapFree(void* pAddress){
         pInsert->pNext = pFree;
     }
 
-
-
-    // /// merge with previous block if possible
-    // if(pFree->pPrev != 0 && reinterpret_cast<uint64>(pFree->pPrev) + (pFree->pPrev->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree)){
-    //     pFree->pPrev->nSize += pFree->nSize + 1;
-    //     pFree->pPrev->pNext = pFree->pNext;
-    //     if(pFree->pNext != 0){
-    //         pFree->pNext->pPrev = pFree->pPrev;
-    //     }pFree = pFree->pPrev;
-    // }
-    // /// merge with next block if possible
-    // if(pFree->pNext != 0 && reinterpret_cast<uint64>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree->pNext)){
-    //     pFree->nSize += pFree->pNext->nSize + 1;
-    //     pFree->pNext = pFree->pNext->pNext;
-    //     if(pFree->pNext != 0){
-    //         pFree->pNext->pPrev = pFree;
-    //     }
-    // }
+    /// merge with previous block if possible
+    if(pFree->pPrev != 0 && reinterpret_cast<uint64>(pFree->pPrev) + (pFree->pPrev->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree)){
+        pFree->pPrev->nSize += pFree->nSize + 1;
+        pFree->pPrev->pNext = pFree->pNext;
+        if(pFree->pNext != 0){
+            pFree->pNext->pPrev = pFree->pPrev;
+        }
+        pFree = pFree->pPrev;
+    }
+    /// merge with next block if possible
+    if(pFree->pNext != 0 && reinterpret_cast<uint64>(pFree) + (pFree->nSize + 1) * MEM_BLOCK_SIZE == reinterpret_cast<uint64>(pFree->pNext)){
+        pFree->nSize += pFree->pNext->nSize + 1;
+        pFree->pNext = pFree->pNext->pNext;
+        if(pFree->pNext != 0){
+            pFree->pNext->pPrev = pFree;
+        }
+    }
     return 0;
 }

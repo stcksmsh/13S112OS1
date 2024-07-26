@@ -6,27 +6,6 @@
 #include "sched.h"
 #include "assert.h"
 
-sem_t sem1, sem2;
-
-char c;
-
-void thread_test_1(void* args){
-    putc('1');
-    putc('s');
-    if(c != 's')time_sleep(60);
-    putc('1');
-    if(c == 's')sem_signal(sem1);
-    putc('S');
-}
-
-void thread_test_2(void* args){
-    putc('2');
-    putc('s');
-    if(c != 's')time_sleep(30);
-    putc('2');
-    putc('S');
-    if(c == 's')sem_signal(sem2);
-}
 
 void memTest(){
     uint64 freeMemory = HeapManager::getInstance().getHeapFreeMemory();
@@ -115,11 +94,36 @@ void memTest(){
     putc('\n');
 }
 
+sem_t sem1, sem2;
+
+char c;
+
+void thread_test_1(void* args){
+    putc('1');
+    putc('s');
+    if(c == 't')time_sleep(60);
+    putc('1');
+    if(c == 's')sem_signal(sem1);
+    putc('S');
+}
+
+void thread_test_2(void* args){
+    putc('2');
+    putc('s');
+    if(c == 't')time_sleep(30);
+    putc('2');
+    if(c == 's')sem_signal(sem2);
+    putc('S');
+}
+
+
 void usermain(void* arg){
+    c = 't';
+    if(c == 'm'){
+        memTest();
+        return;
+    }
     putc('0');
-    // memTest();
-    c = '-';
-    // putc(c);
     thread_t t1, t2;
     if(c == 's'){
         sem_open(&sem1, 0);
@@ -129,9 +133,9 @@ void usermain(void* arg){
     thread_create(&t2, thread_test_2, 0);
     if(c == 's')sem_wait(sem1);
     putc('3');
-    if(c != 's')thread_join(t2);
+    if(c == 't')thread_join(t2);
     putc('4');
-    if(c != 's')thread_join(t1);
+    if(c == 't')thread_join(t1);
     if(c == 's')sem_wait(sem2);
     putc('5');
     if(c == 's')sem_close(sem1);

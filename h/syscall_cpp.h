@@ -28,8 +28,8 @@ public:
 protected:
     Thread ();
     virtual void run () {}
-private:
     thread_t myHandle;
+private:
     void (*body)(void*);
     void* arg;
 
@@ -42,6 +42,8 @@ public:
     virtual ~Semaphore ();
     int wait ();
     int signal ();
+    int trywait ();
+    int timedwait (time_t);
 private:
     sem_t myHandle;
 };

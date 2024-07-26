@@ -107,6 +107,7 @@ void ConsumerSync::consumer(void *arg) {
     }
 
     data->wait->signal();
+    printString("Thread "); printInt(data->id); printString(" end.\n");
 }
 
 void producerConsumer_CPP_Sync_API() {

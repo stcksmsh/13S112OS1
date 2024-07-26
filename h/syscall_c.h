@@ -44,6 +44,10 @@ int sem_wait ( sem_t );
 
 int sem_signal ( sem_t );
 
+int sem_timedwait ( sem_t, time_t );
+
+int sem_trywait ( sem_t );
+
 char getc();
 
 void putc( char chr );

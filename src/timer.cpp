@@ -15,7 +15,6 @@
 #include "assert.h"
 #include "thread.h"
 
-#include "consoleManager.h"
 
 Timer* Timer::instance = 0;
 
@@ -52,12 +51,12 @@ void Timer::tick(){
 }
 
 int Timer::sleep(time_t timeToSleep){
+
     thread_t thread = _thread::currentThread;
     threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)HeapManager::getInstance().heapAllocate(sizeof(threadSleepWrapper));
     newSleepingThread->thread = thread;
     newSleepingThread->wakeUpTime = time + timeToSleep;
     newSleepingThread->next = 0;
-
     if(sleepingHead == 0){
         sleepingHead = newSleepingThread;
     }else{

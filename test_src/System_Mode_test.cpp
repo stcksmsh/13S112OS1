@@ -19,7 +19,7 @@ static void workerBodyA(void* arg) {
         printString("A: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 100; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
-            // thread_dispatch();
+            thread_dispatch();
         }
     }
     printString("A finished!\n");
@@ -31,10 +31,9 @@ static void workerBodyB(void* arg) {
         printString("B: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 100; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
-            // thread_dispatch();
+            thread_dispatch();
         }
         if (i == 10) {
-            // testUser();
             asm volatile("csrr t6, sepc");
         }
     }

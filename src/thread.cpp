@@ -13,8 +13,9 @@
 #include "thread.h"
 #include "assert.h"
 #include "sched.h"
-#include "consoleManager.h"
 #include "heapManager.h"
+
+#include "console.h"
 
 thread_t _thread::currentThread = 0;
 uint32 _thread::nextID = 0;
@@ -53,8 +54,9 @@ _thread::_thread(func function, void* arg){
 }
 
 void popSppSpie(){
+    /// TODO: threads are all in supervisor mode now, THIS IS A BUG
     __asm__ volatile ("csrw sepc, ra");
-    __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    // __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
     __asm__ volatile ("sret");
 }
 
@@ -115,9 +117,6 @@ int _thread::create(thread_t* thread, func function, void* arg, void* stack, boo
     (*thread)->context.pc = (uint64)wrapper;
 
     (*thread)->stackStart = stack;
-    // ConsoleManager::putc('C');
-    // ConsoleManager::putc((*thread)->ID + '0');
-    // ConsoleManager::putc('\n');
     if(start){
         Scheduler::put(*thread);
     }
@@ -144,9 +143,6 @@ void _thread::join(thread_t thread){
 }
 
 int _thread::tick(){
-    // if(currentThread->kernel){
-    //     return 0;
-    // }
     if(currentThread->blocked){
         return -1;
     }
@@ -161,7 +157,6 @@ int _thread::tick(){
     }
     timeLeft --;
     if(timeLeft == 0){
-        // putc('D');
         dispatch();
     }
     return 0;
@@ -203,52 +198,4 @@ void _thread::dispatch(){
     currentThread =  Scheduler::get();
     if(currentThread == oldThread)return;
     contextSwitch(&(oldThread->context), &(currentThread->context));
-}
-
-void _thread::contextSwitch(contextWrapper *oldContext, contextWrapper *newContext){
-
-
-    // if(oldContext != 0){
-        // oldContext->pc = pc;
-        __asm__ volatile ("sd ra, 0 * 8(a0)");
-        __asm__ volatile ("sd sp, 1 * 8(a0)");
-
-        __asm__ volatile ("sd s0, 2 * 8(a0)");
-        __asm__ volatile ("sd s1, 3 * 8(a0)");
-        __asm__ volatile ("sd s2, 4 * 8(a0)");
-        __asm__ volatile ("sd s3, 5 * 8(a0)");
-        __asm__ volatile ("sd s4, 6 * 8(a0)");
-        __asm__ volatile ("sd s5, 7 * 8(a0)");
-        __asm__ volatile ("sd s6, 8 * 8(a0)");
-        __asm__ volatile ("sd s7, 9 * 8(a0)");
-        __asm__ volatile ("sd s8, 10 * 8(a0)");
-        __asm__ volatile ("sd s9, 11 * 8(a0)");
-        __asm__ volatile ("sd s10, 12 * 8(a0)");
-        __asm__ volatile ("sd s11, 13 * 8(a0)");
-        
-        __asm__ volatile("csrr s0, sstatus");
-        __asm__ volatile ("sd s0, 14 * 8(a0)");
-    // }
-    
-    
-    __asm__ volatile ("ld ra, 0*8(a1)");
-    __asm__ volatile ("ld sp, 1*8(a1)");
-
-    __asm__ volatile ("ld s0, 14 * 8(a1)");
-    __asm__ volatile("csrw sstatus, s0");
-
-    __asm__ volatile ("ld s0, 2 * 8(a1)");
-    __asm__ volatile ("ld s1, 3 * 8(a1)");
-    __asm__ volatile ("ld s2, 4 * 8(a1)");
-    __asm__ volatile ("ld s3, 5 * 8(a1)");
-    __asm__ volatile ("ld s4, 6 * 8(a1)");
-    __asm__ volatile ("ld s5, 7 * 8(a1)");
-    __asm__ volatile ("ld s6, 8 * 8(a1)");
-    __asm__ volatile ("ld s7, 9 * 8(a1)");
-    __asm__ volatile ("ld s8, 10 * 8(a1)");
-    __asm__ volatile ("ld s9, 11 * 8(a1)");
-    __asm__ volatile ("ld s10, 12 * 8(a1)");
-    __asm__ volatile ("ld s11, 13 * 8(a1)");
-
-    return;
 }

@@ -27,7 +27,7 @@ static void workerBodyA(void* arg) {
 
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 1000; j++) {
+        for (uint64 j = 0; j < 10000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
@@ -40,7 +40,7 @@ static void workerBodyA(void* arg) {
 static void workerBodyB(void* arg) {
     for (uint64 i = 0; i < 16; i++) {
         printString("B: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 1000; j++) {
+        for (uint64 j = 0; j < 10000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }

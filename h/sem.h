@@ -28,6 +28,8 @@ public:
 
     static void signal(_sem*);
 
+    static int trywait(_sem*);
+
 private:
 
     struct blockedThreadList{
@@ -35,7 +37,7 @@ private:
         blockedThreadList* pNext;
     } *blockHead, *blockTail;
 
-    unsigned value;
+    int32 value;
 
 };
 

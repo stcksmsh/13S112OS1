@@ -17,4 +17,9 @@
 typedef uint64 uintptr_t;
 typedef unsigned long time_t;
 
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long int int64;
+
 #endif // TYPES_H

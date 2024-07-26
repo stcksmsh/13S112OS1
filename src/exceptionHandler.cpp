@@ -16,7 +16,6 @@
 #include "timer.h"
 #include "assert.h"
 
-// #include "console.h"
 
 extern "C" void exceptionHandler(){
     uint64 a0, a1, a2, a3, a4;
@@ -71,14 +70,22 @@ extern "C" void exceptionHandler(){
             case 0x24: /// sem_signal
                 _sem::signal((sem_t)a1);
                 break;
+            case 0x25: /// sem_timedwait
+
+                break;
+            case 0x26: /// sem_trywait
+                returnVal = _sem::trywait((sem_t)a1);
+                break;
             case 0x31: /// time_sleep
                 returnVal = Timer::getInstance().sleep(a1);
                 break;
             case 0x41:
                 // returnVal = __getc
                 returnVal = ConsoleManager::getc();
+                // returnVal = __getc();
                 break;
             case 0x42:
+                // ConsoleManager::putc(a1);
                 ConsoleManager::putc(a1);
                 break;
         }
@@ -124,6 +131,7 @@ extern "C" void exceptionHandler(){
                 ConsoleManager::putc('A' + tmp - 10);
             }
         }
+        ConsoleManager::putc('\n');
         assert(false);
     }
     else if (scause == 0x0000000000000007UL){   // illegal write operation
@@ -163,7 +171,8 @@ extern "C" void exceptionHandler(){
             }else{
                 ConsoleManager::putc('A' + tmp - 10);
             }
-        }        
+        }
+        ConsoleManager::putc('\n');
         assert(false);
     }
     else if(scause == 0x8000000000000001UL){    /// timer
@@ -176,7 +185,11 @@ extern "C" void exceptionHandler(){
     {   
         int irq = plic_claim();
         if(irq == CONSOLE_IRQ)ConsoleManager::inputHandler();
+        // console_handler();
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
+        __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
+        __asm__ volatile("csrw sstatus, %0" :: "r"(sstatus));
+        __asm__ volatile("csrc sip, %0" :: "r"(1 << 9));
     }
 }
