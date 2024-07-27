@@ -40,7 +40,8 @@ void Kernel::initialise(){
 
 void test(void* arg){
     // usermain(arg);
-    userMain();
+    usermainCPP(arg);
+    // userMain();
 }
 
 

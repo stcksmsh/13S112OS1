@@ -3,4 +3,6 @@
 
 void usermain(void* arg);
 
+void usermainCPP(void* arg);
+
 #endif // USERMAIN_H

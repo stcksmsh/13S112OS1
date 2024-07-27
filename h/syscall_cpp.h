@@ -27,7 +27,7 @@ public:
     static int sleep (time_t);
 protected:
     Thread ();
-    virtual void run () {}
+    virtual void run ();
     thread_t myHandle;
 private:
     void (*body)(void*);

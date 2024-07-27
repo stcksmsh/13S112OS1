@@ -49,16 +49,35 @@ int Thread::sleep (time_t time){
 }
 
 void threadRun(void* arg){
+    putc('1');
     Thread* thread = (Thread*)arg;
+    putc('2');
     thread->run();
+    putc('3');
 }
+
+template<typename OUT, typename IN>
+OUT ForceCast( IN in )
+{
+    union
+    {
+        IN  in;
+        OUT out;
+    }
+    u = { in };
+
+    return u.out;
+};
 
 Thread::Thread (){
-    body = &threadRun;
-    arg = this;
+    
+    body = threadRun;
+    arg = reinterpret_cast<void*>(this);
 }
 
-
+void Thread::run (){
+    body(arg);
+}
 
 Semaphore::Semaphore (unsigned init){
     sem_open(&myHandle, init);
