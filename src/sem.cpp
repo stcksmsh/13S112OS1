@@ -15,6 +15,8 @@
 #include "heapManager.h"
 #include "thread.h"
 
+#include "consoleManager.h"
+
 
 void _sem::open(_sem** handle, unsigned init){
     (*handle) = (sem_t)HeapManager::getInstance().heapAllocate((sizeof(_sem) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
@@ -51,6 +53,7 @@ void _sem::wait(sem_t id){
 
 void _sem::signal(sem_t id){
     if(++id->value <= 0){
+        
         blockedThreadList* pUnblock = id->blockHead;
         id->blockHead = id->blockHead->pNext;
         if(id->blockHead == 0){

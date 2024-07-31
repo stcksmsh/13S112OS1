@@ -14,6 +14,7 @@
 #include "assert.h"
 #include "sched.h"
 #include "heapManager.h"
+#include "syscall_c.h"
 
 #include "console.h"
 
@@ -53,18 +54,18 @@ _thread::_thread(func function, void* arg){
     context.pc = (uint64)wrapper;
 }
 
-void popSppSpie(){
-    /// TODO: threads are all in supervisor mode now, THIS IS A BUG
+void _thread::popSppSpie(){
     __asm__ volatile ("csrw sepc, ra");
-    // __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    if(!currentThread->kernel){
+        __asm__ volatile ("csrc sstatus, %0" :: "r" (1 << 8));
+    }
     __asm__ volatile ("sret");
 }
 
 void _thread::wrapper(){
     popSppSpie();
     currentThread->function(currentThread->arg);
-    currentThread->unJoin();
-    exit();
+    thread_exit();
 }
 
 void _thread::unJoin(){
@@ -172,6 +173,7 @@ int _thread::exit(){
     if(currentThread->sleeping){
         return -3;
     }
+    currentThread->unJoin();
     currentThread->finished = 1;
     dispatch();
     return 0;
@@ -195,7 +197,9 @@ void _thread::dispatch(){
     if(oldThread != 0 && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
         Scheduler::put(oldThread);
     }
-    currentThread =  Scheduler::get();
-    if(currentThread == oldThread)return;
+    do{
+        currentThread =  Scheduler::get();
+        if(currentThread == oldThread)return;
+    }while(currentThread->closed || currentThread->blocked || currentThread->sleeping || currentThread->finished); /// If the thread is closed, blocked, sleeping or finished while it is in sched queue, we discard it
     contextSwitch(&(oldThread->context), &(currentThread->context));
 }

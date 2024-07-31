@@ -33,9 +33,9 @@ void memTest(){
     putc('\n');
     int n = 100;
     int k = 100;
-    int** matrix = (int**)mem_alloc(sizeof(int*) * n);
+    int** matrix = (int**)mem_alloc(n * sizeof(int*));
     for(int i = 0; i < n; i++){
-        matrix[i] = (int*)mem_alloc(sizeof(int) * k);
+        matrix[i] = (int*)mem_alloc(k * sizeof(int));
         for(int j = 0; j < k; j++){
             matrix[i][j] = i * k + j;
         }
@@ -118,7 +118,7 @@ void thread_test_2(void* args){
 
 
 void usermain(void* arg){
-    c = 't';
+    c = 'm';
     if(c == 'm'){
         memTest();
         return;

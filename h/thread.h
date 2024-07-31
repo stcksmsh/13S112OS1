@@ -54,10 +54,10 @@ public:
     int tick();
     uint32 ID;
 
+    static void wrapper();
 private:
     _thread(func function, void* arg);
 
-    static void wrapper();
 
     void unJoin();
 
@@ -90,6 +90,8 @@ private:
     static uint32 nextID;
 
     static void contextSwitch(contextWrapper* oldContext, contextWrapper* newContext);
+
+    static void popSppSpie() __attribute__((naked));
 
     friend class Scheduler;
     friend class Timer;

@@ -15,6 +15,8 @@
 #include "consoleManager.h"
 #include "thread.h"
 
+#include "consoleManager.h"
+
 Scheduler* Scheduler::singleton = 0;
 
 

@@ -34,14 +34,13 @@ void BufferCPP::put(int val) {
     buffer[tail] = val;
     tail = (tail + 1) % cap;
     mutexTail->signal();
-
     itemAvailable->signal();
-
 }
 
 int BufferCPP::get() {
+    putc('g');
     itemAvailable->wait();
-
+    putc('g');
     mutexHead->wait();
 
     int ret = buffer[head];

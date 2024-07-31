@@ -2,11 +2,102 @@
 #include "syscall_cpp.h"
 #include "usermain.h"
 #include "assert.h"
-
+#include "heapManager.h"
 
 Semaphore *sem1cpp, *sem2cpp;
 
+
 char ccpp;
+
+
+void memTestcpp(){
+    uint64 freeMemory = HeapManager::getInstance().getHeapFreeMemory();
+    putc('F');
+    putc('r');
+    putc('e');
+    putc('e');
+    putc(' ');
+    putc('m');
+    putc('e');
+    putc('m');
+    putc('o');
+    putc('r');
+    putc('y');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (freeMemory >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+
+    putc('\n');
+    int n = 100;
+    int k = 100;
+    int** matrix = new int*[n];
+    for(int i = 0; i < n; i++){
+        matrix[i] = new int[k];
+        for(int j = 0; j < k; j++){
+            matrix[i][j] = i * k + j;
+        }
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < k; j++){
+            assert(matrix[i][j] == i * k + j);
+        }
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    uint64 newFreeMemory = HeapManager::getInstance().getHeapFreeMemory();
+    putc('F');
+    putc('r');
+    putc('e');
+    putc('e');
+    putc(' ');
+    putc('m');
+    putc('e');
+    putc('m');
+    putc('o');
+    putc('r');
+    putc('y');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (newFreeMemory >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+    putc('\n');
+    uint64 difference = freeMemory - newFreeMemory;
+    putc('D');
+    putc('i');
+    putc('f');
+    putc('f');
+    putc('e');
+    putc('r');
+    putc('e');
+    putc('n');
+    putc('c');
+    putc('e');
+    putc(':');
+    for(int i=15; i >= 0;i--){
+        int digit = (difference >> (i * 4)) & 0xf;
+        if(digit < 10){
+            putc('0' + digit);
+        }else{
+            putc('a' + digit - 10);
+        }
+    }
+    putc('\n');
+    putc('\n');
+    putc('\n');
+}
+
+
 
 void thread_test_1cpp(void* args){
     putc('1');
@@ -29,6 +120,10 @@ void thread_test_2cpp(void* args){
 
 void usermainCPP(void* arg){
     ccpp = 't';
+    if(ccpp == 'm'){
+        memTestcpp();
+        return;
+    }
     putc('0');
     Thread *t1, *t2;
     t1 = new Thread(thread_test_1cpp, 0);

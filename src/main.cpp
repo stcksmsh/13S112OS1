@@ -20,6 +20,7 @@ void main(){
     kernel.initialise();
     Kernel::EXIT_CODE exitCode = kernel.run();
     putc('\n');
+    putc('\n');
     putc('-');
     putc('-');
     putc('-');

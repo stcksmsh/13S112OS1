@@ -39,9 +39,9 @@ void Kernel::initialise(){
 }
 
 void test(void* arg){
-    // usermain(arg);
-    usermainCPP(arg);
-    // userMain();
+    // usermain(arg);       /// This is my c api test
+    // usermainCPP(arg);    /// This is my c++ api test 
+    userMain();             /// This is the public test
 }
 
 
@@ -49,6 +49,12 @@ void consoleConsumer(void* arg){
     ConsoleManager::outputHandler();
 }
 
+void switchToUserMode() __attribute__((naked));
+void switchToUserMode(){
+    __asm__ volatile ("csrc sstatus, %0" :: "r"(1<<8));
+    __asm__ volatile ("csrw sepc, ra");
+    __asm__ volatile ("sret");
+}
 
 Kernel::EXIT_CODE Kernel::run(){
 
@@ -62,12 +68,13 @@ Kernel::EXIT_CODE Kernel::run(){
     thread_t consoleThread;
     thread_create(&consoleThread, consoleConsumer, 0);
 
-    /// enable external hardware interrupts
+    // / enable external hardware interrupts
     __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
 
     /// enable software interrupts
     __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
 
+    switchToUserMode();
 
     thread_t userThread;
     thread_create(&userThread, test, 0);

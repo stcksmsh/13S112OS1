@@ -14,14 +14,28 @@
 #include "sched.h"
 #include "thread.h"
 #include "sem.h"
+#include "assert.h"
 
 void* operator new (size_t nSize){
-    return mem_alloc(nSize);
+    void *ptr = mem_alloc(nSize);
+    assert(ptr != nullptr);
+    return ptr;
 }
 
 void  operator delete (void* pAddress){
-    mem_free(pAddress);
+    assert(mem_free(pAddress) == 0);
 }
+
+void * operator new[](size_t nSize){
+    void *ptr = mem_alloc(nSize);
+    assert(ptr != nullptr);
+    return ptr;
+}
+
+void operator delete[](void* pAddress){
+    assert(mem_free(pAddress) == 0);
+}
+
 
 Thread::Thread (void (*body)(void*), void* arg): body(body), arg(arg){
     this->body = body;
@@ -49,11 +63,8 @@ int Thread::sleep (time_t time){
 }
 
 void threadRun(void* arg){
-    putc('1');
     Thread* thread = (Thread*)arg;
-    putc('2');
     thread->run();
-    putc('3');
 }
 
 template<typename OUT, typename IN>
@@ -105,6 +116,9 @@ int Semaphore::timedwait (time_t time){
 
 void PeriodicThread::terminate (){
     myHandle->setClosed(true);
+    if( _thread::currentThread == myHandle){
+        thread_dispatch();
+    }
 }
 
 PeriodicThread::PeriodicThread (time_t period): period(period){

@@ -15,13 +15,13 @@ static void sleepyRun(void *arg) {
         time_sleep(sleep_time);
         putc('.');
     }
-    finished[sleep_time/200-1] = true;
+    finished[sleep_time/20-1] = true;
 }
 
 void testSleeping() {
     printString("Starting...\n");
     const int sleepy_thread_count = 2;
-    time_t sleep_times[sleepy_thread_count] = {200, 400};
+    time_t sleep_times[sleepy_thread_count] = {20, 40};
     thread_t sleepyThread[sleepy_thread_count];
 
     printString("Creating threads: ");

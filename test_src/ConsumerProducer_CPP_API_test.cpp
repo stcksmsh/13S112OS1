@@ -22,7 +22,11 @@ public:
         int key;
         int i = 0;
         while ((key = getc()) != 0x1b) {
+            putc('P');
+            putc('\n');
             td->buffer->put(key);
+            putc('P');
+            putc('\n');
             i++;
         }
 
@@ -43,7 +47,6 @@ public:
         while (!threadEnd) {
             td->buffer->put(td->id + '0');
             i++;
-            Thread::sleep((i + td->id) % 5);
         }
 
         td->sem->signal();
@@ -58,7 +61,11 @@ public:
     void run() override {
         int i = 0;
         while (!threadEnd) {
+            putc('C');
+            putc('\n');
             int key = td->buffer->get();
+            putc('C');
+            putc('\n');
             i++;
 
             Console::putc(key);
@@ -128,16 +135,13 @@ void testConsumerProducer() {
         producers[i] = new Producer(&threadData[i]);
         producers[i]->start();
     }
-    putc('.');
 
     Thread::dispatch();
-    putc('.');
 
     for (int i = 0; i <= threadNum; i++) {
         waitForAll->wait();
         putc('x');
     }
-    putc('.');
 
     delete waitForAll;
     for (int i = 0; i < threadNum; i++) {
