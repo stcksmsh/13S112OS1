@@ -14,6 +14,7 @@
 #include "heapManager.h"
 #include "consoleManager.h"
 #include "thread.h"
+#include "syscall_c.h"
 
 #include "consoleManager.h"
 
@@ -35,12 +36,12 @@ bool Scheduler::isEmpty(){
 
 void Scheduler::put(thread_t thread){
     if(singleton->head == 0){
-        singleton->head = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+        singleton->head = (ThreadList*)mem_alloc(sizeof(ThreadList));
         singleton->tail = singleton->head;
         singleton->head->thread = thread;
         singleton->head->next = 0;
     }else{
-        singleton->tail->next = (ThreadList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+        singleton->tail->next = (ThreadList*)mem_alloc(sizeof(ThreadList));
         singleton->tail = singleton->tail->next;
         singleton->tail->thread = thread;
         singleton->tail->next = 0;
@@ -57,7 +58,7 @@ thread_t Scheduler::get(){
         singleton->tail = 0;
     }
     thread_t thread = tmp->thread;
-    HeapManager::getInstance().heapFree(tmp);
+    mem_free(tmp);
     return thread;
 }
 

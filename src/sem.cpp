@@ -14,12 +14,13 @@
 #include "sched.h"
 #include "heapManager.h"
 #include "thread.h"
+#include "syscall_c.h"
 
 #include "consoleManager.h"
 
 
 void _sem::open(_sem** handle, unsigned init){
-    (*handle) = (sem_t)HeapManager::getInstance().heapAllocate((sizeof(_sem) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    (*handle) = (sem_t)mem_alloc(sizeof(_sem));
     (*handle)->blockHead = 0;
     (*handle)->blockTail = 0;
     (*handle)->value = init;
@@ -34,8 +35,8 @@ void _sem::close(sem_t id){
 }
 
 void _sem::wait(sem_t id){
-    if(--id->value < 0){
-        blockedThreadList* pNewBlock = (blockedThreadList*)HeapManager::getInstance().heapAllocate((sizeof(blockedThreadList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    if(id->value-- <= 0){
+        blockedThreadList* pNewBlock = (blockedThreadList*)mem_alloc(sizeof(blockedThreadList));
         pNewBlock->pThread = _thread::currentThread;
         pNewBlock->pNext = 0;
         if(id->blockHead == 0){
@@ -52,7 +53,7 @@ void _sem::wait(sem_t id){
 }
 
 void _sem::signal(sem_t id){
-    if(++id->value <= 0){
+    if(id->value++ < 0){
         
         blockedThreadList* pUnblock = id->blockHead;
         id->blockHead = id->blockHead->pNext;
@@ -60,7 +61,7 @@ void _sem::signal(sem_t id){
             id->blockTail = 0;
         }
         pUnblock->pThread->setBlocked(false);
-        HeapManager::getInstance().heapFree(pUnblock);
+        mem_free(pUnblock);
         thread_t t = pUnblock->pThread;
         Scheduler::put(t);
     }

@@ -75,14 +75,14 @@ void _thread::unJoin(){
         thread->blocked = false;
         Scheduler::put(thread);
         ThreadJoinList* next = current->next;
-        HeapManager::getInstance().heapFree(current);
+        mem_free(current);
         current = next;
     }
 }
 
 int _thread::create(thread_t* thread, func function, void* arg, void* stack, bool start){
 
-    *thread = (_thread*)HeapManager::getInstance().heapAllocate((sizeof(_thread) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    *thread = (_thread*)mem_alloc(sizeof(_thread));
     if(*thread == 0){
         return -1;
     }
@@ -129,7 +129,7 @@ void _thread::join(thread_t thread){
     if(thread->finished || thread->closed){
         return;
     }
-    ThreadJoinList* newJoin = (ThreadJoinList*)HeapManager::getInstance().heapAllocate((sizeof(ThreadJoinList) + MEM_BLOCK_SIZE - 1) / MEM_BLOCK_SIZE);
+    ThreadJoinList* newJoin = (ThreadJoinList*)mem_alloc(sizeof(ThreadJoinList));
     this->blocked = true;
     newJoin->thread = this;
     newJoin->next = 0;
@@ -175,6 +175,7 @@ int _thread::exit(){
     }
     currentThread->unJoin();
     currentThread->finished = 1;
+    mem_free(reinterpret_cast<void*>(reinterpret_cast<uint64>(currentThread->stackStart) - DEFAULT_STACK_SIZE));
     dispatch();
     return 0;
 }

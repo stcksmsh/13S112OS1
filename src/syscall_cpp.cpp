@@ -62,6 +62,7 @@ int Thread::sleep (time_t time){
     return time_sleep(time);
 }
 
+void threadRun(void* arg) __attribute__((naked));
 void threadRun(void* arg){
     Thread* thread = (Thread*)arg;
     thread->run();

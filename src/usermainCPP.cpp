@@ -119,11 +119,14 @@ void thread_test_2cpp(void* args){
 
 
 void usermainCPP(void* arg){
-    ccpp = 't';
+    ccpp = 's';
     if(ccpp == 'm'){
+        memTestcpp();
+        memTestcpp();
         memTestcpp();
         return;
     }
+    memTestcpp();
     putc('0');
     Thread *t1, *t2;
     t1 = new Thread(thread_test_1cpp, 0);
@@ -143,4 +146,6 @@ void usermainCPP(void* arg){
     putc('5');
     if(ccpp == 's')t2->join();
     if(ccpp == 's')t1->join();
+    putc('\n');
+    memTestcpp();
 }

@@ -68,11 +68,11 @@ Kernel::EXIT_CODE Kernel::run(){
     thread_t consoleThread;
     thread_create(&consoleThread, consoleConsumer, 0);
 
-    // / enable external hardware interrupts
-    __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
+    // // / enable external hardware interrupts
+    // __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
 
-    /// enable software interrupts
-    __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
+    // /// enable software interrupts
+    // __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
 
     switchToUserMode();
 

@@ -10,10 +10,11 @@
  */
 
 #include "timer.h"
-#include "heapManager.h"
 #include "sched.h"
 #include "assert.h"
 #include "thread.h"
+
+#include "syscall_c.h"
 
 
 Timer* Timer::instance = 0;
@@ -29,7 +30,7 @@ Timer::~Timer(){
     threadSleepWrapper* current = sleepingHead;
     while(current != 0){
         threadSleepWrapper* next = current->next;
-        HeapManager::getInstance().heapFree(current);
+        mem_free(current);
         current = next;
     }
 }
@@ -45,7 +46,7 @@ void Timer::tick(){
         sleepingHead->thread->setSleeping(false);
         Scheduler::put(sleepingHead->thread);
         threadSleepWrapper* next = sleepingHead->next;
-        HeapManager::getInstance().heapFree(sleepingHead);
+        mem_free(sleepingHead);
         sleepingHead = next;
     }
 }
@@ -53,7 +54,7 @@ void Timer::tick(){
 int Timer::sleep(time_t timeToSleep){
 
     thread_t thread = _thread::currentThread;
-    threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)HeapManager::getInstance().heapAllocate(sizeof(threadSleepWrapper));
+    threadSleepWrapper* newSleepingThread = (threadSleepWrapper*)mem_alloc(sizeof(threadSleepWrapper));
     newSleepingThread->thread = thread;
     newSleepingThread->wakeUpTime = time + timeToSleep;
     newSleepingThread->next = 0;
