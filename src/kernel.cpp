@@ -19,7 +19,7 @@
 #include "usermain.h"
 #include "consoleManager.h"
 
-#include "../test_h/userMain.h"
+#include "userMain.hpp"
 
 
 extern "C" void trap();
@@ -68,17 +68,11 @@ Kernel::EXIT_CODE Kernel::run(){
     thread_t consoleThread;
     thread_create(&consoleThread, consoleConsumer, 0);
 
-    // // / enable external hardware interrupts
-    // __asm__ volatile ("csrs sie, %0" :: "r"(1<<9));
-
-    // /// enable software interrupts
-    // __asm__ volatile ("csrs sstatus, %0" :: "r"(1<<1));
-
     switchToUserMode();
 
     thread_t userThread;
     thread_create(&userThread, test, 0);
-    while(!userThread->finished){
+    while(!Scheduler::isEmpty() || timer.noSleepingThreads()){
         thread_dispatch();
     }
 

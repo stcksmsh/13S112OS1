@@ -2,7 +2,7 @@
 #define OS1_BUFFERCPP_H
 
 #include "../h/syscall_cpp.h"
-#include "printing.h"
+#include "printing.hpp"
 
 class BufferCPP {
 private:

@@ -1,7 +1,8 @@
 #include "../h/syscall_cpp.h"
 
-#include "../test_h/buffer_CPP_API.h"
-#include "../test_h/printing.h"
+#include "buffer_CPP_API.hpp"
+#include "printing.hpp"
+
 
 static Semaphore *waitForAll;
 
@@ -22,11 +23,7 @@ public:
         int key;
         int i = 0;
         while ((key = getc()) != 0x1b) {
-            putc('P');
-            putc('\n');
             td->buffer->put(key);
-            putc('P');
-            putc('\n');
             i++;
         }
 
@@ -47,6 +44,7 @@ public:
         while (!threadEnd) {
             td->buffer->put(td->id + '0');
             i++;
+            Thread::sleep((i + td->id) % 5);
         }
 
         td->sem->signal();
@@ -61,11 +59,7 @@ public:
     void run() override {
         int i = 0;
         while (!threadEnd) {
-            putc('C');
-            putc('\n');
             int key = td->buffer->get();
-            putc('C');
-            putc('\n');
             i++;
 
             Console::putc(key);
@@ -111,6 +105,7 @@ void testConsumerProducer() {
     }
 
     BufferCPP *buffer = new BufferCPP(n);
+
     waitForAll = new Semaphore(0);
     Thread *producers[threadNum];
     thread_data threadData[threadNum + 1];
@@ -134,13 +129,13 @@ void testConsumerProducer() {
 
         producers[i] = new Producer(&threadData[i]);
         producers[i]->start();
+
     }
 
     Thread::dispatch();
 
     for (int i = 0; i <= threadNum; i++) {
         waitForAll->wait();
-        putc('x');
     }
 
     delete waitForAll;

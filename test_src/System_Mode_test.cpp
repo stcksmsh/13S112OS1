@@ -1,7 +1,7 @@
 
 #include "../h/syscall_c.h"
 
-#include "../test_h/printing.h"
+#include "printing.hpp"
 
 static volatile bool finishedA = false;
 static volatile bool finishedB = false;
@@ -17,7 +17,7 @@ static uint64 fibonacci(uint64 n) {
 static void workerBodyA(void* arg) {
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 100; j++) {
+        for (uint64 j = 0; j < 10000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
@@ -29,7 +29,7 @@ static void workerBodyA(void* arg) {
 static void workerBodyB(void* arg) {
     for (uint64 i = 0; i < 16; i++) {
         printString("B: i="); printInt(i); printString("\n");
-        for (uint64 j = 0; j < 100; j++) {
+        for (uint64 j = 0; j < 10000; j++) {
             for (uint64 k = 0; k < 30000; k++) { /* busy wait */ }
             thread_dispatch();
         }
@@ -64,7 +64,7 @@ static void workerBodyC(void* arg) {
         printString("C: i="); printInt(i); printString("\n");
     }
 
-    printString("C finished!\n");
+    printString("A finished!\n");
     finishedC = true;
     thread_dispatch();
 }
@@ -96,19 +96,15 @@ void System_Mode_test() {
     thread_t threads[4];
     thread_create(&threads[0], workerBodyA, nullptr);
     printString("ThreadA created\n");
-    // testUser();
 
     thread_create(&threads[1], workerBodyB, nullptr);
     printString("ThreadB created\n");
-    // testUser();
 
     thread_create(&threads[2], workerBodyC, nullptr);
     printString("ThreadC created\n");
-    // testUser();
 
     thread_create(&threads[3], workerBodyD, nullptr);
     printString("ThreadD created\n");
-    // testUser();
 
     while (!(finishedA && finishedB && finishedC && finishedD)) {
         thread_dispatch();

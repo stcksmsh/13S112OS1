@@ -1,4 +1,4 @@
-#include "../test_h/buffer_CPP_API.h"
+#include "buffer_CPP_API.hpp"
 
 BufferCPP::BufferCPP(int _cap) : cap(_cap + 1), head(0), tail(0) {
     buffer = (int *)mem_alloc(sizeof(int) * cap);
@@ -34,13 +34,14 @@ void BufferCPP::put(int val) {
     buffer[tail] = val;
     tail = (tail + 1) % cap;
     mutexTail->signal();
+
     itemAvailable->signal();
+
 }
 
 int BufferCPP::get() {
-    putc('g');
     itemAvailable->wait();
-    putc('g');
+
     mutexHead->wait();
 
     int ret = buffer[head];

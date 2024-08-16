@@ -1,11 +1,8 @@
 
 #include "../h/syscall_c.h"
-#include "../test_h/Threads_C_API_test.h"
+#include "Threads_C_API_test.hpp"
 
-#include "../test_h/printing.h"
-
-#include "sched.h"
-#include "thread.h"
+#include "printing.hpp"
 
 static volatile bool finishedA = false;
 static volatile bool finishedB = false;
@@ -13,18 +10,12 @@ static volatile bool finishedC = false;
 static volatile bool finishedD = false;
 
 static uint64 fibonacci(uint64 n) {
-    // putc('F');
-    // putc('-');
-    // putc('0' + n / 10);
-    // putc('0' + n % 10);
-    // putc('\n');
     if (n == 0 || n == 1) { return n; }
     if (n % 10 == 0) { thread_dispatch(); }
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 static void workerBodyA(void* arg) {
-
     for (uint64 i = 0; i < 10; i++) {
         printString("A: i="); printInt(i); printString("\n");
         for (uint64 j = 0; j < 10000; j++) {
@@ -34,7 +25,6 @@ static void workerBodyA(void* arg) {
     }
     printString("A finished!\n");
     finishedA = true;
-
 }
 
 static void workerBodyB(void* arg) {
@@ -72,7 +62,7 @@ static void workerBodyC(void* arg) {
         printString("C: i="); printInt(i); printString("\n");
     }
 
-    printString("C finished!\n");
+    printString("A finished!\n");
     finishedC = true;
     thread_dispatch();
 }
@@ -84,7 +74,7 @@ static void workerBodyD(void* arg) {
     }
 
     printString("D: dispatch\n");
-    __asm__ volatile("li t1, 5");
+    __asm__ ("li t1, 5");
     thread_dispatch();
 
     uint64 result = fibonacci(16);
@@ -117,4 +107,5 @@ void Threads_C_API_test() {
     while (!(finishedA && finishedB && finishedC && finishedD)) {
         thread_dispatch();
     }
+
 }

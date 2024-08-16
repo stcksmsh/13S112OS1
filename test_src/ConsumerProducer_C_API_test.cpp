@@ -1,7 +1,7 @@
 
 #include "../h/syscall_c.h"
 
-#include "../test_h/buffer.h"
+#include "buffer.hpp"
 
 static sem_t waitForAll;
 
@@ -88,7 +88,6 @@ void producerConsumer_C_API() {
     getString(input, 30);
     n = stringToInt(input);
 
-
     printString("Broj proizvodjaca "); printInt(threadNum);
     printString(" i velicina bafera "); printInt(n);
     printString(".\n");
@@ -100,8 +99,11 @@ void producerConsumer_C_API() {
         printString("Broj proizvodjaca mora biti veci od nula!\n");
         return;
     }
+
     Buffer *buffer = new Buffer(n);
+
     sem_open(&waitForAll, 0);
+
     thread_t threads[threadNum];
     thread_t consumerThread;
 
@@ -131,4 +133,5 @@ void producerConsumer_C_API() {
     sem_close(waitForAll);
 
     delete buffer;
+
 }
