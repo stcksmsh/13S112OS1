@@ -119,7 +119,7 @@ void thread_test_2cpp(void* args){
 
 
 void usermainCPP(void* arg){
-    ccpp = 's';
+    ccpp = 't';
     if(ccpp == 'm'){
         memTestcpp();
         memTestcpp();

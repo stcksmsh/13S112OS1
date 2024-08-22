@@ -118,7 +118,7 @@ void thread_test_2(void* args){
 
 
 void usermain(void* arg){
-    c = 'm';
+    c = 's';
     if(c == 'm'){
         memTest();
         return;
