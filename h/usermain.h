@@ -5,4 +5,6 @@ void usermain(void* arg);
 
 void usermainCPP(void* arg);
 
+void memTest();
+
 #endif // USERMAIN_H

@@ -56,6 +56,7 @@ int thread_exit (){
 void thread_dispatch () {
     __asm__ volatile("li a0,0x13");
     __asm__ volatile("ecall");
+    return;
 }
 
 void thread_join ( thread_t handle ) {

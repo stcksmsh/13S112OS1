@@ -2,3 +2,5 @@
 *.zip
 *.s
 build
+.vscode
+*.txt

@@ -193,6 +193,7 @@ void _thread::setSleeping(bool sleeping){
 }
 
 void _thread::dispatch(){
+    saveContext(&(currentThread->context));
     thread_t oldThread = currentThread;
     oldThread->timeLeft = DEFAULT_TIME_SLICE;
     if(oldThread != 0 && !oldThread->closed && !oldThread->blocked && !oldThread->sleeping && !oldThread->finished){
@@ -200,7 +201,60 @@ void _thread::dispatch(){
     }
     do{
         currentThread =  Scheduler::get();
-        if(currentThread == oldThread)return;
+        // if(currentThread == oldThread)break;
     }while(currentThread->closed || currentThread->blocked || currentThread->sleeping || currentThread->finished); /// If the thread is closed, blocked, sleeping or finished while it is in sched queue, we discard it
-    contextSwitch(&(oldThread->context), &(currentThread->context));
+    restoreContext(&(currentThread->context));
+}
+
+
+
+inline void _thread::saveContext(contextWrapper *context){
+    __asm__ volatile (
+        "mv t0, %0\n"
+        "sd ra, 0(t0)\n"
+        "sd sp, 8(t0)\n"
+        "sd s0, 16(t0)\n"
+        "sd s1, 24(t0)\n"
+        "sd s2, 32(t0)\n"
+        "sd s3, 40(t0)\n"
+        "sd s4, 48(t0)\n"
+        "sd s5, 56(t0)\n"
+        "sd s6, 64(t0)\n"
+        "sd s7, 72(t0)\n"
+        "sd s8, 80(t0)\n"
+        "sd s9, 88(t0)\n"
+        "sd s10, 96(t0)\n"
+        "sd s11, 104(t0)\n"
+        "csrr t1, sstatus\n"
+        "sd s0, 112(t0)\n"
+        "csrr t1, sepc\n"
+        "sd t1, 120(t0)\n"
+        :: "r"(context)
+    );
+}
+
+inline void _thread::restoreContext(contextWrapper *context){
+    __asm__ volatile (
+        "mv t0, %0\n"
+        "ld ra, 0(t0)\n"
+        "ld sp, 8(t0)\n"
+        "ld s1, 24(t0)\n"
+        "ld s2, 32(t0)\n"
+        "ld s3, 40(t0)\n"
+        "ld s4, 48(t0)\n"
+        "ld s5, 56(t0)\n"
+        "ld s6, 64(t0)\n"
+        "ld s7, 72(t0)\n"
+        "ld s8, 80(t0)\n"
+        "ld s9, 88(t0)\n"
+        "ld s10, 96(t0)\n"
+        "ld s11, 104(t0)\n"
+        "ld s0, 112(t0)\n"
+        "csrw sstatus, t1\n"
+        "ld s0, 16(t0)\n"
+        "ld t1, 120(t0)\n"
+        "csrw sepc, t1\n"
+        "ret\n"
+        :: "r"(context)
+    );
 }

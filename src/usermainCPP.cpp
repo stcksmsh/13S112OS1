@@ -1,5 +1,5 @@
 #include "usermain.h"
-#include "syscall_cpp.h"
+#include "syscall_cpp.hpp"
 #include "usermain.h"
 #include "assert.h"
 #include "heapManager.h"

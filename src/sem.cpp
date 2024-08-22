@@ -49,7 +49,6 @@ void _sem::wait(sem_t id){
         _thread::currentThread->setBlocked(true);
         _thread::dispatch();
     }
-
 }
 
 void _sem::signal(sem_t id){

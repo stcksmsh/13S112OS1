@@ -1,5 +1,4 @@
-#include "../h/syscall_cpp.h"
-
+#include "../h/syscall_cpp.hpp"
 #include "buffer_CPP_API.hpp"
 #include "printing.hpp"
 

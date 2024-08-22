@@ -14,6 +14,8 @@
 #include "types.h"
 #include "attributes.h"
 
+#define SCHED_MAX_THREADS 32
+
 class _thread;
 typedef _thread* thread_t;
 
@@ -37,11 +39,14 @@ public:
 
 private:
 
-    struct ThreadList{
-        thread_t thread;
-        ThreadList* next;
-    }PACKED* head, *tail;
+    /// @brief the threads in the scheduler (queue)
+    thread_t threads[SCHED_MAX_THREADS];
 
+    /// @brief the head of the queue
+    int head;
+    /// @brief the tail of the queue
+    int tail;
+    
     static Scheduler* singleton;
 };
 

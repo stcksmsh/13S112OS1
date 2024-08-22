@@ -31,43 +31,35 @@ Scheduler::Scheduler(){
 }
 
 bool Scheduler::isEmpty(){
-    return singleton->head == 0;
+    if(singleton->head == singleton->tail){
+        return true;
+    }
+    return false;
 }
 
 void Scheduler::put(thread_t thread){
-    if(singleton->head == 0){
-        singleton->head = (ThreadList*)mem_alloc(sizeof(ThreadList));
-        singleton->tail = singleton->head;
-        singleton->head->thread = thread;
-        singleton->head->next = 0;
-    }else{
-        singleton->tail->next = (ThreadList*)mem_alloc(sizeof(ThreadList));
-        singleton->tail = singleton->tail->next;
-        singleton->tail->thread = thread;
-        singleton->tail->next = 0;
-    }
+    Scheduler* scheduler = singleton;
+    scheduler->threads[scheduler->tail] = thread;
+    scheduler->tail = (scheduler->tail + 1) % SCHED_MAX_THREADS;
+    assert(scheduler->tail != scheduler->head);
 }
 
 thread_t Scheduler::get(){    
-    if(singleton->head == 0){
+    if(isEmpty()){
         return 0;
     }
-    ThreadList* tmp = singleton->head;
-    singleton->head = singleton->head->next;
-    if(singleton->head == 0){
-        singleton->tail = 0;
-    }
-    thread_t thread = tmp->thread;
-    mem_free(tmp);
+    Scheduler* scheduler = singleton;
+    thread_t thread = scheduler->threads[scheduler->head];
+    scheduler->head = (scheduler->head + 1) % SCHED_MAX_THREADS;
     return thread;
 }
 
 int Scheduler::getCount(){
     int count = 0;
-    ThreadList* tmp = singleton->head;
-    while(tmp != 0){
-        count++;
-        tmp = tmp->next;
+    if(singleton->head <= singleton->tail){
+        count = singleton->tail - singleton->head;
+    }else{
+        count = SCHED_MAX_THREADS - singleton->head + singleton->tail;
     }
     return count;
 }

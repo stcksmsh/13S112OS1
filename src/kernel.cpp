@@ -28,13 +28,15 @@ Kernel::Kernel(): heapManager(), scheduler(), timer(){}
  
 void Kernel::initialise(){
     /// set the trap vector
-    __asm__ volatile ("csrw stvec, %0" :: "r"(trap));
+    __asm__ volatile ("csrw stvec, %0" :: "r"((uint64)trap));
+
     
     /// initialise the heap manager
     heapManager.init((uint64)HEAP_START_ADDR, (uint64)HEAP_END_ADDR );
 
     /// initialise the console
     console.getInstance().init();
+
     return;
 }
 
@@ -60,10 +62,8 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_t kernelThread;
     
-    void* stack = reinterpret_cast<void*>(reinterpret_cast<uint64>(mem_alloc(DEFAULT_STACK_SIZE)) + DEFAULT_STACK_SIZE - 1);
-    _thread::create(&kernelThread, 0, 0, stack, false);
-    _thread::currentThread = kernelThread;
-
+    thread_create(&kernelThread, 0, 0);
+    _thread::currentThread = Scheduler::get();
 
     thread_t consoleThread;
     thread_create(&consoleThread, consoleConsumer, 0);
@@ -72,10 +72,9 @@ Kernel::EXIT_CODE Kernel::run(){
 
     thread_t userThread;
     thread_create(&userThread, test, 0);
-    while(!Scheduler::isEmpty() || timer.noSleepingThreads()){
+    while(!ConsoleManager::getInstance().finished() || !Timer::getInstance().noSleepingThreads() || !Scheduler::isEmpty()){
         thread_dispatch();
     }
-
 
     return EXIT_SUCCESS;
 }

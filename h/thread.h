@@ -18,8 +18,8 @@
 
 /// @brief the thread class
 class _thread{
-    using func = void (*)(void*);
 public:
+    using func = void (*)(void*);
 
     static int create(_thread** thread, func function, void* arg, void* stack, bool start = true);
 
@@ -28,7 +28,7 @@ public:
     static int exit();
 
     /// @brief dispatch current thread
-    static void dispatch();
+    static void dispatch() __attribute__((naked));
 
     /// @brief joins this thread onto the given thread
     /// @param thread thread to join onto
@@ -64,7 +64,7 @@ private:
     struct contextWrapper{
         uint64 pc = 0, sp = 0;
         uint64 s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11;///general purpose registers
-        uint64 sstatus;
+        uint64 sstatus, sepc;
     } context;
     /// @brief joined threads
     struct ThreadJoinList{
@@ -89,7 +89,9 @@ private:
     void* arg;
     static uint32 nextID;
 
-    static void contextSwitch(contextWrapper* oldContext, contextWrapper* newContext);
+    static inline void saveContext(contextWrapper* context);
+
+    static inline void restoreContext(contextWrapper* context);
 
     static void popSppSpie() __attribute__((naked));
 

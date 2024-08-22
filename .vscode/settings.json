@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "thread": "cpp",
-        "vector": "cpp",
-        "cstdlib": "cpp",
-        "*.tcc": "cpp",
-        "fstream": "cpp"
-    }
-}

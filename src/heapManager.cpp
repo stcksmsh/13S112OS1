@@ -91,6 +91,9 @@ void* HeapManager::heapAllocate(size_t nSize){
 }
 
 int HeapManager::heapFree(void* pAddress){
+    if(pAddress == nullptr){
+        return -1;
+    }
     HeapFreeSectionHeader* pFree = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uint64>(pAddress) - MEM_BLOCK_SIZE);
     
     #ifdef CHECK_CONDITIONS

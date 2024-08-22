@@ -185,7 +185,6 @@ extern "C" void exceptionHandler(){
     {   
         int irq = plic_claim();
         if(irq == CONSOLE_IRQ)ConsoleManager::inputHandler();
-        // console_handler();
         plic_complete(irq);
         // interrupt: yes; cause code: supervisor external interrupt (PLIC; could be keyboard)
         __asm__ volatile("csrw sepc, %0" :: "r"(sepc));
