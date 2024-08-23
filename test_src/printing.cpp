@@ -9,8 +9,8 @@ uint64 lockPrint = 0;
 #define LOCK() while(copy_and_swap(lockPrint, 0, 1)) thread_dispatch()
 #define UNLOCK() while(copy_and_swap(lockPrint, 1, 0))
 
-void printString(char const *string)
-{
+void printString(char const *string){
+
     LOCK();
     while (*string != '\0')
     {
@@ -51,8 +51,8 @@ int stringToInt(const char *s) {
 
 char digits[] = "0123456789ABCDEF";
 
-void printInt(int xx, int base, int sgn)
-{
+void printInt(int xx, int base, int sgn){
+
     LOCK();
     char buf[16];
     int i, neg;

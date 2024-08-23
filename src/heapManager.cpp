@@ -25,7 +25,7 @@ HeapManager::~HeapManager(){
 
 void HeapManager::init(uint64 nStart, size_t nEnd){
     /// Align the start address
-    #ifdef CHECK_CONDITIONS
+    #ifdef PARANOID
         assert(nEnd - nStart > MEM_BLOCK_SIZE);
     #endif
     m_pHead = reinterpret_cast<HeapFreeSectionHeader*>(nStart);
@@ -40,7 +40,7 @@ size_t HeapManager::getHeapFreeMemory(){
     size_t nFreeMemory = 0;
     HeapFreeSectionHeader* pCurrent = m_pHead;
     while(pCurrent != 0){
-        #ifdef CHECK_CONDITIONS
+        #ifdef PARANOID
             assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
         #endif
         nFreeMemory += pCurrent->nSize;
@@ -52,7 +52,7 @@ size_t HeapManager::getHeapFreeMemory(){
 void* HeapManager::heapAllocate(size_t nSize){
     HeapFreeSectionHeader* pCurrent = m_pHead;
     while(pCurrent != 0){
-        #ifdef CHECK_CONDITIONS
+        #ifdef PARANOID
             assert(pCurrent->u32Magic == HEAP_BLOCK_MAGIC);
         #endif
         if(pCurrent->nSize > nSize + 1){
@@ -96,7 +96,7 @@ int HeapManager::heapFree(void* pAddress){
     }
     HeapFreeSectionHeader* pFree = reinterpret_cast<HeapFreeSectionHeader*>(reinterpret_cast<uint64>(pAddress) - MEM_BLOCK_SIZE);
     
-    #ifdef CHECK_CONDITIONS
+    #ifdef PARANOID
         assert(pFree->u32Magic == HEAP_BLOCK_MAGIC);
     #endif
     HeapFreeSectionHeader* pInsert = m_pHead;
@@ -107,7 +107,7 @@ int HeapManager::heapFree(void* pAddress){
         m_pHead = pFree;
     }else{
         while(pInsert->pNext != 0 && pInsert->pNext < pAddress){
-            #ifdef CHECK_CONDITIONS
+            #ifdef PARANOID
                 assert(pInsert->u32Magic == HEAP_BLOCK_MAGIC);
             #endif
             pInsert = pInsert->pNext;

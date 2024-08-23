@@ -41,11 +41,11 @@ void Kernel::initialise(){
 }
 
 void test(void* arg){
-    usermain(arg);       /// This is my c api test
-    usermainCPP(arg);    /// This is my c++ api test 
-    for(int i = 0; i < 7; i++){
+    // usermain(arg);       /// This is my c api test
+    // usermainCPP(arg);    /// This is my c++ api test 
+    // for(int i = 0; i < 7; i++){
         userMain();             /// This is the public test
-    }
+    // }
 }
 
 

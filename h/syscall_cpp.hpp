@@ -10,7 +10,7 @@ void operator delete[](void*);
 
 class Thread
 {
- friend class RunWrapper;
+ 	friend void cppThreadWrapper(void*);
  public:
 	Thread(void (* body)(void*), void* arg);
 	virtual ~Thread();
@@ -20,9 +20,7 @@ class Thread
 	static int sleep(time_t);
  protected:
 	Thread();
-	virtual void run()
-	{
-	}
+	virtual void run(){}
  private:
 	thread_t myHandle;
 	void (* body)(void*);
@@ -46,11 +44,11 @@ class PeriodicThread : public Thread
 	void terminate();
  protected:
 	PeriodicThread(time_t period);
-	virtual void periodicActivation()
-	{
-	}
+	void run() override;
+	virtual void periodicActivation(){}
  private:
 	time_t period;
+	bool active;
 };
 class Console
 {

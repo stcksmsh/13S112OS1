@@ -70,7 +70,7 @@ CXXFLAGS += $(shell ${CXX} -fno-stack-protector -E -x c /dev/null >/dev/null 2>&
 CXXFLAGS += ${DEBUG_FLAG}
 CXXFLAGS += -MMD -MP -MF"${@:%.o=%.d}"
 
-ifdef CHECK_CONDITIONS
+ifdef PARANOID
 	CFLAGS += -DCHECK_CONDITIONS
 	CXXFLAGS += -DCHECK_CONDITIONS
 endif
